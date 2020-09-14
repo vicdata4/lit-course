@@ -42,3 +42,9 @@ Run tests
 ```
 npm run test
 ```
+
+Run storybook
+
+```
+npm run storybook
+```
