@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { dateFormatter } from '../src/utils/functions';
+import { dateFormatter, emailValidator } from '../src/utils/functions';
 
 describe('Form validation', () => {
   const date = new Date();
@@ -21,5 +21,13 @@ describe('Form validation', () => {
 
   it('Returns default format correctly', async() => {
     expect(dateFormatter(date).default).equal('December 3, 2020');
+  });
+
+  it('Returns false when pass an invalid email', async() => {
+    expect(emailValidator('test@test.')).equal(false);
+  });
+
+  it('Returns true when pass a valid email', async() => {
+    expect(emailValidator('test@test.es')).equal(true);
   });
 });
