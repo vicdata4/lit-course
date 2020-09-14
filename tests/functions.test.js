@@ -27,6 +27,10 @@ describe('Form validation', () => {
     expect(emailValidator('test@test.')).equal(false);
   });
 
+  it('Returns false when pass an empty value', async() => {
+    expect(emailValidator('')).equal(false);
+  });
+
   it('Returns true when pass a valid email', async() => {
     expect(emailValidator('test@test.es')).equal(true);
   });
