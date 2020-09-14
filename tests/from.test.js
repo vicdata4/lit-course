@@ -22,8 +22,11 @@ describe('Form validation', () => {
   });
 
   it('Successfull icon is not visible', async() => {
-    const successfullIcon = el.shadowRoot.querySelector('.alert-succesfull');
-    expect(successfullIcon).to.be.null;
+    const thumbIcon = el.shadowRoot.querySelector('.alert-succesfull');
+    const message = el.shadowRoot.querySelector('.alert-msg');
+
+    expect(message).to.be.null;
+    expect(thumbIcon).to.be.null;
   });
 
   it('Enter an invalid email', async() => {
@@ -34,8 +37,11 @@ describe('Form validation', () => {
 
     await el.updateComplete;
 
-    const successfullIcon = el.shadowRoot.querySelector('.alert-succesfull');
-    expect(successfullIcon).to.be.null;
+    const thumbIcon = el.shadowRoot.querySelector('.alert-succesfull');
+    const message = el.shadowRoot.querySelector('.alert-msg');
+
+    expect(message).not.to.be.null;
+    expect(thumbIcon).to.be.null;
   });
 
   it('Enter an invalid password', async() => {
@@ -45,8 +51,11 @@ describe('Form validation', () => {
     submit.click();
     await el.updateComplete;
 
-    const icon = el.shadowRoot.querySelector('.alert-succesfull');
-    expect(icon).to.be.null;
+    const thumbIcon = el.shadowRoot.querySelector('.alert-succesfull');
+    const message = el.shadowRoot.querySelector('.alert-msg');
+
+    expect(message).not.to.be.null;
+    expect(thumbIcon).to.be.null;
   });
 
   it('Enter valid values', async() => {
@@ -56,7 +65,10 @@ describe('Form validation', () => {
     submit.click();
     await el.updateComplete;
 
-    const icon = el.shadowRoot.querySelector('.alert-succesfull');
-    expect(icon).not.to.be.null;
+    const thumbIcon = el.shadowRoot.querySelector('.alert-succesfull');
+    const message = el.shadowRoot.querySelector('.alert-msg');
+
+    expect(message).to.be.null;
+    expect(thumbIcon).not.to.be.null;
   });
 });
