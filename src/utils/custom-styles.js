@@ -21,7 +21,7 @@ export const navigatorStyles = css`
   }
 
   .menu-list li a:hover {
-    background-color: #a1a1a1;
+    background-color: #3e5c7b;
     color: white;
   }
 
@@ -34,6 +34,22 @@ export const navigatorStyles = css`
   }
 
   @media (min-width: 768px) {
+    .menu-list {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    .menu-list li {
+      margin: 20px;
+      line-height: 150px;
+      border-radius: 3px;
+    }
+
+    .menu-list li a {
+      height: 150px;
+      width: 150px;
+    }
   }
 `;
 

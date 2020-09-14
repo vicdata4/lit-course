@@ -1,12 +1,11 @@
 import { LitElement, html } from 'lit-element';
-import { navigatorStyles, commonStyles } from '../utils/custom-styles';
+import { commonStyles } from '../utils/custom-styles';
 import { dateFormatter } from '../utils/functions';
 import '../components/common-header';
 
 class FormThreeView extends LitElement {
   static get styles() {
     return [
-      navigatorStyles,
       commonStyles
     ];
   }
@@ -14,11 +13,6 @@ class FormThreeView extends LitElement {
   render() {
     return html`
       <common-header></common-header>
-      <nav>
-        <ul class="menu-list">
-          <li><a href="/">Volver</a></li>
-        </ul>
-      </nav>
       <section class="container">
       <h1>Form Three View</h1>
         <p>

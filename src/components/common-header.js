@@ -30,7 +30,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <img class="logo" src="/assets/images/polymer.png">
+        <a href="/"><img class="logo" src="/assets/images/polymer.png"></a>
       </header>
     `;
   }
