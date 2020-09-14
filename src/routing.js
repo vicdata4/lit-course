@@ -1,9 +1,8 @@
 import { Router } from '@vaadin/router';
 
 import './views/home-view';
-import './views/form-one-view';
-import './views/form-two-view';
-import './views/form-three-view';
+import './views/paris-view';
+import './views/dublin-view';
 import './views/form-example-view';
 import './views/not-found-view';
 
@@ -13,9 +12,8 @@ export const routing = function() {
 
   var routes = [
     { path: '/', component: 'home-view' },
-    { path: '/form-one-view', component: 'form-one-view' },
-    { path: '/form-two-view', component: 'form-two-view' },
-    { path: '/form-three-view', component: 'form-three-view' },
+    { path: '/paris-view', component: 'paris-view' },
+    { path: '/dublin-view', component: 'dublin-view' },
     { path: '/form-example-view', component: 'form-example-view' },
     { path: '(.*)', component: 'not-found-view' }
   ];
