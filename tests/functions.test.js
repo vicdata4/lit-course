@@ -12,7 +12,7 @@ describe('Form validation', () => {
   });
 
   it('Returns day format correctly', async() => {
-    expect(dateFormatter(date).day).equal('Frida');
+    expect(dateFormatter(date).day).equal('Friday');
   });
 
   it('Returns short format correctly', async() => {
