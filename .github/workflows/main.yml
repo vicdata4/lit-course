@@ -4,11 +4,7 @@
 name: Node.js CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
@@ -19,10 +15,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x]
+        node-version: [8.x, 10.x, 12.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
