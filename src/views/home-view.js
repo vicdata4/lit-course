@@ -18,6 +18,7 @@ class HomeView extends LitElement {
           <li><a href="/form-example-view">Form Example</a></li>
           <li><a href="/paris-view">Paris</a></li>
           <li><a href="/dublin-view">Dublin</a></li>
+          <li><a href="/data-binding">Data binding</a></li>
         </ul>
       </nav>
     `;
