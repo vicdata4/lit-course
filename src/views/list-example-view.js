@@ -22,6 +22,7 @@ class ListExampleView extends LitElement {
           border-radius: 5px;
           padding: 10px;
           cursor: pointer;
+          color: red;
         }
       `
     ];
