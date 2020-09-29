@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import { dateFormatter } from '../utils/functions';
