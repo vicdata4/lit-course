@@ -16,7 +16,7 @@ class ListExampleView extends LitElement {
         }
 
         .form-submit {
-          background-color: #10acda;
+          background-color: #1d9672;
           color: white;
           border: none;
           border-radius: 5px;
@@ -53,6 +53,7 @@ class ListExampleView extends LitElement {
     const array = this.list;
     array.splice(index, 1);
     this.list = [...array];
+    alert('Elemento borrado');
   }
 
   render() {
