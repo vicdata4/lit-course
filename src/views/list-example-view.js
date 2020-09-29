@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import { dateFormatter } from '../utils/functions';
@@ -46,14 +45,13 @@ class ListExampleView extends LitElement {
         <input id="message" type="text" placeholder="escribe aqui..">
         <button @click="${this.addItem}">Guardar</button>
         <ul>
-          ${this.list.map((item, i) => {
-            return html`
-              <li>
-                <button @click="${() => this.deleteItem(i)}">&times;</button>
-                ${dateFormatter(item.date).hour}
-                ${item.message}
-              </li>`;
-          })}
+          ${this.list.map((item, i) => html`
+            <li>
+              <button @click="${() => this.deleteItem(i)}">&times;</button>
+              ${dateFormatter(item.date).hour}
+              ${item.message}
+            </li>
+          `)}
         </ul>
       </section>
     `;
