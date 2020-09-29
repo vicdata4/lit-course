@@ -29,6 +29,7 @@ class DataBinding extends LitElement {
     const array = this.messageList;
     array.splice(e.detail.index, 1);
     this.messageList = [...array];
+    alert('gsdfgsdfg');
   }
 
   render() {

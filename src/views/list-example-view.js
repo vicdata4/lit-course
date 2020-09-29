@@ -54,6 +54,7 @@ class ListExampleView extends LitElement {
     array.splice(index, 1);
     this.list = [...array];
     alert('Elemento borrado');
+    alert('Elemento borrado');
   }
 
   render() {
