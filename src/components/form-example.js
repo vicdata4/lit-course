@@ -61,8 +61,8 @@ class FormExample extends LitElement {
 
   static get properties() {
     return {
-      validated: { type: Boolean, attrbute: false },
-      message: { type: String, attrbute: false }
+      validated: { type: Boolean, attribute: false },
+      message: { type: String, attribute: false }
     };
   }
 
