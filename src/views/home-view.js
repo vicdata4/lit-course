@@ -20,6 +20,7 @@ class HomeView extends LitElement {
           <li><a href="/dublin-view">Dublin</a></li>
           <li><a href="/data-binding">Data binding</a></li>
           <li><a href="/list-example">List example</a></li>
+          <li><a href="/works">Works</a></li>
         </ul>
       </nav>
     `;
