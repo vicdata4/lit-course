@@ -6,6 +6,7 @@
     "scripts": {
         "test": "karma start --coverage",
         "dev": "node ./scripts/dev.js",
+        "pro": "node ./scripts/pro.js",
         "lint": "eslint",
         "storybook": "start-storybook -s ./build -p 9001",
         "storybook:build": "build-storybook -o build -s storybook-static"
