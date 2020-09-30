@@ -1,19 +1,20 @@
-import { LitElement, html, css } from 'lit-element';
-import { navigatorStyles } from '../../utils/custom-styles';
+import { LitElement, html } from 'lit-element';
+import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 
 class JhumekesHome extends LitElement {
   static get styles() {
     return [
-      navigatorStyles,
-      css``
+      commonStyles
     ];
   }
 
   render() {
     return html`
       <common-header></common-header>
-      <h2>Jhumekes view</h2>
+      <section class="container">
+        <h2>Jhumekes</h2>
+      </section>
     `;
   }
 }

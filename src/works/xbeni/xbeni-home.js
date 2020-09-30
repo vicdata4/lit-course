@@ -1,19 +1,20 @@
-import { LitElement, html, css } from 'lit-element';
-import { navigatorStyles } from '../../utils/custom-styles';
+import { LitElement, html } from 'lit-element';
+import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 
 class XbeniHome extends LitElement {
   static get styles() {
     return [
-      navigatorStyles,
-      css``
+      commonStyles
     ];
   }
 
   render() {
     return html`
       <common-header></common-header>
-      <h2>XbeniHome view</h2>
+      <section class="container">
+        <h2>XBeni</h2>
+      </section>
     `;
   }
 }

@@ -57,4 +57,8 @@ export const commonStyles = css`
   .container {
     padding: 20px;
   }
+
+  .container h2 {
+    color: #0c7da0;
+  }
 `;

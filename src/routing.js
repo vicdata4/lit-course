@@ -39,7 +39,7 @@ export const routing = function() {
   ];
 
   users.forEach(user => {
-    routes.unshift({ path: `/works/${user.toLowerCase()}`, component: `${user.toLowerCase()}-home` });
+    routes.unshift({ path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-home` });
   });
 
   router.setRoutes(routes);
