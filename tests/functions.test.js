@@ -8,7 +8,7 @@ describe('Form validation', () => {
   date.setMinutes(0);
 
   it('Returns hour format correctly', async() => {
-    expect(dateFormatter(date).hour).equal('07:00');
+    expect(dateFormatter(date).hour).equal('07:0');
   });
 
   it('Returns day format correctly', async() => {
