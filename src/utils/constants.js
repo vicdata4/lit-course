@@ -19,7 +19,6 @@ export const users = [
   'alba1709',
   'Andresclase1234',
   'antoniomaracil',
-  'AppServidor',
   'Calaverosa',
   'efim93',
   'hck3791',
