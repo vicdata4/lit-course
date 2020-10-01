@@ -1,12 +1,23 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { navigatorStyles } from '../utils/custom-styles';
 import { users } from '../utils/constants';
+import { github } from '../utils/svg-icons';
 import '../components/common-header';
 
 class WorksView extends LitElement {
   static get styles() {
     return [
-      navigatorStyles
+      navigatorStyles,
+      css`
+        .github-icon {
+          position: absolute;
+          margin: 10px;
+        }
+
+        li:hover > .github-icon {
+          fill: white;
+        }
+      `
     ];
   }
 
@@ -16,7 +27,7 @@ class WorksView extends LitElement {
       <nav>
         <ul class="menu-list">
             ${users.map(user => html`
-              <li><a href="/${user.toLowerCase()}">${user}</a></li>
+              <li>${github}<a href="/${user.toLowerCase()}" class="user-link">${user}</a></li>
             `)}
         </ul>
       </nav>
