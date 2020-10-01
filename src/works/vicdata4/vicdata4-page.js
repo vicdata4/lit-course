@@ -3,7 +3,7 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 
-class Alba1709Home extends LitElement {
+class Vicdata4Page extends LitElement {
   static get styles() {
     return [
       commonStyles
@@ -14,10 +14,10 @@ class Alba1709Home extends LitElement {
     return html`
       <common-header></common-header>
       <section class="container">
-        <work-header>alba1709</work-header>
+        <work-header>vicdata4</work-header>
       </section>
     `;
   }
 }
 
-window.customElements.define('alba1709-home', Alba1709Home);
+window.customElements.define('vicdata4-page', Vicdata4Page);

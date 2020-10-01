@@ -3,7 +3,7 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 
-class Vicdata4Home extends LitElement {
+class IkeyvinPage extends LitElement {
   static get styles() {
     return [
       commonStyles
@@ -14,10 +14,10 @@ class Vicdata4Home extends LitElement {
     return html`
       <common-header></common-header>
       <section class="container">
-        <work-header>vicdata4</work-header>
+        <work-header>iKeyvin</work-header>
       </section>
     `;
   }
 }
 
-window.customElements.define('vicdata4-home', Vicdata4Home);
+window.customElements.define('ikeyvin-page', IkeyvinPage);
