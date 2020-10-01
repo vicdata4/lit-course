@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
+import '../../components/work-header';
 
 class Vicdata4Home extends LitElement {
   static get styles() {
@@ -13,7 +14,7 @@ class Vicdata4Home extends LitElement {
     return html`
       <common-header></common-header>
       <section class="container">
-        <h2>vicdata4</h2>
+        <work-header>vicdata4</work-header>
       </section>
     `;
   }

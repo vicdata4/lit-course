@@ -20,11 +20,6 @@ export const navigatorStyles = css`
     cursor: pointer;
   }
 
-  .menu-list li a:hover {
-    background-color: #3e5c7b;
-    color: white;
-  }
-
   .menu-list li a {
     display: block;
     text-decoration: none;
@@ -50,6 +45,11 @@ export const navigatorStyles = css`
       border-radius: 3px;
     }
 
+    .menu-list li a:hover {
+      background-color: #3e5c7b;
+      color: white;
+    }
+
     .menu-list li a {
       height: 150px;
       width: 150px;
@@ -60,9 +60,5 @@ export const navigatorStyles = css`
 export const commonStyles = css`
   .container {
     padding: 20px;
-  }
-
-  .container h2 {
-    color: #0c7da0;
   }
 `;

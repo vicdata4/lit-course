@@ -10,12 +10,20 @@ class WorksView extends LitElement {
       navigatorStyles,
       css`
         .github-icon {
-          position: absolute;
-          margin: 10px;
+          display: none;
         }
 
-        li:hover > .github-icon {
-          fill: white;
+        @media (min-width: 768px) {
+          .github-icon {
+            display: block;
+            position: absolute;
+            margin: 10px;
+            fill: #a29b83;
+          }
+
+          li:hover > .github-icon {
+            fill: white;
+          }
         }
       `
     ];
