@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
-import '../components/solicitud-input';
-import '../components/solicitud-list';
+import { dateFormatter } from '../utils/functions';
+import { nothing } from 'lit-html';
 import '../components/common-header';
 
 class SolicitudVacaciones extends LitElement {
@@ -13,34 +13,95 @@ class SolicitudVacaciones extends LitElement {
 
   static get properties() {
     return {
-      ListaDatos: { type: Array }
+      listaDatos: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.ListaDatos = [];
+    this.listaDatos = [];
   }
 
   addArray(e) {
-    this.ListaDatos = [...[e.detail.message], ...this.ListaDatos];
+    const fIni = this.shadowRoot.querySelector('#fechaIni');
+    const fFin = this.shadowRoot.querySelector('#fechaFin');
+    (fIni.value ===  nothing) ? fIni.focus() : nothing;
+    (fFin.value ===  nothing) ? fFin.focus() : nothing;
+    const item = {
+        fsolicitud: dateFormatter(new Date()).default,
+        inicio: dateFormatter(fIni.value).default,
+        final: dateFormatter(fFin.value).default,
+        estado: 'Pendiente de aprobación',
+        festado: dateFormatter(new Date()).default,
+      };
+    this.listaDatos = [...[item], ...this.listaDatos];
+    fIni.value =  nothing;
+    fFin.value =  nothing;
+  };
+
+  deleteArray(index) {
+    const array = this.listaDatos;
+    array.splice(index, 1);
+    this.listaDatos = [...array];
   }
 
-  deleteArray(e) {
-    const array = this.ListaDatos;
-    array.splice(e.detail.index, 1);
-    this.ListaDatos = [...array];
+  calculaFin() {
+    const input = this.shadowRoot.getElementById('fechaIni');
+    const out = this.shadowRoot.getElementById('fechaFin');
+    const fM = new Date(input.value);
+    const tiempo = fM.getTime();
+    const milisegundos = 1 * 24 * 60 * 60 * 1000;
+    fM.setTime(tiempo + milisegundos);
+    const f =(fM.getMonth() + 1);
+    const mm = (f === 10 || f === 11 || f === 12) ? f : `0${f}`;
+    const d=fM.getDate();
+    const dd = (d === 1 || d === 2  || d === 3 || d === 4 || d === 5 || d === 6 || d === 7 || d === 8 || d === 9) ? `0${d}` : d;
+    const yy= fM.getFullYear();
+    if (input !== '') {
+      out.setAttribute('min', `${yy}-${mm}-${dd}`);
+      const f = new Date(this.fechaIni);
+      if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
+        out.setAttribute('max', `${yy}-12-31`);
+      } else {
+        out.setAttribute('max', `${yy}-12-31`);
+      }
+    }
   }
-
   render() {
     return html`
-      <common-header></common-header>
-      <section class="container">
-        <h1>Solicitud de Vacaciones</h1>
-        <solicitud-input @my-event="${this.addArray}"></solicitud-input>
-        <solicitud-list .list="${this.ListaDatos}" @delete-event="${this.deleteArray}"></solicitud-list>
-      </section>
-    `;
+<common-header></common-header>
+  <section class="container">
+    <h1>Solicitud de Vacaciones</h1>
+        <label for="fechaInicio" >Fecha Inicio</label>
+        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${dateFormatter(new Date()).amd}" max="${dateFormatter(new Date()).year}-12-31" @blur="${this.calculaFin}"  />
+        <label for="fechaFin" >Fecha Fin</label>
+        <input type="date" class="btn-clck" id="fechaFin" />
+        <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
+        <table id="tabla" class="table table-striped">
+          <thead>
+          <tr>  
+            <th>Fecha de solicitud</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha Final</th>
+            <th>estado</th>
+            <th>Fecha de Estado</th>
+            <th>Eliminar</th>
+          </tr>
+          </thead>
+           <tbody>     
+        ${this.listaDatos.map((item, i) => html`
+          <tr>
+          <td>i: ${item.fsolicitud}</td>
+          <td>i: ${item.inicio}</td>
+          <td>i: ${item.final}</td>
+          <td>i: ${item.estado}</td>
+          <td>i: ${item.festado}</td>
+          <td><button @click="${() => this.deleteArray(i)}">&times;</button></td>
+          </tr>
+          `)}
+          </tbody>       
+        </table>    
+</section>`;
   }
 }
 
