@@ -1,6 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
 import { commonStyles } from '../../../utils/custom-styles';
-import '../../../components/common-header';
 import './tabla-solicitud';
 import './inputs-solicitud';
 
@@ -54,12 +53,10 @@ export class SolicitudVacaciones extends LitElement {
 
   render() {
     return html`
-            <common-header></common-header>
-            <section class="container">
             <h2>Solicitud de vacaciones</h2>
             <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
             <tabla-solicitud .miTabla="${this.infoSolicitud}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
-            </section>
+           
         `;
   }
 }
