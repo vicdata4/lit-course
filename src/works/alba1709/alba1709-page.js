@@ -15,6 +15,11 @@ class Alba1709Page extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>alba1709</work-header>
+        <nav>
+        <ul class="menu-list">
+          <li><a href="/solicitud-vacaciones-view">Solicitud de vacaciones</a></li>
+        </ul>
+        </nav>
       </section>
     `;
   }
