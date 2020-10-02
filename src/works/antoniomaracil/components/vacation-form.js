@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
+import { getDate, formatDate } from '../utils/functions';
 
 class VacationForm extends LitElement {
   static get styles() {
@@ -96,35 +97,11 @@ class VacationForm extends LitElement {
   }
 
   /**
-  * @desc Retorna un objeto Date de un input
-  * @param string formato de input date dd-mm-yyyy
-  * @param Boolean cambiar sentido fecha true = yyyy-mm-dd
-  * @return object Date
-  */
-  getDate(date, reverse = false) {
-    const b = date.split(/\D/);
-    if (reverse === false) {
-      return new Date(b[0], --b[1], b[2]);
-    } else {
-      return new Date(b[2], --b[1], b[0]);
-    }
-  }
-
-  /**
-  * @desc Retorna un string con la fecha en formado dd/mm/yyyy
-  * @param Object Date
-  * @return String
-  */
-  formatDate(date) {
-    return `${date.getDate()}/${(date.getMonth() + 1)}/${date.getUTCFullYear()}`;
-  }
-
-  /**
   * @desc Añade un nuevo registro al array de fechas
   */
   add() {
-    const start = this.getDate(this.shadowRoot.getElementById('start').value);
-    const end = this.getDate(this.shadowRoot.getElementById('end').value);
+    const start = getDate(this.shadowRoot.getElementById('start').value);
+    const end = getDate(this.shadowRoot.getElementById('end').value);
     // Comprobamos que las fechas tengan valor
     const dateHasValue = start !== null && start !== '' && end !== null && end !== '';
     if (dateHasValue) {
@@ -134,11 +111,11 @@ class VacationForm extends LitElement {
         if ((start.getTime() < end.getTime())) {
           this.vacation = {
             id: this.id,
-            solicitud: this.formatDate(this.actualDate),
-            inicio: this.formatDate(start),
-            fin: this.formatDate(end),
+            solicitud: formatDate(this.actualDate),
+            inicio: formatDate(start),
+            fin: formatDate(end),
             estado: 'Pendiente de aprobación',
-            festado: this.formatDate(this.actualDate)
+            festado: formatDate(this.actualDate, true)
           };
 
           this.arrVacation.push(this.vacation);
@@ -186,9 +163,9 @@ class VacationForm extends LitElement {
     this.arrVacation.splice(index, 1);
 
     // Comprobamos si la pagina a cambiado
-    const paginationHasChanged = this.pointer !== Math.trunc((this.arrVacation.length - 1) / this.pagination);
+    const pageHasChanged = this.pointer === Math.trunc((this.arrVacation.length - 1) / this.pagination);
 
-    if (paginationHasChanged) {
+    if (pageHasChanged) {
       this.pointer = Math.trunc((this.arrVacation.length - 1) / this.pagination);
     }
 
@@ -248,16 +225,14 @@ class VacationForm extends LitElement {
   dateOrg(col, order) {
     const ths = this;
     this.arrVacation.sort((o1, o2) => {
-      debugger;
       if (
-        ths.getDate(o1[col], true).getTime() >
-        ths.getDate(o2[col], true).getTime()
+        getDate(o1[col], true).getTime() >
+        getDate(o2[col], true).getTime()
       ) {
-        debugger;
         return 1;
       } else if (
-        ths.getDate(o1.col, true).getTime() <
-        ths.getDate(o2.col, true).getTime()) {
+        getDate(o1.col, true).getTime() <
+        getDate(o2.col, true).getTime()) {
         return -1;
       }
       return 0;
