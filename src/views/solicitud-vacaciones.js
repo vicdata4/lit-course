@@ -89,6 +89,8 @@ class SolicitudVacaciones extends LitElement {
   render() {
     return html`
 <common-header></common-header>
+ <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <section class="container">
     <h1>Solicitud de Vacaciones</h1>
         <label for="fechaInicio" >Fecha Inicio</label>
