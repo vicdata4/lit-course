@@ -50,6 +50,10 @@ export const navigatorStyles = css`
       height: 150px;
       width: 150px;
     }
+  
+  #tabla {
+    margin-top: 20px;
+  }  
   }
 `;
 

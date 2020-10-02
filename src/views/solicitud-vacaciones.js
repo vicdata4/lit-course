@@ -25,19 +25,38 @@ class SolicitudVacaciones extends LitElement {
   addArray(e) {
     const fIni = this.shadowRoot.querySelector('#fechaIni');
     const fFin = this.shadowRoot.querySelector('#fechaFin');
-    (fIni.value ===  nothing) ? fIni.focus() : nothing;
-    (fFin.value ===  nothing) ? fFin.focus() : nothing;
-    const item = {
-        fsolicitud: dateFormatter(new Date()).default,
-        inicio: dateFormatter(fIni.value).default,
-        final: dateFormatter(fFin.value).default,
-        estado: 'Pendiente de aprobación',
-        festado: dateFormatter(new Date()).default,
-      };
-    this.listaDatos = [...[item], ...this.listaDatos];
-    fIni.value =  nothing;
-    fFin.value =  nothing;
+    const alerta = this.shadowRoot.querySelector('#alerta');
+   (fIni.value ===  nothing) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione una fecha de inicio !';
+   (fFin.value ===  nothing) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccion una fecha final !';
+    const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
+    if(dateHasValue) {
+    const n = this.compruebaRangos(dateFormatter(fIni.value).default);
+    if(!n){
+      const item = {
+          fsolicitud: dateFormatter(new Date()).completo,
+          inicio: dateFormatter(fIni.value).default,
+          final: dateFormatter(fFin.value).default,
+          estado: 'Pendiente de aprobación',
+          festado: dateFormatter(new Date()).completo,
+        };
+      this.listaDatos = [...[item], ...this.listaDatos];
+      fIni.value =  null;
+      fFin.value =  null;
+      alerta.innerHTML = '';
+      }
+    }
   };
+  
+  compruebaRangos(f){
+    const alerta = this.shadowRoot.querySelector('#alerta');
+    for(let item in this.listaDatos){
+      if( this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f) ){
+        alerta.innerHTML='Has planificado ya para esta fecha !!!, Por favor seleccione otra fecha';
+        return true;
+      }
+      return false;
+    }
+  }
 
   deleteArray(index) {
     const array = this.listaDatos;
@@ -77,6 +96,8 @@ class SolicitudVacaciones extends LitElement {
         <label for="fechaFin" >Fecha Fin</label>
         <input type="date" class="btn-clck" id="fechaFin" />
         <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
+        <div class="alert alert-danger" role="alert" id="alerta"></div>
+        <br />
         <table id="tabla" class="table table-striped">
           <thead>
           <tr>  
@@ -91,11 +112,11 @@ class SolicitudVacaciones extends LitElement {
            <tbody>     
         ${this.listaDatos.map((item, i) => html`
           <tr>
-          <td>i: ${item.fsolicitud}</td>
-          <td>i: ${item.inicio}</td>
-          <td>i: ${item.final}</td>
-          <td>i: ${item.estado}</td>
-          <td>i: ${item.festado}</td>
+          <td>${item.fsolicitud}</td>
+          <td>${item.inicio}</td>
+          <td>${item.final}</td>
+          <td>${item.estado}</td>
+          <td>${item.festado}</td>
           <td><button @click="${() => this.deleteArray(i)}">&times;</button></td>
           </tr>
           `)}

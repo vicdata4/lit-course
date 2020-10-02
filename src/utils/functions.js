@@ -24,6 +24,7 @@ export const dateFormatter = (date_) => {
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
     amd: year + '-'+ mes + '-' + dd,
     year: year,
+    completo: dd + '-' + mes + '-' + year + ' ' + (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
 };
 
