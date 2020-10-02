@@ -6,6 +6,7 @@
     "scripts": {
         "test": "karma start --coverage",
         "dev": "node ./scripts/dev.js",
+        "pro": "node ./scripts/pro.js",
         "lint": "eslint",
         "storybook": "start-storybook -s ./build -p 9001",
         "storybook:build": "build-storybook -o build -s storybook-static"
@@ -13,10 +14,9 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@open-wc/demoing-storybook": "^0.2.5",
         "@open-wc/testing": "^2.3.4",
         "@open-wc/testing-karma": "^3.1.33",
-        "@open-wc/demoing-storybook": "^0.2.5",
-        "webpack-merge": "^4.1.5",
         "eslint": "^6.0.1",
         "eslint-config-standard": "^13.0.1",
         "eslint-plugin-import": "^2.18.0",
@@ -32,7 +32,8 @@
         "rollup-plugin-livereload": "^1.0.1",
         "rollup-plugin-node-resolve": "^5.0.0",
         "rollup-plugin-progress": "^1.1.1",
-        "rollup-plugin-serve": "^1.0.1"
+        "rollup-plugin-serve": "^1.0.1",
+        "webpack-merge": "^4.1.5"
     },
     "dependencies": {
         "@babel/core": "^7.4.5",
