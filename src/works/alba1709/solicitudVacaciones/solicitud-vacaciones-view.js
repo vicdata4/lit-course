@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
-import { commonStyles } from '../utils/custom-styles';
-import '../components/common-header';
-import '../components/tabla-solicitud';
-import '../components/inputs-solicitud';
+import { commonStyles } from '../../../utils/custom-styles';
+import '../../../components/common-header';
+import './tabla-solicitud';
+import './inputs-solicitud';
 
 export class SolicitudVacaciones extends LitElement {
   static get styles() {

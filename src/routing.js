@@ -9,7 +9,7 @@ import './views/not-found-view';
 import './views/data-binding';
 import './views/list-example-view';
 import './views/works-view';
-import './views/solicitud-vacaciones-view';
+import './works/alba1709/solicitudVacaciones/solicitud-vacaciones-view';
 
 import './works/alba1709/alba1709-page';
 import './works/andresclase1234/andresclase1234-page';
