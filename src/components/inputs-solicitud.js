@@ -5,18 +5,18 @@ export class InputsSolicitud extends LitElement {
     return [
       css`
             #btnAgregar {
-                border: 1px solid #0b8882;
+                border: 1px solid black;
                 border-radius: 3px;
-                background-color: #0b8882;
                 padding: 6px 10px 6px 10px;
-                color: white;
+                color: black;
+                background-color: white;
                 margin-left: 15px;
                 box-shadow: 3px 3px black;
                 font-family: cursive;
             }
             #btnAgregar:hover {
-                background-color: #68b8bf;
-                border: 1px solid #68b8bf;
+                background-color: #e8e7e7;
+                border: 1px solid black;
                 color: black;
                 cursor: pointer;
             }
@@ -25,6 +25,9 @@ export class InputsSolicitud extends LitElement {
             }
             #fechaIni {
                 margin-right: 25px;
+            }
+            #fechaIni:hover, #fechaFin:hover {
+              background-color: #e8e7e7;
             }
           `
     ];

@@ -10,7 +10,7 @@ export class TablaSolicitud extends LitElement {
               align-items: center;
               margin-top: 20px;
             }
-            td {
+            td, th {
               border: 1px solid black;
             }
             #tablaSoli {
