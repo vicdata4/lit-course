@@ -26,14 +26,14 @@ export const HOURS = css`
 
     
 
-    article div {
+    div {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         margin-bottom: 10px;
     }
 
-    article div label {
+    div label {
         font-weight: bold;
     }
 
