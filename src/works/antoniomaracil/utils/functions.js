@@ -27,3 +27,12 @@ export const formatDate = (date, minutes = false) => {
     return `${date.getDate()}/${(date.getMonth() + 1)}/${date.getUTCFullYear()}`;
   }
 };
+
+export const minMaxDate = (date, max = false) => {
+  if (max) {
+    return `${date.getUTCFullYear() + 2}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
+  } else {
+    return `${date.getUTCFullYear()}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
+  }
+
+};

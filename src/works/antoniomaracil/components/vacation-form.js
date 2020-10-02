@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
-import { getDate, formatDate } from '../utils/functions';
+import { getDate, formatDate, minMaxDate } from '../utils/functions';
 
 class VacationForm extends LitElement {
   static get styles() {
@@ -223,7 +223,6 @@ class VacationForm extends LitElement {
   * @param event
   */
   dateOrg(col, order) {
-    const ths = this;
     this.arrVacation.sort((o1, o2) => {
       if (
         getDate(o1[col], true).getTime() >
@@ -321,9 +320,9 @@ class VacationForm extends LitElement {
             <p>Solicitud de vacaciones:</p>
             <div class="inp-controls">
               <p>Fecha de inicio</p>
-              <input id="start" type="date">
+              <input id="start" type="date" min="${minMaxDate(this.actualDate)}">
               <p>Fecha de final</p>
-              <input id="end" type="date">
+              <input id="end" type="date" max="${minMaxDate(this.actualDate, true)}">
               <button @click="${this.add}">Agregar</button>
             </div>
           </div>
