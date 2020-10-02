@@ -41,7 +41,11 @@ export class SolicitudVacaciones extends LitElement {
       alert('El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' + twoYears + ')');
       return false;
     } else {
-      this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
+      if (this.infoSolicitud.length < 10) {
+        this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
+      } else {
+        alert('Solo se permiten 10 solicitudes');
+      }
     }
   }
 
