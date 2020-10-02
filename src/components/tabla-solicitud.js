@@ -80,8 +80,8 @@ export class TablaSolicitud extends LitElement {
                 <td>${item.fHoy.split('-').reverse().join('-')}</td>
                 <td>${item.infoFI.split('-').reverse().join('-')}</td>
                 <td>${item.infoFF.split('-').reverse().join('-')}</td>
-                <td></td>
-                <td></td>
+                <td>Pendiente de aprobación</td>
+                <td>${item.fHoy.split('-').reverse().join('-')}</td>
                 <td> <button id="btnPapelera" @click="${() => this.deleteItem(i)}"><img id = "papelera" src="/assets/images/papelera.png"></img></button></td>
               </tr>`;
   })}
