@@ -142,6 +142,7 @@ class VacationForm extends LitElement {
       }
       // Colocamos el puntero en la pagina adecuada
       this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
+      this.sendData();
     }
   }
 
@@ -220,7 +221,8 @@ class VacationForm extends LitElement {
 
   /**
   * @desc Organiza el array segun fechas
-  * @param event
+  * @param String col = propiedad a ordenar (f.solicitud, f.inicio o f.final)
+  * @param String order = 'asc' || 'desc'
   */
   dateOrg(col, order) {
     this.arrVacation.sort((o1, o2) => {
@@ -230,87 +232,20 @@ class VacationForm extends LitElement {
       ) {
         return 1;
       } else if (
-        getDate(o1.col, true).getTime() <
-        getDate(o2.col, true).getTime()) {
+        getDate(o1[col], true).getTime() <
+        getDate(o2[col], true).getTime()) {
         return -1;
       }
       return 0;
     });
+
+    order === 'asc' ? this.arrVacation : this.arrVacation.reverse();
 
     this.pointer = 0;
     this.arrTableView = [];
     for (let i = 0; i < 3; i++) {
       this.arrTableView[i] = this.arrVacation[(this.pointer * 3) + i];
     }
-    /*
-    switch (type) {
-      case 1:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.solicitud, true).getTime() > ths.getDate(o2.solicitud, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.solicitud, true).getTime() < ths.getDate(o2.solicitud, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-      case 2:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.solicitud, true).getTime() < ths.getDate(o2.solicitud, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.solicitud, true).getTime() > ths.getDate(o2.solicitud, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-      case 3:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.inicio, true).getTime() > ths.getDate(o2.inicio, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.inicio, true).getTime() < ths.getDate(o2.inicio, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-      case 4:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.inicio, true).getTime() < ths.getDate(o2.inicio, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.inicio, true).getTime() > ths.getDate(o2.inicio, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-      case 5:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.fin, true).getTime() > ths.getDate(o2.fin, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.fin, true).getTime() < ths.getDate(o2.fin, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-      case 6:
-        console.log('case ' + type);
-        this.arrVacation.sort(function(o1, o2) {
-          if (ths.getDate(o1.fin, true).getTime() < ths.getDate(o2.fin, true).getTime()) {
-            return 1;
-          } else if (ths.getDate(o1.fin, true).getTime() > ths.getDate(o2.fin, true).getTime()) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
-    } */
   }
 
   render() {
