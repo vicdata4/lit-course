@@ -80,9 +80,9 @@ class SolicitudVacaciones extends LitElement {
       out.setAttribute('min', `${yy}-${mm}-${dd}`);
       const f = new Date(this.fechaIni);
       if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
-        out.setAttribute('max', `${yy}-12-31`);
+        out.setAttribute('max', `${yy + 1}-12-31`);
       } else {
-        out.setAttribute('max', `${yy}-12-31`);
+        out.setAttribute('max', `${yy + 1}-12-31`);
       }
     }
   }
@@ -94,7 +94,7 @@ class SolicitudVacaciones extends LitElement {
   <section class="container">
     <h1>Solicitud de Vacaciones</h1>
         <label for="fechaInicio" >Fecha Inicio</label>
-        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${dateFormatter(new Date()).amd}" max="${dateFormatter(new Date()).year}-12-31" @blur="${this.calculaFin}"  />
+        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${dateFormatter(new Date()).amd}" max="${dateFormatter(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
         <label for="fechaFin" >Fecha Fin</label>
         <input type="date" class="btn-clck" id="fechaFin" />
         <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
