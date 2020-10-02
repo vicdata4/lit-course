@@ -31,11 +31,15 @@ export class SolicitudVacaciones extends LitElement {
   }
 
   addSolicitud(e) {
+    const fechaActual = e.detail.fHoy;
+    const anoActual = parseInt(fechaActual.substr(0, 4));
+    const twoYears = anoActual + 1;
+    const dateTwoYears = fechaActual.replace(anoActual, twoYears);
     if (e.detail.infoFI === '' || e.detail.infoFF === '') {
       alert('Por favor introduzca fechas de inicio y fin');
       return false;
-    } else if (e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI) {
-      alert('Introduzca fecha a partir de hoy, por favor');
+    } else if (e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI || e.detail.infoFI > dateTwoYears || e.detail.infoFF > dateTwoYears) {
+      alert('El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' + twoYears + ')');
       return false;
     } else {
       this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
