@@ -50,10 +50,6 @@ export const navigatorStyles = css`
       height: 150px;
       width: 150px;
     }
-  
-  #tabla {
-    margin-top: 20px;
-  }  
   }
 `;
 
@@ -61,4 +57,13 @@ export const commonStyles = css`
   .container {
     padding: 20px;
   }
+   
+  #alerta {
+    margin-top:15px;
+    display: none;
+  }
+
+  #tabla {
+    margin-top: 15px;
+  }  
 `;

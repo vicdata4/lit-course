@@ -26,8 +26,8 @@ class SolicitudVacaciones extends LitElement {
     const fIni = this.shadowRoot.querySelector('#fechaIni');
     const fFin = this.shadowRoot.querySelector('#fechaFin');
     const alerta = this.shadowRoot.querySelector('#alerta');
-   (fIni.value ===  nothing) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione una fecha de inicio !';
-   (fFin.value ===  nothing) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccion una fecha final !';
+    alerta.style.display = 'block';
+   ((fIni.value ===  nothing) || (fFin.value ===  nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
     if(dateHasValue) {
     const n = this.compruebaRangos(dateFormatter(fIni.value).default);
@@ -43,6 +43,7 @@ class SolicitudVacaciones extends LitElement {
       fIni.value =  null;
       fFin.value =  null;
       alerta.innerHTML = '';
+      alerta.style.display='none';
       }
     }
   };
@@ -52,6 +53,7 @@ class SolicitudVacaciones extends LitElement {
     for (let item in this.listaDatos) {
       if (this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f)) {
         alerta.innerHTML = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
+        alerta.style.display = 'block';
         return true;
       }
       return false;
@@ -59,24 +61,26 @@ class SolicitudVacaciones extends LitElement {
   }
 
   compruebaEstado(index){
-    const alerta = this.shadowRoot.querySelector('#alerta');
     for (let item in this.listaDatos) {
       if (item == index) {
-        if (this.listaDatos[item].inicio === "Pendiente de aprobacion") {
-          return true;
+        if (this.listaDatos[item].inicio === "Pendiente de aprobación") {
+          return false;
         }
-      }
-      alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
-      return false;
+        return true;
     }
   }
+}
 
   deleteArray(index) {
+    const alerta = this.shadowRoot.querySelector('#alerta');
     const est = this.compruebaEstado(index);
       if (est) {
       const array = this.listaDatos;
         array.splice(index, 1);
         this.listaDatos = [...array];
+      } else {
+        alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
+        alerta.style.display = 'block';
       }
     }
   calculaFin() {
