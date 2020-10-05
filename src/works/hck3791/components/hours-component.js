@@ -36,15 +36,17 @@ class HoursComponent extends LitElement {
         this.months = [...data];
       } else {
         this.months = [];
+        // eslint-disable-next-line no-alert
         alert('No se han encontrado registros');
       }
     } else {
+      // eslint-disable-next-line no-alert
       alert('Rellena todos los campos');
     }
   }
 
-  findMonth(month_) {
-    return this.months.find(x => x.month === month_);
+  findMonth(month) {
+    return this.months.find(x => x.month === month) || { month: {}, hours: [] };
   }
 
   render() {
@@ -96,12 +98,12 @@ class HoursComponent extends LitElement {
               ${this.monthsList.map(month => html`
                   <tr id="${month}">
                     <td>${month}</td>
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[0] : nothing}</td>
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[1] : nothing}</td>
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[2] : nothing}</td>
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[3] : nothing}</td> 
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[4] : nothing}</td>
-                    <td class="data">${(this.findMonth(month) != null) ? this.findMonth(month).hours[5] : nothing}</td>
+                    <td class="data">${this.findMonth(month).hours[0]}</td>
+                    <td class="data">${this.findMonth(month).hours[1]}</td>
+                    <td class="data">${this.findMonth(month).hours[2]}</td>
+                    <td class="data">${this.findMonth(month).hours[3]}</td> 
+                    <td class="data">${this.findMonth(month).hours[4]}</td>
+                    <td class="data">${this.findMonth(month).hours[5]}</td>
                   </tr>
                 `)}
               </tbody>
