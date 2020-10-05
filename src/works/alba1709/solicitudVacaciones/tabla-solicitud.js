@@ -32,7 +32,7 @@ export class TablaSolicitud extends LitElement {
               margin-left: 7px;
             }
             td, th {
-              font-family: cursive;
+              font-family: "Comic Sans MS", cursive, sans-serif;
             }
           `
     ];

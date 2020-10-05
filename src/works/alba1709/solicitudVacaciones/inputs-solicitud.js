@@ -12,7 +12,7 @@ export class InputsSolicitud extends LitElement {
                 background-color: white;
                 margin-left: 15px;
                 box-shadow: 3px 3px black;
-                font-family: cursive;
+                font-family: "Comic Sans MS", cursive, sans-serif;;
             }
             #btnAgregar:hover {
                 background-color: #e8e7e7;

@@ -9,7 +9,7 @@ export class SolicitudVacaciones extends LitElement {
       commonStyles,
       css`
             h2 {
-              font-family: cursive;
+              font-family: "Comic Sans MS", cursive, sans-serif;;
             }
           `
     ];
@@ -30,14 +30,17 @@ export class SolicitudVacaciones extends LitElement {
   }
 
   addSolicitud(e) {
+    // Fecha dentro de 2 años
     const fechaActual = e.detail.fHoy;
     const anoActual = parseInt(fechaActual.substr(0, 4));
     const twoYears = anoActual + 1;
     const dateTwoYears = fechaActual.replace(anoActual, twoYears);
+    // Validación rango desde hoy hasta 1 año
+    const rangoFechas = e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI || e.detail.infoFI > dateTwoYears || e.detail.infoFF > dateTwoYears;
     if (e.detail.infoFI === '' || e.detail.infoFF === '') {
       alert('Por favor introduzca fechas de inicio y fin');
       return false;
-    } else if (e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI || e.detail.infoFI > dateTwoYears || e.detail.infoFF > dateTwoYears) {
+    } else if (rangoFechas) {
       alert('El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' + twoYears + ')');
       return false;
     } else {
