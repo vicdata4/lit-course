@@ -21,6 +21,7 @@ class Item011 extends LitElement {
         return [
           css`
             table{
+                margin-top: 2%;
                 border: 1px solid #cecece;
                 font-family: Arial, sans-serif;
                 color: #7b7b7b;
@@ -46,7 +47,7 @@ class Item011 extends LitElement {
                 padding-bottom: 10px;
             }
 
-            /* Pruebas agregar etapa */
+            /***** Pruebas agregar etapa ******/
             input{
                 margin: 1%;
                 border:1px solid #cccccc;
@@ -65,9 +66,7 @@ class Item011 extends LitElement {
         ];
       }    
     
-    /** Pruebas Agrega nueva etapa, no es un elemento que se pida en el
-     * componente
-    */
+    /** Pruebas Agrega nueva etapa */
     agrega(){
 
         const input = this.shadowRoot.querySelector('#add');
@@ -119,7 +118,7 @@ class Item011 extends LitElement {
             </tbody>
          </table>
 
-        <!-- Pruebas Agregar nueva etapa-->
+        <!-- Pruebas Agregar nueva etapa -->
          <input id="add"><button @click="${this.agrega}">Añadir etapa</button>
         `;
     }
