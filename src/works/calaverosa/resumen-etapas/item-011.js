@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { mediaQueriesStyles } from '../utils/styles.js';
-import { datos } from '../utils/datos-resumen-etapas.js';
+import { datos } from '../utils/datos.js';
 
 
 class Item011 extends LitElement {
