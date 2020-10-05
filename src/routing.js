@@ -9,7 +9,6 @@ import './views/not-found-view';
 import './views/data-binding';
 import './views/list-example-view';
 import './views/works-view';
-import './works/alba1709/solicitudVacaciones/solicitud-vacaciones-view';
 
 import './works/alba1709/alba1709-page';
 import './works/andresclase1234/andresclase1234-page';
@@ -35,7 +34,6 @@ export const routing = function() {
     { path: '/data-binding', component: 'data-binding' },
     { path: '/list-example', component: 'list-example-view' },
     { path: '/works', component: 'works-view' },
-    { path: '/solicitud-vacaciones-view', component: 'solicitud-vacaciones-view' },
     { path: '(.*)', component: 'not-found-view' }
   ];
 
