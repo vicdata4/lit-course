@@ -139,7 +139,6 @@ export class AdminVacationForm extends LitElement {
               `)}
               </tbody>
             </table>
-            <button @click="${() => this.changeStatus()}">Click</button>
           </div>
         </div>
     `;

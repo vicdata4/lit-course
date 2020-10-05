@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
-import { getDate, formatDate, minMaxDate } from '../utils/functions';
+import { getDate, formatDate, minMaxDate } from '../../../utils/functions';
 
 class VacationForm extends LitElement {
   static get styles() {

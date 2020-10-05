@@ -3,8 +3,8 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/vacation-form';
-import './components/admin-vacation-form';
+import './components/vacation-form/components/vacation-form';
+import './components/admin-vacation-form/components/admin-vacation-form';
 
 class AntoniomaracilPage extends LitElement {
   static get styles() {
