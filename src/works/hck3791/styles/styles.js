@@ -77,6 +77,10 @@ export const HOURS = css`
 
     @media only screen and (max-width: 600px) {
 
+        h3 {
+            font-size: 0.9rem;
+        }
+
         label, select {
             font-size: 0.7rem;
             width: 30%;
@@ -89,6 +93,10 @@ export const HOURS = css`
     }
 
     @media only screen and (max-width: 375px) {
+
+        h3 {
+            font-size: 0.8rem;
+        }
 
         label, select {
             font-size: 0.5rem;
@@ -117,6 +125,10 @@ export const HOURS = css`
     }
 
     @media only screen and (max-width: 320px) {
+
+        h3 {
+            font-size: 0.7rem;
+        }
         
         label, select {
             font-size: 0.45rem;
@@ -149,6 +161,10 @@ export const HOURS = css`
     }
 
     @media only screen and (max-width: 280px) {
+
+        h3 {
+            font-size: 0.6rem;
+        }
 
         label, select {
             font-size: 0.4rem;
