@@ -105,11 +105,27 @@ class SolicitudVacaciones extends LitElement {
       }
     }
   }
+  ordenar(campo) {
+    alert(campo);
+    const array = this.listaDatos;
+    array.sort(function (a, b) {
+      if (a.campo > b.campo) {
+        return 1;
+      }
+      if (a.campo < b.campo) {
+        return -1;
+      }
+      return 0;
+    });
+      this.listaDatos=[...array];
+    }
   render() {
     return html`
 <common-header></common-header>
  <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- iconos: fontawesone -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <section class="container">
     <h1>Solicitud de Vacaciones</h1>
         <label for="fechaInicio" >Fecha Inicio</label>
@@ -122,9 +138,9 @@ class SolicitudVacaciones extends LitElement {
         <table id="tabla" class="table table-striped">
           <thead>
           <tr>  
-            <th>Fecha de solicitud</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha Final</th>
+            <th>Fecha de solicitud <button id="fsolicitud" @click="${(e) => (this.ordenar("fsolicitud"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
+            <th>Fecha de inicio <button id="inicio" @click="${(e) => (this.ordenar("inicio"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
+            <th>Fecha Final <button id="fin" @click="${(e) => (this.ordenar("fin"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
             <th>Estado</th>
             <th>Fecha de Estado</th>
             <th>Eliminar</th>
@@ -138,7 +154,7 @@ class SolicitudVacaciones extends LitElement {
           <td>${item.final}</td>
           <td>${item.estado}</td>
           <td>${item.festado}</td>
-          <td><button @click="${() => this.deleteArray(i)}">&times;</button></td>
+          <td><button @click="${() => this.deleteArray(i)}"><i class="far fa-trash-alt fa"></i></button></td>
           </tr>
           `)}
           </tbody>       
