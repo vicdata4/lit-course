@@ -63,10 +63,10 @@ class SolicitudVacaciones extends LitElement {
   compruebaEstado(index){
     for (let item in this.listaDatos) {
       if (item == index) {
-        if (this.listaDatos[item].inicio === "Pendiente de aprobación") {
-          return false;
+        if (this.listaDatos[item].estado === "Pendiente de aprobación") {
+          return true;
         }
-        return true;
+        return false;
     }
   }
 }
