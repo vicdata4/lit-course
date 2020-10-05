@@ -49,21 +49,36 @@ class SolicitudVacaciones extends LitElement {
   
   compruebaRangos(f){
     const alerta = this.shadowRoot.querySelector('#alerta');
-    for(let item in this.listaDatos){
-      if( this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f) ){
-        alerta.innerHTML='Has planificado ya para esta fecha !!!, Por favor seleccione otra fecha';
+    for (let item in this.listaDatos) {
+      if (this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f)) {
+        alerta.innerHTML = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
         return true;
       }
       return false;
     }
   }
 
-  deleteArray(index) {
-    const array = this.listaDatos;
-    array.splice(index, 1);
-    this.listaDatos = [...array];
+  compruebaEstado(index){
+    const alerta = this.shadowRoot.querySelector('#alerta');
+    for (let item in this.listaDatos) {
+      if (item == index) {
+        if (this.listaDatos[item].inicio === "Pendiente de aprobacion") {
+          return true;
+        }
+      }
+      alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
+      return false;
+    }
   }
 
+  deleteArray(index) {
+    const est = this.compruebaEstado(index);
+      if (est) {
+      const array = this.listaDatos;
+        array.splice(index, 1);
+        this.listaDatos = [...array];
+      }
+    }
   calculaFin() {
     const input = this.shadowRoot.getElementById('fechaIni');
     const out = this.shadowRoot.getElementById('fechaFin');
@@ -106,7 +121,7 @@ class SolicitudVacaciones extends LitElement {
             <th>Fecha de solicitud</th>
             <th>Fecha de inicio</th>
             <th>Fecha Final</th>
-            <th>estado</th>
+            <th>Estado</th>
             <th>Fecha de Estado</th>
             <th>Eliminar</th>
           </tr>
