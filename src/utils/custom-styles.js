@@ -20,16 +20,17 @@ export const navigatorStyles = css`
     cursor: pointer;
   }
 
+  .menu-list li a:hover {
+    background-color: #3e5c7b;
+    color: white;
+  }
+
   .menu-list li a {
     display: block;
     text-decoration: none;
     color: black;
     padding: 20px;
     text-align: center;
-
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
   }
 
   @media (min-width: 768px) {
@@ -45,11 +46,6 @@ export const navigatorStyles = css`
       border-radius: 3px;
     }
 
-    .menu-list li a:hover {
-      background-color: #3e5c7b;
-      color: white;
-    }
-
     .menu-list li a {
       height: 150px;
       width: 150px;
@@ -61,4 +57,17 @@ export const commonStyles = css`
   .container {
     padding: 20px;
   }
+`;
+
+export const tableStyles = css`
+    table {
+      border: 2px solid black;
+      margin-top: 30px;
+    }
+    table tr:nth-child(even) {
+      background-color: lightgray;
+    }
+    table td {
+      border-right: 2px solid black;
+    }
 `;
