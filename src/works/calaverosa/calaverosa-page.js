@@ -1,13 +1,19 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/item-011.js';
+import './resumen-etapas/item-011.js';
 
 class CalaverosaPage extends LitElement {
   static get styles() {
     return [
-      commonStyles
+      commonStyles,
+      css`
+        item-011 {
+          display: block;
+          margin-top: 50px;
+        }
+      `
     ];
   }
 
