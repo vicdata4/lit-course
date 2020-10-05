@@ -15,6 +15,7 @@ class CalaverosaPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>Calaverosa</work-header>
+        <item-011></item-011>
       </section>
     `;
   }
