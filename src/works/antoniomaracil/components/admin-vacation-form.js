@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 
@@ -7,20 +8,6 @@ export class AdminVacationForm extends LitElement {
     .component-box{
         margin: 1rem;
         font-family: "Comic Sans MS", cursive, sans-serif;
-    }
-    .inp-controls{
-        display:flex;
-        align-items: center;
-    }
-    .inp-controls p{
-        margin-right: 1rem;
-    }
-    .inp-controls input+p{
-        margin-left: 1rem;
-    }
-    .inp-controls button{
-        margin-right: 1.5rem;
-        margin-left: 1.5rem;
     }
     .table-box{
         border: solid 2px black;
@@ -73,16 +60,30 @@ export class AdminVacationForm extends LitElement {
       pagination: { type: Number },
       vacation: { type: Object },
       arrVacation: { type: Array },
-      list: { type: Array },
+      arrOptions: { type: Array },
       arrTr: { type: Array },
-      viewIsFull: { type: Boolean }
+      viewIsFull: { type: Boolean },
+      val: { type: String }
     };
   }
 
   constructor() {
     super();
     this.arrTr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    this.list = [];
+    this.arrVacation = [];
+    this.arrOptions = ['Pendiente de aprobación', 'Aprobado', 'No aprobado'];
+  }
+
+  changeStatus(id) {
+    const select = this.shadowRoot.getElementById('sel-' + id).value;
+    for (let i = 0; i < this.arrVacation.length; i++) {
+      if (this.arrVacation[i].id === id) {
+        if (select === '0') { this.arrVacation[i].estado = 'Pendiente de aprobación'; };
+        if (select === '1') { this.arrVacation[i].estado = 'Aprobado'; };
+        if (select === '2') { this.arrVacation[i].estado = 'No aprobado'; };
+      }
+    }
+    console.log(this.arrVacation);
   }
 
   render() {
@@ -123,15 +124,22 @@ export class AdminVacationForm extends LitElement {
               <tbody>
               ${this.arrTr.map(i => html`
                 <tr>
-                  <td>${this.list[i] ? this.list[i].solicitud : nothing}</td>
-                  <td>${this.list[i] ? this.list[i].inicio : nothing}</td>
-                  <td>${this.list[i] ? this.list[i].fin : nothing}</td>
-                  <td>${this.list[i] ? this.list[i].estado : nothing}</td>
-                  <td>${this.list[i] ? this.list[i].festado : nothing}</td>
+                  <td>${this.arrVacation[i] ? this.arrVacation[i].solicitud : nothing}</td>
+                  <td>${this.arrVacation[i] ? this.arrVacation[i].inicio : nothing}</td>
+                  <td>${this.arrVacation[i] ? this.arrVacation[i].fin : nothing}</td>
+                  <td>
+                    <select id="sel-${i}"class="selectOptions" @change="${() => this.changeStatus(this.arrVacation[i].id)}">
+                      <option value="0">Pendiente de aprobación</option>
+                      <option value="1">Aprobado</option>
+                      <option value="2">No aprobado</option>
+                    </select>
+                  </td>
+                  <td>${this.arrVacation[i] ? this.arrVacation[i].festado : nothing}</td>
                 </tr>             
               `)}
               </tbody>
             </table>
+            <button @click="${() => this.changeStatus()}">Click</button>
           </div>
         </div>
     `;

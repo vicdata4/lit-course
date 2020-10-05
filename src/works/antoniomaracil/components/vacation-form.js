@@ -58,13 +58,9 @@ class VacationForm extends LitElement {
         span span{
           cursor: pointer;
         }
-
         .table-cntr{
           display: flex;
           justify-content: space-between;
-        }
-        @media (min-width: 768px) {
-
         }
         `
     ];
@@ -119,6 +115,7 @@ class VacationForm extends LitElement {
           };
 
           this.arrVacation.push(this.vacation);
+          this.sendData();
           this.id++;
 
           // Visualizar los datos
@@ -142,7 +139,6 @@ class VacationForm extends LitElement {
       }
       // Colocamos el puntero en la pagina adecuada
       this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
-      this.sendData();
     }
   }
 
@@ -164,7 +160,8 @@ class VacationForm extends LitElement {
     this.arrVacation.splice(index, 1);
 
     // Comprobamos si la pagina a cambiado
-    const pageHasChanged = this.pointer === Math.trunc((this.arrVacation.length - 1) / this.pagination);
+    const pageHasChanged =
+    this.pointer === Math.trunc((this.arrVacation.length - 1) / this.pagination);
 
     if (pageHasChanged) {
       this.pointer = Math.trunc((this.arrVacation.length - 1) / this.pagination);
@@ -246,6 +243,15 @@ class VacationForm extends LitElement {
     for (let i = 0; i < 3; i++) {
       this.arrTableView[i] = this.arrVacation[(this.pointer * 3) + i];
     }
+  }
+
+  sendData() {
+    const event = new CustomEvent('add-new', {
+      detail: {
+        apply: this.vacation
+      }
+    });
+    this.dispatchEvent(event);
   }
 
   render() {

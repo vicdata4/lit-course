@@ -34,5 +34,4 @@ export const minMaxDate = (date, max = false) => {
   } else {
     return `${date.getUTCFullYear()}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
   }
-
 };
