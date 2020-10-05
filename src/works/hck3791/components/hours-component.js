@@ -51,9 +51,9 @@ class HoursComponent extends LitElement {
 
   render() {
     return html`
-      <div class="container">
-        <h3>Reporte de horas consolidadas</h3>
+      <div class="hours-container">
           <section>
+          <h3>Reporte de horas consolidadas</h3>
            <div>
               <label>Empleado</label>
               <select name="employees" id="employees" @change="${this.selected}">
