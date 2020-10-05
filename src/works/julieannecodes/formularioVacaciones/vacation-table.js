@@ -39,12 +39,18 @@ class VacationTable extends LitElement {
     }
   }
 
+  deleteDate(e) {
+    const arr = this.vacationData;
+    arr.splice(e.detail.index, 1);
+    this.vacationData = [...arr];
+  }
+
   render() {
     return html`
         <h1>Solicitud de vacaciones</h1>
         <form-vacation @send-dates="${this.addVacation}"></form-vacation>
         ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        <table-solicitud .arraySolicitudes="${this.vacationData}"></table-solicitud>
+        <table-solicitud .arraySolicitudes="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
         `;
   }
 }

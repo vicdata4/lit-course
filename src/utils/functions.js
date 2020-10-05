@@ -14,7 +14,6 @@ export const dateFormatter = (date_) => {
   const hour = date.getHours();
   const minute = date.getMinutes();
   const monthNumber = numericMonths[date.getMonth()];
-  // const dayInAWeek = date.getDate() + 7;
 
   return {
     default: monthName + ' ' + monthDay + ', ' + year,

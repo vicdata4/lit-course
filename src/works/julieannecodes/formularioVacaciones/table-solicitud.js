@@ -15,7 +15,7 @@ class TableSolicitud extends LitElement {
       titulosTabla: { type: Array },
       sortedArray: { type: Array },
       orderType: { type: Array },
-      afterDelete: { type: Array }
+      orderValue: { type: String }
     };
   }
 
@@ -26,19 +26,27 @@ class TableSolicitud extends LitElement {
     this.titulosTabla = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
     this.orderType = ['currentDate', 'fechaInicio', 'fechaFin'];
     this.afterDelete = [];
+    this.orderValue = 'asc';
   }
 
   order(i) {
     this.sortedArray = orderItems(this.arraySolicitudes, this.orderType[i]);
     this.arraySolicitudes = [...this.sortedArray];
+    if (this.orderValue === 'asc') {
+      this.orderValue = 'desc';
+    } else {
+      this.arraySolicitudes.reverse();
+      this.orderValue = 'asc';
+    }
   }
 
   deleteDate(i) {
-    this.arraySolicitudes.splice(i, 1);
-    this.arraySolicitudes = [...this.arraySolicitudes];
-    // this.arraySolicitudes = [...this.afterDelete];
-    // console.log(this.arraySolicitudes);
-    return this.arraySolicitudes;
+    const event = new CustomEvent('delete-date', {
+      detail: {
+        index: i
+      }
+    });
+    this.dispatchEvent(event);
   }
 
   tableL() {
@@ -46,7 +54,7 @@ class TableSolicitud extends LitElement {
         <table>
                 <tr>
                   ${this.titulosTabla.map((items, i) => html`
-                  <th>${items}<button id="${i}" @click="${() => this.order(i)}">x</button></th>
+                  <th>${items}<button id="${i}" value="${this.orderValue}" @click="${() => this.order(i)}">x</button></th>
                   `)}
                 </tr>
                   ${this.arraySolicitudes.map((item, i) => html`
