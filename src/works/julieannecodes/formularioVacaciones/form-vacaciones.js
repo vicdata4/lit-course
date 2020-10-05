@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import { dateFormatter } from '../../../utils/functions';
+import { dateFormatter } from '../utils/functions';
 
 class FormVacaciones extends LitElement {
   static get properties() {

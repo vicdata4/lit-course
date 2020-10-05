@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
-import { tableStyles } from '../../../utils/custom-styles';
-import { dateFormatter, orderItems } from '../../../utils/functions';
+import { tableStyles } from '../utils/custom-styles';
+import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
   static get styles() {
