@@ -105,20 +105,48 @@ class SolicitudVacaciones extends LitElement {
       }
     }
   }
-  ordenar(campo) {
-    alert(campo);
+  ordenarFsolicitud() {
     const array = this.listaDatos;
     array.sort(function (a, b) {
-      if (a.campo > b.campo) {
+      if (a.fsolicitud > b.fsolicitud) {
         return 1;
       }
-      if (a.campo < b.campo) {
+      if (a.fsolicitud < b.fsolicitud) {
         return -1;
       }
       return 0;
     });
       this.listaDatos=[...array];
     }
+
+  ordenarInicio() {
+    const array = this.listaDatos;
+    array.sort(function (a, b) {
+      if (a.inicio > b.inicio) {
+        return 1;
+      }
+      if (a.inicio < b.inicio) {
+        return -1;
+      }
+      return 0;
+    });
+      this.listaDatos=[...array];
+    }
+
+  ordenarFin() {
+    const array = this.listaDatos;
+    array.sort(function (a, b) {
+      if (a.final> b.final) {
+        return 1;
+      }
+      if (a.final < b.final) {
+        return -1;
+      }
+      return 0;
+    });
+      this.listaDatos=[...array];
+  }
+
   render() {
     return html`
 <common-header></common-header>
@@ -138,9 +166,9 @@ class SolicitudVacaciones extends LitElement {
         <table id="tabla" class="table table-striped">
           <thead>
           <tr>  
-            <th>Fecha de solicitud <button id="fsolicitud" @click="${(e) => (this.ordenar("fsolicitud"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
-            <th>Fecha de inicio <button id="inicio" @click="${(e) => (this.ordenar("inicio"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
-            <th>Fecha Final <button id="fin" @click="${(e) => (this.ordenar("fin"))}" ><i class="fas fa-sort fa-2x"></i></button></th>
+            <th>Fecha de solicitud <button id="fsolicitud" @click="${() => this.ordenarFsolicitud()}" ><i class="fas fa-sort fa-2x"></i></button></th>
+            <th>Fecha de inicio <button id="inicio" @click="${() => this.ordenarInicio()}" ><i class="fas fa-sort fa-2x"></i></button></th>
+            <th>Fecha Final <button id="fin" @click="${() => this.ordenarFin()}" ><i class="fas fa-sort fa-2x"></i></button></th>
             <th>Estado</th>
             <th>Fecha de Estado</th>
             <th>Eliminar</th>
