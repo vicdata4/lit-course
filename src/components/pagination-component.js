@@ -51,6 +51,10 @@ class PaginationComponent extends LitElement {
         .step.left {
             transform: rotate(180deg);
         }
+
+        .stepper, .step {
+            user-select: none;
+        }
     `;
   }
 
