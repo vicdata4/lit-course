@@ -2,37 +2,18 @@
 /* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
 import { item002ListaCipaStyles } from './src/styles';
+import { CONSTANTS_ITEM002 } from './src/constantes';
 
 export class BeniListaCipa extends LitElement {
   constructor() {
     super();
     // datos_cipa > ES DONDE SE CARGAN LOS DATOS PARA QUE EL OBJETO FUNCIONE CORRECTAMENTE | EXTRAERLOS CON AJAX DE LA BASE DATOS*/
     this.datos_cipa = this.cargar_informacion_candidatos_cipa();
-    this.titulo_formulario = 'Lista de candidatos con información pendiente a actualizar';
-    this.table_id = 'table_cipa';
-    this.div_body_cipa = 'div_body_cipa';
-    this.div_body_abrir_cipa = 'div_body_abrir_cipa';
-    this.label_ordenar_nombre_id = 'label_ordenar_nombre_id';
-    this.label_ordenar_correo_id = 'label_ordenar_correo_id';
-    this.label_ordenar_perfil_id = 'label_ordenar_perfil_id';
-    this.label_ordenar_plantilla_id = 'label_ordenar_plantilla_id';
-    this.label_ordenar_fua_id = 'label_ordenar_fua_id';
-    this.label_ordenar_fv_id = 'label_ordenar_fv_id';
   }
 
   static get properties() {
     return {
-      datos_cipa: { type: Object },
-      titulo_formulario: { type: String },
-      table_id: { type: String },
-      div_body_cipa: { type: String },
-      div_body_abrir_cipa: { type: String },
-      label_ordenar_nombre_id: { type: String, attribute: false },
-      label_ordenar_correo_id: { type: String, attribute: false },
-      label_ordenar_perfil_id: { type: String, attribute: false },
-      label_ordenar_plantilla_id: { type: String, attribute: false },
-      label_ordenar_fua_id: { type: String, attribute: false },
-      label_ordenar_fv_id: { type: String, attribute: false }
+      datos_cipa: { type: Object }
     };
   }
 
@@ -54,16 +35,16 @@ export class BeniListaCipa extends LitElement {
                 <slot>
                 </slot> 
             </div>
-            <div id="${this.div_body_abrir_cipa}" class="div_body_abrir_cipa">
+            <div id="${CONSTANTS_ITEM002.div_body_abrir_cipa}" class="div_body_abrir_cipa">
                 <div class="div_button_abrir_cipa">
                     <button @click="${this.hidden_body_abrir_cipa}" class="button_abrir_cipa" >Abrir lista de candidatos con información pendiente a actualizar </button>
                 </div>
             </div>
-            <div id="${this.div_body_cipa}"  class="div_body_cipa">
+            <div id="${CONSTANTS_ITEM002.div_body_cipa}"  class="div_body_cipa">
                 <div class="div_header_cipa">
                     <div class="div_titulo_cipa">
                         <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
-                        <label class="titulo_header_cipa">${this.titulo_formulario}</label>
+                        <label class="titulo_header_cipa">${CONSTANTS_ITEM002.titulo_formulario}</label>
                     </div>
                     <div class="div_header_controles_cipa">
                         <div @click="${this.hidden_body_cipa}" class="div_x_header_cipa">
@@ -73,7 +54,7 @@ export class BeniListaCipa extends LitElement {
                 </div>
                 <div class="div_main_cipa">
                     <!--  COMIENZO TABLA -->
-                    <table id="${this.table_id}" class="tabla_cipa">
+                    <table id="${CONSTANTS_ITEM002.table_id}" class="tabla_cipa">
                         <!--  HEADER TABLA -->
                         <tr>
                             <th scope="row">
@@ -98,7 +79,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_nombre_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_nombre_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +106,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_correo_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_correo_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +136,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_perfil_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_perfil_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +166,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_plantilla_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_plantilla_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -212,7 +193,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_fua_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_fua_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +220,7 @@ export class BeniListaCipa extends LitElement {
                                             </g>
                                         </svg>
                                         <div class="div_texto_campo_ordenar">                    
-                                            <label id="${this.label_ordenar_fv_id}" class="texto_campo_ordenar"></label>
+                                            <label id="${CONSTANTS_ITEM002.label_ordenar_fv_id}" class="texto_campo_ordenar"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -343,13 +324,13 @@ export class BeniListaCipa extends LitElement {
   }
 
   hidden_body_cipa() {
-    this.shadowRoot.getElementById(this.div_body_cipa).style.display = 'none';
-    this.shadowRoot.getElementById(this.div_body_abrir_cipa).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_cipa).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_abrir_cipa).style.display = 'block';
   }
 
   hidden_body_abrir_cipa() {
-    this.shadowRoot.getElementById(this.div_body_cipa).style.display = 'block';
-    this.shadowRoot.getElementById(this.div_body_abrir_cipa).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_cipa).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_abrir_cipa).style.display = 'none';
   }
 
   dirigir_url_editar_candidato(id_candidato_a_editar) {
@@ -391,18 +372,18 @@ export class BeniListaCipa extends LitElement {
   ordenar_tabla_string_cipa_fecha(n, type) {
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
     /* EXTRAER EL NODO PADRE DE LA TABLA */
-    table = this.shadowRoot.getElementById(this.table_id);
+    table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
     // Set the sorting direction to ascending:
     dir = 'asc';
     /* INDICAR EL ORDEN QUE HAY SELECCIONADO EN EL DIV > LABEL ORDENAR */
     if (n === 5) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_fua_id).innerHTML = 'ASC';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = 'ASC';
     }
     if (n === 6) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_fv_id).innerHTML = 'ASC';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = 'ASC';
     }
     /* Make a loop that will continue until no switching has been done: */
     while (switching) {
@@ -458,11 +439,11 @@ export class BeniListaCipa extends LitElement {
         if (switchcount === 0 && dir === 'asc') {
           if (n === 5) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_fua_id).innerHTML = 'DES';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = 'DES';
           }
           if (n === 6) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_fv_id).innerHTML = 'DES';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = 'DES';
           }
           dir = 'desc';
           switching = true;
@@ -474,26 +455,26 @@ export class BeniListaCipa extends LitElement {
   ordenar_tabla_string_cipa(n, type) {
     /* EXTRAER EL NODO PADRE DE LA TABLA */
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
-    table = this.shadowRoot.getElementById(this.table_id);
+    table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
     // Set the sorting direction to ascending:
     dir = 'asc';
     /* INDICAR EL ORDEN QUE HAY SELECCIONADO EN EL DIV > LABEL ORDENAR */
     if (n === 0) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_nombre_id).innerHTML = 'ASC';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = 'ASC';
     }
     if (n === 1) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_correo_id).innerHTML = 'ASC';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = 'ASC';
     }
     if (n === 3) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_perfil_id).innerHTML = 'ASC';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = 'ASC';
     }
     if (n === 4) {
       this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(this.label_ordenar_plantilla_id).innerHTML = 'SI';
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = 'SI';
     }
     /* Make a loop that will continue until no switching has been done: */
     while (switching) {
@@ -535,19 +516,19 @@ export class BeniListaCipa extends LitElement {
           /* INDICAR EN EL LABEL QUE EL ORDEN CAMBIO A DESCENDENTE */
           if (n === 0) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_nombre_id).innerHTML = 'DES';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = 'DES';
           }
           if (n === 1) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_correo_id).innerHTML = 'DES';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = 'DES';
           }
           if (n === 3) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_perfil_id).innerHTML = 'DES';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = 'DES';
           }
           if (n === 4) {
             this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(this.label_ordenar_plantilla_id).innerHTML = 'NO';
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = 'NO';
           }
           dir = 'desc';
           switching = true;
@@ -558,12 +539,12 @@ export class BeniListaCipa extends LitElement {
 
   vaciar_campos_ordena() {
     /* FUNCION QUE VACIA TODOS LOS CAMPOS DEL DIV ORDENAR - INTRODUCIDA PARA EVITAR REPETIR CODIGO */
-    this.shadowRoot.getElementById(this.label_ordenar_nombre_id).innerHTML = '';
-    this.shadowRoot.getElementById(this.label_ordenar_correo_id).innerHTML = '';
-    this.shadowRoot.getElementById(this.label_ordenar_perfil_id).innerHTML = '';
-    this.shadowRoot.getElementById(this.label_ordenar_plantilla_id).innerHTML = '';
-    this.shadowRoot.getElementById(this.label_ordenar_fua_id).innerHTML = '';
-    this.shadowRoot.getElementById(this.label_ordenar_fv_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = '';
   }
 
   calcular_diferencia_fecha_semaforo(fecha_vencimiento) {
