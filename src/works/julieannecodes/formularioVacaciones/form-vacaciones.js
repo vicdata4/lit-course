@@ -74,7 +74,7 @@ class FormVacaciones extends LitElement {
     return html`
     <form onsubmit="return false">
             <label for="inicio">Fecha inicio</label>
-            <input type="date" id="inicio" min="${this.minDate}">
+            <input type="date" id="inicio" value="${this.minDate}" min="${this.minDate}">
             <label for="fin">Fecha fin</label>
             <input type="date" id="fin">
             <button type="submit" @click="${this.onSubmit}">Agregar</button> 
