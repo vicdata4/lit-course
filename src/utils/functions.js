@@ -3,7 +3,6 @@ import { months, days } from './constants';
 /**
   * FORMATTERS
   */
-
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
@@ -19,7 +18,7 @@ export const dateFormatter = (date_) => {
  
   return {
     default: dd + '-' + mes + '-' + year,
- //   short: monthName.slice(0, 3) + ' , ' + monthDay,
+    short: monthName.slice(0, 3) + ' ' + monthDay,
     day: weekDayName,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
     amd: year + '-'+ mes + '-' + dd,
@@ -28,6 +27,10 @@ export const dateFormatter = (date_) => {
   };
 };
 
+/**
+ * Validacion del patron email.
+ * @param {*} email 
+ */
 export const emailValidator = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
