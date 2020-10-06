@@ -4,12 +4,13 @@ import { LitElement, html } from 'lit-element';
 import { item002ListaCipaStyles } from './src/styles';
 import { CONSTANTS_ITEM002 } from './src/constantes';
 import { svgBeniX, svgBeniOrdenarString, svgBeniOrdenarOther, svgBeniOrdenarInt, svgBeniCircleRed, svgBeniCircleYellow } from './src/svc_icons';
+import { cargarInformacionCandidatosCipa } from './src/mocks';
 
 export class BeniListaCipa extends LitElement {
   constructor() {
     super();
     // datos_cipa > ES DONDE SE CARGAN LOS DATOS PARA QUE EL OBJETO FUNCIONE CORRECTAMENTE | EXTRAERLOS CON AJAX DE LA BASE DATOS*/
-    this.datos_cipa = this.cargar_informacion_candidatos_cipa();
+    this.datos_cipa = cargarInformacionCandidatosCipa();
   }
 
   static get properties() {
