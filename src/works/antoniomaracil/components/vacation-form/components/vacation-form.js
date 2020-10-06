@@ -8,52 +8,51 @@ class VacationForm extends LitElement {
     return [
       css`
         .component-box{
-            margin: 1rem;
-            font-family: "Comic Sans MS", cursive, sans-serif;
+          margin: 1rem;
+          font-family: "Comic Sans MS", cursive, sans-serif;
         }
         .inp-controls{
-            display:flex;
-            align-items: center;
+          display:flex;
+          align-items: center;
         }
         .inp-controls p{
-            margin-right: 1rem;
+          margin-right: 1rem;
         }
         .inp-controls input+p{
-            margin-left: 1rem;
+          margin-left: 1rem;
         }
         .inp-controls button{
-            margin-right: 1.5rem;
-            margin-left: 1.5rem;
+          margin-right: 1.5rem;
+          margin-left: 1.5rem;
         }
         .table-box{
-            border: solid 2px black;
-            margin-top: 1.5rem;
+          border-top: solid 2px black;
+          border-bottom: solid 2px black;
+          margin-top: 1.5rem;
+          overflow-x: auto;
         }
         table {
-            border-collapse: collapse;
-            width: 100%;
-            height: 100%;
-            font-size: 0.8rem;
-            overflow: scroll;
-            overflow-y: auto;
-            empty-cells: hide;
+          border-collapse: collapse;
+          font-size: 0.8rem;
+          empty-cells: hide;
+          width: 100%;
         }
         tr:nth-child(even) {
-            background-color: #EEEEEE;
+          background-color: #EEEEEE;
         }
         .inp-table th{
-            border-left: solid 2px black;
-            border-right: solid 2px black;
-            background-color: #CCCCCC;
-            font-size: 0.7rem;
-            text-align: left;
+          border-left: solid 2px black;
+          border-right: solid 2px black;
+          background-color: #CCCCCC;
+          font-size: 0.7rem;
+          text-align: left;
         }
         .inp-table td{
-            border-right: solid 2px black;
-            border-left: solid 2px black;
+          border-right: solid 2px black;
+          border-left: solid 2px black;
         }
         td{
-            height: 2rem;
+          height: 2rem;
         }
         span span{
           cursor: pointer;
@@ -141,17 +140,13 @@ class VacationForm extends LitElement {
         // La primera hoja se llena sin calcular la posicion del elemento
         this.arrTableView[i] = this.arrVacation[i];
       } else {
-        if (this.arrVacation.length % this.pagination === 0) {
-          // Si la tabla esta llena volvemos true el flag
-          this.viewIsFull = true;
-          // Calculo de la posicion del elemento
-          this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
-        } else {
-          this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
-          this.viewIsFull = false;
-        }
+        // Si la tabla esta llena volvemos true el flag
+        this.arrVacation.length % this.pagination === 0 ? this.viewIsFull : !this.viewIsFull;
+        // Calculo de la posicion del elemento
+        this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
       }
     }
+    // Actualizo el puntero de la vista
     this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
   }
 
@@ -171,6 +166,7 @@ class VacationForm extends LitElement {
 
     // Sacamos del array
     this.arrVacation.splice(index, 1);
+    // Mandamos el array actualizado al padre
     this.sendData();
 
     // Comprobamos si la pagina a cambiado
