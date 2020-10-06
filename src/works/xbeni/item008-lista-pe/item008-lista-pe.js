@@ -2,7 +2,7 @@
 import { LitElement, html } from 'lit-element';
 import { item008ListaPeStyles } from './src/styles';
 import { CONSTANTS_ITEM008 } from './src/constants';
-
+import { extraerDatosListaPe, getDatosDescripcionPe } from './src/moks';
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
@@ -14,7 +14,7 @@ class BeniListaPe extends LitElement {
   constructor() {
     super();
     this.titulo_lista = 'Lista de peticiones';
-    this.datos_lista_pe = this.extraer_datos_lista_pe();
+    this.datos_lista_pe = extraerDatosListaPe();
   }
 
   static get styles() {
@@ -114,6 +114,8 @@ class BeniListaPe extends LitElement {
     // UNA VEZ HECHA LA CONSULTA AJAX ELIMINAR ESTA LINEA DE CODIGO
     this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = 'Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.';
 
+    // SOLICITUD AJAX QUE RPEGUNTE POR LA DESCRIPCION
+    getDatosDescripcionPe(id_peticion);
     /*
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -128,13 +130,6 @@ class BeniListaPe extends LitElement {
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(parametros_enviar);
         */
-  }
-
-  extraer_datos_lista_pe() {
-    /* AL IMPLEMENTAR EN PRODUCCION */
-    /* HACER CONSULTA AJAX QUE EXTRAIGA DE LA BASE DE DATOS DE LA TABLA DE PETICIONES - TITULO Y FECHA PUBLICACION (Ej: consulta mysql: SELECT titulo,fecha_pub,id_peticion FROM peticiones WHERE check_publicar_peticion = true)  */
-
-    return [{ titulo: 'Tester Junior', fecha_publicacion: '16/09/2020', id_peticion: 'PET_201' }, { titulo: 'Analista Programador Java', fecha_publicacion: '18/08/2020', id_peticion: 'PET_202' }, { titulo: 'Prueba programador', fecha_publicacion: '16/09/2020', id_peticion: 'PET_203' }];
   }
 }
 
