@@ -3,58 +3,57 @@ import { LitElement, html, css } from 'lit-element';
 class PaginationComponent extends LitElement {
   static get styles() {
     return css`
+      table {
+        border: 1px solid #e4e4e4;
+        padding: 10px;
+      }
 
-        table {
-            border: 1px solid #e4e4e4;
-            padding: 10px;
-        }
+      tr {
+        text-align: left;
+      }
 
-        tr {
-            text-align: left;
-        }
+      td {
+        min-width: 200px; 
+      }
 
-        td {
-           min-width: 200px; 
-        }
-
-        .order {
-            padding: 0;
-            background-color: transparent;
-            border: none;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
+      .order {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
         
-        .stepper {
-            margin: 10px 0;
-        }
+      .stepper {
+        margin: 10px 0;
+      }
 
-        .stepper .step:hover {
-            background-color: #f1f1f1;
-        }
+      .stepper .step:hover {
+        background-color: #f1f1f1;
+      }
 
-        .step {
-            display: inline-block;
-            padding: 5px;
-            border: 1px solid #d8d7d7;
-            width: 20px;
-            height: auto;
-            text-align: center;
-            cursor: pointer;
-        }
+      .step {
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #d8d7d7;
+        width: 20px;
+        height: auto;
+        text-align: center;
+        cursor: pointer;
+      }
 
-        .step.active {
-            background-color: #535353 !important;
-            color: white;
-        }
+      .step.active {
+        background-color: #535353 !important;
+        color: white;
+      }
 
-        .step.left {
-            transform: rotate(180deg);
-        }
+      .step.left {
+        transform: rotate(180deg);
+      }
 
-        .stepper, .step {
-            user-select: none;
-        }
+      .stepper, .step {
+        user-select: none;
+      }
     `;
   }
 
@@ -158,8 +157,8 @@ class PaginationComponent extends LitElement {
         ${this.renderStepper()}
         <table>
         <tr>
-            <th><button class="order" @click="${() => this.orderList('name')}">Name <span>&#9662;</span></button></th>
-            <th><button class="order" @click="${() => this.orderList('phone')}">Phone <span>&#9662;</span></button></th>
+          <th><button class="order" @click="${() => this.orderList('name')}">Name <span>&#9662;</span></button></th>
+          <th><button class="order" @click="${() => this.orderList('phone')}">Phone <span>&#9662;</span></button></th>
         </tr>
         ${this.list.slice(this.from, this.to).map(item => html`
           <tr>
