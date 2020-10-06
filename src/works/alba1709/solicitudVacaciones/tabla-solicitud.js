@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
+import { getDate } from './utils/functions';
 
 export class TablaSolicitud extends LitElement {
   static get styles() {
@@ -20,8 +21,7 @@ export class TablaSolicitud extends LitElement {
               height: 100%;
               font-size: 0.8rem;
               overflow: scroll;
-              overflow-y: auto;
-              empty-cells: hide;
+              overflow-x: auto;
             }
             #tablaSoli tr:nth-child(odd) {
               background-color: #eeeeee;
@@ -40,17 +40,29 @@ export class TablaSolicitud extends LitElement {
             }
             td, th {
               font-family: "Comic Sans MS", cursive, sans-serif;
+              white-space: nowrap;
+            }
+            .btnOrder {
+              cursor: pointer;
+              background-color: #cccccc;
+              border: #cccccc;
+            }
+            .btnOrder:hover {
+              background-color: #eeeeee;
             }
             th {
               background-color: #cccccc;
             }
             @media (min-width: 768px) {
               #tablaSoli {
-                width: 70%;
+                width: 52%;
+            }
+            }
+            @media screen and (max-width: 768px) {
+              #tablaSoli {
+                display: block;
+                overflow-x: auto;
               }
-               
-              
-
             }
           `
     ];
@@ -76,32 +88,22 @@ export class TablaSolicitud extends LitElement {
     this.dispatchEvent(event);
   }
 
-  /*ordenar() {
-    let orderedDates = this.miTabla.sort(function(a, b) {
-    }) 
-  }*/
-
-  /*orderDate(col, order) {
-    const ths = this;
-    debugger;
-    this.miTabla.sort(function(o1, o2) {
-      debugger;
-    this.miTabla.sort((o1, o2) => {
+  orderDate(col, order) {
+    const orderedList = this.miTabla.sort((a, b) => {
       if (
-        ths.getDate(o1[col], true).getTime() >
-        ths.getDate(o2[col], true).getTime()
+        getDate(a[col], true).getTime() >
+        getDate(b[col], true).getTime()
       ) {
-        debugger;
         return 1;
       } else if (
-        ths.getDate(o1[col], true).getTime() <
-        ths.getDate(o2[col], true).getTime()) {
+        getDate(a[col], true).getTime() <
+        getDate(b[col], true).getTime()) {
         return -1;
       }
       return 0;
-    })
+    });
+    this.miTabla = order === 'asc' ? [...orderedList] : [...orderedList.reverse()];
   }
-  }*/
 
   render() {
     return html`
@@ -109,20 +111,20 @@ export class TablaSolicitud extends LitElement {
               <tr>
                 <th>Fecha de solicitud
                   <span>
-                    <span @click="${() => this.orderDate('solicitud', 'asc')}">&#9652;</span>
-                    <span @click="${() => this.orderDate('solicitud', 'desc')}">&#9662;</span>
+                    <button class = "btnOrder" @click="${() => this.orderDate('fHoy', 'asc')}">&#9652;</button>
+                    <button class = "btnOrder" @click="${() => this.orderDate('fHoy', 'desc')}">&#9662;</button>
                   </span>
                 </th>
                 <th>Fecha Inicio
                   <span>
-                    <span @click="${() => this.orderDate('solicitud', 'asc')}">&#9652;</span>
-                    <span @click="${() => this.orderDate('solicitud', 'desc')}">&#9662;</span>
+                    <button class = "btnOrder" @click="${() => this.orderDate('infoFI', 'asc')}">&#9652;</button>
+                    <button class = "btnOrder" @click="${() => this.orderDate('infoFI', 'desc')}">&#9662;</button>
                   </span>
                 </th>
                 <th>Fecha Fin
                   <span>
-                    <span @click="${() => this.orderDate('solicitud', 'asc')}">&#9652;</span>
-                    <span @click="${() => this.orderDate('solicitud', 'desc')}">&#9662;</span>
+                    <button class = "btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
+                    <button class = "btnOrder" @click="${() => this.orderDate('infoFF', 'desc')}">&#9662;</button>
                   </span>
                 </th>
                 <th>Estado de la solicitud</th>
@@ -132,7 +134,7 @@ export class TablaSolicitud extends LitElement {
             ${this.miTabla.map((item, i) => {
     return html`
               <tr>
-                <td>${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
+                <td class="first">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
                 <td>${item.infoFI.split('-').reverse().join('-')}</td>
                 <td>${item.infoFF.split('-').reverse().join('-')}</td>
                 <td>Pendiente de aprobación</td>

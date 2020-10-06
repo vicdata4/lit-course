@@ -30,13 +30,14 @@ export class SolicitudVacaciones extends LitElement {
   }
 
   addSolicitud(e) {
-    // Fecha dentro de 2 años
+    // Fecha dentro de 1 año
     const fechaActual = e.detail.fHoy;
     const anoActual = parseInt(fechaActual.substr(0, 4));
     const twoYears = anoActual + 1;
     const dateTwoYears = fechaActual.replace(anoActual, twoYears);
     // Validación rango desde hoy hasta 1 año
     const rangoFechas = e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI || e.detail.infoFI > dateTwoYears || e.detail.infoFF > dateTwoYears;
+    // Validación fecha
     if (e.detail.infoFI === '' || e.detail.infoFF === '') {
       alert('Por favor introduzca fechas de inicio y fin');
       return false;
@@ -52,6 +53,7 @@ export class SolicitudVacaciones extends LitElement {
     }
   }
 
+  // Eliminar solicitud
   deleteSolicitud(e) {
     const array = this.infoSolicitud;
     array.splice(e.detail.index, 1);
