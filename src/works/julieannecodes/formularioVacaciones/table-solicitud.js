@@ -1,11 +1,18 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { tableStyles } from '../utils/custom-styles';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
   static get styles() {
     return [
-      tableStyles
+      tableStyles,
+      css`
+      td button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+      }
+      `
     ];
   }
 
@@ -64,7 +71,7 @@ class TableSolicitud extends LitElement {
                     <td>${dateFormatter(item.fechaFin).tableDate}</td>
                     <td>${item.estado}</td>
                     <td>${item.statusDate}</td>
-                    <td><button id="${i}" @click="${() => this.deleteDate(i)}">delete</button></td>
+                    <td><button id="${i}" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash2.png"></button></td>
                     </tr>
                   `)}
               </table>
