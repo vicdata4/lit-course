@@ -189,7 +189,7 @@ export class SolicitudVacaciones extends LitElement {
                 <td> Eliminar </td>
             </tr>
             ${this.table.map((item,i) => html `
-            <tr class="trGris">
+            <tr>
                 <td>${item.request}</td>
                 <td>${item.start}</td>
                 <td>${item.finish}</td>
