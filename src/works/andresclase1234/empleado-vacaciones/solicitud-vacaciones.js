@@ -4,32 +4,24 @@ export class SolicitudVacaciones extends LitElement {
 
     static get styles() {
         return css`
-        .menu-list {
-            margin: auto;
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
             width: 90%;
-        }
-        table{
-            align-items: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        table, td, tr {
-            border: 1px solid black;
+            border: 1px solid #ddd;
+            margin-left: 5%;
+            margin-right: 5%;
         }
         td {
-            padding:0.5em;
+            text-align: left;
+            padding: 8px;
+            border: 1px solid black;
         }
-        .trGris {
-            background-color: #EEEEEE;
-            color: BLACK;
+        tr:nth-child(even){background-color: #f2f2f2}
+        .menu-list {
+            width:90%;
+            margin:auto
         }
-
-        @media (min-width: 768px) {
-            .table {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: center;
-            }
         `;
     }
 
@@ -48,7 +40,9 @@ export class SolicitudVacaciones extends LitElement {
         this.asc = true;
     };
 
-    
+    /**
+     * Añade un nuevo elemento al array.
+     */
     add(){
         const input1 = new Date();
         const input2= this.shadowRoot.querySelector('#start');
@@ -62,6 +56,9 @@ export class SolicitudVacaciones extends LitElement {
         this.table =  [...[item],  ...this.table];
     }
 
+    /**
+     * Ordena por fecha de inicio
+     */
     sortStart(){
         if ( this.asc == true ) {
             const fechas = this.table;
@@ -92,6 +89,9 @@ export class SolicitudVacaciones extends LitElement {
         }   
     }
 
+    /**
+     * Ordena por fecha de fin
+     */
     sortEnd(){
         if ( this.asc == true ) {
             const fechas = this.table;
@@ -122,6 +122,9 @@ export class SolicitudVacaciones extends LitElement {
         } 
     }
 
+    /**
+     * Ordena por fecha de solicitud
+     */
     sortRequest(){
         if ( this.asc == true ) {
             const fechas = this.table;
@@ -152,6 +155,10 @@ export class SolicitudVacaciones extends LitElement {
         } 
     }
     
+    /**
+     * Borra el elemento de la posición.
+     * @param index Posición del elemento.
+     */
     deleteItem(index) {
         const array = this.table;
         if ( this.table[index].aproved === 'Pendiente  de aprobación') {
@@ -165,33 +172,33 @@ export class SolicitudVacaciones extends LitElement {
     render() {
         return html`
         <div class="menu-list">
-        <h2 title="Solicitud de vacaciones">Solicitud de vacaciones</h2>
+            <h2 title="Solicitud de vacaciones">Solicitud de vacaciones</h2>
             <p> 
                 Fecha Inicio <input type="date" id="start" min="2020-01-01" max="2021-12-31">
                 Fecha Fin <input type="date" id="end" min="2020-01-01" max="2021-12-31"> 
                 <button @click="${this.add}">Agregar</button>
             </p>
-            <table>
-                <tr>
-                    <td> Fecha de Solicitud <button @click="${() => this.sortRequest()}">Ordenar</button></td>
-                    <td> Fecha de Inicio  <button @click="${() => this.sortStart()}">Ordenar</button></td>
-                    <td> Fecha de Fin  <button @click="${() => this.sortEnd()}">Ordenar</button></td>
-                    <td> Estado de la solicitud </td>
-                    <td> Fecha de estado  </td>
-                    <td> Eliminar </td>
-                </tr>
-                ${this.table.map((item,i) => html `
-                <tr class="trGris">
-                    <td>${item.request}</td>
-                    <td>${item.start}</td>
-                    <td>${item.finish}</td>
-                    <td>${item.aproved}</td>
-                    <td>${item.request}</td>
-                    <td><button @click="${() => this.deleteItem(i)}">&times;</button></td>
-                </tr>
-                    `)}
-            </table>
         </div>
+        <table>
+            <tr>
+                <td> Fecha de Solicitud <button @click="${() => this.sortRequest()}">Ordenar</button></td>
+                <td> Fecha de Inicio  <button @click="${() => this.sortStart()}">Ordenar</button></td>
+                <td> Fecha de Fin  <button @click="${() => this.sortEnd()}">Ordenar</button></td>
+                <td> Estado de la solicitud </td>
+                <td> Fecha de estado  </td>
+                <td> Eliminar </td>
+            </tr>
+            ${this.table.map((item,i) => html `
+            <tr class="trGris">
+                <td>${item.request}</td>
+                <td>${item.start}</td>
+                <td>${item.finish}</td>
+                <td>${item.aproved}</td>
+                <td>${item.request}</td>
+                <td><button @click="${() => this.deleteItem(i)}">&times;</button></td>
+            </tr>
+                `)}
+        </table>
         `;
     }
 }
