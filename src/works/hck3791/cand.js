@@ -1,42 +1,42 @@
-export const candidates = [
+export const CANDIDATES = [
   {
-    name: 'Name 1',
-    email: 'email1@email',
+    name: 'Leónidas',
+    email: 'leonidas@email.com',
     phone: 985475263,
     profile: 'Programmer',
     onStaff: true,
-    lastUpdate: '01-01-2019',
-    expirationDate: '01-07-2020',
+    lastUpdate: '01/01/2019',
+    expirationDate: '01/07/2020',
     light: true
   },
   {
-    name: 'Name 2',
-    email: 'email2@email',
+    name: 'Gorgo',
+    email: 'gorgo@email.com',
     phone: 985415869,
-    profile: 'RRHH',
+    profile: 'Dev. Arquitect',
     onStaff: false,
-    lastUpdate: '01-01-2019',
-    expirationDate: '01-07-2020',
+    lastUpdate: '02/01/2019',
+    expirationDate: '02/07/2020',
     light: false
   },
   {
-    name: 'Name 3',
-    email: 'email3@email',
+    name: 'Dilios',
+    email: 'dilios@email.com',
     phone: 985789652,
-    profile: 'Dev. Arquitect',
+    profile: 'RRHH',
     onStaff: false,
-    lastUpdate: '01-01-2019',
-    expirationDate: '01-07-2020',
+    lastUpdate: '03/01/2019',
+    expirationDate: '03/07/2020',
     light: true
   },
   {
-    name: 'Name 4',
-    email: 'email4@email',
+    name: 'Theron',
+    email: 'theron@email.com',
     phone: 985235689,
     profile: 'Analyst',
     onStaff: true,
-    lastUpdate: '01-01-2019',
-    expirationDate: '01-07-2020',
+    lastUpdate: '04/01/2019',
+    expirationDate: '04/07/2020',
     light: false
   }
 ];
