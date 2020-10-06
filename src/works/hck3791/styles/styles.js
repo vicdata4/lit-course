@@ -258,11 +258,6 @@ export const CAND = css`
             font-size: 0.60rem;
         }
 
-        th div {
-            display:flex;
-            flex-direction: row;
-        }
-
         th span {
             margin-right: 10px;
         }
@@ -280,9 +275,23 @@ export const CAND = css`
     }
 
     /* Landscape phones and down */
-    @media (max-width: 480px) {
+    @media only screen and (min-device-width : 360px) and (max-device-width : 480px) {
+        table caption {
+            font-size: 0.7rem;  
+            margin: 20px 0;
+        }
+        
+        table {
+            font-size: 0.4rem;
+        }
 
+        table th {
+            padding: 0 0.2em 0 0.3em;
+        }
+
+        table tr td {
+            padding: 0 0.2em 0 0.3em;
+        }
     }
-    
-    
+
 `;
