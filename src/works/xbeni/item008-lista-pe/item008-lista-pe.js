@@ -1,16 +1,13 @@
 /* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
 import { item008ListaPeStyles } from './src/styles';
+import { CONSTANTS_ITEM008 } from './src/constants';
 
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
       titulo_lista: { type: String },
-      datos_lista_pe: { type: Object },
-      id_resultados_titulo: { type: String, attribute: false },
-      id_resultados_fecha_publicacion: { type: String, attribute: false },
-      id_resultados_descripcion_publicacion: { type: String, attribute: false },
-      id_body_detalles_pe: { type: String }
+      datos_lista_pe: { type: Object }
     };
   }
 
@@ -18,10 +15,6 @@ class BeniListaPe extends LitElement {
     super();
     this.titulo_lista = 'Lista de peticiones';
     this.datos_lista_pe = this.extraer_datos_lista_pe();
-    this.id_resultados_titulo = 'id_resultados_titulo';
-    this.id_resultados_fecha_publicacion = 'id_resultados_fecha_publicacion';
-    this.id_resultados_descripcion_publicacion = 'id_resultados_descripcion_publicacion';
-    this.id_body_detalles_pe = 'id_body_detalles_pe';
   }
 
   static get styles() {
@@ -71,18 +64,18 @@ class BeniListaPe extends LitElement {
                     </div>
                 </div>
             </div>
-            <div id="${this.id_body_detalles_pe}" class="div_body_resultados_pe">
+            <div id="${CONSTANTS_ITEM008.id_body_detalles_pe}" class="div_body_resultados_pe">
                 <div>
                     <div class="div_resultados_pe_campos">
                         <div class="div_resultados_titulo_pe">
                             <label class="texto_resultados_pe">Titulo: </label>
-                            <label class="texto_resultados_pe_id" id="${this.id_resultados_titulo}"> Analista Programador
+                            <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.id_resultados_titulo}"> Analista Programador
                                 Java</label>
                         </div>
                         <div class="div_resultados_fecha_publicacion_pe">
                             <label class="texto_resultados_pe">Fecha publicacion: </label>
                             <label class="texto_resultados_pe_id"
-                                id="${this.id_resultados_fecha_publicacion}">18/08/2020</label>
+                                id="${CONSTANTS_ITEM008.id_resultados_fecha_publicacion}">18/08/2020</label>
                         </div>
                         <div class="div_controles_detalles_pe">
                             <div @click="${this.hidden_date_results}" class="div_x_header_pe">
@@ -102,7 +95,7 @@ class BeniListaPe extends LitElement {
                 </div>
                 <div class="div_resultados_descripcion_pe">
                     <label class="texto_resultados_pe">Descripcion:</label><br>
-                    <textarea disabled id="${this.id_resultados_descripcion_publicacion}" class="textarea_resultados_pe"></textarea>
+                    <textarea disabled id="${CONSTANTS_ITEM008.id_resultados_descripcion_publicacion}" class="textarea_resultados_pe"></textarea>
                 </div>
             </div>
         </div>
@@ -110,16 +103,16 @@ class BeniListaPe extends LitElement {
   }
 
   hidden_date_results() {
-    this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'none';
   }
 
   load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
-    this.shadowRoot.getElementById(this.id_resultados_titulo).textContent = titulo_peticion;
-    this.shadowRoot.getElementById(this.id_resultados_fecha_publicacion).textContent = fecha_peticion;
-    this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_titulo).textContent = titulo_peticion;
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_fecha_publicacion).textContent = fecha_peticion;
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'block';
 
     // UNA VEZ HECHA LA CONSULTA AJAX ELIMINAR ESTA LINEA DE CODIGO
-    this.shadowRoot.getElementById(this.id_resultados_descripcion_publicacion).textContent = 'Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = 'Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.';
 
     /*
         var xhttp = new XMLHttpRequest();
@@ -127,7 +120,7 @@ class BeniListaPe extends LitElement {
             if (this.readyState == 4 && this.status == 200) {
                 var resultados = JSON.parse(this.response);
                 //SOLO HACE FALTA CARGAR EL DATO DE LA DESCRIPCION, EL TITULO Y FECHA SE SOLICITAN EN LA 1 CONSULTA AJAX
-                this.shadowRoot.getElementById(this.id_resultados_descripcion_publicacion).textContent = "DESCRIPCION PRUEBAA";
+                this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = "DESCRIPCION PRUEBAA";
             }
         }
         var parametros_enviar = 'id_peticion=' + id_peticion;
