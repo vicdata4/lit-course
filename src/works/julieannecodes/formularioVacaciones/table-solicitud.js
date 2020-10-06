@@ -37,7 +37,8 @@ class TableSolicitud extends LitElement {
   }
 
   order(i) {
-    this.sortedArray = orderItems(this.arraySolicitudes, this.orderType[i]);
+    const order = this.shadowRoot.querySelector('.order');
+    this.sortedArray = orderItems(this.arraySolicitudes, order.id);
     this.arraySolicitudes = [...this.sortedArray];
     if (this.orderValue === 'asc') {
       this.orderValue = 'desc';
@@ -61,7 +62,7 @@ class TableSolicitud extends LitElement {
         <table>
                 <tr>
                   ${this.titulosTabla.map((items, i) => html`
-                  <th>${items}<button id="${i}" value="${this.orderValue}" @click="${() => this.order(i)}">x</button></th>
+                  <th>${items}<button class="order" id="${this.orderType[i]}" value="${this.orderValue}" @click="${() => this.order(i)}">x</button></th>
                   `)}
                 </tr>
                   ${this.arraySolicitudes.map((item, i) => html`
