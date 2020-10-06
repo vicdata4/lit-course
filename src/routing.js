@@ -7,7 +7,6 @@ import './views/form-example-view';
 import './views/not-found-view';
 import './views/data-binding';
 import './views/list-example-view';
-import './views/solicitud-vacaciones';
 
 export const routing = function() {
   const outlet = this.shadowRoot.getElementById('root');
@@ -20,7 +19,6 @@ export const routing = function() {
     { path: '/form-example-view', component: 'form-example-view' },
     { path: '/data-binding', component: 'data-binding' },
     { path: '/list-example', component: 'list-example-view' },
-    { path: '/solicitud-vacaciones', component: 'solicitud-vacaciones' },
     { path: '(.*)', component: 'not-found-view' }
   ];
 

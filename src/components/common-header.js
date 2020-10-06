@@ -30,11 +30,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-         <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <!-- iconos: fontawesone -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <a href="/"><img class="logo" src="/assets/images/polymer.png"></a>
+     <a href="/"><img class="logo" src="/assets/images/polymer.png"></a>
       </header>
     `;
   }

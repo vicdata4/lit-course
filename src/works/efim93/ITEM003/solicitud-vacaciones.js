@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
-import { dateFormatter } from '../utils/functions';
 import { nothing } from 'lit-html';
 import '../components/common-header';
 
@@ -31,6 +30,30 @@ class SolicitudVacaciones extends LitElement {
     this.listaDatos = [];
   }
 
+  formatearDate = (date_) => {
+    const date = new Date(date_);
+  
+    const monthDay = date.getDate();
+    const monthName = months[date.getMonth()];
+    const year = date.getFullYear();
+    const weekDayName = days[date.getDay()];
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const f = (date.getMonth() + 1);
+    const mes = (f === 10 || f === 11 || f === 12) ? f : `0${f}`;
+    const dd = (monthDay === 1 || monthDay === 2  || monthDay === 3 || monthDay === 4 || monthDay === 5 || monthDay === 6 || monthDay === 7 || monthDay === 8 || monthDay === 9) ? `0${monthDay}` : monthDay;
+   
+    return {
+      default: dd + '-' + mes + '-' + year,
+      short: monthName.slice(0, 3) + ' ' + monthDay,
+      day: weekDayName,
+      hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
+      amd: year + '-'+ mes + '-' + dd,
+      year: year,
+      completo: dd + '-' + mes + '-' + year + ' ' + (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
+    };
+  };
+  
   /**
    * Método que nos añade un objeto con datos de la solicitud es decir un registro al array.
    */
@@ -42,14 +65,14 @@ class SolicitudVacaciones extends LitElement {
    ((fIni.value ===  nothing) || (fFin.value ===  nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
     if(dateHasValue) {
-    const n = this.compruebaRangos(dateFormatter(fIni.value).default);
+    const n = this.compruebaRangos(formatearDate(fIni.value).default);
     if(!n){
       const item = {
-          fsolicitud: dateFormatter(new Date()).completo,
-          inicio: dateFormatter(fIni.value).default,
-          final: dateFormatter(fFin.value).default,
+          fsolicitud: formatearDate(new Date()).completo,
+          inicio: formatearDate(fIni.value).default,
+          final: formatearDate(fFin.value).default,
           estado: 'Pendiente de aprobación',
-          festado: dateFormatter(new Date()).completo,
+          festado: formatearDate(new Date()).completo,
         };
       this.listaDatos = [...[item], ...this.listaDatos];
       fIni.value =  null;
@@ -163,7 +186,7 @@ class SolicitudVacaciones extends LitElement {
   <section class="container">
     <h1>Solicitud de Vacaciones</h1>
         <label for="fechaInicio" >Fecha Inicio</label>
-        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${dateFormatter(new Date()).amd}" max="${dateFormatter(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
+        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${formatearDate(new Date()).amd}" max="${formatearDate(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
         <label for="fechaFin" >Fecha Fin</label>
         <input type="date" class="btn-clck" id="fechaFin" />
         <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
