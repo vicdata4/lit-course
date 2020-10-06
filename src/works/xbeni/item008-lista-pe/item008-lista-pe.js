@@ -1,29 +1,30 @@
+/* eslint-disable camelcase */
 import { LitElement, css, html } from 'lit-element';
 
 class BeniListaPe extends LitElement {
-    static get properties() {
-        return {
-            titulo_lista: { type: String },
-            datos_lista_pe: { type: Object },
-            id_resultados_titulo: { type: String, attribute: false },
-            id_resultados_fecha_publicacion: { type: String, attribute: false },
-            id_resultados_descripcion_publicacion: { type: String, attribute: false },
-            id_body_detalles_pe: { type: String },
-        }
-    }
+  static get properties() {
+    return {
+      titulo_lista: { type: String },
+      datos_lista_pe: { type: Object },
+      id_resultados_titulo: { type: String, attribute: false },
+      id_resultados_fecha_publicacion: { type: String, attribute: false },
+      id_resultados_descripcion_publicacion: { type: String, attribute: false },
+      id_body_detalles_pe: { type: String }
+    };
+  }
 
-    constructor() {
-        super();
-        this.titulo_lista = "Lista de peticiones";
-        this.datos_lista_pe = this.extraer_datos_lista_pe();
-        this.id_resultados_titulo = "id_resultados_titulo";
-        this.id_resultados_fecha_publicacion = "id_resultados_fecha_publicacion";
-        this.id_resultados_descripcion_publicacion = "id_resultados_descripcion_publicacion";
-        this.id_body_detalles_pe = "id_body_detalles_pe";
-    }
+  constructor() {
+    super();
+    this.titulo_lista = 'Lista de peticiones';
+    this.datos_lista_pe = this.extraer_datos_lista_pe();
+    this.id_resultados_titulo = 'id_resultados_titulo';
+    this.id_resultados_fecha_publicacion = 'id_resultados_fecha_publicacion';
+    this.id_resultados_descripcion_publicacion = 'id_resultados_descripcion_publicacion';
+    this.id_body_detalles_pe = 'id_body_detalles_pe';
+  }
 
-    static get styles() {
-        return css`
+  static get styles() {
+    return css`
         /* ESTILOS CUERPO PRINCIPAL PE */
 
             .div_body_full {
@@ -167,11 +168,11 @@ class BeniListaPe extends LitElement {
         }
 
 
-            `
-    }
+            `;
+  }
 
-    render() {
-        return html`
+  render() {
+    return html`
         <div class="div_body_full">
             <div class="div_body_pe">
                 <div class="div_header_pe">
@@ -192,10 +193,10 @@ class BeniListaPe extends LitElement {
                                 </th>
                             </tr>
                             ${Object.keys(this.datos_lista_pe).map(item =>
-            html`
+    html`
                             <tr>
                                 <td>
-                                    <label @click=${() => this.load_date_results(this.datos_lista_pe[item].id_peticion,this.datos_lista_pe[item].titulo, this.datos_lista_pe[item].fecha_publicacion)} class="label_titulo_tabla_pe"> 
+                                    <label @click=${() => this.load_date_results(this.datos_lista_pe[item].id_peticion, this.datos_lista_pe[item].titulo, this.datos_lista_pe[item].fecha_publicacion)} class="label_titulo_tabla_pe"> 
                                         ${this.datos_lista_pe[item].titulo}
                                     </label>
                                 </td>
@@ -247,21 +248,21 @@ class BeniListaPe extends LitElement {
             </div>
         </div>
         `;
-    }
+  }
 
-    hidden_date_results(){
-        this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = "none";
-    }
+  hidden_date_results() {
+    this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = 'none';
+  }
 
-    load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
-        this.shadowRoot.getElementById(this.id_resultados_titulo).textContent = titulo_peticion;
-        this.shadowRoot.getElementById(this.id_resultados_fecha_publicacion).textContent = fecha_peticion;
-        this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = "block";
+  load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
+    this.shadowRoot.getElementById(this.id_resultados_titulo).textContent = titulo_peticion;
+    this.shadowRoot.getElementById(this.id_resultados_fecha_publicacion).textContent = fecha_peticion;
+    this.shadowRoot.getElementById(this.id_body_detalles_pe).style.display = 'block';
 
-        //UNA VEZ HECHA LA CONSULTA AJAX ELIMINAR ESTA LINEA DE CODIGO
-        this.shadowRoot.getElementById(this.id_resultados_descripcion_publicacion).textContent = "Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.";
+    // UNA VEZ HECHA LA CONSULTA AJAX ELIMINAR ESTA LINEA DE CODIGO
+    this.shadowRoot.getElementById(this.id_resultados_descripcion_publicacion).textContent = 'Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.';
 
-        /*
+    /*
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -275,14 +276,14 @@ class BeniListaPe extends LitElement {
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(parametros_enviar);
         */
-    }
+  }
 
-    extraer_datos_lista_pe() {
-        /* AL IMPLEMENTAR EN PRODUCCION */
-        /* HACER CONSULTA AJAX QUE EXTRAIGA DE LA BASE DE DATOS DE LA TABLA DE PETICIONES - TITULO Y FECHA PUBLICACION (Ej: consulta mysql: SELECT titulo,fecha_pub,id_peticion FROM peticiones WHERE check_publicar_peticion = true)  */
+  extraer_datos_lista_pe() {
+    /* AL IMPLEMENTAR EN PRODUCCION */
+    /* HACER CONSULTA AJAX QUE EXTRAIGA DE LA BASE DE DATOS DE LA TABLA DE PETICIONES - TITULO Y FECHA PUBLICACION (Ej: consulta mysql: SELECT titulo,fecha_pub,id_peticion FROM peticiones WHERE check_publicar_peticion = true)  */
 
-        return [{ "titulo": "Tester Junior", "fecha_publicacion": "16/09/2020", "id_peticion": "PET_201" }, { "titulo": "Analista Programador Java", "fecha_publicacion": "18/08/2020", "id_peticion": "PET_202" },{ "titulo": "Prueba programador", "fecha_publicacion": "16/09/2020", "id_peticion": "PET_203" }];
-    }
+    return [{ titulo: 'Tester Junior', fecha_publicacion: '16/09/2020', id_peticion: 'PET_201' }, { titulo: 'Analista Programador Java', fecha_publicacion: '18/08/2020', id_peticion: 'PET_202' }, { titulo: 'Prueba programador', fecha_publicacion: '16/09/2020', id_peticion: 'PET_203' }];
+  }
 }
 
 customElements.define('item012-lista-pe', BeniListaPe);
