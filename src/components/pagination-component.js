@@ -125,12 +125,12 @@ class PaginationComponent extends LitElement {
     }
 
     const newList = [...this.list];
-    let count = this.from;
+    let index = this.from;
 
     orderedList.forEach(orderedItem => {
       const element = this.list.find(item => item.id === orderedItem.id);
-      newList[count] = element;
-      count++;
+      newList[index] = element;
+      index++;
     });
 
     this.list = [...newList];
