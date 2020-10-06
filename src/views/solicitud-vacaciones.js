@@ -4,25 +4,37 @@ import { dateFormatter } from '../utils/functions';
 import { nothing } from 'lit-html';
 import '../components/common-header';
 
+/* clase SolicitudesVacaciones */
 class SolicitudVacaciones extends LitElement {
+
+  /**
+   * Método que devuelve los estilos personalizados de la hoja de estilos.
+   */
   static get styles() {
     return [
       commonStyles
     ];
   }
 
+  /**
+   * Método que asigna y devuelve propriedades de la clase.
+   */
   static get properties() {
     return {
       listaDatos: { type: Array },
     };
   }
 
+  /* constructor de la clase */
   constructor() {
     super();
     this.listaDatos = [];
   }
 
-  addArray(e) {
+  /**
+   * Método que nos añade un objeto con datos de la solicitud es decir un registro al array.
+   */
+  addArray() {
     const fIni = this.shadowRoot.querySelector('#fechaIni');
     const fFin = this.shadowRoot.querySelector('#fechaFin');
     const alerta = this.shadowRoot.querySelector('#alerta');
@@ -48,6 +60,9 @@ class SolicitudVacaciones extends LitElement {
     }
   };
   
+  /** 
+   * Método que nos ayuda a comprobar fecha fin y fecha inicio para no duplicar las solicitudes. 
+   */
   compruebaRangos(f){
     const alerta = this.shadowRoot.querySelector('#alerta');
     for (let item in this.listaDatos) {
@@ -60,6 +75,9 @@ class SolicitudVacaciones extends LitElement {
     }
   }
 
+  /**
+   * Método ayudante que devuelve true o false al compprobar un campo en este caso campo estado. 
+   */
   compruebaEstado(index){
     for (let item in this.listaDatos) {
       if (item == index) {
@@ -67,10 +85,13 @@ class SolicitudVacaciones extends LitElement {
           return true;
         }
         return false;
+      }
     }
   }
-}
 
+  /**
+   * Método que elimina un registro del array de objetos solicitudes, solo se eliminara si el estado es aprobado. 
+   */
   deleteArray(index) {
     const alerta = this.shadowRoot.querySelector('#alerta');
     const est = this.compruebaEstado(index);
@@ -82,7 +103,12 @@ class SolicitudVacaciones extends LitElement {
         alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
         alerta.style.display = 'block';
       }
-    }
+  }
+
+  /**
+   * Método que calcula que la fecha final no sea el dia selecionado, 
+   * se le suma a la fecha seleccionada un dia de forma que las solicitudes no se podran hacer menos de un dia.
+   */   
   calculaFin() {
     const input = this.shadowRoot.getElementById('fechaIni');
     const out = this.shadowRoot.getElementById('fechaFin');
@@ -95,16 +121,20 @@ class SolicitudVacaciones extends LitElement {
     const d=fM.getDate();
     const dd = (d === 1 || d === 2  || d === 3 || d === 4 || d === 5 || d === 6 || d === 7 || d === 8 || d === 9) ? `0${d}` : d;
     const yy= fM.getFullYear();
-    if (input !== '') {
-      out.setAttribute('min', `${yy}-${mm}-${dd}`);
-      const f = new Date(this.fechaIni);
-      if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
-        out.setAttribute('max', `${yy + 1}-12-31`);
-      } else {
-        out.setAttribute('max', `${yy + 1}-12-31`);
+      if (input !== '') {
+        out.setAttribute('min', `${yy}-${mm}-${dd}`);
+        const f = new Date(this.fechaIni);
+          if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
+            out.setAttribute('max', `${yy + 1}-12-31`);
+          } else {
+            out.setAttribute('max', `${yy + 1}-12-31`);
+          }
       }
-    }
   }
+
+  /**
+   * Método que ordena un campo en este caso campo fecha de solicitud, sobrescribendo el array original.
+   */
   ordenarFsolicitud() {
     const array = this.listaDatos;
     array.sort(function (a, b) {
@@ -117,8 +147,11 @@ class SolicitudVacaciones extends LitElement {
       return 0;
     });
       this.listaDatos=[...array];
-    }
+  }
 
+  /**
+   * Método que ordena un campo en este caso campo fecha de inicio, sobrescribendo el array original.
+   */
   ordenarInicio() {
     const array = this.listaDatos;
     array.sort(function (a, b) {
@@ -131,8 +164,11 @@ class SolicitudVacaciones extends LitElement {
       return 0;
     });
       this.listaDatos=[...array];
-    }
+  }
 
+  /**
+   * Método que ordena un campo en este caso campo fecha final, sobrescribendo el array original.
+   */  
   ordenarFin() {
     const array = this.listaDatos;
     array.sort(function (a, b) {
@@ -147,6 +183,9 @@ class SolicitudVacaciones extends LitElement {
       this.listaDatos=[...array];
   }
 
+  /**
+   * Método que renderiza la plantilla html.
+   */
   render() {
     return html`
 <common-header></common-header>
@@ -191,4 +230,7 @@ class SolicitudVacaciones extends LitElement {
   }
 }
 
+/**
+ * Declaracion y envio del componente con la clase asociada. 
+ */
 window.customElements.define('solicitud-vacaciones', SolicitudVacaciones);

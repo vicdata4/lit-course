@@ -1,5 +1,8 @@
 import { css } from 'lit-element';
 
+/**
+ * Estilos de navegacion entre componentes.
+ */
 export const navigatorStyles = css`
   :host {
     --background-color: #eae8e8;
@@ -53,6 +56,9 @@ export const navigatorStyles = css`
   }
 `;
 
+/**
+ * estilos css customisados por mi
+ */
 export const commonStyles = css`
   .container {
     padding: 20px;
