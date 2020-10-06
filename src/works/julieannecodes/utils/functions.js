@@ -16,7 +16,8 @@ export const dateFormatter = (date_) => {
   return {
     tableDate: monthDay + '-' + monthNumber + '-' + year,
     solicitudDate: hour + ':' + minute + 'h,  ' + monthDay + '-' + monthNumber + '-' + year,
-    inputDate: year + '-' + monthNumber + '-' + monthDay
+    inputDate: year + '-' + monthNumber + '-' + monthDay,
+    sCurrentDate: monthDay + '/' + monthNumber + '/' + year
   };
 };
 export const dateInputReverse = (value) => {
