@@ -1,8 +1,5 @@
 import { css } from 'lit-element';
 
-/**
- * Estilos de navegacion entre componentes.
- */
 export const navigatorStyles = css`
   :host {
     --background-color: #eae8e8;
