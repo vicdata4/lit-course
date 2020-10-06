@@ -46,8 +46,14 @@ export class InputsSolicitud extends LitElement {
       dia = '0' + dia;
     }
     const fechaHoy = d.getFullYear() + '-' + mes + '-' + dia;
-    const hour = d.getHours();
-    const minutes = d.getMinutes();
+    let hour = d.getHours();
+    let minutes = d.getMinutes();
+    if (hour < 10) {
+      hour = '0' + hour;
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
     const hora = hour + ':' + minutes;
     const event = new CustomEvent('my-event', {
       detail: {
