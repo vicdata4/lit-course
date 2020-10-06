@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
+import './components/hours-component';
 
 class Hck3791Page extends LitElement {
   static get styles() {
@@ -15,6 +16,7 @@ class Hck3791Page extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>hck3791</work-header>
+        <hours-component></hours-component>
       </section>
     `;
   }
