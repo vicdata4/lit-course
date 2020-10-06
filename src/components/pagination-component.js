@@ -16,6 +16,14 @@ class PaginationComponent extends LitElement {
         td {
            min-width: 200px; 
         }
+
+        .order {
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
         
         .stepper {
             margin: 10px 0;
@@ -105,6 +113,29 @@ class PaginationComponent extends LitElement {
     }
   }
 
+  orderList(column) {
+    const orderedList = this.list.slice(this.from, this.to).sort((a, b) => {
+      if (a[column] < b[column]) return -1;
+      if (a[column] > b[column]) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.list.slice(this.from, this.to)) === JSON.stringify((orderedList))) {
+      orderedList.reverse();
+    }
+
+    const newList = [...this.list];
+    let count = this.from;
+
+    orderedList.forEach(orderedItem => {
+      const element = this.list.find(item => item.id === orderedItem.id);
+      newList[count] = element;
+      count++;
+    });
+
+    this.list = [...newList];
+  }
+
   renderStepper() {
     return html`
       <div class="stepper">
@@ -123,8 +154,8 @@ class PaginationComponent extends LitElement {
         ${this.renderStepper()}
         <table>
         <tr>
-            <th>Name</th>
-            <th>Phone</th>
+            <th><button class="order" @click="${() => this.orderList('name')}">Name <span>&#9662;</span></button></th>
+            <th><button class="order" @click="${() => this.orderList('phone')}">Phone <span>&#9662;</span></button></th>
         </tr>
         ${this.list.slice(this.from, this.to).map(item => html`
           <tr>
