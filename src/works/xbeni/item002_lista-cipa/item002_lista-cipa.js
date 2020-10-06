@@ -191,15 +191,12 @@ export class BeniListaCipa extends LitElement {
                             </td>
                             <td>
                                 <div class="div_semaforo">
-                                    ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'rojo'
+${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'rojo'
     ? html`${svgBeniCircleRed}`
-    : html`
-                                            ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'amarillo'
-    ? html`${svgBeniCircleYellow}`
-    : html``
-}
-                                        `
-}
+    : html` ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'amarillo'
+      ? html`${svgBeniCircleYellow}`
+      : html``}
+`}
                                 </div>
                             </td>
                         </tr>
