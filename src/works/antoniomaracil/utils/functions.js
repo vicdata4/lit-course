@@ -2,7 +2,7 @@
 /**
   * @desc Retorna un objeto Date de un input
   * @param string formato de input date dd-mm-yyyy
-  * @param Boolean cambiar sentido fecha true = yyyy-mm-dd
+  * @param Boolean true = cambiar sentido fecha yyyy-mm-dd
   * @return object Date
   */
 export const getDate = (date, reverse = false) => {
@@ -17,12 +17,13 @@ export const getDate = (date, reverse = false) => {
 /**
   * @desc Retorna un string con la fecha en formado dd/mm/yyyy
   * @param Object Date
+  * @param Boolean si true retorna minutos ademas del dia
   * @return String
   */
 export const formatDate = (date, minutes = false) => {
   if (minutes) {
     return `
-      ${date.getDate()}/${(date.getMonth() + 1)}/${date.getUTCFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
+      ${date.getDate()}/${(date.getMonth() + 1)}/${date.getUTCFullYear()} - ${date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
   } else {
     return `${date.getDate()}/${(date.getMonth() + 1)}/${date.getUTCFullYear()}`;
   }

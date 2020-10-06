@@ -87,15 +87,17 @@ class VacationForm extends LitElement {
     this.vacation = {};
     this.arrVacation = [];
     this.arrTableView = [];
-    this.arrTr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.arrTr = new Array(10).fill({});
     this.viewIsFull = false;
     this.actualDate = new Date();
   }
 
   /**
-  * @desc Añade un nuevo registro al array de fechas
+  * @desc Añade un nuevo registro al array de solicitudes
   */
   add() {
+    // Actualizo la fecha para tener minutos actualizados
+    this.actualDate = new Date();
     const start = getDate(this.shadowRoot.getElementById('start').value);
     const end = getDate(this.shadowRoot.getElementById('end').value);
     // Comprobamos que las fechas tengan valor
@@ -114,32 +116,43 @@ class VacationForm extends LitElement {
             festado: formatDate(this.actualDate, true)
           };
 
+          // Añadimos al array, incremento id
           this.arrVacation.push(this.vacation);
-          this.sendData();
           this.id++;
 
+          // Actualizamos array de componente padre
+          this.sendData();
+
           // Visualizar los datos
-          this.arrTableView = [];
-          const page = Math.trunc((this.arrVacation.length - 1) / this.pagination);
-          for (let i = 0; i < this.pagination; i++) {
-            if ((this.arrVacation.length - 1) < this.pagination) {
-              this.arrTableView[i] = this.arrVacation[i];
-            } else {
-              if (this.arrVacation.length % this.pagination === 0) {
-                // Si la tabla esta llena volvemos true el flag
-                this.viewIsFull = true;
-                this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
-              } else {
-                this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
-                this.viewIsFull = false;
-              }
-            }
-          }
+          this.updateView();
         }
       }
-      // Colocamos el puntero en la pagina adecuada
-      this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
     }
+  }
+
+  /**
+  * @desc Actualiza el array de visualizacion
+  */
+  updateView() {
+    this.arrTableView = [];
+    const page = Math.trunc((this.arrVacation.length - 1) / this.pagination);
+    for (let i = 0; i < this.pagination; i++) {
+      if ((this.arrVacation.length - 1) < this.pagination) {
+        // La primera hoja se llena sin calcular la posicion del elemento
+        this.arrTableView[i] = this.arrVacation[i];
+      } else {
+        if (this.arrVacation.length % this.pagination === 0) {
+          // Si la tabla esta llena volvemos true el flag
+          this.viewIsFull = true;
+          // Calculo de la posicion del elemento
+          this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
+        } else {
+          this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
+          this.viewIsFull = false;
+        }
+      }
+    }
+    this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
   }
 
   /**
@@ -158,6 +171,7 @@ class VacationForm extends LitElement {
 
     // Sacamos del array
     this.arrVacation.splice(index, 1);
+    this.sendData();
 
     // Comprobamos si la pagina a cambiado
     const pageHasChanged =
@@ -178,8 +192,8 @@ class VacationForm extends LitElement {
   * @desc Mueve a izquierda y a derecha la view
   * @param event
   */
-  move(e) {
-    // Rectificamos el pointer si la triad esta llena
+  movePage(e) {
+    // Rectificamos el pointer si la pagina esta llena
     if (this.viewIsFull) {
       this.pointer--;
       this.viewIsFull = false;
@@ -245,10 +259,18 @@ class VacationForm extends LitElement {
     }
   }
 
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'arrVacation') {
+        this.updateView();
+      }
+    });
+  }
+
   sendData() {
-    const event = new CustomEvent('add-new', {
+    const event = new CustomEvent('update-array', {
       detail: {
-        apply: this.vacation
+        applications: this.arrVacation
       }
     });
     this.dispatchEvent(event);
@@ -269,8 +291,8 @@ class VacationForm extends LitElement {
           </div>
         
           <div class="table-cntr">
-            <button id="left" @click=${this.move}><</button> 
-            <button id="right" @click=${this.move}>></button>
+            <button id="left" @click=${this.movePage}><</button> 
+            <button id="right" @click=${this.movePage}>></button>
           </div>
         
           <div class="table-box">
@@ -301,7 +323,7 @@ class VacationForm extends LitElement {
                 </tr>
               </thead>
               <tbody>
-              ${this.arrTr.map(i => html`
+              ${this.arrTr.map((value, i) => html`
                 <tr>
                   <td>${this.arrTableView[i] ? this.arrTableView[i].solicitud : nothing}</td>
                   <td>${this.arrTableView[i] ? this.arrTableView[i].inicio : nothing}</td>
