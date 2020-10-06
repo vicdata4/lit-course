@@ -14,10 +14,10 @@ export const dateFormatter = (date_) => {
   const minute = date.getMinutes();
 
   return {
-    default: dd + ' ' + mes + ',' + year,
+    default: monthName + ' ' + monthDay + ', ' + year,
     short: monthName.slice(0, 3) + ' ' + monthDay,
     day: weekDayName,
-    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
+    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
   };
 };
 
