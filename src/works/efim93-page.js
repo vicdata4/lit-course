@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './efim93/ITEM003/solicitud-vacaciones'
+import './efim93/ITEM003/solicitud-vacaciones';
 
 class Efim93Page extends LitElement {
   static get styles() {
