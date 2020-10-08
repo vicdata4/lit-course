@@ -3,6 +3,7 @@ import { LitElement, html } from 'lit-element';
 import { item008ListaPeStyles } from '../../archivos_comunes/styles/styles_items008';
 import { CONSTANTS_ITEM008 } from '../../archivos_comunes/constants/constants_item008';
 import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/mocks/moks_item008';
+import { svgBeniX } from '../../archivos_comunes/svg_icons';
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
@@ -79,16 +80,7 @@ class BeniListaPe extends LitElement {
                         </div>
                         <div class="div_controles_detalles_pe">
                             <div @click="${this.hidden_date_results}" class="div_x_header_pe">
-                                <svg class="svg_eliminar_pe" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 392.619 392.619"
-                                    style="enable-background:new 0 0 392.619 392.619;" xml:space="preserve">
-                                    <g>
-                                        <path
-                                            d="M310.724,0.929H81.896C36.738,0.929,0,37.667,0,82.825v226.969c0,45.158,36.738,81.896,81.896,81.896h228.828 c45.157,0,81.896-36.738,81.896-81.896V82.825C392.619,37.667,355.881,0.929,310.724,0.929z M362.619,309.794 c0,28.616-23.28,51.896-51.896,51.896H81.896C53.28,361.69,30,338.41,30,309.794V82.825c0-28.615,23.28-51.896,51.896-51.896 h228.828c28.615,0,51.896,23.28,51.896,51.896V309.794z" />
-                                        <path
-                                            d="M286.559,107.182c-5.839-5.877-15.336-5.908-21.214-0.069l-66.539,66.106l-66.572-66.572 c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213l66.502,66.503l-65.968,65.539 c-5.877,5.839-5.907,15.336-0.069,21.213c2.933,2.952,6.786,4.428,10.642,4.428c3.822,0,7.646-1.452,10.572-4.359l66.037-65.608 l66.073,66.073c2.929,2.929,6.768,4.394,10.606,4.394c3.838,0,7.678-1.465,10.606-4.394c5.858-5.858,5.858-15.355,0-21.213 l-66.004-66.004l66.47-66.038C292.366,122.556,292.396,113.059,286.559,107.182z" />
-                                    </g>
-                                </svg>
+                                ${svgBeniX}
                             </div>
                         </div>
                     </div>
