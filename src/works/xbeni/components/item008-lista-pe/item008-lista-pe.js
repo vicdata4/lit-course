@@ -3,7 +3,7 @@ import { LitElement, html } from 'lit-element';
 import { item008ListaPeStyles } from '../../archivos_comunes/styles/styles_items008';
 import { CONSTANTS_ITEM008 } from '../../archivos_comunes/constants/constants_item008';
 import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/mocks/moks_item008';
-import { svgBeniX } from '../../archivos_comunes/svg_icons';
+import { svgBeniX } from '../../archivos_comunes/svg_icons/svg_item008';
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
