@@ -6,7 +6,6 @@ import '../components/common-header';
 
 /* clase SolicitudesVacaciones */
 class SolicitudVacaciones extends LitElement {
-
   /**
    * Método que devuelve los estilos personalizados de la hoja de estilos.
    */
@@ -21,7 +20,7 @@ class SolicitudVacaciones extends LitElement {
    */
   static get properties() {
     return {
-      listaDatos: { type: Array },
+      listaDatos: { type: Array }
     };
   }
 
@@ -39,7 +38,7 @@ class SolicitudVacaciones extends LitElement {
     const fFin = this.shadowRoot.querySelector('#fechaFin');
     const alerta = this.shadowRoot.querySelector('#alerta');
     alerta.style.display = 'block';
-    ((fIni.value === nothing) || (fFin.value ===  nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
+    ((fIni.value === nothing) || (fFin.value === nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
     if (dateHasValue) {
       const n = this.compruebaRangos(formatearDate(fIni.value).default);
@@ -61,7 +60,7 @@ class SolicitudVacaciones extends LitElement {
   };
 
   /**
-   * Método que nos ayuda a comprobar fecha fin y fecha inicio para no duplicar las solicitudes. 
+   * Método que nos ayuda a comprobar fecha fin y fecha inicio para no duplicar las solicitudes.
    */
   compruebaRangos(f) {
     const alerta = this.shadowRoot.querySelector('#alerta');
@@ -76,7 +75,7 @@ class SolicitudVacaciones extends LitElement {
   }
 
   /**
-   * Método ayudante que devuelve true o false al compprobar un campo en este caso campo estado. 
+   * Método ayudante que devuelve true o false al compprobar un campo en este caso campo estado.
    */
   compruebaEstado(index) {
     for (const item in this.listaDatos) {
@@ -90,7 +89,7 @@ class SolicitudVacaciones extends LitElement {
   }
 
   /**
-   * Método que elimina un registro del array de objetos solicitudes, solo se eliminara si el estado es aprobado. 
+   * Método que elimina un registro del array de objetos solicitudes, solo se eliminara si el estado es aprobado.
    */
   deleteArray(index) {
     const alerta = this.shadowRoot.querySelector('#alerta');
@@ -106,7 +105,7 @@ class SolicitudVacaciones extends LitElement {
   }
 
   /**
-   * Método que calcula que la fecha final no sea el dia selecionado, 
+   * Método que calcula que la fecha final no sea el dia selecionado,
    * se le suma a la fecha seleccionada un dia de forma que las solicitudes no se podran hacer menos de un dia.
    */
   calculaFin() {
@@ -198,6 +197,6 @@ class SolicitudVacaciones extends LitElement {
 }
 
 /**
- * Declaracion y envio del componente con la clase asociada. 
+ * Declaracion y envio del componente con la clase asociada.
  */
 window.customElements.define('solicitud-vacaciones', SolicitudVacaciones);
