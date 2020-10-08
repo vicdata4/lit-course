@@ -3,7 +3,7 @@ import { months, days } from './constants';
 /**
   * FORMATTERS
   */
-export const dateFormatter = (date_) => {
+export const formatearDate = (date_) => {
   const date = new Date(date_);
 
   const monthDay = date.getDate();
