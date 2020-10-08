@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
+import { formatearDate } from '../utils/functions';
 import '../components/common-header';
 
 /* clase SolicitudesVacaciones */
@@ -30,30 +31,6 @@ class SolicitudVacaciones extends LitElement {
     this.listaDatos = [];
   }
 
-  formatearDate = (date_) => {
-    const date = new Date(date_);
-  
-    const monthDay = date.getDate();
-    const monthName = months[date.getMonth()];
-    const year = date.getFullYear();
-    const weekDayName = days[date.getDay()];
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const f = (date.getMonth() + 1);
-    const mes = (f === 10 || f === 11 || f === 12) ? f : `0${f}`;
-    const dd = (monthDay === 1 || monthDay === 2  || monthDay === 3 || monthDay === 4 || monthDay === 5 || monthDay === 6 || monthDay === 7 || monthDay === 8 || monthDay === 9) ? `0${monthDay}` : monthDay;
-   
-    return {
-      default: dd + '-' + mes + '-' + year,
-      short: monthName.slice(0, 3) + ' ' + monthDay,
-      day: weekDayName,
-      hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
-      amd: year + '-'+ mes + '-' + dd,
-      year: year,
-      completo: dd + '-' + mes + '-' + year + ' ' + (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
-    };
-  };
-  
   /**
    * Método que nos añade un objeto con datos de la solicitud es decir un registro al array.
    */
@@ -62,33 +39,33 @@ class SolicitudVacaciones extends LitElement {
     const fFin = this.shadowRoot.querySelector('#fechaFin');
     const alerta = this.shadowRoot.querySelector('#alerta');
     alerta.style.display = 'block';
-   ((fIni.value ===  nothing) || (fFin.value ===  nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
+    ((fIni.value === nothing) || (fFin.value ===  nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
-    if(dateHasValue) {
-    const n = this.compruebaRangos(formatearDate(fIni.value).default);
-    if(!n){
-      const item = {
+    if (dateHasValue) {
+      const n = this.compruebaRangos(formatearDate(fIni.value).default);
+      if (!n) {
+        const item = {
           fsolicitud: formatearDate(new Date()).completo,
           inicio: formatearDate(fIni.value).default,
           final: formatearDate(fFin.value).default,
           estado: 'Pendiente de aprobación',
-          festado: formatearDate(new Date()).completo,
+          festado: formatearDate(new Date()).completo
         };
-      this.listaDatos = [...[item], ...this.listaDatos];
-      fIni.value =  null;
-      fFin.value =  null;
-      alerta.innerHTML = '';
-      alerta.style.display='none';
+        this.listaDatos = [...[item], ...this.listaDatos];
+        fIni.value = null;
+        fFin.value = null;
+        alerta.innerHTML = '';
+        alerta.style.display = 'none';
       }
     }
   };
-  
-  /** 
+
+  /**
    * Método que nos ayuda a comprobar fecha fin y fecha inicio para no duplicar las solicitudes. 
    */
-  compruebaRangos(f){
+  compruebaRangos(f) {
     const alerta = this.shadowRoot.querySelector('#alerta');
-    for (let item in this.listaDatos) {
+    for (const item in this.listaDatos) {
       if (this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f)) {
         alerta.innerHTML = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
         alerta.style.display = 'block';
@@ -101,10 +78,10 @@ class SolicitudVacaciones extends LitElement {
   /**
    * Método ayudante que devuelve true o false al compprobar un campo en este caso campo estado. 
    */
-  compruebaEstado(index){
-    for (let item in this.listaDatos) {
+  compruebaEstado(index) {
+    for (const item in this.listaDatos) {
       if (item == index) {
-        if (this.listaDatos[item].estado === "Pendiente de aprobación") {
+        if (this.listaDatos[item].estado === 'Pendiente de aprobación') {
           return true;
         }
         return false;
@@ -118,20 +95,20 @@ class SolicitudVacaciones extends LitElement {
   deleteArray(index) {
     const alerta = this.shadowRoot.querySelector('#alerta');
     const est = this.compruebaEstado(index);
-      if (est) {
+    if (est) {
       const array = this.listaDatos;
-        array.splice(index, 1);
-        this.listaDatos = [...array];
-      } else {
-        alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
-        alerta.style.display = 'block';
-      }
+      array.splice(index, 1);
+      this.listaDatos = [...array];
+    } else {
+      alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
+      alerta.style.display = 'block';
+    }
   }
 
   /**
    * Método que calcula que la fecha final no sea el dia selecionado, 
    * se le suma a la fecha seleccionada un dia de forma que las solicitudes no se podran hacer menos de un dia.
-   */   
+   */
   calculaFin() {
     const input = this.shadowRoot.getElementById('fechaIni');
     const out = this.shadowRoot.getElementById('fechaFin');
@@ -139,20 +116,20 @@ class SolicitudVacaciones extends LitElement {
     const tiempo = fM.getTime();
     const milisegundos = 1 * 24 * 60 * 60 * 1000;
     fM.setTime(tiempo + milisegundos);
-    const f =(fM.getMonth() + 1);
+    const f = (fM.getMonth() + 1);
     const mm = (f === 10 || f === 11 || f === 12) ? f : `0${f}`;
-    const d=fM.getDate();
-    const dd = (d === 1 || d === 2  || d === 3 || d === 4 || d === 5 || d === 6 || d === 7 || d === 8 || d === 9) ? `0${d}` : d;
-    const yy= fM.getFullYear();
-      if (input !== '') {
-        out.setAttribute('min', `${yy}-${mm}-${dd}`);
-        const f = new Date(this.fechaIni);
-          if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
-            out.setAttribute('max', `${yy + 1}-12-31`);
-          } else {
-            out.setAttribute('max', `${yy + 1}-12-31`);
-          }
+    const d = fM.getDate();
+    const dd = (d === 1 || d === 2 || d === 3 || d === 4 || d === 5 || d === 6 || d === 7 || d === 8 || d === 9) ? `0${d}` : d;
+    const yy = fM.getFullYear();
+    if (input !== '') {
+      out.setAttribute('min', `${yy}-${mm}-${dd}`);
+      const f = new Date(this.fechaIni);
+      if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
+        out.setAttribute('max', `${yy + 1}-12-31`);
+      } else {
+        out.setAttribute('max', `${yy + 1}-12-31`);
       }
+    }
   }
 
   /**
@@ -161,7 +138,7 @@ class SolicitudVacaciones extends LitElement {
   ordenar(e) {
     const id = e.currentTarget.id;
     const array = this.listaDatos;
-    array.sort(function (a, b) {
+    array.sort(function(a, b) {
       if (a[id] > b[id]) {
         return 1;
       }
@@ -170,7 +147,7 @@ class SolicitudVacaciones extends LitElement {
       }
       return 0;
     });
-      this.listaDatos = [...array];
+    this.listaDatos = [...array];
   }
 
   /**
