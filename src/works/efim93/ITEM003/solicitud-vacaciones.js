@@ -21,7 +21,12 @@ class SolicitudVacaciones extends LitElement {
   static get properties() {
     return {
       listaDatos: { type: Array },
-      mensaje: { type: String }
+      mensaje: { type: String },
+      nElements: { type: Number },
+      stepper: { type: Array, attribute: false },
+      index: { type: Number, attribute: false },
+      from: { type: Number, attribute: false },
+      to: { type: Number, attribute: false }
     };
   }
 
@@ -30,6 +35,11 @@ class SolicitudVacaciones extends LitElement {
     super();
     this.listaDatos = [];
     this.mensaje = '';
+    this.nElements = 10;
+    this.stepper = [];
+    this.from = 0;
+    this.to = this.nElements;
+    this.index = 0;
   }
 
   /**
@@ -113,9 +123,7 @@ class SolicitudVacaciones extends LitElement {
     const input = this.shadowRoot.getElementById('fechaIni');
     const out = this.shadowRoot.getElementById('fechaFin');
     const fM = new Date(input.value);
-    const tiempo = fM.getTime();
-    const milisegundos = 1 * 24 * 60 * 60 * 1000;
-    fM.setTime(tiempo + milisegundos);
+    fM.setDate(fM.getDate() + 1);
     const f = (fM.getMonth() + 1);
     const mm = (f === 10 || f === 11 || f === 12) ? f : `0${f}`;
     const d = fM.getDate();
@@ -123,7 +131,7 @@ class SolicitudVacaciones extends LitElement {
     const yy = fM.getFullYear();
     if (input !== '') {
       out.setAttribute('min', `${yy}-${mm}-${dd}`);
-      const f = new Date(this.fechaIni);
+      const f = new Date(input.value);
       if (((f.getMonth() + 1) === 11) || ((f.getMonth() + 1) === 12)) {
         out.setAttribute('max', `${yy + 1}-12-31`);
       } else {
@@ -148,6 +156,58 @@ class SolicitudVacaciones extends LitElement {
       return 0;
     });
     this.listaDatos = [...array];
+  }
+
+  /**
+   * Método que se ejecuta en la primera ejecucion.
+   */
+  async firstUpdated() {
+    const nPages = (this.listaDatos.length === 0) ? 1 : Math.ceil(this.listaDatos.length / this.nElements);
+    this.stepper = new Array(nPages).fill({});
+    this.to = this.nElements;
+    await this.updateComplete;
+    this.setActiveStep(this.index);
+  }
+
+  setActiveStep(index) {
+    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+      if (row.id === `_${index}`) {
+        row.classList.add('active');
+      } else {
+        row.classList.remove('active');
+      }
+    });
+  }
+
+  showPage(index) {
+    this.index = index;
+    this.from = this.nElements * index;
+    this.to = this.from + this.nElements;
+    this.setActiveStep(index);
+  }
+
+  next() {
+    if (this.index < this.stepper.length - 1) {
+      this.showPage(this.index + 1);
+    }
+  }
+
+  prev() {
+    if (this.index > 0) {
+      this.showPage(this.index - 1);
+    }
+  }
+
+  renderStepper() {
+    return html`
+      <div class="stepper">
+        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        ${this.stepper.map((x, i) => html`
+          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
+        `)}
+        <div class="step" @click="${this.next}">&#x25B7;</div>
+      </div>
+    `;
   }
 
   /**
@@ -186,13 +246,14 @@ class SolicitudVacaciones extends LitElement {
           <td>${item.fsolicitud}</td>
           <td>${item.inicio}</td>
           <td>${item.final}</td>
-          <td>${(item.estado === false) ? 'Pendiente de Aprobación' : 'Aprobado'}</td>
+          <td>${item.estado ? 'Aprobado' : 'Pendiente de Aprobación'}</td>
           <td>${item.festado}</td>
           <td><button @click="${() => this.deleteArray(i)}"><i class="far fa-trash-alt fa"></i></button></td>
           </tr>
           `)}
           </tbody>       
-        </table>    
+        </table>
+        ${this.renderStepper()}
 </section>`;
   }
 }
