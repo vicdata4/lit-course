@@ -18,20 +18,13 @@ class VacationTable extends LitElement {
     this.errorMessage = '';
   }
 
-  notAgain(r, inA) {
-    let aux = true;
-    r.getTime() === inA.getTime() ? aux : aux = false;
-
-    return aux;
-  }
-
   addVacation(e) {
     const recived = e.detail.fechas.fechaInicio;
     let inArray = new Date();
     this.vacationData.length === 0 ? inArray : this.vacationData.map(
       item => { item.fechaInicio.getTime() === recived.getTime() ? inArray = item.fechaInicio : nothing; }
     );
-    if (this.notAgain(recived, inArray)) {
+    if (recived.getTime() === inArray.getTime()) {
       this.errorMessage = 'Date already exists';
     } else {
       this.vacationData = [...[e.detail.fechas], ...this.vacationData];
