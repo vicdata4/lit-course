@@ -1,12 +1,12 @@
 /* eslint-disable indent */
 import { LitElement, html } from 'lit-element';
-import { CANDIDATES } from '../cand';
-import { CAND } from '../styles/styles';
+import { candidates } from '../cand';
+import { candidatesStyle } from '../styles/styles';
 
 class CandidatesComponent extends LitElement {
   static get styles() {
     return [
-      CAND
+      candidatesStyle
     ];
   }
 
@@ -20,7 +20,7 @@ class CandidatesComponent extends LitElement {
 
   constructor() {
     super();
-    this.candidates = CANDIDATES;
+    this.candidates = candidates;
     this.orderedCandidatesList = this.candidates;
     this.typeOrder = '';
   }
@@ -107,7 +107,7 @@ class CandidatesComponent extends LitElement {
 
   render() {
     return html`
-    <div id="candidatesContainer">
+      <div id="candidatesContainer">
       <table>
         <caption>Lista de candidatos con información pendiente de actualizar</caption>
         <thead>
@@ -148,26 +148,17 @@ class CandidatesComponent extends LitElement {
           </tr>
         </thead>
         <tbody id="candidatesTableBody">
-        ${this.orderedCandidatesList.map(candidate => {
-            let count = 0;
-            // eslint-disable-next-line indent
-            return html`<tr>
-              ${(Object.values(candidate)).map(value => {
-                  if (typeof (value) !== 'boolean') {
-                      return html`<td>${value}</td>`;
-                  } else {
-                      if (count === 0) {
-                          count++;
-                          return html`<td><input type='checkbox' ?checked='${value}'></td>`;
-                      } else {
-                          if (value === true) {
-                              return html`<td class="semaforo"><img src='/assets/hck3791/icons/green_circle.png'></td>`;
-                          } else {
-                              return html`<td class="semaforo"><img src='/assets/hck3791/icons/red_circle.png'></td>`;
-                          }
-                      }
-                  }
-              })}
+        ${this.orderedCandidatesList.map((candidate, index) => {
+            return html`
+            <tr>
+              <td><a href="/hck3791/${candidate.id}">${candidate.name}</a></td>
+              <td>${candidate.email}</td>
+              <td>${candidate.phone}</td>
+              <td>${candidate.profile}</td>
+              <td><input type='checkbox' ?checked='${candidate.onStaff}'></td>
+              <td>${candidate.lastUpdate}</td>
+              <td>${candidate.expirationDate}</td>
+              <td class="semaforo"><img src='/assets/hck3791/icons/${(candidate.light) ? 'green_circle.png' : 'red_circle.png'}'></td>
             </tr>`;
           })}
         </tbody>

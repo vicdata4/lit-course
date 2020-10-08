@@ -1,5 +1,6 @@
-export const CANDIDATES = [
+export const candidates = [
   {
+    id: 1,
     name: 'Leónidas',
     email: 'leonidas@email.com',
     phone: 985475263,
@@ -10,6 +11,7 @@ export const CANDIDATES = [
     light: true
   },
   {
+    id: 2,
     name: 'Gorgo',
     email: 'gorgo@email.com',
     phone: 985415869,
@@ -20,6 +22,7 @@ export const CANDIDATES = [
     light: false
   },
   {
+    id: 3,
     name: 'Dilios',
     email: 'dilios@email.com',
     phone: 985789652,
@@ -30,6 +33,7 @@ export const CANDIDATES = [
     light: true
   },
   {
+    id: 4,
     name: 'Theron',
     email: 'theron@email.com',
     phone: 985235689,

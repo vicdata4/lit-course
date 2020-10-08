@@ -17,6 +17,7 @@ import './works/calaverosa/calaverosa-page';
 import './works/efim93/efim93-page';
 import './works/ikeyvin/ikeyvin-page';
 import './works/hck3791/hck3791-page';
+import './works/hck3791/components/candidate-component';
 import './works/jhumekes/jhumekes-page';
 import './works/julieannecodes/julieannecodes-page';
 import './works/xbeni/xbeni-page';
@@ -38,8 +39,12 @@ export const routing = function() {
   ];
 
   users.forEach(user => {
-    routes.unshift({ path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` });
+    routes.unshift(
+      { path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` }
+    );
   });
+
+  routes.unshift({ path: '/hck3791/:id', component: 'candidate-component' });
 
   router.setRoutes(routes);
 };

@@ -1,6 +1,6 @@
 import { css } from 'lit-element';
 
-export const HOURS = css`
+export const hoursStyle = css`
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
     
     :host {
@@ -183,7 +183,7 @@ export const HOURS = css`
 
 `;
 
-export const CAND = css`
+export const candidatesStyle = css`
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
     :host  {
