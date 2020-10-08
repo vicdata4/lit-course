@@ -20,7 +20,8 @@ class SolicitudVacaciones extends LitElement {
    */
   static get properties() {
     return {
-      listaDatos: { type: Array }
+      listaDatos: { type: Array },
+      mensaje: { type: String }
     };
   }
 
@@ -28,6 +29,7 @@ class SolicitudVacaciones extends LitElement {
   constructor() {
     super();
     this.listaDatos = [];
+    this.mensaje = '';
   }
 
   /**
@@ -38,7 +40,7 @@ class SolicitudVacaciones extends LitElement {
     const fFin = this.shadowRoot.querySelector('#fechaFin');
     const alerta = this.shadowRoot.querySelector('#alerta');
     alerta.style.display = 'block';
-    ((fIni.value === nothing) || (fFin.value === nothing)) ? alerta.innerHTML = '' : alerta.innerHTML = 'Seleccione la fecha de inicio y final !';
+    this.mensaje = ((fIni.value === nothing) || (fFin.value === nothing)) ? '' : 'Seleccione la fecha de inicio y final !';
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
     if (dateHasValue) {
       const n = this.compruebaRangos(formatearDate(fIni.value).default);
@@ -47,13 +49,12 @@ class SolicitudVacaciones extends LitElement {
           fsolicitud: formatearDate(new Date()).completo,
           inicio: formatearDate(fIni.value).default,
           final: formatearDate(fFin.value).default,
-          estado: 'Pendiente de aprobación',
+          estado: false,
           festado: formatearDate(new Date()).completo
         };
         this.listaDatos = [...[item], ...this.listaDatos];
         fIni.value = null;
         fFin.value = null;
-        alerta.innerHTML = '';
         alerta.style.display = 'none';
       }
     }
@@ -66,7 +67,7 @@ class SolicitudVacaciones extends LitElement {
     const alerta = this.shadowRoot.querySelector('#alerta');
     for (const item in this.listaDatos) {
       if (this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f)) {
-        alerta.innerHTML = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
+        this.mensaje = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
         alerta.style.display = 'block';
         return true;
       }
@@ -80,7 +81,7 @@ class SolicitudVacaciones extends LitElement {
   compruebaEstado(index) {
     for (const item in this.listaDatos) {
       if (item == index) {
-        if (this.listaDatos[item].estado === 'Pendiente de aprobación') {
+        if (this.listaDatos[item].estado === true) {
           return true;
         }
         return false;
@@ -99,7 +100,7 @@ class SolicitudVacaciones extends LitElement {
       array.splice(index, 1);
       this.listaDatos = [...array];
     } else {
-      alerta.innerHTML = 'No puedes borrar vacacione aprobadas !!!';
+      this.mensaje = 'No puedes borrar vacacione aprobadas !!!';
       alerta.style.display = 'block';
     }
   }
@@ -166,7 +167,7 @@ class SolicitudVacaciones extends LitElement {
         <label for="fechaFin" >Fecha Fin</label>
         <input type="date" class="btn-clck" id="fechaFin" />
         <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
-        <div class="alert alert-danger" role="alert" id="alerta"></div>
+        <div class="alert alert-danger" role="alert" id="alerta">${this.mensaje}</div>
         <br />
         <table id="tabla" class="table table-striped">
           <thead>
@@ -185,7 +186,7 @@ class SolicitudVacaciones extends LitElement {
           <td>${item.fsolicitud}</td>
           <td>${item.inicio}</td>
           <td>${item.final}</td>
-          <td>${item.estado}</td>
+          <td>${(item.estado === false) ? 'Pendiente de Aprobación' : 'Aprobado'}</td>
           <td>${item.festado}</td>
           <td><button @click="${() => this.deleteArray(i)}"><i class="far fa-trash-alt fa"></i></button></td>
           </tr>
