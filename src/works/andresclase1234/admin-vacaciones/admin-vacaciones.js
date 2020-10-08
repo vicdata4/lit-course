@@ -1,9 +1,9 @@
-import { LitElement,css, html } from 'lit-element';
+/* eslint-disable eqeqeq */
+import { LitElement, css, html } from 'lit-element';
 
 export class AdminVacaciones extends LitElement {
-    
-        static get styles() {
-            return css`
+  static get styles() {
+    return css`
             table {
                 border-collapse: collapse;
                 border-spacing: 0;
@@ -23,180 +23,180 @@ export class AdminVacaciones extends LitElement {
                 margin:auto
             }
             `;
-        }
-    
-        static get properties() {
-            return {
-                table  : { type:Array },
-                aproved : {type: String},
-                asc : {type: Boolean},
-                pendiente : {type: String},
-                aprobado : {type: String},
-                nAprobado : { type: String}
-            };
-        }
-        
-        constructor() {
-            super();
-            this.table=[];
-            this.aproved  = 'Pendiente  de aprobación';
-            this.pendiente = ' Pendiente de aprobación';
-            this.asc = true;
-        };
-    
-        /**
+  }
+
+  static get properties() {
+    return {
+      table: { type: Array },
+      aproved: { type: String },
+      asc: { type: Boolean },
+      pendiente: { type: String },
+      aprobado: { type: String },
+      nAprobado: { type: String }
+    };
+  }
+
+  constructor() {
+    super();
+    this.table = [];
+    this.aproved = 'Pendiente  de aprobación';
+    this.pendiente = ' Pendiente de aprobación';
+    this.asc = true;
+  };
+
+  /**
          * Añade un nuevo elemento al array.
          */
-        add(){
-            const input1 = new Date();
-            const input2= this.shadowRoot.querySelector('#start');
-            const input3 = this.shadowRoot.querySelector('#end');
-            const input4 = this.shadowRoot.querySelector('#nombre');
-            const  item  =  {
-                request: input1.getDate()+  '/'+ (input1.getMonth()+1)+  '/'  + input1.getFullYear(),
-                start: input2.value,
-                finish: input3.value,
-                nombre: input4.value,
-                estado: this.pendiente,
-                aproved :  this.aproved
-            }
-            this.table =  [...[item],  ...this.table];
-        }
-    
-        /**
+  add() {
+    const input1 = new Date();
+    const input2 = this.shadowRoot.querySelector('#start');
+    const input3 = this.shadowRoot.querySelector('#end');
+    const input4 = this.shadowRoot.querySelector('#nombre');
+    const item = {
+      request: input1.getDate() + '/' + (input1.getMonth() + 1) + '/' + input1.getFullYear(),
+      start: input2.value,
+      finish: input3.value,
+      nombre: input4.value,
+      estado: this.pendiente,
+      aproved: this.aproved
+    };
+    this.table = [...[item], ...this.table];
+  }
+
+  /**
          * Ordena por fecha de inicio
          */
-        sortStart(){
-            if ( this.asc == true ) {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.start > b.start) {
-                    return 1;
-                }
-                if (a.start < b.start) {
-                    return -1;
-                }
-                return 0;
-                });
-                this.table =  [...fechas];
-                this.asc = !this.asc;
-            } else {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.start < b.start) {
-                    return 1;
-                }
-                if (a.start > b.start) {
-                    return -1;
-                }
-                return 0;
-            });
-            this.table =  [...fechas];
-            this.asc = !this.asc;
-            }   
+  sortStart() {
+    if (this.asc == true) {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.start > b.start) {
+          return 1;
         }
-    
-        /**
+        if (a.start < b.start) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    } else {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.start < b.start) {
+          return 1;
+        }
+        if (a.start > b.start) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    }
+  }
+
+  /**
          * Ordena por fecha de fin
          */
-        sortEnd(){
-            if ( this.asc == true ) {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.finish > b.finish) {
-                    return 1;
-                }
-                if (a.finish < b.finish) {
-                    return -1;
-                }
-                return 0;
-                });
-                this.table =  [...fechas];
-                this.asc = !this.asc;
-            } else {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.finish < b.finish) {
-                    return 1;
-                }
-                if (a.finish > b.finish) {
-                    return -1;
-                }
-                return 0;
-            });
-            this.table =  [...fechas];
-            this.asc = !this.asc;
-            } 
+  sortEnd() {
+    if (this.asc == true) {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.finish > b.finish) {
+          return 1;
         }
-    
-        /**
+        if (a.finish < b.finish) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    } else {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.finish < b.finish) {
+          return 1;
+        }
+        if (a.finish > b.finish) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    }
+  }
+
+  /**
          * Ordena por nombre
          */
-        nameRequest(){
-            if ( this.asc == true ) {
-                const name = this.table;
-                name.sort(function (a, b) {
-                if (a.nombre > b.nombre) {
-                    return 1;
-                }
-                if (a.nombre < b.nombre) {
-                    return -1;
-                }
-                return 0;
-                });
-                this.table =  [...name];
-                this.asc = !this.asc;
-            } else {
-                const name = this.table;
-                name.sort(function (a, b) {
-                if (a.nombre < b.nombre) {
-                    return 1;
-                }
-                if (a.nombre > b.nombre) {
-                    return -1;
-                }
-                return 0;
-            });
-            this.table =  [...name];
-            this.asc = !this.asc;
-            } 
+  nameRequest() {
+    if (this.asc == true) {
+      const name = this.table;
+      name.sort(function(a, b) {
+        if (a.nombre > b.nombre) {
+          return 1;
         }
+        if (a.nombre < b.nombre) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...name];
+      this.asc = !this.asc;
+    } else {
+      const name = this.table;
+      name.sort(function(a, b) {
+        if (a.nombre < b.nombre) {
+          return 1;
+        }
+        if (a.nombre > b.nombre) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...name];
+      this.asc = !this.asc;
+    }
+  }
 
-        /**
+  /**
          * Ordena por fecha de solicitud
          */
-        sortRequest(){
-            if ( this.asc == true ) {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.request > b.request) {
-                    return 1;
-                }
-                if (a.request < b.request) {
-                    return -1;
-                }
-                return 0;
-                });
-                this.table =  [...fechas];
-                this.asc = !this.asc;
-            } else {
-                const fechas = this.table;
-                fechas.sort(function (a, b) {
-                if (a.request < b.request) {
-                    return 1;
-                }
-                if (a.request > b.request) {
-                    return -1;
-                }
-                return 0;
-            });
-            this.table =  [...fechas];
-            this.asc = !this.asc;
-            } 
+  sortRequest() {
+    if (this.asc == true) {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.request > b.request) {
+          return 1;
         }
-    
-        render() {
-            return html`
+        if (a.request < b.request) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    } else {
+      const fechas = this.table;
+      fechas.sort(function(a, b) {
+        if (a.request < b.request) {
+          return 1;
+        }
+        if (a.request > b.request) {
+          return -1;
+        }
+        return 0;
+      });
+      this.table = [...fechas];
+      this.asc = !this.asc;
+    }
+  }
+
+  render() {
+    return html`
             <div class="menu-list">
                 <h2 title="Solicitud de vacaciones">Solicitud de vacaciones admin</h2>
                 <p> 
@@ -215,7 +215,7 @@ export class AdminVacaciones extends LitElement {
                     <td> Estado de la solicitud </td>
                     <td> Fecha de estado  </td>
                 </tr>
-                ${this.table.map((item,i) => html `
+                ${this.table.map((item, i) => html`
                 <tr>
                     <td>${item.nombre}</td>
                     <td>${item.request}</td>
@@ -233,6 +233,6 @@ export class AdminVacaciones extends LitElement {
                     `)}
             </table>
             `;
-        }
-    }
-    customElements.define('admin-vacaciones', AdminVacaciones);
+  }
+}
+customElements.define('admin-vacaciones', AdminVacaciones);
