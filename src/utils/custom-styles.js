@@ -31,6 +31,9 @@ export const navigatorStyles = css`
     color: black;
     padding: 20px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
   }
 
   @media (min-width: 768px) {
