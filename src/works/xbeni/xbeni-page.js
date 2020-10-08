@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './item008-lista-pe/item008-lista-pe';
+import './components/item008-lista-pe/item008-lista-pe';
 
 class XbeniPage extends LitElement {
   static get styles() {
