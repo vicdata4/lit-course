@@ -59,7 +59,6 @@ class BeniListaPe extends LitElement {
                                     </label>
                                 </td>
                             </tr>
-        
                             `)}
                         </table>
                     </div>
