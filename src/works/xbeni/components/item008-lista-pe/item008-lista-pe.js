@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
-import { item008ListaPeStyles } from './src/styles';
-import { CONSTANTS_ITEM008 } from './src/constants';
-import { extraerDatosListaPe, getDatosDescripcionPe } from './src/moks';
+import { item008ListaPeStyles } from '../../utils/styles/styles_items008';
+import { CONSTANTS_ITEM008 } from '../../utils/constants/constants_item008';
+import { extraerDatosListaPe, getDatosDescripcionPe } from '../../utils/mocks/moks_item008';
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
