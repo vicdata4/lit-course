@@ -1,9 +1,7 @@
 import { numericMonths, numericDays } from './constants';
-
 /**
   * FORMATTERS
   */
-// added custom format(tableDate) for vacation tables
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
