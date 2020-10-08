@@ -13,207 +13,96 @@ class CandidatesComponent extends LitElement {
   static get properties() {
     return {
       candidates: { type: Array },
-      typeOrder: { type: Number }
+      orderedCandidatesList: { type: Array },
+      typeOrder: { type: String }
     };
   }
 
   constructor() {
     super();
     this.candidates = CANDIDATES;
-    this.typeOrder = 0;
+    this.orderedCandidatesList = this.candidates;
+    this.typeOrder = '';
   }
 
   sortByName() {
-    const rows = this.shadowRoot.getElementById('candidatesTableBody').rows;
-    var order = true;
-
-    if (this.typeOrder === 0) {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[0];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[0];
-
-          if (cell1.innerText.toLowerCase() > cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 1;
+    if (this.typeOrder !== 'ordered') {
+      this.typeOrder = 'ordered';
+      this.orderedCandidatesList.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
     } else {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[0];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[0];
-
-          if (cell1.innerText.toLowerCase() < cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 0;
+      this.typeOrder = '';
+      this.orderedCandidatesList.reverse();
     }
+
+    this.requestUpdate();
   }
 
   sortByEmail() {
-    const rows = this.shadowRoot.getElementById('candidatesTableBody').rows;
-    var order = true;
-
-    if (this.typeOrder === 0) {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[1];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[1];
-
-          if (cell1.innerText.toLowerCase() > cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 1;
+    if (this.typeOrder !== 'ordered') {
+      this.typeOrder = 'ordered';
+      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+        if (a.email < b.email) return -1;
+        if (a.email > b.email) return 1;
+        return 0;
+      });
     } else {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[1];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[1];
-
-          if (cell1.innerText.toLowerCase() < cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 0;
+      this.typeOrder = '';
+      this.orderedCandidatesList.reverse();
     }
+
+    this.requestUpdate();
   }
 
   sortByOnStaff() {
-    const rows = this.shadowRoot.getElementById('candidatesTableBody').rows;
-    var order = true;
-
-    if (this.typeOrder === 0) {
-      while (order) {
-        order = false;
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('INPUT')[0];
-          const cell2 = rows[i + 1].getElementsByTagName('INPUT')[0];
-
-          if (cell1.checked < cell2.checked) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 1;
+    if (this.typeOrder !== 'ordered') {
+      this.typeOrder = 'ordered';
+      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+        if (a.onStaff > b.onStaff) return -1;
+        if (a.onStaff < b.onStaff) return 1;
+        return 0;
+      });
     } else {
-      while (order) {
-        order = false;
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('INPUT')[0];
-          const cell2 = rows[i + 1].getElementsByTagName('INPUT')[0];
-
-          if (cell1.checked > cell2.checked) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 0;
+      this.typeOrder = '';
+      this.orderedCandidatesList.reverse();
     }
+
+    this.requestUpdate();
   }
 
   sortByLastUpdate() {
-    const rows = this.shadowRoot.getElementById('candidatesTableBody').rows;
-    var order = true;
-
-    if (this.typeOrder === 0) {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[5];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[5];
-
-          if (cell1.innerText.toLowerCase() > cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 1;
+    if (this.typeOrder !== 'ordered') {
+      this.typeOrder = 'ordered';
+      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+        if (a.lastUpdate < b.lastUpdate) return -1;
+        if (a.lastUpdate > b.lastUpdate) return 1;
+        return 0;
+      });
     } else {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[5];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[5];
-
-          if (cell1.innerText.toLowerCase() < cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 0;
+      this.typeOrder = '';
+      this.orderedCandidatesList.reverse();
     }
+
+    this.requestUpdate();
   }
 
   sortByExpDate() {
-    const rows = this.shadowRoot.getElementById('candidatesTableBody').rows;
-    var order = true;
-
-    if (this.typeOrder === 0) {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[6];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[6];
-
-          if (cell1.innerText.toLowerCase() > cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 1;
+    if (this.typeOrder !== 'ordered') {
+      this.typeOrder = 'ordered';
+      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+        if (a.expirationDate < b.expirationDate) return -1;
+        if (a.expirationDate > b.expirationDate) return 1;
+        return 0;
+      });
     } else {
-      while (order) {
-        order = false;
-
-        for (let i = 0; i < (rows.length - 1); i++) {
-          const cell1 = rows[i].getElementsByTagName('TD')[6];
-          const cell2 = rows[i + 1].getElementsByTagName('TD')[6];
-
-          if (cell1.innerText.toLowerCase() < cell2.innerText.toLowerCase()) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            order = true;
-            break;
-          }
-        }
-      }
-      this.typeOrder = 0;
+      this.typeOrder = '';
+      this.orderedCandidatesList.reverse();
     }
+
+    this.requestUpdate();
   }
 
   render() {
@@ -259,7 +148,7 @@ class CandidatesComponent extends LitElement {
           </tr>
         </thead>
         <tbody id="candidatesTableBody">
-        ${this.candidates.map(candidate => {
+        ${this.orderedCandidatesList.map(candidate => {
             let count = 0;
             // eslint-disable-next-line indent
             return html`<tr>
