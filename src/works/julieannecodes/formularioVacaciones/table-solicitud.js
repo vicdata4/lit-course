@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { tableStyles } from '../utils/custom-styles';
+import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
@@ -7,12 +8,16 @@ class TableSolicitud extends LitElement {
     return [
       tableStyles,
       css`
-      td button {
+      .deleteB, .order {
         border: none;
         background-color: transparent;
         cursor: pointer;
       }
-      `
+      .order.rotated {transform: rotate(180deg);}
+      .buttonWrap {
+        width: 50%;
+        margin: 0 auto;
+      }`
     ];
   }
 
@@ -21,8 +26,7 @@ class TableSolicitud extends LitElement {
       arraySolicitudes: { type: Array },
       titulosTabla: { type: Array },
       sortedArray: { type: Array },
-      orderType: { type: Array },
-      orderValue: { type: String }
+      orderType: { type: Array }
     };
   }
 
@@ -32,19 +36,18 @@ class TableSolicitud extends LitElement {
     this.sortedArray = [];
     this.titulosTabla = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
     this.orderType = ['currentDate', 'fechaInicio', 'fechaFin'];
-    this.afterDelete = [];
-    this.orderValue = 'asc';
   }
 
-  order(i) {
-    const order = this.shadowRoot.querySelector('.order');
-    this.sortedArray = orderItems(this.arraySolicitudes, order.id);
+  order(e) {
+    this.sortedArray = orderItems(this.arraySolicitudes, e.target.id);
     this.arraySolicitudes = [...this.sortedArray];
-    if (this.orderValue === 'asc') {
-      this.orderValue = 'desc';
+    if (e.target.value === 'asc') {
+      e.target.value = 'desc';
+      e.currentTarget.classList.add('rotated');
     } else {
       this.arraySolicitudes.reverse();
-      this.orderValue = 'asc';
+      e.target.value = 'asc';
+      e.currentTarget.classList.remove('rotated');
     }
   }
 
@@ -62,7 +65,11 @@ class TableSolicitud extends LitElement {
         <table>
                 <tr>
                   ${this.titulosTabla.map((items, i) => html`
-                  <th>${items}<button class="order" id="${this.orderType[i]}" value="${this.orderValue}" @click="${() => this.order(i)}">x</button></th>
+                  <th>${items} ${items === 'Fecha de solicitud' ||
+                      items === 'Fecha Inicio' ||
+                      items === 'Fecha Fin' ? html`
+                        <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>
+                        ` : nothing}</th>
                   `)}
                 </tr>
                   ${this.arraySolicitudes.map((item, i) => html`
@@ -72,7 +79,7 @@ class TableSolicitud extends LitElement {
                     <td>${dateFormatter(item.fechaFin).tableDate}</td>
                     <td>${item.estado}</td>
                     <td>${item.statusDate}</td>
-                    <td><button id="${i}" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash2.png"></button></td>
+                    <td><div class="buttonWrap"><button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash2.png"></button></div></td>
                     </tr>
                   `)}
               </table>
