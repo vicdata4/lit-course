@@ -4,6 +4,7 @@ import { item008ListaPeStyles } from '../../archivos_comunes/ac_item008/styles/s
 import { CONSTANTS_ITEM008 } from '../../archivos_comunes/ac_item008/constants/constants_item008';
 import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/ac_item008/mocks/moks_item008';
 import { svgBeniX } from '../../archivos_comunes/ac_item008/svg_icons/svg_item008';
+
 class BeniListaPe extends LitElement {
   static get properties() {
     return {
@@ -35,32 +36,7 @@ class BeniListaPe extends LitElement {
                 </div>
                 <div class="div_main_pe">
                     <div class="div_main_body_tabla">
-                        <table class="table_pe">
-                            <!--  HEADER TABLA -->
-                            <tr>
-                                <th scope="row">
-                                    <label>Titulo</label>
-                                </th>
-                                <th>
-                                    <label>Fecha de publicación</label>
-                                </th>
-                            </tr>
-                            ${Object.keys(this.datos_lista_pe).map(item =>
-    html`
-                            <tr>
-                                <td>
-                                    <label @click=${() => this.load_date_results(this.datos_lista_pe[item].id_peticion, this.datos_lista_pe[item].titulo, this.datos_lista_pe[item].fecha_publicacion)} class="label_titulo_tabla_pe"> 
-                                        ${this.datos_lista_pe[item].titulo}
-                                    </label>
-                                </td>
-                                <td>
-                                    <label>
-                                            ${this.datos_lista_pe[item].fecha_publicacion}
-                                    </label>
-                                </td>
-                            </tr>
-                            `)}
-                        </table>
+                        ${this.generateTablePetitions()}
                     </div>
                 </div>
             </div>
@@ -69,7 +45,8 @@ class BeniListaPe extends LitElement {
                     <div class="div_resultados_pe_campos">
                         <div class="div_resultados_titulo_pe">
                             <label class="texto_resultados_pe">Titulo: </label>
-                            <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.id_resultados_titulo}"> Analista Programador
+                            <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.id_resultados_titulo}"> Analista
+                                Programador
                                 Java</label>
                         </div>
                         <div class="div_resultados_fecha_publicacion_pe">
@@ -86,11 +63,45 @@ class BeniListaPe extends LitElement {
                 </div>
                 <div class="div_resultados_descripcion_pe">
                     <label class="texto_resultados_pe">Descripcion:</label><br>
-                    <textarea disabled id="${CONSTANTS_ITEM008.id_resultados_descripcion_publicacion}" class="textarea_resultados_pe"></textarea>
+                    <textarea disabled id="${CONSTANTS_ITEM008.id_resultados_descripcion_publicacion}"
+                        class="textarea_resultados_pe"></textarea>
                 </div>
             </div>
         </div>
         `;
+  }
+
+  generateTablePetitions() {
+    return html`
+    <table class="table_pe">
+        <!--  HEADER TABLA -->
+        <tr>
+            <th scope="row">
+                <label>Titulo</label>
+            </th>
+            <th>
+                <label>Fecha de publicación</label>
+            </th>
+        </tr>
+        ${Object.keys(this.datos_lista_pe).map(item =>
+    html`
+        <tr>
+            <td>
+                <label @click=${() => this.load_date_results(this.datos_lista_pe[item].id_peticion,
+    this.datos_lista_pe[item].titulo, this.datos_lista_pe[item].fecha_publicacion)}
+                    class="label_titulo_tabla_pe">
+                    ${this.datos_lista_pe[item].titulo}
+                </label>
+            </td>
+            <td>
+                <label>
+                    ${this.datos_lista_pe[item].fecha_publicacion}
+                </label>
+            </td>
+        </tr>
+        `)}
+    </table>
+      `;
   }
 
   hidden_date_results() {
@@ -100,13 +111,10 @@ class BeniListaPe extends LitElement {
   load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
     this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_titulo).textContent = titulo_peticion;
     this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_fecha_publicacion).textContent = fecha_peticion;
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'block';
-
-    // UNA VEZ HECHA LA CONSULTA AJAX ELIMINAR ESTA LINEA DE CODIGO
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = 'Requisitos:\nUn año de experiencia minimo\nLugar de Trabajo: Las Tablas\nActividades:\nAutomatización de pruebas\nDescripcion se obtendra de ajax una vez que se conecte a la base datos.';
-
     // SOLICITUD AJAX QUE RPEGUNTE POR LA DESCRIPCION
-    getDatosDescripcionPe(id_peticion);
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = getDatosDescripcionPe(id_peticion);
+
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'block';
   }
 }
 
