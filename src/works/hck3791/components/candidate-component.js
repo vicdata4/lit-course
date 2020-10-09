@@ -54,8 +54,8 @@ class CandidateComponent extends LitElement {
       </div>
       <div id="body">
         <hr>
-        <section action="" method="">
-          <form>
+        <section>
+          <form action="" method="">
             <h5>Información del candidato</h5>
             <div>
               <label for="name">Nombre completo</label>
