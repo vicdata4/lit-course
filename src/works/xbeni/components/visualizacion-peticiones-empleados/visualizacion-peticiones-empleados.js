@@ -118,4 +118,4 @@ class BeniListaPe extends LitElement {
   }
 }
 
-customElements.define('item008-lista-pe', BeniListaPe);
+customElements.define('visualizacion-peticiones-empleados', BeniListaPe);

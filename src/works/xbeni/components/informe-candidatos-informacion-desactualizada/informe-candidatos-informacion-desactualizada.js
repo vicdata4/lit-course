@@ -516,4 +516,4 @@ ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.d
   }
 }
 
-customElements.define('item002_lista-cipa', BeniListaCipa);
+customElements.define('informe-candidatos-informacion-desactualizada', BeniListaCipa);
