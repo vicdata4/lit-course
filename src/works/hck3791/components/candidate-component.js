@@ -93,7 +93,7 @@ class CandidateComponent extends LitElement {
             </div>
             <div>
               <label for="tags">Etiquetas</label>
-              <input type="text" id="tags" value="${this.candidate.tags}">
+              <input type="text" id="tags" value="${this.candidate.tags.join(', ')}">
             </div>
             <div>
               <label for="salary">Expectativas salariales (K)</label>
