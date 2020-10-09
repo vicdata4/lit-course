@@ -2,7 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './aprobacion-table/aprobacion-table';
+import './approval-table/approval-table';
+import './formularioVacaciones/vacation-table';
 
 class JulieannecodesPage extends LitElement {
   static get styles() {
@@ -16,7 +17,8 @@ class JulieannecodesPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>julieanneCodes</work-header>
-        <aprobacion-table></aprobacion-table>
+        <approval-table></approval-table>
+          <vacation-table></vacation-table>
       </section>
     `;
   }
