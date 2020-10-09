@@ -23,7 +23,7 @@ export class TablaSolicitud extends LitElement {
   constructor() {
     super();
     this.miTabla = [];
-    this.nElements = 3;
+    this.nElements = 10;
     this.stepper = [];
     this.from = 0;
     this.to = this.nElements;
@@ -31,12 +31,16 @@ export class TablaSolicitud extends LitElement {
   }
 
   async firstUpdated() {
-    const nPages = Math.ceil(this.miTabla.length / this.nElements);
-    this.stepper = new Array(nPages).fill({});
-    this.to = this.nElements;
-    await this.updateComplete;
-    this.setActiveStep(this.index);
+    this.reloadTable();
   }
+
+ async reloadTable() {
+  const nPages = Math.ceil(this.miTabla.length / this.nElements);
+  this.stepper = new Array(nPages).fill({});
+  this.to = this.nElements;
+  await this.updateComplete;
+  this.setActiveStep(this.index);
+ }
 
   setActiveStep(index) {
     this.shadowRoot.querySelectorAll('.step').forEach(row => {
@@ -107,7 +111,6 @@ export class TablaSolicitud extends LitElement {
 
   render() {
     return html`
-    ${this.renderStepper()}
           <table id="tablaSoli">
               <tr>
                 <th>Fecha de solicitud
@@ -144,7 +147,7 @@ export class TablaSolicitud extends LitElement {
               </tr>`)}
 
           </table>
-        
+          ${this.renderStepper()}
         `;
   }
 }

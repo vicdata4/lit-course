@@ -48,10 +48,10 @@ export const viewStyles = css`
   }
   th {
     background-color: #cccccc;
-    }
-    .stepper {
-            margin: 10px 0;
-          }
+  }
+  .stepper {
+    margin: 10px 0;
+  }
   .step {
     display: inline-block;
     padding: 5px;
@@ -65,7 +65,7 @@ export const viewStyles = css`
     transform: rotate(180deg);
     }
   .stepper .step:hover {
-    background-color: #f1f1f1;
+    background-color: #e8e7e7;
     }
   .step.active {
     background-color: #535353 !important;

@@ -29,7 +29,7 @@ export class SolicitudVacaciones extends LitElement {
     this.infoSolicitud = [];
   }
 
-  addSolicitud(e) {
+  async addSolicitud(e) {
     // Fecha dentro de 1 año
     const fechaActual = e.detail.fHoy;
     const anoActual = parseInt(fechaActual.substr(0, 4));
@@ -46,6 +46,10 @@ export class SolicitudVacaciones extends LitElement {
       return false;
     } else {
       this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
+
+      const tabla = this.shadowRoot.querySelector('tabla-solicitud');
+      await tabla.updateComplete;
+      tabla.reloadTable();
     }
   }
 
@@ -60,7 +64,7 @@ export class SolicitudVacaciones extends LitElement {
     return html`
             <h2>Solicitud de vacaciones</h2>
             <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
-            <tabla-solicitud .miTabla="${this.infoSolicitud}" .nElements="${5}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
+            <tabla-solicitud .miTabla="${this.infoSolicitud}" .nElements="${10}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
            
         `;
   }
