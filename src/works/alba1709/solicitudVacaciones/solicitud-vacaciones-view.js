@@ -45,11 +45,7 @@ export class SolicitudVacaciones extends LitElement {
       alert('El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' + twoYears + ')');
       return false;
     } else {
-      if (this.infoSolicitud.length < 10) {
-        this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
-      } else {
-        alert('Solo se permiten 10 solicitudes');
-      }
+      this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
     }
   }
 
@@ -64,7 +60,7 @@ export class SolicitudVacaciones extends LitElement {
     return html`
             <h2>Solicitud de vacaciones</h2>
             <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
-            <tabla-solicitud .miTabla="${this.infoSolicitud}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
+            <tabla-solicitud .miTabla="${this.infoSolicitud}" .nElements="${5}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
            
         `;
   }

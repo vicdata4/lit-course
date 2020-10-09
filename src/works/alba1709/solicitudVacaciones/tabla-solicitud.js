@@ -1,82 +1,70 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { getDate } from './utils/functions';
+import { viewStyles } from './utils/t-styles';
 
 export class TablaSolicitud extends LitElement {
   static get styles() {
     return [
-      css`
-            #tablaSoli {
-              border: 3px solid black;
-              justify-content: center;
-              align-items: center;
-              margin-top: 20px;
-            }
-            td, th {
-              border-right: solid 3px black;
-              border-left: solid 3px black;
-            }
-            #tablaSoli {
-              border-collapse: collapse;
-              width: 100%;
-              height: 100%;
-              font-size: 0.8rem;
-              overflow: scroll;
-              overflow-x: auto;
-            }
-            #tablaSoli tr:nth-child(odd) {
-              background-color: #eeeeee;
-            }
-            #papelera {
-                width: 30px;
-                height:30px;
-            }
-            #papelera:hover {
-                cursor: pointer;
-            }
-            #btnPapelera {
-              background-color: #ffffff00;
-              border: 0px;
-              margin-left: 7px;
-            }
-            td, th {
-              font-family: "Comic Sans MS", cursive, sans-serif;
-              white-space: nowrap;
-            }
-            .btnOrder {
-              cursor: pointer;
-              background-color: #cccccc;
-              border: #cccccc;
-            }
-            .btnOrder:hover {
-              background-color: #eeeeee;
-            }
-            th {
-              background-color: #cccccc;
-            }
-            @media (min-width: 768px) {
-              #tablaSoli {
-                width: 52%;
-            }
-            }
-            @media screen and (max-width: 768px) {
-              #tablaSoli {
-                display: block;
-                overflow-x: auto;
-              }
-            }
-          `
+      viewStyles
     ];
   }
 
   static get properties() {
     return {
-      miTabla: { type: Array }
+      miTabla: { type: Array },
+      nElements: { type: Number },
+      stepper: { type: Array, attribute: false },
+      index: { type: Number, attribute: false },
+      from: { type: Number, attribute: false },
+      to: { type: Number, attribute: false }
     };
   }
 
   constructor() {
     super();
     this.miTabla = [];
+    this.nElements = 3;
+    this.stepper = [];
+    this.from = 0;
+    this.to = this.nElements;
+    this.index = 0;
+  }
+
+  async firstUpdated() {
+    const nPages = Math.ceil(this.miTabla.length / this.nElements);
+    this.stepper = new Array(nPages).fill({});
+    this.to = this.nElements;
+    await this.updateComplete;
+    this.setActiveStep(this.index);
+  }
+
+  setActiveStep(index) {
+    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+      if (row.id === `_${index}`) {
+        row.classList.add('active');
+      } else {
+        row.classList.remove('active');
+      }
+    });
+  }
+
+  showPage(index) {
+    this.index = index;
+    this.from = this.nElements * index;
+    this.to = this.from + this.nElements;
+    this.setActiveStep(index);
+  }
+
+  next() {
+    if (this.index < this.stepper.length - 1) {
+      this.showPage(this.index + 1);
+    }
+  }
+
+  prev() {
+    if (this.index > 0) {
+      this.showPage(this.index - 1);
+    }
   }
 
   deleteItem(i) {
@@ -105,8 +93,21 @@ export class TablaSolicitud extends LitElement {
     this.miTabla = order === 'asc' ? [...orderedList] : [...orderedList.reverse()];
   }
 
+  renderStepper() {
+    return html`
+      <div class="stepper">
+        <button class="step left" @click="${this.prev}">&#x25B7;</button>
+        ${this.stepper.map((x, i) => html`
+          <button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>
+        `)}
+        <button class="step" @click="${this.next}">&#x25B7;</button>
+      </div>
+    `;
+  }
+
   render() {
     return html`
+    ${this.renderStepper()}
           <table id="tablaSoli">
               <tr>
                 <th>Fecha de solicitud
@@ -131,18 +132,19 @@ export class TablaSolicitud extends LitElement {
                 <th>Fecha de estado</th>
                 <th>Eliminar</th>
               </tr>
-            ${this.miTabla.map((item, i) => {
-    return html`
+          
+    ${this.miTabla.slice(this.from, this.to).map(item => html`
               <tr>
                 <td class="first">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
                 <td>${item.infoFI.split('-').reverse().join('-')}</td>
                 <td>${item.infoFF.split('-').reverse().join('-')}</td>
                 <td>Pendiente de aprobación</td>
                 <td>${item.fHoy.split('-').reverse().join('-')}</td>
-                <td> <button id="btnPapelera" @click="${() => this.deleteItem(i)}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
-              </tr>`;
-  })}
+                <td> <button id="btnPapelera" @click="${() => this.deleteItem()}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
+              </tr>`)}
+
           </table>
+        
         `;
   }
 }
