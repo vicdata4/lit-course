@@ -151,7 +151,7 @@ class CandidatesComponent extends LitElement {
         ${this.orderedCandidatesList.map((candidate) => {
             return html`
             <tr>
-              <td><a href="/hck3791/${candidate.id}">${candidate.name}</a></td>
+              <td><a href="/hck3791-comp?id=${candidate.id}">${candidate.name}</a></td>
               <td>${candidate.email}</td>
               <td>${candidate.phone}</td>
               <td>${candidate.profile}</td>

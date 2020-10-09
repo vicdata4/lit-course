@@ -38,7 +38,7 @@ export const routing = function() {
     { path: '(.*)', component: 'not-found-view' }
   ];
 
-  routes.unshift({ path: '/hck3791/:id', component: 'candidate-component' });
+  routes.unshift({ path: '/hck3791-comp', component: 'candidate-component' });
 
   users.forEach(user => {
     routes.unshift(
