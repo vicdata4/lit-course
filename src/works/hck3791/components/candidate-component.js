@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit-element';
 import { candidateStyles } from '../styles/candidateStyles';
-import { candidates } from '../cand';
 
 class CandidateComponent extends LitElement {
   static get styles() {
@@ -15,22 +14,19 @@ class CandidateComponent extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.candidates = candidates;
-  }
-
   render() {
     return html`
     <div id="candidate-container">
       <div id="header">
-        </div id="search">
-          <label>Editar el usuario</label>
-          <input type="text">
+        <div id="search">
+          <label for="user">Editar el usuario</label>
+          <input type="text" id="user" name="user">
         </div>
+
         <div id="add">
           <button>añadir nuevo</button>
         </div>
+      </div>
     </div> 
     `;
   }

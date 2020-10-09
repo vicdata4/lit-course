@@ -38,13 +38,13 @@ export const routing = function() {
     { path: '(.*)', component: 'not-found-view' }
   ];
 
+  routes.unshift({ path: '/hck3791/:id', component: 'candidate-component' });
+
   users.forEach(user => {
     routes.unshift(
       { path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` }
     );
   });
-
-  routes.unshift({ path: '/hck3791/:id', component: 'candidate-component' });
 
   router.setRoutes(routes);
 };

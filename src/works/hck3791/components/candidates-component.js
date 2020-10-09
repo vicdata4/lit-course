@@ -148,7 +148,7 @@ class CandidatesComponent extends LitElement {
           </tr>
         </thead>
         <tbody id="candidatesTableBody">
-        ${this.orderedCandidatesList.map((candidate, index) => {
+        ${this.orderedCandidatesList.map((candidate) => {
             return html`
             <tr>
               <td><a href="/hck3791/${candidate.id}">${candidate.name}</a></td>
