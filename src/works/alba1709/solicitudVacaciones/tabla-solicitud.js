@@ -34,13 +34,13 @@ export class TablaSolicitud extends LitElement {
     this.reloadTable();
   }
 
- async reloadTable() {
-  const nPages = Math.ceil(this.miTabla.length / this.nElements);
-  this.stepper = new Array(nPages).fill({});
-  this.to = this.nElements;
-  await this.updateComplete;
-  this.setActiveStep(this.index);
- }
+  async reloadTable() {
+    const nPages = Math.ceil(this.miTabla.length / this.nElements);
+    this.stepper = new Array(nPages).fill({});
+    this.to = this.nElements;
+    await this.updateComplete;
+    this.setActiveStep(this.index);
+  }
 
   setActiveStep(index) {
     this.shadowRoot.querySelectorAll('.step').forEach(row => {
