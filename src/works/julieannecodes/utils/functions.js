@@ -27,7 +27,7 @@ export const dateInputReverse = (value) => {
 };
 
 export const orderItems = (arr, order) => {
-  if (order === 'nombre') {
+  if (order === 'name') {
     arr.sort((a, b) => {
       var nameA = a[order].toUpperCase();
       var nameB = b[order].toUpperCase();
