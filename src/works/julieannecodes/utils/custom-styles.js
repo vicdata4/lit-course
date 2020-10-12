@@ -11,6 +11,9 @@ export const tableStyles = css`
     table, th { border: 2px solid black;
     border-collapse: collapse;
     }
+    .rotated {
+      transform: rotate(180deg);
+    }
 `;
 
 export const stepperStyles = css`
@@ -22,5 +25,9 @@ export const stepperStyles = css`
       border: none;
       background-color: transparent;
       cursor: pointer;
+    }
+    .selected {
+      background-color: black;
+      color: white;
     }
 `;
