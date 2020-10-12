@@ -29,6 +29,7 @@ class CandidatesComponent extends LitElement {
     if (this.typeOrder !== 'ordered') {
       this.typeOrder = 'ordered';
       this.orderedCandidatesList.sort((a, b) => {
+        console.log(a.name, b.name);
         if (a.name < b.name) return -1;
         if (a.name > b.name) return 1;
         return 0;
@@ -44,7 +45,7 @@ class CandidatesComponent extends LitElement {
   sortByEmail() {
     if (this.typeOrder !== 'ordered') {
       this.typeOrder = 'ordered';
-      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+      this.orderedCandidatesList.sort((a, b) => {
         if (a.email < b.email) return -1;
         if (a.email > b.email) return 1;
         return 0;
@@ -60,7 +61,7 @@ class CandidatesComponent extends LitElement {
   sortByOnStaff() {
     if (this.typeOrder !== 'ordered') {
       this.typeOrder = 'ordered';
-      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+      this.orderedCandidatesList.sort((a, b) => {
         if (a.onStaff > b.onStaff) return -1;
         if (a.onStaff < b.onStaff) return 1;
         return 0;
@@ -76,7 +77,7 @@ class CandidatesComponent extends LitElement {
   sortByLastUpdate() {
     if (this.typeOrder !== 'ordered') {
       this.typeOrder = 'ordered';
-      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+      this.orderedCandidatesList.sort((a, b) => {
         if (a.lastUpdate < b.lastUpdate) return -1;
         if (a.lastUpdate > b.lastUpdate) return 1;
         return 0;
@@ -92,7 +93,7 @@ class CandidatesComponent extends LitElement {
   sortByExpDate() {
     if (this.typeOrder !== 'ordered') {
       this.typeOrder = 'ordered';
-      this.orderedCandidatesList = this.candidates.sort((a, b) => {
+      this.orderedCandidatesList.sort((a, b) => {
         if (a.expirationDate < b.expirationDate) return -1;
         if (a.expirationDate > b.expirationDate) return 1;
         return 0;
