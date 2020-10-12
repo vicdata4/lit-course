@@ -117,26 +117,20 @@ class PaginationComponent extends LitElement {
   }
 
   orderList(column) {
-    const orderedList = this.list.slice(this.from, this.to).sort((a, b) => {
+    const myList = [...this.list];
+
+    const orderedList = myList.sort((a, b) => {
       if (a[column] < b[column]) return -1;
       if (a[column] > b[column]) return 1;
       return 0;
     });
 
-    if (JSON.stringify(this.list.slice(this.from, this.to)) === JSON.stringify((orderedList))) {
+    if (JSON.stringify(this.list) === JSON.stringify((orderedList))) {
       orderedList.reverse();
     }
 
-    const newList = [...this.list];
-    let index = this.from;
-
-    orderedList.forEach(orderedItem => {
-      const element = this.list.find(item => item.id === orderedItem.id);
-      newList[index] = element;
-      index++;
-    });
-
-    this.list = [...newList];
+    this.list = [...orderedList];
+    this.showPage(0);
   }
 
   renderStepper() {
