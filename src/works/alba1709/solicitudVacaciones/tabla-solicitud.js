@@ -95,6 +95,8 @@ export class TablaSolicitud extends LitElement {
       return 0;
     });
     this.miTabla = order === 'asc' ? [...orderedList] : [...orderedList.reverse()];
+    this.miTabla = [...orderedList];
+    this.showPage(0);
   }
 
   renderStepper() {
