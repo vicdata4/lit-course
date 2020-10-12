@@ -12,8 +12,15 @@ class CandidateComponent extends LitElement {
   static get properties() {
     return {
       candidate: { type: Object },
-      params: { type: Array }
+      params: { type: Array },
+      candidateToFind: { type: Array },
+      foundCandidate: { type: Object }
     };
+  }
+
+  constructor() {
+    super();
+    this.candidateToFind = [];
   }
 
   connectedCallback() {
@@ -23,19 +30,48 @@ class CandidateComponent extends LitElement {
     this.candidate = candidates[this.params - 1];
   }
 
-  firstUpdated() {
-    const optionsProfile = this.shadowRoot.querySelectorAll('#profile option');
-    const optionsLanguage = this.shadowRoot.querySelectorAll('#language option');
+  findCandidate(e) {
+    const keyPushed = e.keyCode;
+    const inputList = this.shadowRoot.querySelectorAll('input');
+    const optionList = this.shadowRoot.querySelectorAll('select option');
 
-    for (let i = 0; i < optionsProfile.length; i++) {
-      if (optionsProfile[i].getAttribute('value') === this.candidate.profile.toLowerCase()) {
-        optionsProfile[i].setAttribute('selected', true);
-      }
+    if (keyPushed >= 65 && keyPushed <= 90) {
+      this.candidateToFind.push(e.key);
+    } else if (keyPushed === 8) {
+      this.candidateToFind.pop();
+    } else if (keyPushed === 46) {
+      const position = e.target.selectionStart;
+      this.candidateToFind.splice(position, 1);
     }
 
-    for (let i = 0; i < optionsLanguage.length; i++) {
-      if (optionsLanguage[i].getAttribute('value') === this.candidate.language.toLowerCase()) {
-        optionsLanguage[i].setAttribute('selected', true);
+    this.foundCandidate = candidates.find(obj => obj.name === this.candidateToFind.join(''));
+
+    if (this.foundCandidate) {
+      for (let i = 1; i < (inputList.length - 1); i++) {
+        if (typeof (Object.values(this.foundCandidate)[i]) === 'boolean') {
+          if (Object.values(this.foundCandidate)[i] === true) {
+            inputList[i].setAttribute('checked', 'checked');
+          } else {
+            inputList[i].removeAttribute('checked');
+          }
+        } else {
+          inputList[i].value = Object.values(this.foundCandidate)[i];
+        }
+      }
+
+      for (let i = 0; i < optionList.length; i++) {
+        if (optionList[i].value === this.foundCandidate.profile.toLowerCase()) {
+          optionList[i].selected = 'selected';
+        } else if (optionList[i].value === this.foundCandidate.language.toLowerCase()) {
+          optionList[i].selected = 'selected';
+        }
+      }
+    } else {
+      this.shadowRoot.querySelector('form').reset();
+      for (let i = 0; i < optionList.length; i++) {
+        if (optionList[i].value === 'default') {
+          optionList[i].selected = 'selected';
+        }
       }
     }
   }
@@ -46,7 +82,7 @@ class CandidateComponent extends LitElement {
       <div id="header">
         <div id="search">
           <label for="user">Editar el usuario</label>
-          <input type="text" id="user" name="user">
+          <input type="text" id="user" name="user" @keydown="${this.findCandidate}">
         </div>
         <div id="add">
           <button>añadir nuevo</button>
@@ -59,23 +95,23 @@ class CandidateComponent extends LitElement {
             <h5>Información del candidato</h5>
             <div>
               <label for="name">Nombre completo</label>
-              <input type="text" id="name" value="${this.candidate.name}">
+              <input type="text" id="name">
             </div>
             <div>
               <label for="email">Correo electrónico</label>
-              <input type="email" value="${this.candidate.email}">
+              <input type="email" id="email">
             </div>
             <div>
               <label for="age">Edad</label>
-              <input type="text" id="age" value="${this.candidate.age}">
+              <input type="text" id="age">
             </div>
             <div>
               <label for="phone">Teléfono</label>
-              <input type="text" id="phone" value="${this.candidate.phone}">
+              <input type="text" id="phone">
             </div>
             <div>
               <label for="location">Ubicación</label>
-              <input type="text" id="location" value="${this.candidate.location}">
+              <input type="text" id="location">
             </div>
             <div class="custom-select">
               <label for="profile">Perfil</label>
@@ -89,19 +125,19 @@ class CandidateComponent extends LitElement {
             </div>
             <div>
               <label for="experience">Años de experiencia</label>
-              <input type="text" id="experience" value="${this.candidate.experience}">
+              <input type="text" id="experience">
             </div>
             <div>
               <label for="tags">Etiquetas</label>
-              <input type="text" id="tags" value="${this.candidate.tags.join(', ')}">
+              <input type="text" id="tags">
             </div>
             <div>
               <label for="salary">Expectativas salariales (K)</label>
-              <input type="text" value="${this.candidate.salary}">
+              <input type="text" id="salary">
             </div>
             <div class="custom-checkbox">
               <label for="onStaff">En plantilla</label>
-              <input type="checkbox" id="onStaff" ?checked="${(this.candidate.onStaff) ? 'checked' : ''}">
+              <input type="checkbox" id="onStaff">
             </div>
             <div class="custom-select">
               <label for="language">Nivel de inglés</label>
