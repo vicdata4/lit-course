@@ -3,7 +3,6 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './approval-table/approval-table';
-import './formularioVacaciones/vacation-table';
 
 class JulieannecodesPage extends LitElement {
   static get styles() {
@@ -18,7 +17,6 @@ class JulieannecodesPage extends LitElement {
       <section class="container">
         <work-header>julieanneCodes</work-header>
         <approval-table></approval-table>
-          <vacation-table></vacation-table>
       </section>
     `;
   }
