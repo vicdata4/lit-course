@@ -15,12 +15,12 @@ class ApprovalTable extends LitElement {
       sortedEmployees: { type: Array },
       statuses: { type: Array },
       currentDate: { type: String },
-      orderValue: { type: String },
       orderType: { type: Array },
       nEmployees: { type: Number },
       steps: { type: Array },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
+      index: { type: Number }
     };
   }
 
@@ -29,38 +29,63 @@ class ApprovalTable extends LitElement {
     this.tableTitles = ['Nombre del empleado', 'Fecha de Solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de estado'];
     this.statuses = ['Pendiente de aprobación', 'Aprobado', 'No aprobado'];
     this.currentDate = new Date();
-    this.orderValue = 'asc';
     this.requests = [...employeeList];
     this.sortedEmployees = [];
-    this.orderType = ['nombre', 'fSolicitud'];
+    this.orderType = ['name', 'applicationD'];
     this.steps = [];
     this.nEmployees = 4;
     this.from = 0;
+    this.index = 0;
     this.to = this.nEmployees;
   }
 
   sendStatus(e) {
-    const objId = e.target.id;
+    const objId = parseInt(e.target.id);
     const status = e.target.value;
+    const empFound = this.requests.find(item => item.id === objId);
 
-    this.requests[objId].estado = status;
-    this.requests[objId].fechaEstado = this.currentDate;
+    empFound.status = status;
+    empFound.statusDate = this.currentDate;
     this.requests = [...this.requests];
   }
 
   orderEmployees(e) {
     this.sortedEmployees = orderItems(this.requests, e.target.id);
     this.requests = [...this.sortedEmployees];
-    console.log(this.requests);
-    e.currentTarget.classList.add('rotated');
+
+    if (e.target.value === 'asc') {
+      e.target.value = 'desc';
+      e.currentTarget.classList.add('rotated');
+    } else {
+      this.requests.reverse();
+      e.target.value = 'asc';
+      e.currentTarget.classList.remove('rotated');
+    }
+    this.showPartOf(0);
+  }
+
+  showPartOf(index) {
+    this.index = index;
+    this.from = this.nEmployees * this.index;
+    this.to = this.from + this.nEmployees;
+  }
+
+  prevOrNext(e) {
+    if (e.target.id === 'leftB' && this.index > 0) {
+      this.index -= 1;
+    }
+    if (e.target.id === 'rightB' && this.index < this.steps.length - 1) {
+      this.index += 1;
+    }
+    this.showPartOf(this.index);
   }
 
   renderStepper() {
     return html`
     <div class="stepper">
-      <button class="left">&#x25C0;</button>
-      ${this.steps.map((step, i) => html`<button id="${i}" class="bSteps">${i + 1}</button>`)}
-      <button class="right">&#x25BA;</button>
+      <button class="left" id="leftB" @click="${this.prevOrNext}">&#x25C0;</button>
+      ${this.steps.map((step, i) => html`<button id="${i}" class="bSteps" @click="${() => this.showPartOf(i)}">${i + 1}</button>`)}
+      <button class="right" id="rightB" @click="${this.prevOrNext}">&#x25BA;</button>
     </div>
     `;
   }
@@ -87,18 +112,19 @@ class ApprovalTable extends LitElement {
                   <button id="${this.orderType[i]}" class="btOrder" value="asc" @click="${this.orderEmployees}">&#x25B2;</button>` : nothing}</th>
             `)}
           </tr>
-          ${this.requests.slice(this.from, this.to).map((item, i) => html`
-            <tr>
-              <td>${item.nombre}</td>
-              <td>${dateFormatter(item.fSolicitud).sCurrentDate}</td>
-              <td>${dateFormatter(item.fInicio).sCurrentDate}</td>
-              <td>${dateFormatter(item.fFin).sCurrentDate}</td>
+          ${this.requests.slice(this.from, this.to).map((empl, i) => html`
+            <tr id="${empl.id}">
+              <td>${empl.name}</td>
+              <td>${dateFormatter(empl.applicationD).sCurrentDate}</td>
+              <td>${dateFormatter(empl.startDate).sCurrentDate}</td>
+              <td>${dateFormatter(empl.endingDate).sCurrentDate}</td>
               <td>
-                <select id="${i}" @change="${this.sendStatus}" >${this.statuses.map(items => html`
-                  <option value=${items}>${items}</option>`)}
+                <select id="${empl.id}" @change="${this.sendStatus}" >
+               ${this.statuses.map(items => html`
+                  <option value="${items}">${items}</option>`)}
                 </select>
               </td>
-              <td>${dateFormatter(item.fechaEstado).sCurrentDate}</td>
+              <td>${dateFormatter(empl.statusDate).sCurrentDate}</td>
             </tr>
           `)}
         </table>
