@@ -261,7 +261,7 @@ class VacationRequest extends LitElement {
             <tr>  
               <th>
                 <label for="FechadeSolicitud">Fecha de solicitud</label>
-                <button @click="${() => this.orderList('fsolicitud')}" >ordenar</button></th>
+                <button @click="${() => this.orderList('fsolicitud')}" ><img src="./assets/sort.png" ></button></th>
               </th>
               <th>
                 <label for="FechadeInicio">Fecha de inicio</label>
