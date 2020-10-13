@@ -14,6 +14,20 @@ export const getDate = (date, reverse = false) => {
   }
 };
 
+export const checkDate = (start, end) => {
+  const actualDate = new Date();
+  const dateHasValue = start !== null && start !== '' && end !== null && end !== '';
+  if (dateHasValue) {
+    // Comprobamos que la fecha elegida sea mayor que la actual
+    if ((start.getTime() > actualDate.getTime())) {
+      // Comprobamos que la fecha de inicio sea menor que la de final
+      if ((start.getTime() < end.getTime())) {
+        return true;
+      }
+    }
+  }
+};
+
 /**
   * @desc Retorna un string con la fecha en formado dd/mm/yyyy
   * @param Object Date

@@ -5,7 +5,6 @@ import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-form/components/vacation-form';
 import './components/admin-vacation-form/components/admin-vacation-form';
-import './components/pagination-component/pagination-view';
 
 class AntoniomaracilPage extends LitElement {
   static get styles() {
@@ -34,10 +33,9 @@ class AntoniomaracilPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>antoniomaracil</work-header>
-        <pagination-view></pagination-view>
         <h2 style="text-align:center;">Vacation Form</h2>
         <hr>
-        <vacation-form @update-array="${this.updateArray}" .arrVacation="${this.arrVacation}"></vacation-form>
+        <vacation-form @update-array="${this.updateArray}" .nElements="${10}"></vacation-form>
         <hr>
         <h2 style="text-align:center;">Admin vacation Form</h2>
         <hr>
