@@ -19,6 +19,7 @@ import './works/efim93/efim93-page';
 import './works/ikeyvin/ikeyvin-page';
 import './works/hck3791/hck3791-page';
 import './works/hck3791/components/candidate-component';
+import './works/hck3791/components/request-component';
 import './works/jhumekes/jhumekes-page';
 import './works/julieannecodes/julieannecodes-page';
 import './works/xbeni/xbeni-page';
@@ -40,7 +41,10 @@ export const routing = function() {
     { path: '(.*)', component: 'not-found-view' }
   ];
 
-  routes.unshift({ path: '/hck3791-comp', component: 'candidate-component' });
+  routes.unshift(
+    { path: '/hck3791-comp', component: 'candidate-component' },
+    { path: '/request', component: 'request-component' }
+  );
 
   users.forEach(user => {
     routes.unshift(
