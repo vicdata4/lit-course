@@ -112,18 +112,22 @@ class PaginationComponent extends LitElement {
     this.from = 0;
     this.to = this.nElements;
     this.index = 0;
-    console.log(this.from);
-    console.log(this.to);
+    this.id = 0;
   }
 
   async firstUpdated() {
+    this.updateStepper();
+  }
+
+  async updateStepper() {
     let nPages = Math.ceil(this.list.length / this.nElements);
-    if (nPages === 0) { nPages = 1; }
+    if (nPages === 0) { nPages = 1; };
     this.stepper = new Array(nPages).fill({});
-    this.to = this.nElements;
 
     await this.updateComplete;
+    this.index = this.stepper.length - 1;
     this.setActiveStep(this.index);
+    this.showPage(this.index);
   }
 
   add() {
@@ -133,8 +137,8 @@ class PaginationComponent extends LitElement {
 
     this.vacation = {
       id: this.id,
-      applicationDate: formatDate(this.actualDate),
       startDate: formatDate(start),
+      applicationDate: formatDate(this.actualDate),
       endDate: formatDate(end),
       status: 'Pendiente de aprobación',
       statusDate: formatDate(this.actualDate, true)
@@ -142,8 +146,7 @@ class PaginationComponent extends LitElement {
 
     this.list.push(this.vacation);
     this.id++;
-    this.firstUpdated();
-    this.requestUpdate();
+    this.updateStepper();
   }
 
   removeRow(e) {
@@ -155,8 +158,7 @@ class PaginationComponent extends LitElement {
       }
     }
     this.list.splice(index, 1);
-    const nPages = Math.ceil(this.list.length / this.nElements);
-    this.stepper = new Array(nPages).fill({});
+    this.updateStepper();
     this.requestUpdate();
   }
 
@@ -190,26 +192,26 @@ class PaginationComponent extends LitElement {
   }
 
   orderList(column) {
-    const orderedList = this.list.slice(this.from, this.to).sort((a, b) => {
-      if (a[column] < b[column]) return -1;
-      if (a[column] > b[column]) return 1;
+    const oldList = [...this.list];
+    const orderedList = this.list.sort((a, b) => {
+      if (
+        getDate(a[column], true).getTime() >
+        getDate(b[column], true).getTime()
+      ) {
+        return 1;
+      } else if (
+        getDate(a[column], true).getTime() <
+        getDate(b[column], true).getTime()) {
+        return -1;
+      }
       return 0;
     });
-
-    if (JSON.stringify(this.list.slice(this.from, this.to)) === JSON.stringify((orderedList))) {
+    if (JSON.stringify(oldList) === JSON.stringify((orderedList))) {
       orderedList.reverse();
     }
-
-    const newList = [...this.list];
-    let index = this.from;
-
-    orderedList.forEach(orderedItem => {
-      const element = this.list.find(item => item.id === orderedItem.id);
-      newList[index] = element;
-      index++;
-    });
-
-    this.list = [...newList];
+    this.list = orderedList;
+    this.requestUpdate();
+    this.showPage(0);
   }
 
   renderStepper() {
