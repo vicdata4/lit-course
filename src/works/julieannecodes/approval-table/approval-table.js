@@ -112,7 +112,7 @@ class ApprovalTable extends LitElement {
                   <button id="${this.orderType[i]}" class="btOrder" value="asc" @click="${this.orderEmployees}">&#x25B2;</button>` : nothing}</th>
             `)}
           </tr>
-          ${this.requests.slice(this.from, this.to).map((empl, i) => html`
+          ${this.requests.slice(this.from, this.to).map(empl => html`
             <tr id="${empl.id}">
               <td>${empl.name}</td>
               <td>${dateFormatter(empl.applicationD).sCurrentDate}</td>
@@ -120,8 +120,9 @@ class ApprovalTable extends LitElement {
               <td>${dateFormatter(empl.endingDate).sCurrentDate}</td>
               <td>
                 <select id="${empl.id}" @change="${this.sendStatus}" >
-               ${this.statuses.map(items => html`
-                  <option value="${items}">${items}</option>`)}
+                  <option>${empl.status}</option>
+                  ${this.statuses.map(stat => html`
+                    ${empl.status.toUpperCase() !== stat.toUpperCase() ? html`<option value="${stat}">${stat}</option>` : nothing}`)}
                 </select>
               </td>
               <td>${dateFormatter(empl.statusDate).sCurrentDate}</td>
