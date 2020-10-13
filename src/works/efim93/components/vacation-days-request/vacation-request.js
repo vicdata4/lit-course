@@ -113,13 +113,16 @@ class VacationRequest extends LitElement {
           fsolicitud: formatDate(new Date()).completo,
           inicio: formatDate(fIni.value).default,
           final: formatDate(fFin.value).default,
-          estado: false,
+          estado: 0,
           festado: formatDate(new Date()).completo
         };
         this.listaDatos = [...[item], ...this.listaDatos];
         fIni.value = null;
         fFin.value = null;
         alerta.style.display = 'none';
+      } else {
+        fIni.value = '';
+        fFin.value = '';
       }
     }
   };
@@ -139,10 +142,7 @@ class VacationRequest extends LitElement {
   compruebaEstado(index) {
     for (const item in this.listaDatos) {
       if ([item].includes(index.toString())) {
-        if (this.listaDatos[item].estado) {
-          return true;
-        }
-        return false;
+        return this.listaDatos[item].estado;
       }
     }
   }
@@ -150,7 +150,7 @@ class VacationRequest extends LitElement {
   deleteArray(index) {
     const alerta = this.shadowRoot.querySelector('#alerta');
     const est = this.compruebaEstado(index);
-    if (est) {
+    if ([0, 2].includes(est)) {
       const array = this.listaDatos;
       array.splice(index, 1);
       this.listaDatos = [...array];
@@ -179,6 +179,17 @@ class VacationRequest extends LitElement {
         out.setAttribute('max', `${yy + 1}-12-31`);
       }
     }
+  }
+
+  getEstado(es) {
+    switch (es) {
+      case 1:
+        return 'Aprobado';
+      case 2:
+        return 'No Aprobado';
+      default:
+        return 'Pendiente de Aprobación';
+    };
   }
 
   orderList(column) {
@@ -295,7 +306,9 @@ class VacationRequest extends LitElement {
                 <td>${item.fsolicitud}</td>
                 <td>${item.inicio}</td>
                 <td>${item.final}</td>
-                <td>${item.estado ? 'Aprobado' : 'Pendiente de Aprobación'}</td>
+                <td>
+                  ${this.getEstado(item.estado)}
+                </td>
                 <td>${item.festado}</td>
                 <td><button @click="${() => this.deleteArray(i)}">${svgTrash}</button></td>
               </tr> `)}
