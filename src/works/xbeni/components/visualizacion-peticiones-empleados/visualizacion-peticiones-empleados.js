@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
 import { item008ListaPeStyles } from '../../archivos_comunes/ac_item008/styles/styles_items008';
 import { CONSTANTS_ITEM008 } from '../../archivos_comunes/ac_item008/constants/constants_item008';
@@ -54,7 +53,7 @@ class BeniListaPe extends LitElement {
                 <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.idResultadosFechaPublicacion}">18/08/2020</label>
               </div>
               <div class="div_controles_detalles_pe">
-                <div @click="${this.hidden_date_results}" class="div_x_header_pe">
+                <div @click="${this.hiddenDateResults}" class="div_x_header_pe">
                   ${svgBeniX}
                 </div>
               </div>
@@ -84,7 +83,7 @@ class BeniListaPe extends LitElement {
         ${Object.keys(this.datosListaPe).map(item => html`
           <tr>
             <td>
-              <label @click=${() => this.load_date_results(this.datosListaPe[item].id_peticion, this.datosListaPe[item].titulo, this.datosListaPe[item].fecha_publicacion)} class="label_titulo_tabla_pe">
+              <label @click=${() => this.loadDateResults(this.datosListaPe[item].id_peticion, this.datosListaPe[item].titulo, this.datosListaPe[item].fecha_publicacion)} class="label_titulo_tabla_pe">
                 ${this.datosListaPe[item].titulo}
               </label>
             </td>
@@ -99,16 +98,15 @@ class BeniListaPe extends LitElement {
     `;
   }
 
-  hidden_date_results() {
+  hiddenDateResults() {
     this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'none';
   }
 
-  load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosTitulo).textContent = titulo_peticion;
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosFechaPublicacion).textContent = fecha_peticion;
+  loadDateResults(idPeticion, tituloPeticion, fechaPeticion) {
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosTitulo).textContent = tituloPeticion;
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosFechaPublicacion).textContent = fechaPeticion;
     // SOLICITUD AJAX QUE RPEGUNTE POR LA DESCRIPCION
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosDescripcionPublicacion).textContent = getDatosDescripcionPe(id_peticion);
-
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosDescripcionPublicacion).textContent = getDatosDescripcionPe(idPeticion);
     this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'block';
   }
 }
