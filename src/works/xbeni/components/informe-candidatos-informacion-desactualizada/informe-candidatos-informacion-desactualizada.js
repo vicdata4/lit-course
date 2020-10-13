@@ -1,10 +1,10 @@
 /* eslint-disable prefer-const */
 /* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
-import { item002ListaCipaStyles } from '../../archivos_comunes/ac_item002/styles';
-import { CONSTANTS_ITEM002 } from '../../archivos_comunes/ac_item002/constantes';
-import { svgBeniX, svgBeniOrdenarString, svgBeniOrdenarOther, svgBeniOrdenarInt, svgBeniCircleRed, svgBeniCircleYellow } from '../../archivos_comunes/ac_item002/svc_icons';
-import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_item002/mocks';
+import { item002ListaCipaStyles } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/styles';
+import { CONSTANTS_ITEM002 } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/constantes';
+import { svgBeniX, svgBeniOrdenarString, svgBeniOrdenarOther, svgBeniOrdenarInt, svgBeniCircleRed, svgBeniCircleYellow } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/svc_icons';
+import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/mocks';
 
 export class BeniListaCipa extends LitElement {
   constructor() {
