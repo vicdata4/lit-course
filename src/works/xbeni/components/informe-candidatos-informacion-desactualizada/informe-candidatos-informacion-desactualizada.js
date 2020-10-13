@@ -8,7 +8,6 @@ import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_infor
 export class BeniListaCipa extends LitElement {
   constructor() {
     super();
-    // datosCipa > ES DONDE SE CARGAN LOS DATOS PARA QUE EL OBJETO FUNCIONE CORRECTAMENTE | EXTRAERLOS CON AJAX DE LA BASE DATOS*/
     this.datosCipa = cargarInformacionCandidatosCipa();
     this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
   }
