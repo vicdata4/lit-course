@@ -9,14 +9,14 @@ class BeniListaPe extends LitElement {
   static get properties() {
     return {
       tituloLista: { type: String },
-      datos_lista_pe: { type: Object }
+      datosListaPe: { type: Object }
     };
   }
 
   constructor() {
     super();
     this.tituloLista = 'Lista de peticiones';
-    this.datos_lista_pe = extraerDatosListaPe();
+    this.datosListaPe = extraerDatosListaPe();
   }
 
   static get styles() {
@@ -40,18 +40,18 @@ class BeniListaPe extends LitElement {
               </div>
             </div>
           </div>
-          <div id="${CONSTANTS_ITEM008.id_body_detalles_pe}" class="div_body_resultados_pe">
+          <div id="${CONSTANTS_ITEM008.idBodyDetallesPe}" class="div_body_resultados_pe">
           <div>
             <div class="div_resultados_pe_campos">
               <div class="div_resultados_titulo_pe">
                 <label class="texto_resultados_pe">Titulo: </label>
-                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.id_resultados_titulo}"> Analista
+                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.idResultadosTitulo}"> Analista
                   Programador
                   Java</label>
                 </div>
               <div class="div_resultados_fecha_publicacion_pe">
                 <label class="texto_resultados_pe">Fecha publicacion: </label>
-                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.id_resultados_fecha_publicacion}">18/08/2020</label>
+                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.idResultadosFechaPublicacion}">18/08/2020</label>
               </div>
               <div class="div_controles_detalles_pe">
                 <div @click="${this.hidden_date_results}" class="div_x_header_pe">
@@ -62,7 +62,7 @@ class BeniListaPe extends LitElement {
           </div>
           <div class="div_resultados_descripcion_pe">
             <label class="texto_resultados_pe">Descripcion:</label><br>
-            <textarea disabled id="${CONSTANTS_ITEM008.id_resultados_descripcion_publicacion}" class="textarea_resultados_pe"></textarea>
+            <textarea disabled id="${CONSTANTS_ITEM008.idResultadosDescripcionPublicacion}" class="textarea_resultados_pe"></textarea>
           </div>
         </div>
       </div>
@@ -81,16 +81,16 @@ class BeniListaPe extends LitElement {
             <label>Fecha de publicación</label>
           </th>
         </tr>
-        ${Object.keys(this.datos_lista_pe).map(item => html`
+        ${Object.keys(this.datosListaPe).map(item => html`
           <tr>
             <td>
-              <label @click=${() => this.load_date_results(this.datos_lista_pe[item].id_peticion, this.datos_lista_pe[item].titulo, this.datos_lista_pe[item].fecha_publicacion)} class="label_titulo_tabla_pe">
-                ${this.datos_lista_pe[item].titulo}
+              <label @click=${() => this.load_date_results(this.datosListaPe[item].id_peticion, this.datosListaPe[item].titulo, this.datosListaPe[item].fecha_publicacion)} class="label_titulo_tabla_pe">
+                ${this.datosListaPe[item].titulo}
               </label>
             </td>
             <td>
               <label>
-                ${this.datos_lista_pe[item].fecha_publicacion}
+                ${this.datosListaPe[item].fecha_publicacion}
               </label>
             </td>
           </tr>
@@ -100,16 +100,16 @@ class BeniListaPe extends LitElement {
   }
 
   hidden_date_results() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'none';
   }
 
   load_date_results(id_peticion, titulo_peticion, fecha_peticion) {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_titulo).textContent = titulo_peticion;
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_fecha_publicacion).textContent = fecha_peticion;
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosTitulo).textContent = titulo_peticion;
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosFechaPublicacion).textContent = fecha_peticion;
     // SOLICITUD AJAX QUE RPEGUNTE POR LA DESCRIPCION
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_resultados_descripcion_publicacion).textContent = getDatosDescripcionPe(id_peticion);
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosDescripcionPublicacion).textContent = getDatosDescripcionPe(id_peticion);
 
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.id_body_detalles_pe).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'block';
   }
 }
 
