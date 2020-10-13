@@ -127,6 +127,15 @@ class VacationRequest extends LitElement {
     }
   };
 
+  verifica() {
+    const fIni = this.shadowRoot.querySelector('#fechaIni');
+    const fFin = this.shadowRoot.querySelector('#fechaFin');
+    if (fIni.value === '') {
+      fFin.value = '';
+      fIni.focus();
+    }
+  }
+
   compruebaRangos(f) {
     const alerta = this.shadowRoot.querySelector('#alerta');
     for (const item in this.listaDatos) {
@@ -270,7 +279,7 @@ class VacationRequest extends LitElement {
           <label for="fechaInicio" >Fecha Inicio</label>
           <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${formatDate(new Date()).amd}" max="${formatDate(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
           <label for="fechaFin" >Fecha Fin</label>
-          <input type="date" class="btn-clck" id="fechaFin" />
+          <input type="date" class="btn-clck" id="fechaFin" @blur="${this.verifica}" />
           <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
           <div class="alert alert-danger" role="alert" id="alerta">${this.mensaje}</div>
           <br />
