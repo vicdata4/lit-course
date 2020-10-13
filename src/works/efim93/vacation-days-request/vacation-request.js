@@ -174,6 +174,23 @@ class VacationRequest extends LitElement {
     }
   }
 
+  orderList(column) {
+    const myList = [...this.listaDatos];
+
+    const orderedList = myList.sort((a, b) => {
+      if (a[column] < b[column]) return -1;
+      if (a[column] > b[column]) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.listaDatos) === JSON.stringify((orderedList))) {
+      orderedList.reverse();
+    }
+
+    this.listaDatos = [...orderedList];
+    this.showPage(0);
+  }
+
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
       if (propName.includes('listaDatos')) {
@@ -230,39 +247,56 @@ class VacationRequest extends LitElement {
     return html`
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <section class="container">
-    <h1>Solicitud de Vacaciones</h1>
-        <label for="fechaInicio" >Fecha Inicio</label>
-        <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${formatDate(new Date()).amd}" max="${formatDate(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
-        <label for="fechaFin" >Fecha Fin</label>
-        <input type="date" class="btn-clck" id="fechaFin" />
-        <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
-        <div class="alert alert-danger" role="alert" id="alerta">${this.mensaje}</div>
-        <br />
-        <table id="tabla" class="table table-striped">
-          <thead>
-          <tr>  
-            <th>Fecha de solicitud</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha Final</th>
-            <th>Estado</th>
-            <th>Fecha de Estado</th>
-            <th>Eliminar</th>
-          </tr>
-          </thead>
-           <tbody>   
-        ${this.listaDatos.slice(this.from, this.to).map((item, i) => html`  
-            <tr>
-            <td>${item.fsolicitud}</td>
-            <td>${item.inicio}</td>
-            <td>${item.final}</td>
-            <td>${item.estado ? 'Aprobado' : 'Pendiente de Aprobación'}</td>
-            <td>${item.festado}</td>
-            <td><button @click="${() => this.deleteArray(i)}">borrar</button></td>
-            </tr> `)}
-          </tbody>       
-        </table>
+      <h1>Solicitud de Vacaciones</h1>
+        <div>
+          <label for="fechaInicio" >Fecha Inicio</label>
+          <input type="date" class="btn-clck" id="fechaIni" name="fechaIni" min="${formatDate(new Date()).amd}" max="${formatDate(new Date()).year + 1}-12-31" @blur="${this.calculaFin}"  />
+          <label for="fechaFin" >Fecha Fin</label>
+          <input type="date" class="btn-clck" id="fechaFin" />
+          <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
+          <div class="alert alert-danger" role="alert" id="alerta">${this.mensaje}</div>
+          <br />
+          <table id="tabla" class="table table-striped">
+            <thead>
+            <tr>  
+              <th>
+                <label for="FechadeSolicitud">Fecha de solicitud</label>
+                <button @click="${() => this.orderList('fsolicitud')}" >ordenar</button></th>
+              </th>
+              <th>
+                <label for="FechadeInicio">Fecha de inicio</label>
+                <button @click="${() => this.orderList('inicio')}" >ordenar</button></th>
+              </th>
+              <th>
+                <label for="fechafinal">Fecha Final</label>
+                <button @click="${() => this.orderList('final')}" >ordenar</button></th>
+              </th>
+              <th>
+                <label for="estado">Estado</label>
+              </th>
+              <th>
+                <label for="fechadeestado">Fecha de Estado</label>
+              </th>
+              <th>
+                <label for="eliminar">Eliminar</label>
+              </th>
+            </tr>
+            </thead>
+            <tbody>   
+              ${this.listaDatos.slice(this.from, this.to).map((item, i) => html`  
+              <tr>
+                <td>${item.fsolicitud}</td>
+                <td>${item.inicio}</td>
+                <td>${item.final}</td>
+                <td>${item.estado ? 'Aprobado' : 'Pendiente de Aprobación'}</td>
+                <td>${item.festado}</td>
+                <td><button @click="${() => this.deleteArray(i)}">borrar</button></td>
+              </tr> `)}
+            </tbody>       
+          </table>
           <div id="paginator">${this.renderStepper()}</div>
-</section>`;
+        </div>
+      </section>`;
   }
 }
 
