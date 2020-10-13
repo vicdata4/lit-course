@@ -7,11 +7,7 @@ table {
   }
 
   tr {
-    text-align: left;
-  }
-
-  td {
-    min-width: 200px; 
+    text-align: center;
   }
 
   .order {
@@ -51,5 +47,14 @@ table {
 
   .stepper, .step {
     user-select: none;
+  }
+
+  .svg_sort, .svg_trash{
+    width: 15px;
+    height: auto;
+    margin: 0;
+    cursor: pointer;
+    overflow: visible;
+    fill: #000;
   }
 `;
