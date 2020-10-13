@@ -21,89 +21,81 @@ class CandidatesComponent extends LitElement {
   constructor() {
     super();
     this.candidates = candidates;
-    this.orderedCandidatesList = this.candidates;
-    this.typeOrder = '';
   }
 
   sortByName() {
-    if (this.typeOrder !== 'ordered') {
-      this.typeOrder = 'ordered';
-      this.orderedCandidatesList.sort((a, b) => {
-        console.log(a.name, b.name);
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-      });
-    } else {
-      this.typeOrder = '';
-      this.orderedCandidatesList.reverse();
+    const toOrder = [...this.candidates];
+    const orderedCandidatesList = toOrder.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
+      orderedCandidatesList.reverse();
     }
 
-    this.requestUpdate();
+    this.candidates = [...orderedCandidatesList];
   }
 
   sortByEmail() {
-    if (this.typeOrder !== 'ordered') {
-      this.typeOrder = 'ordered';
-      this.orderedCandidatesList.sort((a, b) => {
-        if (a.email < b.email) return -1;
-        if (a.email > b.email) return 1;
-        return 0;
-      });
-    } else {
-      this.typeOrder = '';
-      this.orderedCandidatesList.reverse();
+    const toOrder = [...this.candidates];
+    const orderedCandidatesList = toOrder.sort((a, b) => {
+      if (a.email < b.email) return -1;
+      if (a.email > b.email) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
+      orderedCandidatesList.reverse();
     }
 
-    this.requestUpdate();
+    this.candidates = [...orderedCandidatesList];
   }
 
   sortByOnStaff() {
-    if (this.typeOrder !== 'ordered') {
-      this.typeOrder = 'ordered';
-      this.orderedCandidatesList.sort((a, b) => {
-        if (a.onStaff > b.onStaff) return -1;
-        if (a.onStaff < b.onStaff) return 1;
-        return 0;
-      });
-    } else {
-      this.typeOrder = '';
-      this.orderedCandidatesList.reverse();
+    const toOrder = [...this.candidates];
+    const orderedCandidatesList = toOrder.sort((a, b) => {
+      if (a.onStaff < b.onStaff) return -1;
+      if (a.onStaff > b.onStaff) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
+      orderedCandidatesList.reverse();
     }
 
-    this.requestUpdate();
+    this.candidates = [...orderedCandidatesList];
   }
 
   sortByLastUpdate() {
-    if (this.typeOrder !== 'ordered') {
-      this.typeOrder = 'ordered';
-      this.orderedCandidatesList.sort((a, b) => {
-        if (a.lastUpdate < b.lastUpdate) return -1;
-        if (a.lastUpdate > b.lastUpdate) return 1;
-        return 0;
-      });
-    } else {
-      this.typeOrder = '';
-      this.orderedCandidatesList.reverse();
+    const toOrder = [...this.candidates];
+    const orderedCandidatesList = toOrder.sort((a, b) => {
+      if (a.lastUpdate < b.lastUpdate) return -1;
+      if (a.lastUpdate > b.lastUpdate) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
+      orderedCandidatesList.reverse();
     }
 
-    this.requestUpdate();
+    this.candidates = [...orderedCandidatesList];
   }
 
   sortByExpDate() {
-    if (this.typeOrder !== 'ordered') {
-      this.typeOrder = 'ordered';
-      this.orderedCandidatesList.sort((a, b) => {
-        if (a.expirationDate < b.expirationDate) return -1;
-        if (a.expirationDate > b.expirationDate) return 1;
-        return 0;
-      });
-    } else {
-      this.typeOrder = '';
-      this.orderedCandidatesList.reverse();
+    const toOrder = [...this.candidates];
+    const orderedCandidatesList = toOrder.sort((a, b) => {
+      if (a.expirationDate < b.expirationDate) return -1;
+      if (a.expirationDate > b.expirationDate) return 1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
+      orderedCandidatesList.reverse();
     }
 
-    this.requestUpdate();
+    this.candidates = [...orderedCandidatesList];
   }
 
   render() {
@@ -149,7 +141,7 @@ class CandidatesComponent extends LitElement {
           </tr>
         </thead>
         <tbody id="candidatesTableBody">
-        ${this.orderedCandidatesList.map((candidate) => {
+        ${this.candidates.map((candidate) => {
             return html`
             <tr>
               <td><a href="/hck3791-comp?id=${candidate.id}">${candidate.name}</a></td>
