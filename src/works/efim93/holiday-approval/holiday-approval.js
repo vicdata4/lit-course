@@ -31,6 +31,25 @@ class HolidayApproval extends LitElement {
     this.index = 0;
   }
 
+  showOptions(element) {
+    if (element === 2) {
+      return html`
+        <option value="0">${this.getEstado(0)}</option>
+        <option value="1">${this.getEstado(1)}</option>
+        `;
+    } else if (element === 1) {
+      return html`
+        <option value="0">${this.getEstado(0)}</option>
+        <option value="2">${this.getEstado(2)}</option>
+        `;
+    } else {
+      return html`
+        <option value="1">${this.getEstado(1)}</option>
+        <option value="2">${this.getEstado(2)}</option>
+        `;
+    }
+  }
+
   getEstado(es) {
     switch (es) {
       case 1:
@@ -143,7 +162,12 @@ class HolidayApproval extends LitElement {
                     <td>${item.fecha_solicitud}</td>
                     <td>${item.fecha_inicio}</td>
                     <td>${item.fecha_fin}</td>
-                    <td>${this.getEstado(item.estado)}</td>
+                    <td>
+                        <select id="selectEstado" name="selectEstado">
+                            <option value="${item.estado}" selected>${this.getEstado(item.estado)}</option>
+                            ${this.showOptions(item.estado)};   
+                        </select>
+                    </td>
                     <td>${item.fecha_estado}</td>
                 </tr> `)}
             </tbody>       
