@@ -29,5 +29,6 @@ export const stepperStyles = css`
     .selected {
       background-color: black;
       color: white;
+      border: none;
     }
 `;
