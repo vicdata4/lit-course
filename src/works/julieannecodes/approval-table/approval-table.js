@@ -64,10 +64,22 @@ class ApprovalTable extends LitElement {
     this.showPartOf(0);
   }
 
+  setActiveStep(index) {
+    this.shadowRoot.querySelectorAll('.bSteps').forEach(cButton => {
+      if (parseInt(cButton.id) === index) {
+        cButton.classList.add('selected');
+      } else {
+        cButton.classList.remove('selected');
+      }
+    });
+  }
+
   showPartOf(index) {
     this.index = index;
     this.from = this.nEmployees * this.index;
     this.to = this.from + this.nEmployees;
+
+    this.setActiveStep(index);
   }
 
   prevOrNext(e) {
@@ -97,6 +109,9 @@ class ApprovalTable extends LitElement {
     const nPages = Math.ceil(this.requests.length / this.nEmployees);
     this.steps = new Array(nPages).fill({});
     this.to = this.nEmployees;
+
+    await this.updateComplete;
+    this.setActiveStep(this.index);
   }
 
   render() {
@@ -104,31 +119,33 @@ class ApprovalTable extends LitElement {
       <div class="container">
         <h1>Solicitud de vacaciones</h1>
         ${this.renderStepper()}
-        <table>
-          <tr>
-            ${this.tableTitles.map((items, i) => html`
-              <th>${items} ${items === 'Nombre del empleado' ||
-                  items === 'Fecha de Solicitud' ? html`
-                  <button id="${this.orderType[i]}" class="btOrder" value="asc" @click="${this.orderEmployees}">&#x25B2;</button>` : nothing}</th>
-            `)}
-          </tr>
-          ${this.requests.slice(this.from, this.to).map(empl => html`
-            <tr id="${empl.id}">
-              <td>${empl.name}</td>
-              <td>${dateFormatter(empl.applicationD).sCurrentDate}</td>
-              <td>${dateFormatter(empl.startDate).sCurrentDate}</td>
-              <td>${dateFormatter(empl.endingDate).sCurrentDate}</td>
-              <td>
-                <select id="${empl.id}" @change="${this.sendStatus}" >
-                  <option>${empl.status}</option>
-                  ${this.statuses.map(stat => html`
-                    ${empl.status.toUpperCase() !== stat.toUpperCase() ? html`<option value="${stat}">${stat}</option>` : nothing}`)}
-                </select>
-              </td>
-              <td>${dateFormatter(empl.statusDate).sCurrentDate}</td>
+        <div class="tableDiv">
+          <table>
+            <tr>
+              ${this.tableTitles.map((items, i) => html`
+                <th>${items} ${items === 'Nombre del empleado' ||
+                    items === 'Fecha de Solicitud' ? html`
+                    <button id="${this.orderType[i]}" class="btOrder" value="asc" @click="${this.orderEmployees}">&#x25B2;</button>` : nothing}</th>
+              `)}
             </tr>
-          `)}
-        </table>
+            ${this.requests.slice(this.from, this.to).map(empl => html`
+              <tr id="${empl.id}">
+                <td>${empl.name}</td>
+                <td>${dateFormatter(empl.applicationD).sCurrentDate}</td>
+                <td>${dateFormatter(empl.startDate).sCurrentDate}</td>
+                <td>${dateFormatter(empl.endingDate).sCurrentDate}</td>
+                <td>
+                  <select id="${empl.id}" @change="${this.sendStatus}" >
+                    <option value="${empl.status}">${empl.status}</option>
+                    ${this.statuses.map(stat => html`
+                      ${empl.status.toUpperCase() !== stat.toUpperCase() ? html`<option value="${stat}">${stat}</option>` : nothing}`)}
+                  </select>
+                </td>
+                <td>${dateFormatter(empl.statusDate).sCurrentDate}</td>
+              </tr>
+            `)}
+          </table>
+        </div>
       </div>
         `;
   }
