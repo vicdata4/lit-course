@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 import { formatDate } from './utils/functions';
+import { svgArrowsSort, svgTrash } from '../../comun_files/svg-icons';
 
 class VacationRequest extends LitElement {
   static get styles() {
@@ -21,11 +22,7 @@ class VacationRequest extends LitElement {
     }
     
     tr {
-      text-align: left;
-    }
-
-    td {
-      min-width: 200px; 
+      text-align: center;
     }
 
     .order {
@@ -66,6 +63,16 @@ class VacationRequest extends LitElement {
     .stepper, .step {
       user-select: none;
     }
+
+    .svg_sort, .svg_trash{
+      width: 15px;
+      height: auto;
+      margin: 0;
+      cursor: pointer;
+      overflow: visible;
+      fill: #000;
+    }
+
     `];
   }
 
@@ -261,15 +268,15 @@ class VacationRequest extends LitElement {
             <tr>  
               <th>
                 <label for="FechadeSolicitud">Fecha de solicitud</label>
-                <button @click="${() => this.orderList('fsolicitud')}" ><img src="./assets/sort.png" ></button></th>
+                <button @click="${() => this.orderList('fsolicitud')}" >${svgArrowsSort}</button></th>
               </th>
               <th>
                 <label for="FechadeInicio">Fecha de inicio</label>
-                <button @click="${() => this.orderList('inicio')}" >ordenar</button></th>
+                <button @click="${() => this.orderList('inicio')}" >${svgArrowsSort}</button></th>
               </th>
               <th>
                 <label for="fechafinal">Fecha Final</label>
-                <button @click="${() => this.orderList('final')}" >ordenar</button></th>
+                <button @click="${() => this.orderList('final')}" >${svgArrowsSort}</button></th>
               </th>
               <th>
                 <label for="estado">Estado</label>
@@ -290,7 +297,7 @@ class VacationRequest extends LitElement {
                 <td>${item.final}</td>
                 <td>${item.estado ? 'Aprobado' : 'Pendiente de Aprobación'}</td>
                 <td>${item.festado}</td>
-                <td><button @click="${() => this.deleteArray(i)}">borrar</button></td>
+                <td><button @click="${() => this.deleteArray(i)}">${svgTrash}</button></td>
               </tr> `)}
             </tbody>       
           </table>
