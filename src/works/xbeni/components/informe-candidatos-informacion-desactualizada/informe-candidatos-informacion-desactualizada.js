@@ -1,5 +1,4 @@
 /* eslint-disable prefer-const */
-/* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
 import { item002ListaCipaStyles } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/styles';
 import { CONSTANTS_ITEM002 } from '../../archivos_comunes/ac_informe-candidatos-informacion-desactualizada/constantes';
@@ -9,13 +8,15 @@ import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_infor
 export class BeniListaCipa extends LitElement {
   constructor() {
     super();
-    // datos_cipa > ES DONDE SE CARGAN LOS DATOS PARA QUE EL OBJETO FUNCIONE CORRECTAMENTE | EXTRAERLOS CON AJAX DE LA BASE DATOS*/
-    this.datos_cipa = cargarInformacionCandidatosCipa();
+    // datosCipa > ES DONDE SE CARGAN LOS DATOS PARA QUE EL OBJETO FUNCIONE CORRECTAMENTE | EXTRAERLOS CON AJAX DE LA BASE DATOS*/
+    this.datosCipa = cargarInformacionCandidatosCipa();
+    this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
   }
 
   static get properties() {
     return {
-      datos_cipa: { type: Object }
+      datosCipa: { type: Object },
+      tituloFormulario: { type: String }
     };
   }
 
@@ -27,313 +28,293 @@ export class BeniListaCipa extends LitElement {
 
   render() {
     return html`
-            <div class="div_slot_top">
-                <!-- CONTENIDO EXTERNO AL COMPONENTE TOP -->
-                <slot name="top">
-                </slot>
-            </div>
-            <div class="div_slot_defaul">
-                <!-- CONTENIDO EXTERNO AL COMPONENTE DEFAULT -->
-                <slot>
-                </slot> 
-            </div>
-            <div id="${CONSTANTS_ITEM002.div_body_abrir_cipa}" class="div_body_abrir_cipa">
-                <div class="div_button_abrir_cipa">
-                    <button @click="${this.hidden_body_abrir_cipa}" class="button_abrir_cipa" >Abrir lista de candidatos con información pendiente a actualizar </button>
-                </div>
-            </div>
-            <div id="${CONSTANTS_ITEM002.div_body_cipa}"  class="div_body_cipa">
-                <div class="div_header_cipa">
-                    <div class="div_titulo_cipa">
-                        <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
-                        <label class="titulo_header_cipa">${CONSTANTS_ITEM002.titulo_formulario}</label>
-                    </div>
-                    <div class="div_header_controles_cipa">
-                        <div @click="${this.hidden_body_cipa}" class="div_x_header_cipa">
-                            ${svgBeniX}
-                        </div>
-                    </div>
-                </div>
-                <div class="div_main_cipa">
-                    <!--  COMIENZO TABLA -->
-                    <table id="${CONSTANTS_ITEM002.table_id}" class="tabla_cipa">
-                        <!--  HEADER TABLA -->
-                        <tr>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>Nombre</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa(0, 'str')} class="campo_ordenar">
-                                        ${svgBeniOrdenarString}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_nombre_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>Correo electronico</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa(1, 'str')} class="campo_ordenar">
-                                        ${svgBeniOrdenarString}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_correo_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">
-                                <label>Telefono</label>
-                            </th>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>Perfil</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa(3, 'str')} class="campo_ordenar">
-                                        ${svgBeniOrdenarString}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_perfil_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>En plantilla</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa(4, 'str')} class="campo_ordenar">
-                                        ${svgBeniOrdenarOther}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_plantilla_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>Fecha de ultima actualizacion de datos</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa_fecha(5, 'fecha')} class="campo_ordenar">
-                                        ${svgBeniOrdenarInt}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_fua_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">
-                                <div class="div_flex_th_cipa">
-                                    <div>
-                                        <label>Fecha de vencimiento</label>
-                                    </div>
-                                    <div @click=${() => this.ordenar_tabla_string_cipa_fecha(6, 'fecha')} class="campo_ordenar">
-                                        ${svgBeniOrdenarInt}
-                                        <div class="div_texto_campo_ordenar">                    
-                                            <label id="${CONSTANTS_ITEM002.label_ordenar_fv_id}" class="texto_campo_ordenar"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </th>
-                            <th scope="row">Semaforo</th>
-                        </tr>
+      <div class="div_slot_top">
+        <slot name="top">
+        </slot>
+      </div>
 
-                        <!--  MAIN TABLA -->
-            
-                        <!-- EXTRAER DATOS DEL OBJETO POR CADA NIVEL -->
-                        <!--  COMIENZO MAIN TR -->
-                        ${Object.keys(this.datos_cipa).map(item =>
-    html`
-                        <tr>
-                            <td>
-                                <label class="label_nombre_candidato_cipa" @click=${() => this.dirigir_url_editar_candidato(this.datos_cipa[item].nombre)}>
-                                    ${this.cambiar_formato_nombre(this.datos_cipa[item].nombre)}
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    ${this.cambiar_formato_correo(this.datos_cipa[item].email)}
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    ${this.datos_cipa[item].telefono}
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    ${this.cambiar_formato_perfil(this.datos_cipa[item].perfil)}
-                                </label>
-                            </td>
-                            <td>
-                                <div class="checkbox">
-                                    ${this.datos_cipa[item].en_plantilla
+      <div class="div_slot_defaul">
+        <slot>
+        </slot> 
+      </div>
+
+      <div id="${CONSTANTS_ITEM002.divBodyAbrirCipa}" class="div_body_abrir_cipa">
+        <div class="div_button_abrir_cipa">
+          <button @click="${this.hiddenBodyAbrirCipa}" class="button_abrir_cipa" >Abrir lista de candidatos con información pendiente a actualizar </button>
+        </div>
+      </div>
+
+      <div id="${CONSTANTS_ITEM002.divBodyCipa}"  class="div_body_cipa">
+        <div class="div_header_cipa">
+          <div class="div_titulo_cipa">
+            <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
+            <label class="titulo_header_cipa">${this.tituloFormulario}</label>
+          </div>
+          <div class="div_header_controles_cipa">
+            <div @click="${this.hiddenBodyCipa}" class="div_x_header_cipa">
+              ${svgBeniX}
+            </div>
+          </div>
+        </div>
+        <div class="div_main_cipa">
+
+          <table id="${CONSTANTS_ITEM002.table_id}" class="tabla_cipa">
+
+            <!--  HEADER TABLA -->
+            <tr>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>Nombre</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaString(0, 'str')} class="campo_ordenar">
+                    ${svgBeniOrdenarString}
+                    <div class="div_texto_campo_ordenar">                    
+                      <label id="${CONSTANTS_ITEM002.labelOrdenarNombreId}" class="texto_campo_ordenar"></label>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>Correo electronico</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaString(1, 'str')} class="campo_ordenar">
+                    ${svgBeniOrdenarString}
+                      <div class="div_texto_campo_ordenar">                    
+                        <label id="${CONSTANTS_ITEM002.labelOrdenarCorreoId}" class="texto_campo_ordenar"></label>
+                      </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <label>Telefono</label>
+              </th>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>Perfil</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaString(3, 'str')} class="campo_ordenar">
+                    ${svgBeniOrdenarString}
+                    <div class="div_texto_campo_ordenar">                    
+                      <label id="${CONSTANTS_ITEM002.labelOrdenarPerfilId}" class="texto_campo_ordenar"></label>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>En plantilla</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaString(4, 'str')} class="campo_ordenar">
+                    ${svgBeniOrdenarOther}
+                    <div class="div_texto_campo_ordenar">                    
+                      <label id="${CONSTANTS_ITEM002.labelOrdenarPlantillaId}" class="texto_campo_ordenar"></label>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>Fecha de ultima actualizacion de datos</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaFecha(5, 'fecha')} class="campo_ordenar">
+                    ${svgBeniOrdenarInt}
+                    <div class="div_texto_campo_ordenar">                    
+                      <label id="${CONSTANTS_ITEM002.labelOrdenarFuaId}" class="texto_campo_ordenar"></label>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="div_flex_th_cipa">
+                  <div>
+                    <label>Fecha de vencimiento</label>
+                  </div>
+                  <div @click=${() => this.ordenarTablaCipaFecha(6, 'fecha')} class="campo_ordenar">
+                    ${svgBeniOrdenarInt}
+                    <div class="div_texto_campo_ordenar">                    
+                      <label id="${CONSTANTS_ITEM002.labelOrdenarFvId}" class="texto_campo_ordenar"></label>
+                    </div>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">Semaforo</th>
+            </tr>
+
+            <!--  MAIN TABLA -->
+            ${Object.keys(this.datosCipa).map(item => html`
+            <tr>
+              <td>
+                <label class="label_nombre_candidato_cipa" @click=${() => this.dirigirUrlEditarCandidato(this.datosCipa[item].nombre)}>
+                  ${this.cambiarFormatoNombre(this.datosCipa[item].nombre)}
+                </label>
+              </td>
+              <td>
+                <label>
+                  ${this.cambiarFormatoCorreo(this.datosCipa[item].email)}
+                </label>
+              </td>
+              <td>
+                <label>
+                  ${this.datosCipa[item].telefono}
+                </label>
+              </td>
+              <td>
+                <label>
+                  ${this.cambiarFormatoPerfil(this.datosCipa[item].perfil)}
+                </label>
+              </td>
+              <td>
+                <div class="checkbox">
+                  ${this.datosCipa[item].en_plantilla
     ? html`<input checked disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                                        <label for="checkbox1_${item}"></label>`
+                    <label for="checkbox1_${item}"></label>`
     : html`<input disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                                        <label for="checkbox1_${item}"></label>`
-}
-                                </div>
-                            </td>
-                            <td>
-                                <label>
-                                    ${this.datos_cipa[item].fecha_ultima_actualizacion}
-                                </label>
-                            </td>
-                            <td>
-                                <label>
-                                    ${this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)}
-                                </label>
-                            </td>
-                            <td>
-                                <div class="div_semaforo">
-${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'rojo'
+                    <label for="checkbox1_${item}"></label>
+                  `}
+                </div>
+              </td>
+              <td>
+                <label>
+                  ${this.datosCipa[item].fecha_ultima_actualizacion}
+                </label>
+              </td>
+              <td>
+                <label>
+                  ${this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)}
+                </label>
+              </td>
+              <td>
+                <div class="div_semaforo">
+        ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)) === 'rojo'
     ? html`${svgBeniCircleRed}`
-    : html` ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.datos_cipa[item].fecha_ultima_actualizacion)) === 'amarillo'
+    : html` ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)) === 'amarillo'
       ? html`${svgBeniCircleYellow}`
       : html``}
-`}
-                                </div>
-                            </td>
-                        </tr>
-                        `)}
-                    </table>
+        `}
                 </div>
-            </div>
-            <div class="div_slot_bottom">
-                <!-- CONTENIDO EXTERNO SLOT BOTTOM -->
-               <slot name="bottom">
-               </slot>
-            </div>
-        `;
+              </td>
+            </tr>
+            `)}
+          </table>
+
+        </div>
+      </div>
+
+      <div class="div_slot_bottom">
+        <slot name="bottom">
+        </slot>
+      </div>
+    `;
   }
 
-  hidden_body_cipa() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_cipa).style.display = 'none';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_abrir_cipa).style.display = 'block';
+  hiddenBodyCipa() {
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyCipa).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyAbrirCipa).style.display = 'block';
   }
 
-  hidden_body_abrir_cipa() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_cipa).style.display = 'block';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.div_body_abrir_cipa).style.display = 'none';
+  hiddenBodyAbrirCipa() {
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyCipa).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyAbrirCipa).style.display = 'none';
   }
 
-  dirigir_url_editar_candidato(id_candidato_a_editar) {
+  dirigirUrlEditarCandidato(idCandidatoEditar) {
     /* CUANDO SE INTRODUCA EN PRODUCCION EDITAR ESTA FUNCION PARA QUE REDIRIGA A EDITAR PERFIL DEL CANDIDATO CON ESTE NOMBRE O PASAR OTRO PARAMETRO DESDE LA BASE DE DATOS CON SU RESPECTIVO ID: EXTRAERLO DE LA FUNCION QUE CARGA POR DEFECTO EL CONSTRUCTOR RESULTADOS BASE DATOS JSON */
     // eslint-disable-next-line no-console
-    console.log('URL: REDIRIGIR URL - EDITAR CANDIDATO [ ' + id_candidato_a_editar + ' ]');
+    console.log('URL: REDIRIGIR URL - EDITAR CANDIDATO [ ' + idCandidatoEditar + ' ]');
   }
 
   /* CAMBIAR FORMATO PERFIL */
-  cambiar_formato_perfil(perfil) {
+  cambiarFormatoPerfil(perfil) {
     let resultado = perfil[0].toUpperCase() + perfil.slice(1);
     return resultado;
   }
 
   /* CAMBIAR FORMATO EMAIL - TODO MINUSCULAS */
-  cambiar_formato_correo(email) {
+  cambiarFormatoCorreo(email) {
     let resultado = email.toLowerCase();
     return resultado;
   }
 
   /* CAMBIAR FORMATO NOMBRE RECIBIDO - 1 MAYUSCULA - RESTO MINUSCULA */
-  cambiar_formato_nombre(nombre) {
+  cambiarFormatoNombre(nombre) {
     let dato = nombre.toLowerCase();
-    let array_datos = dato.split(' ');
+    let arrayDatos = dato.split(' ');
     let resultado = '';
 
-    for (let i = 0; i < array_datos.length; i++) {
-      if (i === array_datos.length - 1) {
-        resultado += array_datos[i][0].toUpperCase() + array_datos[i].slice(1);
+    for (let i = 0; i < arrayDatos.length; i++) {
+      if (i === arrayDatos.length - 1) {
+        resultado += arrayDatos[i][0].toUpperCase() + arrayDatos[i].slice(1);
       } else {
-        resultado += array_datos[i][0].toUpperCase() + array_datos[i].slice(1) + ' ';
+        resultado += arrayDatos[i][0].toUpperCase() + arrayDatos[i].slice(1) + ' ';
       }
     }
     return resultado;
   }
 
-  /* ATENCION HAY 2 FUNCIONES SIMILARES TENER CUIDADO CON CUAL SE EDITARA - UNIR LAS DOS FUNCIONES EN 1 CUANDO SE PUEDA */
-  /* FUNCION MODIFICADA PARA QUE ORDENE FECHAS - EXTENSION DE ORDENAR STRING E INT */
-  ordenar_tabla_string_cipa_fecha(n, type) {
+  ordenarTablaCipaFecha(n, type) {
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
-    /* EXTRAER EL NODO PADRE DE LA TABLA */
     table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
-    // Set the sorting direction to ascending:
     dir = 'asc';
-    /* INDICAR EL ORDEN QUE HAY SELECCIONADO EN EL DIV > LABEL ORDENAR */
+
     if (n === 5) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = 'ASC';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
     }
     if (n === 6) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = 'ASC';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
     }
-    /* Make a loop that will continue until no switching has been done: */
+
     while (switching) {
-      // start by saying: no switching is done:
       switching = false;
       rows = table.rows;
-      /* Loop through all table rows (except the first, which contains table headers): */
       for (i = 1; i < (rows.length - 1); i++) {
-        // start by saying there should be no switching:
         shouldSwitch = false;
-        /* Get the two elements you want to compare, one from current row and one from the next: */
         x = rows[i].getElementsByTagName('TD')[n];
         y = rows[i + 1].getElementsByTagName('TD')[n];
 
-        /* EXTRAER 1 LABEL DEL TD, EXTRAER ESPACIOS EN BLANCO DEL CONTENIDO LABEL */
-        let x_new = x.getElementsByTagName('label')[0].innerHTML.replace(/ /g, '');
-        /* EXTRAER DATOS FECHA POR SEPARADO */
-        let array_datos_fecha_x = x_new.split('/');
-        /* DECLARAR FECHA CON EL FORMATO CORRECTO */
-        let date_x = new Date(array_datos_fecha_x[2], (parseInt(array_datos_fecha_x[1]) + parseInt('1')), array_datos_fecha_x[0]);
+        let xNew = x.getElementsByTagName('label')[0].innerHTML.replace(/ /g, '');
+        let arrayDatosFechaX = xNew.split('/');
+        let dateX = new Date(arrayDatosFechaX[2], (parseInt(arrayDatosFechaX[1]) + parseInt('1')), arrayDatosFechaX[0]);
 
-        let y_new = y.getElementsByTagName('label')[0].innerHTML.replace(/ /g, '');
-        /* EXTRAER DATOS FECHA POR SEPARADO */
-        let array_datos_fecha_y = y_new.split('/');
-        /* DECLARAR FECHA CON EL FORMATO CORRECTO */
-        let date_y = new Date(array_datos_fecha_y[2], (parseInt(array_datos_fecha_y[1]) + parseInt('1')), array_datos_fecha_y[0]);
-        x_new = date_x.getTime();
-        y_new = date_y.getTime();
+        let yNew = y.getElementsByTagName('label')[0].innerHTML.replace(/ /g, '');
+        let arrayDatosFechaY = yNew.split('/');
+        let dateY = new Date(arrayDatosFechaY[2], (parseInt(arrayDatosFechaY[1]) + parseInt('1')), arrayDatosFechaY[0]);
+        xNew = dateX.getTime();
+        yNew = dateY.getTime();
 
-        /* check if the two rows should switch place, based on the direction, asc or desc: */
         if (dir === 'asc') {
-          if (type === 'fecha' && parseFloat(x_new) > parseFloat(y_new)) {
-            // if so, mark as a switch and break the loop:
+          if (type === 'fecha' && parseFloat(xNew) > parseFloat(yNew)) {
             shouldSwitch = true;
             break;
           }
         } else if (dir === 'desc') {
-          if (type === 'fecha' && parseFloat(x_new) < parseFloat(y_new)) {
-            // if so, mark as a switch and break the loop:
+          if (type === 'fecha' && parseFloat(xNew) < parseFloat(yNew)) {
             shouldSwitch = true;
             break;
           }
         }
       }
       if (shouldSwitch) {
-        /* If a switch has been marked, make the switch and mark that a switch has been done: */
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        // Each time a switch is done, increase this count by 1:
         switchcount++;
       } else {
-        /* If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again. */
         if (switchcount === 0 && dir === 'asc') {
           if (n === 5) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = 'DES';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
           }
           if (n === 6) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = 'DES';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
           }
           dir = 'desc';
           switching = true;
@@ -342,83 +323,70 @@ ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.d
     }
   }
 
-  ordenar_tabla_string_cipa(n, type) {
-    /* EXTRAER EL NODO PADRE DE LA TABLA */
+  ordenarTablaCipaString(n, type) {
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
     table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
-    // Set the sorting direction to ascending:
     dir = 'asc';
-    /* INDICAR EL ORDEN QUE HAY SELECCIONADO EN EL DIV > LABEL ORDENAR */
+
     if (n === 0) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = 'ASC';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
     }
     if (n === 1) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = 'ASC';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
     }
     if (n === 3) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = 'ASC';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
     }
     if (n === 4) {
-      this.vaciar_campos_ordena();
-      this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = 'SI';
+      this.vaciarCamposOrdena();
+      this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
     }
-    /* Make a loop that will continue until no switching has been done: */
+
     while (switching) {
-      // start by saying: no switching is done:
       switching = false;
       rows = table.rows;
-      /* Loop through all table rows (except the first, which contains table headers): */
       for (i = 1; i < (rows.length - 1); i++) {
-        // start by saying there should be no switching:
         shouldSwitch = false;
-        /* Get the two elements you want to compare, one from current row and one from the next: */
         x = rows[i].getElementsByTagName('TD')[n];
         y = rows[i + 1].getElementsByTagName('TD')[n];
 
-        /* check if the two rows should switch place, based on the direction, asc or desc: */
         if (dir === 'asc') {
           if ((type === 'str' && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) || (type === 'int' && parseFloat(x.innerHTML) > parseFloat(y.innerHTML))) {
-            // if so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
         } else if (dir === 'desc') {
           if ((type === 'str' && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) || (type === 'int' && parseFloat(x.innerHTML) < parseFloat(y.innerHTML))) {
-            // if so, mark as a switch and break the loop:
             shouldSwitch = true;
             break;
           }
         }
       }
       if (shouldSwitch) {
-        /* If a switch has been marked, make the switch and mark that a switch has been done: */
         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
         switching = true;
-        // Each time a switch is done, increase this count by 1:
         switchcount++;
       } else {
-        /* If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again. */
         if (switchcount === 0 && dir === 'asc') {
-          /* INDICAR EN EL LABEL QUE EL ORDEN CAMBIO A DESCENDENTE */
           if (n === 0) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = 'DES';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
           }
           if (n === 1) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = 'DES';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
           }
           if (n === 3) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = 'DES';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
           }
           if (n === 4) {
-            this.vaciar_campos_ordena();
-            this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = 'NO';
+            this.vaciarCamposOrdena();
+            this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
           }
           dir = 'desc';
           switching = true;
@@ -427,92 +395,74 @@ ${this.calcular_diferencia_fecha_semaforo(this.calcular_fecha_vencimiento(this.d
     }
   }
 
-  vaciar_campos_ordena() {
-    /* FUNCION QUE VACIA TODOS LOS CAMPOS DEL DIV ORDENAR - INTRODUCIDA PARA EVITAR REPETIR CODIGO */
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_nombre_id).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_correo_id).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_perfil_id).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_plantilla_id).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fua_id).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.label_ordenar_fv_id).innerHTML = '';
+  vaciarCamposOrdena() {
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = '';
   }
 
-  calcular_diferencia_fecha_semaforo(fecha_vencimiento) {
-    /* EXTRAER FECHA ACTUAL */
-    // eslint-disable-next-line no-unused-vars
-    let fecha_actual = '';
-    // eslint-disable-next-line prefer-const
+  calcularDiferenciaFechaSemaforo(fechaVencimiento) {
     let date = new Date();
-    fecha_actual = (`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`);
 
-    /* EXTRAER ( FECHA VENCIMIENTO - 3 MESES ) = NUMERO DE DIAS QUE HAY EN ESOS 3 MESES */
-    /* EXTRAER DATOS FECHA POR SEPARADO */
-    let array_datos_fecha = fecha_vencimiento.split('/');
-    /* DECLARAR FECHA CON EL FORMATO CORRECTO */
-    let fecha_vencimiento_formato = new Date(array_datos_fecha[2], (parseInt(array_datos_fecha[1]) - parseInt('1')), array_datos_fecha[0]);
-    let fecha_vencimiento_3_meses = new Date(array_datos_fecha[2], (parseInt(array_datos_fecha[1]) - parseInt('1')), array_datos_fecha[0]);
-    // DECLARAR FECHA_VENCIMIENTO -3 MESES
-    fecha_vencimiento_3_meses.setMonth(fecha_vencimiento_formato.getMonth() - 3);
-    let diff_3_milis = fecha_vencimiento_formato.getTime() - fecha_vencimiento_3_meses.getTime();
-    // DIAS QUE HAY EN ESOS 3 MESES DE DIFERENCIA A LA FECHA VENCIMIENTO
-    let dias_dif_3_meses = (Math.floor(diff_3_milis / (1000 * 60 * 60 * 24)));
+    /* DIAS QUE HAY EN ESOS 3 MESES FECHA ACTUAL - VENCIMIENTO */
+    let arrayDatosFecha = fechaVencimiento.split('/');
+    let fechaVenciminetoFormato = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
+    let fechaVencimiento3Meses = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
+    fechaVencimiento3Meses.setMonth(fechaVenciminetoFormato.getMonth() - 3);
+    let diff3Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento3Meses.getTime();
+    let diasDif3Meses = (Math.floor(diff3Milis / (1000 * 60 * 60 * 24)));
 
-    // DECLARAR FECHA_VENCIMIENTO -1 MES
-    let fecha_vencimiento_1_meses = new Date(array_datos_fecha[2], (parseInt(array_datos_fecha[1]) - parseInt('1')), array_datos_fecha[0]);
-    fecha_vencimiento_1_meses.setMonth(fecha_vencimiento_formato.getMonth() - 1);
-    let diff_1_milis = fecha_vencimiento_formato.getTime() - fecha_vencimiento_1_meses.getTime();
-    // DIAS QUE HAY EN 1 MES DE DIFERENCIA A LA FECHA VENCIMIENTO
-    let dias_dif_1_meses = (Math.floor(diff_1_milis / (1000 * 60 * 60 * 24)));
+    /* FECHA VENCIMIENTO  FECHA ACTUAL - FECHA VENCIMIENTO | DIAS QUE TIENE 1 MES */
+    let fechaVencimiento1Meses = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
+    fechaVencimiento1Meses.setMonth(fechaVenciminetoFormato.getMonth() - 1);
+    let diff1Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento1Meses.getTime();
+    let diasDif1Meses = (Math.floor(diff1Milis / (1000 * 60 * 60 * 24)));
 
-    /* CALCULAR LOS DIAS QUE FALTAN PARA QUE LA FECHA ACTUAL SUPERE A LA DE VENCIMIENTO ( FECHA_VENCIMIENTO - FECHA_ACTUAL ) = DIAS_QUE_FALTAN */
-    var fechaInicio = new Date(fecha_vencimiento_formato).getTime();
+    // DIAS QUE HAY ENTRE LA fechaVencimiento Y LA FECHA_ACTUAL
+    var fechaInicio = new Date(fechaVenciminetoFormato).getTime();
     var fechaFin = new Date(date).getTime();
     var diff = fechaInicio - fechaFin;
-    // DIAS QUE HAY ENTRE LA FECHA_VENCIMIENTO Y LA FECHA_ACTUAL
-    let diferencia_fechas_actual_vencimiento = (Math.floor(diff / (1000 * 60 * 60 * 24)));
-    // fecha_vencimiento_3_meses.getDate()+"/"+fecha_vencimiento_3_meses.getMonth()+"/"+fecha_vencimiento_3_meses.getFullYear()
+    let diferenciaFechasActualVencimiento = (Math.floor(diff / (1000 * 60 * 60 * 24)));
 
-    let valor_final_a_enviar = null;
-    if (parseInt(diferencia_fechas_actual_vencimiento) <= parseInt(dias_dif_3_meses) && parseInt(diferencia_fechas_actual_vencimiento) >= dias_dif_1_meses) {
-      valor_final_a_enviar = 'amarillo';
+    let valorFinalEnviar = null;
+    if (parseInt(diferenciaFechasActualVencimiento) <= parseInt(diasDif3Meses) && parseInt(diferenciaFechasActualVencimiento) >= diasDif1Meses) {
+      valorFinalEnviar = 'amarillo';
     }
 
-    if (diferencia_fechas_actual_vencimiento <= dias_dif_1_meses) {
-      valor_final_a_enviar = 'rojo';
+    if (diferenciaFechasActualVencimiento <= diasDif1Meses) {
+      valorFinalEnviar = 'rojo';
     }
 
-    return valor_final_a_enviar;
+    return valorFinalEnviar;
   }
 
-  calcular_fecha_vencimiento(fecha_ultima_actualizacion) {
-    /* EXTRAER DATOS FECHA POR SEPARADO */
-    let array_datos_fecha = fecha_ultima_actualizacion.split('/');
-
-    /* DECLARAR FECHA CON EL FORMATO CORRECTO */
-    let date = new Date(array_datos_fecha[2], (parseInt(array_datos_fecha[1]) + parseInt('1')), array_datos_fecha[0]);
+  calcularFechaVencimiento(fechaUltimaActualizacion) {
+    let arrayDatosFecha = fechaUltimaActualizacion.split('/');
+    let date = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) + parseInt('1')), arrayDatosFecha[0]);
     date.setMonth(date.getMonth() + 18);
-    let fecha_final = '';
+    let fechaFinal = '';
 
-    /* EXTRAER FECHA VENCIMIENTO POR SEPARADO */
     let day = date.getDate();
     let month = date.getMonth();
     let year = date.getFullYear();
 
-    /* DARLE FORMATO CORRECTO A LA FECHA */
-    fecha_final = (`${day}/${month}/${year}`);
+    fechaFinal = (`${day}/${month}/${year}`);
     if (month < 10) {
-      fecha_final = (`${day}/0${month}/${year}`);
+      fechaFinal = (`${day}/0${month}/${year}`);
       if (day < 10) {
-        fecha_final = (`0${day}/0${month}/${year}`);
+        fechaFinal = (`0${day}/0${month}/${year}`);
       }
     }
     if (day < 10) {
-      fecha_final = (`0${day}/${month}/${year}`);
+      fechaFinal = (`0${day}/${month}/${year}`);
       if (month < 10) {
-        fecha_final = (`0${day}/0${month}/${year}`);
+        fechaFinal = (`0${day}/0${month}/${year}`);
       }
     }
-    return fecha_final;
+    return fechaFinal;
   }
 }
 
