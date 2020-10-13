@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import { hoursStyle } from '../styles/styles';
+import { hoursStyle } from '../styles/hoursStyles';
 import { employees } from '../emp';
 
 class HoursComponent extends LitElement {
