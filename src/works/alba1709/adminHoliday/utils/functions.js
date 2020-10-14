@@ -1,4 +1,4 @@
-export const getActualDate = (date_) => {
+export const getFormatterDate = (date_) => {
   const date = new Date(date_);
 
   let day = date.getDate();
@@ -14,7 +14,7 @@ export const getActualDate = (date_) => {
   const minute = date.getMinutes();
 
   return {
-    default: day + '-' + month + '-' + year,
+    defaultDate: day + '-' + month + '-' + year,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
   };
 };

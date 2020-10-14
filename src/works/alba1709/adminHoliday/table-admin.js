@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { viewHoliday } from './utils/styles-admin-holidays';
-import { employeeRequest } from './utils/functions';
+import { employeeRequest, getFormatterDate } from './utils/functions';
 
 export class TableAdmin extends LitElement {
   static get styles() {
@@ -48,16 +48,16 @@ export class TableAdmin extends LitElement {
             ${this.requests.map(item => html`
             <tr>
               <td class="first">${item.name}</td>
-              <td>${item.dRequest}</td>
-              <td>${item.dStart}</td>
-              <td>${item.dEnd}</td>
+              <td>${getFormatterDate(item.dRequest).defaultDate}</td>
+              <td>${getFormatterDate(item.dStart).defaultDate}</td>
+              <td>${getFormatterDate(item.dEnd).defaultDate}</td>
               <td>
                 <select name="estado" id="estadoSoli" @change="${this.selected}">
                   <option value="">Pendiente de aprobación</option> 
                   <option value="">Aprobado</option>                              
                 </select> 
               </td>
-              <td>${item.dStatus}</td>
+              <td>${getFormatterDate(item.dStatus).defaultDate}</td>
             </tr>`)}
 
         </table>
