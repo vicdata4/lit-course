@@ -1,7 +1,14 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 import '../components/elementTrello007';
+import { tablePeticion } from '../utils/costum-css';
 
 export class ElementTrello008 extends LitElement {
+
+    static get styles() {
+        return [
+          tablePeticion
+        ];
+      }
 
     static get properties() {
         return {
@@ -20,21 +27,39 @@ export class ElementTrello008 extends LitElement {
         console.log(this.listaPeticiones);
         if(this.listaPeticiones !== null){
             return html`
-                    <div>
-                      ${this.listaPeticiones.map((peticion) => {
-                          return html`<li>${peticion.titulo} - ${peticion.fecha}</li>`
-                      })}
-                    </div>
-                `;
+                <table class="table-fill">
+                    <thead>
+                        <tr>
+                            <th class="text-left">TITULO</th>
+                                <th class="text-left">FECHA</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">  
+                        ${this.listaPeticiones.map((peticion) => {
+                            if(peticion.publicar === true){
+                                return html`
+                                    <tr>
+                                    <td class="text-left"><a href="">${peticion.titulo}</a></td>
+                                    <td class="text-left">${peticion.fecha}</td>
+                                    </tr>
+                                `
+                            }
+                        })}   
+                    </tbody>
+                </table>
+            `;
         }
     }
 
     render() {
         return html`
         <section class="listaPeticiones">
-            <h2>Lista de peticiones</h2>
-            <br>
-            ${this.verListaPeticiones()}
+            <div class="container-table">
+                <div class="table-title">
+                    <h2>LISTA PETICIÓN</h2>
+                </div>
+                ${this.verListaPeticiones()}
+            </div>
         </section>   
         `;
     }

@@ -7,7 +7,7 @@ import './components/elementTrello008.js';
 
 class IkeyvinPage extends LitElement {
   static get styles() {
-    return [
+    return [ 
       commonStyles
     ];
   }
@@ -20,8 +20,6 @@ class IkeyvinPage extends LitElement {
 
   constructor() {
     super();
-    let list = JSON.parse(localStorage.getItem('list-peticion'));
-    this.listaPeticion = list === null ? [] : list;
 }
 
   render() {
@@ -29,10 +27,10 @@ class IkeyvinPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>iKeyvin</work-header>
-        <h1>007 y 008</h1>
+          <br>
           <element-007></element-007>
           <hr>
-          <element-008 listaPeticion=${this.listaPeticion}></element-008>
+          <element-008></element-008>
       </section>
     `;
   }
