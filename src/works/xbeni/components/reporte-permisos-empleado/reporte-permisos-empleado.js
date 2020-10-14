@@ -224,7 +224,6 @@ ${i === 0
       const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
       this.stepper = new Array(nPages).fill({});
       this.to = this.nElements;
-      this.setActiveStep(this.index);
     }
   }
 }
