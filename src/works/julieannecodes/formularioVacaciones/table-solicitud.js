@@ -23,8 +23,8 @@ class TableSolicitud extends LitElement {
 
   static get properties() {
     return {
-      arraySolicitudes: { type: Array },
-      titulosTabla: { type: Array },
+      requestsList: { type: Array },
+      tableTitles: { type: Array },
       sortedArray: { type: Array },
       orderType: { type: Array }
     };
@@ -32,20 +32,20 @@ class TableSolicitud extends LitElement {
 
   constructor() {
     super();
-    this.arraySolicitudes = [];
+    this.requestsList = [];
     this.sortedArray = [];
-    this.titulosTabla = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
-    this.orderType = ['currentDate', 'fechaInicio', 'fechaFin'];
+    this.tableTitles = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
+    this.orderType = ['currentDate', 'startDate', 'endDate'];
   }
 
   order(e) {
-    this.sortedArray = orderItems(this.arraySolicitudes, e.target.id);
-    this.arraySolicitudes = [...this.sortedArray];
+    this.sortedArray = orderItems(this.requestsList, e.target.id);
+    this.requestsList = [...this.sortedArray];
     if (e.target.value === 'asc') {
       e.target.value = 'desc';
       e.currentTarget.classList.add('rotated');
     } else {
-      this.arraySolicitudes.reverse();
+      this.requestsList.reverse();
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
@@ -62,32 +62,36 @@ class TableSolicitud extends LitElement {
 
   tableL() {
     return html`
-        <table>
-                <tr>
-                  ${this.titulosTabla.map((items, i) => html`
-                  <th>${items} ${items === 'Fecha de solicitud' ||
-                      items === 'Fecha Inicio' ||
-                      items === 'Fecha Fin' ? html`
-                        <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>
-                        ` : nothing}</th>
-                  `)}
-                </tr>
-                  ${this.arraySolicitudes.map((item, i) => html`
-                    <tr id="${i}">
-                    <td>${dateFormatter(item.currentDate).solicitudDate}</td>
-                    <td>${dateFormatter(item.fechaInicio).tableDate}</td>
-                    <td>${dateFormatter(item.fechaFin).tableDate}</td>
-                    <td>${item.estado}</td>
-                    <td>${item.statusDate}</td>
-                    <td><div class="buttonWrap"><button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash2.png"></button></div></td>
-                    </tr>
-                  `)}
-              </table>
+    <div class="tableDiv">
+      <table>
+        <tr>
+          ${this.tableTitles.map((items, i) => html`
+          <th>${items} ${items === 'Fecha de solicitud' ||
+            items === 'Fecha Inicio' ||
+            items === 'Fecha Fin' ? html`
+            <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>` : nothing}
+          </th>`)}
+        </tr>
+        ${this.requestsList.map((item, i) => html`
+        <tr id="${i}">
+          <td>${dateFormatter(item.currentDate).solicitudDate}</td>
+          <td>${dateFormatter(item.startDate).tableDate}</td>
+          <td>${dateFormatter(item.endDate).tableDate}</td>
+          <td>${item.status}</td>
+          <td>${item.statusDate}</td>
+          <td>
+            <div class="buttonWrap">
+              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash.png"></button>
+            </div>
+          </td>
+        </tr>`)}
+      </table>
+    </div>
     `;
   }
 
   render() {
-    return html`${this.arraySolicitudes.length === 0 ? html`<h3>No hay solicitudes de vacaciones aún</h3>` : this.tableL()}`;
+    return html`${this.requestsList.length === 0 ? html`<h3>No hay solicitudes de vacaciones aún</h3>` : this.tableL()}`;
   }
 }
 window.customElements.define('table-solicitud', TableSolicitud);
