@@ -8,7 +8,7 @@ class BeniReportePermisosEmpleado extends LitElement {
     super();
     this.tituloReporte = 'Reporte de permisos detallado';
     this.empleadosRpe = loadEmpleadosRpe();
-    this.datosReporteRpe = null;
+    this.datosReporteRpe = [];
     this.index = 0;
     this.from = 0;
     this.nElements = 10;
@@ -19,7 +19,7 @@ class BeniReportePermisosEmpleado extends LitElement {
     return {
       tituloReporte: { type: String },
       empleadosRpe: { type: Object },
-      datosReporteRpe: { type: Object },
+      datosReporteRpe: { type: Array },
       controlGenerarReporte: { type: Boolean, Attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
@@ -100,7 +100,7 @@ class BeniReportePermisosEmpleado extends LitElement {
 
       <div class="divBodyReporteGeneradoRpe">
 ${
-  this.datosReporteRpe === null
+  this.datosReporteRpe.length === 0
     ? html``
     : this.generarReporteRpe()
 }
@@ -111,11 +111,13 @@ ${
 
   renderStepper() {
     return html`
+      <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map((x, i) => html`
           <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
         `)}
         <div class="step" @click="${this.next}">&#x25B7;</div>
+      </div>
     `;
   }
 
@@ -156,21 +158,21 @@ ${
           <th>Tipo de permiso</th>
           <th>Horas</th>
         </tr>
-        ${Object.keys(this.datosReporteRpe.slice(this.from, this.to)).map(item => html`
+        ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
           <tr>
             <td>
                 <label>
-                    ${this.datosReporteRpe[item].dia}
+                    ${item.dia}
                 </label>
             </td>
             <td>
                 <label>
-                    ${this.datosReporteRpe[item].tipoPermiso}
+                    ${item.tipoPermiso}
                 </label>
             </td>
             <td>
                 <label>
-                    ${this.datosReporteRpe[item].horas}
+                    ${item.horas}
                 </label>
             </td>
           </tr>
@@ -219,7 +221,7 @@ ${
       const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
       this.stepper = new Array(nPages).fill({});
       this.to = this.nElements;
-      this.setActiveStep(this.index);
+      // this.setActiveStep(this.index);
     }
   }
 }
