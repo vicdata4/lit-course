@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
+import { empData } from './utils/constants';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-form/components/vacation-form';
@@ -39,7 +40,7 @@ class AntoniomaracilPage extends LitElement {
         <hr>
         <h2 style="text-align:center;">Admin vacation Form</h2>
         <hr>
-        <admin-vacation-form .list="${this.list}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>
+        <admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>
       </section>
     `;
   }
