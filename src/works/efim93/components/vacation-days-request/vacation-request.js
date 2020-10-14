@@ -139,8 +139,8 @@ class VacationRequest extends LitElement {
   compruebaRangos(f) {
     const alerta = this.shadowRoot.querySelector('#alerta');
     for (const item in this.listaDatos) {
-      if (this.listaDatos[item].inicio.includes(f) || this.listaDatos[item].final.includes(f)) {
-        this.mensaje = 'Has planificado ya para esta fecha !!! <br /> Por favor seleccione otra fecha';
+      if ((this.listaDatos[item].inicio.includes(f) && this.listaDatos[item].final.includes(f) > this.listaDatos[item].inicio.includes(f)) || this.listaDatos[item].final.includes(f)) {
+        this.mensaje = `Has planificado ya para esta fecha !!! Por favor seleccione otra fecha`;
         alerta.style.display = 'block';
         return true;
       }
