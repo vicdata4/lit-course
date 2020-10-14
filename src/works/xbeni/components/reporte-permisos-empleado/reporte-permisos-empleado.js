@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reporte-permisos-empleado/styles';
 import { loadEmpleadosRpe } from '../../archivos_comunes/ac_reporte-permisos-empleado/mocks';
@@ -52,22 +51,19 @@ class BeniReportePermisosEmpleado extends LitElement {
     
               <div class="div_flex_hceap">
                 <div class="div_campos_hceap">
-                  <label>Proyecto:</label>
+                  <label>Fecha de inicio:</label>
                 </div>
                 <div class="div_campos_datos">
-                  <select name="proyectos_hceap" id="" class="select_hceap">
-                  </select>
+                  <input type="date" id="" class="select_hceap"/>
                 </div>
               </div>
 
               <div class="div_flex_hceap">
                   <div class="div_campos_hceap">
-                      <label>Año:</label>
+                      <label>Fecha de fin:</label>
                   </div>
                   <div class="div_campos_datos">
-                      <select id="" class="select_hceap">
-                          <option value="-1">Selecciona un año</option>
-                      </select>
+                      <input type="date" id="" class="select_hceap"/>
                   </div>
               </div>
     
@@ -93,9 +89,9 @@ class BeniReportePermisosEmpleado extends LitElement {
   }
 
   controlErroresRpe() {
-    var errores_datos_reporte = '';
+    var erroresDatosReporte = '';
 
-    if (errores_datos_reporte !== '') {
+    if (erroresDatosReporte !== '') {
     } else {
     }
   }

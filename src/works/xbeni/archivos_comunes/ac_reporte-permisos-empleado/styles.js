@@ -25,7 +25,7 @@ export const RpeStyles = css`
 }
 
 .div_campos_hceap{
-  width:130px;
+  width:200px;
   font-size:20px;
 }
 
