@@ -1,4 +1,9 @@
 
 export const CONSTANTS_RPE = {
-  idSelectEmpleadosRpe: 'idSelectEmpleadosRpe'
+  idSelectEmpleadosRpe: 'idSelectEmpleadosRpe',
+  idFechaInicioRpe: 'idFechaInicioRpe',
+  idFechaFinRpe: 'idFechaFinRpe',
+  idErroresFinalesRpe: 'idErroresFinalesRpe',
+  idPadreErroresFinalesRpe: 'idPadreErroresFinalesRpe',
+  idExitoDatosRpe: 'idExitoDatosRpe'
 };

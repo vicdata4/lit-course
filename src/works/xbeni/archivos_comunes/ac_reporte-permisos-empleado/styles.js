@@ -1,7 +1,7 @@
 import { css } from 'lit-element';
 
 export const RpeStyles = css`
-.div_body_control_hceap{
+.divBodyControlRpe{
   width: max-content;
   border-radius:7px;
   padding: 7px;
@@ -10,13 +10,13 @@ export const RpeStyles = css`
   overflow: auto;
 }
 
-.div_header_control_hceap {
+.divHeaderControlRpe {
   font-size: 22px;
   font-weight: 500;
   margin-bottom:15px;
 }
 
-.div_flex_hceap{
+.divFlexRpe{
   display: flex;
   width: 100%;
   flex-flow: row wrap;
@@ -24,22 +24,43 @@ export const RpeStyles = css`
   margin-bottom: 10px;
 }
 
-.div_campos_hceap{
+.divCamposRpe{
   width:200px;
   font-size:20px;
 }
 
-.div_campos_datos{
+.divCamposDatos{
   width: max-content;
 }
 
-.select_hceap {
+.selectRpe {
   width: max-content;
   padding-right: 50px;
   font-size: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.button_generar_reporte{
+.selectRpe:hover {
+  border: 2px solid #000442;
+}
+
+.inputFechasRpe {
+  padding-right: 70px;
+  font-size: 100%;
+  padding-top:3px;
+  padding-bottom: 3px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.inputFechasRpe:hover{
+  border: 2px solid #000442;
+}
+
+.buttonGenerarReporte{
   width:100%;
   font-size:100%;
   padding-top:3px;
@@ -50,19 +71,19 @@ export const RpeStyles = css`
   cursor:pointer;
 }
 
-.button_generar_reporte:hover{
+.buttonGenerarReporte:hover{
   opacity: 0.8;
 }
 
 /* DIV ERRORES */
-.div_errores_hceap{
+.divErroresRpe{
   display: none;
   background-color: #ff000050;
   padding:3px;
   margin-bottom:5px;
 }
 
-.div_exito_hceap{
+.divExitoRpe{
   display:none;
   background-color: #02ff0f50;
   padding:3px;
