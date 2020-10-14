@@ -145,7 +145,6 @@ ${
 
     var regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
     var fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
-    // eslint-disable-next-line no-useless-escape
     if (!regexDateFormat.test(fechaInicio)) {
       erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>';
     }
