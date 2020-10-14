@@ -114,7 +114,10 @@ ${
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map((x, i) => html`
-          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
+${i === 0
+    ? html`<div id="${`_${i}`}" class="step active" @click="${() => this.showPage(i)}">${i + 1}</div>`
+    : html`<div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>`
+}
         `)}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
@@ -221,7 +224,7 @@ ${
       const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
       this.stepper = new Array(nPages).fill({});
       this.to = this.nElements;
-      // this.setActiveStep(this.index);
+      this.setActiveStep(this.index);
     }
   }
 }
