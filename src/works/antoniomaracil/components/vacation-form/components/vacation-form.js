@@ -118,7 +118,6 @@ class VacationForm extends LitElement {
   }
 
   async firstUpdated() {
-    console.log(this.nElements);
     this.table = new Array(this.nElements).fill({});
     this.updateStepper();
   }
@@ -152,6 +151,7 @@ class VacationForm extends LitElement {
       this.list.push(this.vacation);
       this.id++;
       this.updateStepper();
+      this.sendData();
     }
   }
 
@@ -219,6 +219,15 @@ class VacationForm extends LitElement {
     this.list = orderedList;
     this.requestUpdate();
     this.showPage(0);
+  }
+
+  sendData() {
+    const event = new CustomEvent('update-array', {
+      detail: {
+        applications: this.list
+      }
+    });
+    this.dispatchEvent(event);
   }
 
   renderStepper() {

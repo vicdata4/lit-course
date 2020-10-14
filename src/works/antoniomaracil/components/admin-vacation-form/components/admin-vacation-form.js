@@ -1,17 +1,13 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
-import { nothing } from 'lit-html';
 import { formatDate } from '../../../utils/functions';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
-    return [css`
+    return css`
     .component-box{
-        margin: 1rem;
-        font-family: "Comic Sans MS", cursive, sans-serif;
-    }
-    .selectOptions{
-      display: none;
+      margin: 1rem;
+      font-family: "Comic Sans MS", cursive, sans-serif;
     }
     .table-box{
       border-top: solid 2px black;
@@ -22,18 +18,19 @@ export class AdminVacationForm extends LitElement {
       border-collapse: collapse;
       font-size: 0.8rem;
       empty-cells: hide;
+      width: 100%;
     }
     tr:nth-child(even) {
       background-color: #EEEEEE;
     }
-    .inp-table th{
+    table th{
       border-left: solid 2px black;
       border-right: solid 2px black;
       background-color: #CCCCCC;
       font-size: 0.7rem;
       text-align: left;
     }
-    .inp-table td{
+    table td{
       border-right: solid 2px black;
       border-left: solid 2px black;
     }
@@ -47,100 +44,109 @@ export class AdminVacationForm extends LitElement {
       display: flex;
       justify-content: space-between;
     }
-    `];
+
+    .stepper {
+      margin: 10px 0;
+    }
+
+    .stepper .step:hover {
+      background-color: #f1f1f1;
+    }
+
+    .step {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid #d8d7d7;
+      width: 20px;
+      height: auto;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .step.active {
+      background-color: #535353 !important;
+      color: white;
+    }
+
+    .step.left {
+      transform: rotate(180deg);
+    }
+
+    .stepper, .step {
+      user-select: none;
+    }
+    `;
   }
 
   static get properties() {
     return {
       id: { type: Number },
-      pointer: { type: Number },
       pagination: { type: Number },
-      arrVacation: { type: Array },
-      arrTableView: { type: Array },
-      arrOptions: { type: Array },
-      actualDate: { type: Object },
-      arrTr: { type: Array },
-      viewIsFull: { type: Boolean }
+      nElements: { type: Number },
+      list: { type: Array },
+      stepper: { type: Array },
+      arrOptions: { type: Array }
     };
   }
 
   constructor() {
     super();
-    this.arrTr = new Array(10).fill({});
-    this.arrVacation = [];
-    this.arrTableView = [];
-    this.pagination = 10;
+    this.list = [];
+    this.table = [];
+    this.nElements = 3;
+    this.stepper = [];
     this.arrOptions = ['Pendiente de aprobación', 'Aprobado', 'No aprobado'];
-    this.actualDate = new Date();
   }
 
-  /**
-  * @desc Actualiza el array de visualizacion
-  */
-  updateView() {
-    this.arrTableView = [];
-    const page = Math.trunc((this.arrVacation.length - 1) / this.pagination);
-    for (let i = 0; i < this.pagination; i++) {
-      if ((this.arrVacation.length - 1) < this.pagination) {
-        // La primera hoja se llena sin calcular la posicion del elemento
-        this.arrTableView[i] = this.arrVacation[i];
+  async firstUpdated() {
+    this.table = new Array(this.nElements).fill({});
+    this.updateStepper();
+  }
+
+  async updateStepper() {
+    let nPages = Math.ceil(this.list.length / this.nElements);
+    if (nPages === 0) { nPages = 1; };
+    this.stepper = new Array(nPages).fill({});
+
+    await this.updateComplete;
+    this.index = this.stepper.length - 1;
+    this.setActiveStep(this.index);
+    this.showPage(this.index);
+  }
+
+  showPage(index) {
+    this.index = index;
+    this.from = this.nElements * index;
+    this.to = this.from + this.nElements;
+    this.setActiveStep(index);
+  }
+
+  setActiveStep(index) {
+    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+      if (row.id === `_${index}`) {
+        row.classList.add('active');
       } else {
-        // Si la tabla esta llena volvemos true el flag
-        this.arrVacation.length % this.pagination === 0 ? this.viewIsFull : !this.viewIsFull;
-        // Calculo de la posicion del elemento
-        this.arrTableView[i] = this.arrVacation[(page * this.pagination) + i];
+        row.classList.remove('active');
       }
-    }
-    // Actualizo el puntero de la vista
-    this.pointer = Math.trunc(this.arrVacation.length / this.pagination);
+    });
   }
 
-  /**
-  * @desc Mueve a izquierda y a derecha la view
-  * @param event
-  */
-  movePage(e) {
-  // Rectificamos el pointer si la pagina esta llena
-    if (this.viewIsFull) {
-      this.pointer--;
-      this.viewIsFull = false;
+  next() {
+    if (this.index < this.stepper.length - 1) {
+      this.showPage(this.index + 1);
     }
+  }
 
-    // Caso hacia la izquierda
-    if (e.target.id === 'left') {
-      this.pointer--;
-
-      // Comprobamos el pointer
-      if (this.pointer < 0) {
-        this.pointer = 0;
-      };
-
-      // Mostramos el array
-      this.arrTableView = [];
-      for (let i = 0; i < this.pagination; i++) {
-        this.arrTableView[i] = this.arrVacation[(this.pointer * this.pagination) + i];
-      }
-
-    // Caso hacia la derecha
-    } else if (e.target.id === 'right') {
-      this.pointer++;
-      // Comprobamos el pointer
-      if (this.pointer > Math.trunc((this.arrVacation.length - 1) / this.pagination)) {
-        this.pointer = Math.trunc((this.arrVacation.length - 1) / this.pagination);
-      }
-
-      // Mostramos el array
-      this.arrTableView = [];
-      for (let i = 0; i < this.pagination; i++) {
-        this.arrTableView[i] = this.arrVacation[(this.pointer * this.pagination) + i];
-      }
+  prev() {
+    if (this.index > 0) {
+      this.showPage(this.index - 1);
     }
   }
 
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
-      if (propName === 'arrVacation') {
-        this.updateView();
+      if (propName === 'list') {
+        this.showPage(this.index);
       }
     });
   }
@@ -148,7 +154,7 @@ export class AdminVacationForm extends LitElement {
   sendData() {
     const event = new CustomEvent('update-array', {
       detail: {
-        applications: this.arrVacation
+        applications: this.list
       }
     });
     this.dispatchEvent(event);
@@ -156,72 +162,75 @@ export class AdminVacationForm extends LitElement {
 
   changeStatus(id) {
     const select = this.shadowRoot.getElementById('sel-' + id).value;
-    for (let i = 0; i < this.arrVacation.length; i++) {
-      if (this.arrVacation[i].id === id) {
-        if (select === '0') { this.arrVacation[i].estado = 'Pendiente de aprobación'; };
-        if (select === '1') { this.arrVacation[i].estado = 'Aprobado'; };
-        if (select === '2') { this.arrVacation[i].estado = 'No aprobado'; };
-        this.arrVacation[i].festado = formatDate(new Date(), true);
+    for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].id === id) {
+        if (select === '0') { this.list[i].status = 'Pendiente de aprobación'; };
+        if (select === '1') { this.list[i].status = 'Aprobado'; };
+        if (select === '2') { this.list[i].status = 'No aprobado'; };
+        this.list[i].statusDate = formatDate(new Date(), true);
       }
     }
     this.sendData();
   }
 
+  renderStepper() {
+    return html`
+      <div class="stepper">
+        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        ${this.stepper.map((x, i) => html`
+        <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
+        `)}
+        <div class="step" @click="${this.next}">&#x25B7;</div>
+      </div>
+    `;
+  }
+
   render() {
     return html`
-    <div class="component-box">
-        
-          <div class="table-cntr">
-            <button id="left" @click=${this.movePage}><</button> 
-            <button id="right" @click=${this.movePage}>></button>
-          </div>
-        
-          <div class="table-box">
-            <table class="inp-table">
-              <thead>
-                <tr id="head">
-                  <th>Fecha solicitud 
-                    <span>
-                      <span @click="${() => this.dateOrg('solicitud', 'asc')}">&#9652;</span>
-                      <span @click="${() => this.dateOrg('solicitud', 'desc')}">&#9662;</span>
-                    </span>
-                  </th>
-                  <th>Fecha inicio
-                  <span>
-                      <span @click="${() => this.dateOrg('inicio', 'asc')}">&#9652;</span>
-                      <span @click="${() => this.dateOrg('inicio', 'desc')}">&#9662;</span>
-                    </span>
-                  </th>
-                  <th>Fecha fin
-                  <span>
-                      <span @click="${() => this.dateOrg('fin', 'asc')}">&#9652;</span>
-                      <span @click="${() => this.dateOrg('fin', 'desc')}">&#9662;</span>
-                    </span>
-                  </th>
-                  <th>Estado solicitud</th>
-                  <th>Fecha estado</th>
-                </tr>
-              </thead>
-              <tbody>
-              ${this.arrTr.map((value, i) => html`
-                <tr>
-                  <td>${this.arrTableView[i] ? this.arrTableView[i].solicitud : nothing}</td>
-                  <td>${this.arrTableView[i] ? this.arrTableView[i].inicio : nothing}</td>
-                  <td>${this.arrTableView[i] ? this.arrTableView[i].fin : nothing}</td>
-                  <td>
-                    <select id="sel-${i}"class="selectOptions" @change="${() => this.changeStatus(this.arrVacation[i].id)}">
-                      <option value="0">Pendiente de aprobación</option>
-                      <option value="1">Aprobado</option>
-                      <option value="2">No aprobado</option>
-                    </select>
-                  </td>
-                  <td>${this.arrTableView[i] ? this.arrTableView[i].festado : nothing}</td>
-                </tr>             
-              `)}
-              </tbody>
-            </table>
-          </div>
+      <div class="container">
+        <p>Solicitud de vacaciones:</p>
+        ${this.renderStepper()}
+        <div class="table-box">
+          <table>
+            <tr>
+              <th><button class="order" @click="${() => this.orderList('applicationDate')}">Fecha de solicitud
+                  <span>&#9662;</span></button></th>
+              <th><button class="order" @click="${() => this.orderList('startDate')}">Fecha de inicio
+                  <span>&#9662;</span></button></th>
+              <th><button class="order" @click="${() => this.orderList('endDate')}">Fecha de fin <span>&#9662;</span></button>
+              </th>
+              <th>Estado de solicitud</th>
+              <th>Fecha de solicitud</th>
+              <th>Eliminar</th>
+            </tr>
+            ${this.list.slice(this.from, this.to).map(item => html`
+            <tr>
+              <td>${item.applicationDate}</td>
+              <td>${item.startDate}</td>
+              <td>${item.endDate}</td>
+              <td>  
+                <select id="sel-${item.id}"class="selectOptions" @change="${() => this.changeStatus(item.id)}">
+                  <option value="0">Pendiente de aprobación</option>
+                  <option value="1">Aprobado</option>
+                  <option value="2">No aprobado</option>
+                </select></td>
+              <td>${item.statusDate}</td>
+              <td><button @click="${() => this.removeRow(item.id)}">Eliminar</button></td>
+            </tr>
+            `)}
+            ${this.table.map(item => html`
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            `)}
+          </table>
         </div>
+      </div>
     `;
   }
 }

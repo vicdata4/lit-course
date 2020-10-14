@@ -15,17 +15,17 @@ class AntoniomaracilPage extends LitElement {
 
   static get properties() {
     return {
-      arrVacation: { type: Array }
+      list: { type: Array }
     };
   }
 
   constructor() {
     super();
-    this.arrVacation = [];
+    this.list = [];
   }
 
   updateArray(e) {
-    this.arrVacation = [...e.detail.applications];
+    this.list = [...e.detail.applications];
   }
 
   render() {
@@ -35,11 +35,11 @@ class AntoniomaracilPage extends LitElement {
         <work-header>antoniomaracil</work-header>
         <h2 style="text-align:center;">Vacation Form</h2>
         <hr>
-        <vacation-form @update-array="${this.updateArray}" .nElements="${10}"></vacation-form>
+        <vacation-form @update-array="${this.updateArray}" .nElements="${10}" .list="${this.list}"></vacation-form>
         <hr>
         <h2 style="text-align:center;">Admin vacation Form</h2>
         <hr>
-        <admin-vacation-form .arrVacation="${this.arrVacation}" @update-array="${this.updateArray}"></admin-vacation-form>
+        <admin-vacation-form .list="${this.list}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>
       </section>
     `;
   }
