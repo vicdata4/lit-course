@@ -1,6 +1,7 @@
 import { css } from 'lit-element';
 
-export const RpeStyles = css`
+export const item012ReporteHceapStyles = css`
+
 .div_body_control_hceap{
   width: max-content;
   border-radius:7px;
@@ -96,6 +97,5 @@ export const RpeStyles = css`
   text-align: left;
 }
 /* FIN ESTILOS TABLA PE */
-
 
 `;
