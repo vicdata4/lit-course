@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/visualizacion-peticiones-empleados/visualizacion-peticiones-empleados';
-import './components/informe-candidatos-informacion-desactualizada/informe-candidatos-informacion-desactualizada';
+import './components/visualizacion-pe/visualizacion-pe';
+import './components/informe-cipa/informe-cipa';
 
 class XbeniPage extends LitElement {
   static get styles() {
@@ -17,8 +17,8 @@ class XbeniPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>XBeni</work-header>
-        <visualizacion-peticiones-empleados></visualizacion-peticiones-empleados>
-        <informe-candidatos-informacion-desactualizada></informe-candidatos-informacion-desactualizada>
+        <visualizacion-pe></visualizacion-pe>
+        <informe-cipa></informe-cipa>
       </section>
     `;
   }
