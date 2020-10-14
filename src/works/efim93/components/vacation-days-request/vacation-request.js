@@ -108,7 +108,8 @@ class VacationRequest extends LitElement {
     const dateHasValue = fIni !== null && fIni.value !== '' && fFin !== null && fFin.value !== '';
     if (dateHasValue) {
       const n = this.compruebaRangos(formatDate(fIni.value).default);
-      if (!n) {
+      const m = this.evitaDuplicados(formatDate(fIni.value).default, formatDate(fFin.value).default);
+      if (!n && !m) {
         const item = {
           fsolicitud: formatDate(new Date()).completo,
           inicio: formatDate(fIni.value).default,
@@ -133,6 +134,17 @@ class VacationRequest extends LitElement {
     if (fIni.value === '') {
       fFin.value = '';
       fIni.focus();
+    }
+  }
+
+  evitaDuplicados(a, b) {
+    for (const item of this.listaDatos) {
+      if (item.inicio.includes(a) && item.final.includes(b)) {
+        this.mensaje = `Has solicitado ya vacaciones para estos dias !!!`;
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
