@@ -16,7 +16,8 @@ export const dateFormatter = (date_) => {
   return {
     tableDate: monthDay >= 10 ? monthDay + '-' + monthNumber + '-' + year : formattedDay + '-' + monthNumber + '-' + year,
     solicitudDate: monthDay >= 10 ? wholeHour + monthDay + '-' + monthNumber + '-' + year : wholeHour + formattedDay + '-' + monthNumber + '-' + year,
-    inputDate: monthDay >= 10 ? year + '-' + monthNumber + '-' + monthDay : year + '-' + monthNumber + '-' + formattedDay
+    inputDate: monthDay >= 10 ? year + '-' + monthNumber + '-' + monthDay : year + '-' + monthNumber + '-' + formattedDay,
+    slashDate: monthDay >= 10 ? monthDay + '/' + monthNumber + '/' + year : formattedDay + '/' + monthNumber + '/' + year
   };
 };
 export const dateInputReverse = (value) => {
