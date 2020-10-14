@@ -19,10 +19,7 @@ export const tableStyles = css`
     @media only screen and (min-width: 1200px) {
       .container { width: 70%; margin: auto;}
     }
-    .tableDiv { 
-      margin-top: 20px;
-      
-      }
+    .tableDiv { margin-top: 20px; }
     table tr:nth-child(even) { background-color: lightgray; }
     table td { border-right: 2px solid black; }
     table, th { 
