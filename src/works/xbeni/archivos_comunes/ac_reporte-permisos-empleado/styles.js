@@ -91,28 +91,28 @@ export const RpeStyles = css`
   margin-bottom:5px;
 }
 
-.div_body_reporte_generado_hceap {
+.divBodyReporteGeneradoRpe {
   overflow: auto;
 }
 
 /*ESTILOS TABLA HCEAP */
-.table_hceap {
+.tableRpe {
   width:100%;
   border: 2px solid #20208869;
   border-collapse: collapse;
   overflow:auto;
 }
 
-.table_hceap tr:nth-child(even){background-color: #f2f2f2;}
+.tableRpe tr:nth-child(even){background-color: #f2f2f2;}
 
-.table_hceap tr:hover {background-color: #ff000027;}
+.tableRpe tr:hover {background-color: #ff000027;}
 
-.table_hceap td, .table_hceap th {
+.tableRpe td, .tableRpe th {
   border: 1px solid #00000039;
   padding: 5px;
 }
 
-.table_hceap th {
+.tableRpe th {
   background-color: #68686a69;
   text-align: left;
 }

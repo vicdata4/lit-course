@@ -9,7 +9,6 @@ class BeniReportePermisosEmpleado extends LitElement {
     this.tituloReporte = 'Reporte de permisos detallado';
     this.empleadosRpe = loadEmpleadosRpe();
     this.datosReporteRpe = null;
-    this.controlGenerarReporte = false;
   }
 
   static get properties() {
@@ -32,7 +31,7 @@ class BeniReportePermisosEmpleado extends LitElement {
       <div class="divBodyRpe">
         <div class="divBodyControlRpe">
           <div class="divHeaderControlRpe">
-            <label>${this.titulo_reporte}</label>
+            <label>${this.tituloReporte}</label>
           </div>
     
           <div class="divMainControlRpe">
@@ -89,6 +88,46 @@ class BeniReportePermisosEmpleado extends LitElement {
           </div>
         </div>
       </div>
+
+      <div class="divBodyReporteGeneradoRpe">
+${
+  this.datosReporteRpe === null
+    ? html``
+    : this.generarReporteRpe()
+}
+      </div>
+    </div>
+    `;
+  }
+
+  generarReporteRpe() {
+    return html`
+      <table class="tableRpe">
+        <tr>
+          <th>Dia</th>
+          <th>Tipo de permiso</th>
+          <th>Horas</th>
+        </tr>
+        ${Object.keys(this.datosReporteRpe).map(item => html`
+          <tr>
+            <td>
+                <label>
+                    ${this.datosReporteRpe[item].dia}
+                </label>
+            </td>
+            <td>
+                <label>
+                    ${this.datosReporteRpe[item].tipoPermiso}
+                </label>
+            </td>
+            <td>
+                <label>
+                    ${this.datosReporteRpe[item].horas}
+                </label>
+            </td>
+          </tr>
+        `)}
+      </table>
     `;
   }
 
@@ -127,7 +166,6 @@ class BeniReportePermisosEmpleado extends LitElement {
       this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE
       this.datosReporteRpe = getDatosReporteRpe(empleadoSeleccionadoId, fechaInicio, fechaFin);
-      this.controlGenerarReporte = true;
     }
   }
 }
