@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
+import './vacationHistoryEmp/vacation-history';
 import './formularioVacaciones/vacation-table';
 
 class JulieannecodesPage extends LitElement {
@@ -17,6 +18,7 @@ class JulieannecodesPage extends LitElement {
       <section class="container">
         <work-header>julieanneCodes</work-header>
           <vacation-table></vacation-table>
+          <vacation-history></vacation-history>
       </section>
     `;
   }
