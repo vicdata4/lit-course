@@ -9,6 +9,10 @@ class BeniReportePermisosEmpleado extends LitElement {
     this.tituloReporte = 'Reporte de permisos detallado';
     this.empleadosRpe = loadEmpleadosRpe();
     this.datosReporteRpe = null;
+    this.index = 0;
+    this.from = 0;
+    this.nElements = 10;
+    this.stepper = [];
   }
 
   static get properties() {
@@ -16,7 +20,12 @@ class BeniReportePermisosEmpleado extends LitElement {
       tituloReporte: { type: String },
       empleadosRpe: { type: Object },
       datosReporteRpe: { type: Object },
-      controlGenerarReporte: { type: Boolean, Attribute: false }
+      controlGenerarReporte: { type: Boolean, Attribute: false },
+      index: { type: Number, attribute: false },
+      from: { type: Number, attribute: false },
+      nElements: { type: Number },
+      stepper: { type: Array, attribute: false }
+
     };
   }
 
@@ -100,6 +109,45 @@ ${
     `;
   }
 
+  renderStepper() {
+    return html`
+        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        ${this.stepper.map((x, i) => html`
+          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
+        `)}
+        <div class="step" @click="${this.next}">&#x25B7;</div>
+    `;
+  }
+
+  next() {
+    if (this.index < this.stepper.length - 1) {
+      this.showPage(this.index + 1);
+    }
+  }
+
+  showPage(index) {
+    this.index = index;
+    this.from = this.nElements * index;
+    this.to = this.from + this.nElements;
+    this.setActiveStep(index);
+  }
+
+  setActiveStep(index) {
+    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+      if (row.id === `_${index}`) {
+        row.classList.add('active');
+      } else {
+        row.classList.remove('active');
+      }
+    });
+  }
+
+  prev() {
+    if (this.index > 0) {
+      this.showPage(this.index - 1);
+    }
+  }
+
   generarReporteRpe() {
     return html`
       <table class="tableRpe">
@@ -108,7 +156,7 @@ ${
           <th>Tipo de permiso</th>
           <th>Horas</th>
         </tr>
-        ${Object.keys(this.datosReporteRpe).map(item => html`
+        ${Object.keys(this.datosReporteRpe.slice(this.from, this.to)).map(item => html`
           <tr>
             <td>
                 <label>
@@ -128,6 +176,9 @@ ${
           </tr>
         `)}
       </table>
+      <div class="divBodyStepper">
+        ${this.renderStepper()}
+      </div>
     `;
   }
 
@@ -165,6 +216,10 @@ ${
       this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE
       this.datosReporteRpe = getDatosReporteRpe(empleadoSeleccionadoId, fechaInicio, fechaFin);
+      const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
+      this.stepper = new Array(nPages).fill({});
+      this.to = this.nElements;
+      this.setActiveStep(this.index);
     }
   }
 }
