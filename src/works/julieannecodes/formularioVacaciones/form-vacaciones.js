@@ -5,15 +5,20 @@ import { dateFormatter } from '../utils/functions';
 class FormVacaciones extends LitElement {
   static get properties() {
     return {
-      message: { type: String, attribute: false },
-      minDate: { type: String }
+      message: { type: String, attribute: false }
     };
   }
 
   constructor() {
     super();
     this.message = '';
-    this.minDate = dateFormatter(new Date()).inputDate;
+  }
+
+  minDateInput(days) {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+
+    return date;
   }
 
   dateTransformer(fi, ff) {
@@ -21,49 +26,45 @@ class FormVacaciones extends LitElement {
     const endDate = new Date(ff);
 
     return {
-      fechaIni: startDate,
-      fechaFin: endDate
+      sDate: startDate,
+      eDate: endDate
     };
   }
 
   dateValidator(fi, ff) {
-    let aux = true;
-    const fechaInicio = this.dateTransformer(fi, ff).fechaIni;
-    const fechaFin = this.dateTransformer(fi, ff).fechaFin;
+    const startDate = this.dateTransformer(fi, ff).sDate;
+    const endDate = this.dateTransformer(fi, ff).eDate;
 
-    fechaInicio < fechaFin ? aux : aux = false;
-
-    return aux;
+    return startDate < endDate;
   }
 
   sendData() {
-    const fechaInicio = this.shadowRoot.querySelector('#inicio');
-    const fechaFin = this.shadowRoot.querySelector('#fin');
+    const startDate = this.shadowRoot.querySelector('#start');
+    const endDate = this.shadowRoot.querySelector('#end');
     const currentDate = new Date();
-
     const obj = {
       currentDate: currentDate,
-      fechaInicio: new Date(fechaInicio.value),
-      fechaFin: new Date(fechaFin.value),
-      estado: 'Pendiente de aprobación',
+      startDate: new Date(startDate.value),
+      endDate: new Date(endDate.value),
+      status: 'Pendiente de aprobación',
       statusDate: dateFormatter(currentDate).tableDate
     };
 
     const event = new CustomEvent('send-dates', {
       detail: {
-        fechas: obj
+        dates: obj
       }
     });
     this.dispatchEvent(event);
-    fechaInicio.value = '';
-    fechaFin.value = '';
+    startDate.value = '';
+    endDate.value = '';
   }
 
   onSubmit() {
-    const fechaInicio = this.shadowRoot.querySelector('#inicio');
-    const fechaFin = this.shadowRoot.querySelector('#fin');
+    const startDate = this.shadowRoot.querySelector('#start');
+    const endDate = this.shadowRoot.querySelector('#end');
 
-    if (!this.dateValidator(fechaInicio.value, fechaFin.value)) {
+    if (!this.dateValidator(startDate.value, endDate.value)) {
       this.message = 'Enter a valid date';
       return false;
     } else { this.sendData(); }
@@ -73,10 +74,10 @@ class FormVacaciones extends LitElement {
   render() {
     return html`
     <form onsubmit="return false">
-            <label for="inicio">Fecha inicio</label>
-            <input type="date" id="inicio" value="${this.minDate}" min="${this.minDate}">
-            <label for="fin">Fecha fin</label>
-            <input type="date" id="fin">
+            <label for="start">Fecha inicio</label>
+            <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}">
+            <label for="end">Fecha fin</label>
+            <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}">
             <button type="submit" @click="${this.onSubmit}">Agregar</button> 
         </form>
         ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
