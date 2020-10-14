@@ -8,7 +8,8 @@ class VacationTable extends LitElement {
   static get properties() {
     return {
       vacationData: { type: Array },
-      errorMessage: { type: String }
+      errorMessage: { type: String },
+      inArray: { type: Object }
     };
   }
 
@@ -16,18 +17,18 @@ class VacationTable extends LitElement {
     super();
     this.vacationData = [];
     this.errorMessage = '';
+    this.inArray = new Date();
   }
 
   addVacation(e) {
-    const recived = e.detail.fechas.fechaInicio;
-    let inArray = new Date();
-    this.vacationData.length === 0 ? inArray : this.vacationData.map(
-      item => { item.fechaInicio.getTime() === recived.getTime() ? inArray = item.fechaInicio : nothing; }
+    const recived = e.detail.dates.startDate;
+    this.vacationData.length === 0 ? this.inArray : this.vacationData.map(
+      item => { item.startDate.getTime() === recived.getTime() ? this.inArray = item.startDate : nothing; }
     );
-    if (recived.getTime() === inArray.getTime()) {
+    if (recived.getTime() === this.inArray.getTime()) {
       this.errorMessage = 'Date already exists';
     } else {
-      this.vacationData = [...[e.detail.fechas], ...this.vacationData];
+      this.vacationData = [...[e.detail.dates], ...this.vacationData];
       this.errorMessage = '';
     }
   }
@@ -38,12 +39,17 @@ class VacationTable extends LitElement {
     this.vacationData = [...arr];
   }
 
+  renderStepper() {
+    return html`aaaaaa`;
+  }
+
   render() {
     return html`
         <h1>Solicitud de vacaciones</h1>
         <form-vacation @send-dates="${this.addVacation}"></form-vacation>
         ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        <table-solicitud .arraySolicitudes="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
+        ${this.vacationData.length >= 5 ? this.renderStepper() : nothing}
+        <table-solicitud .requestsList="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
         `;
   }
 }
