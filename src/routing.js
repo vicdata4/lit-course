@@ -35,7 +35,6 @@ export const routing = function() {
     { path: '/data-binding', component: 'data-binding' },
     { path: '/list-example', component: 'list-example-view' },
     { path: '/works', component: 'works-view' },
-    { path: '/pagination', component: 'pagination-view' },
     { path: '(.*)', component: 'not-found-view' }
   ];
 
