@@ -26,7 +26,6 @@ class BeniReportePermisosEmpleado extends LitElement {
       from: { type: Number, attribute: false },
       nElements: { type: Number },
       stepper: { type: Array, attribute: false }
-
     };
   }
 
@@ -107,6 +106,75 @@ ${
 }
       </div>
     </div>
+    `;
+  }
+
+  generarReporteRpe() {
+    return html`
+      <table class="tableRpe">
+        <tr>
+          <th name="dia">
+            <div class="divFlexThRpe">
+              <div>
+                <label>Día</label>
+              </div>
+              <button class="order"></button>
+                <div @click=${() => this.orderList('dia')} class="campoOrdenar">
+                  ${svgBeniRpeOrdenarInt}
+                  <div class="divTextoCampoOrdenar">
+                    <label id="${CONSTANTS_RPE.idOrdenarDiaRpe}" class="textoCampoOrdenar"></label>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </th>
+
+          <th name="tipoPermiso">
+            <div class="divFlexThRpe">
+              <div>
+                  <label>Tipo de permiso</label>
+              </div>
+              <button class="order"></button>
+                <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
+                  ${svgXBeniRpeOrderString}
+                  <div class="divTextoCampoOrdenar">
+                    <label id="${CONSTANTS_RPE.idOrdenarTipoPermisoRpe}" class="textoCampoOrdenar"></label>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </th>
+
+          <th>Horas</th>
+        </tr>
+
+        ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
+          <tr>
+            <td>
+                <label>
+                    ${item.dia}
+                </label>
+            </td>
+            <td>
+                <label>
+                    ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
+                </label>
+            </td>
+            <td>
+                <label>
+                    ${item.horas}
+                </label>
+            </td>
+          </tr>
+        `)}
+      </table>
+      ${this.datosReporteRpe.length <= 10
+    ? html``
+    : html`
+      <div class="divBodyStepper">
+        ${this.renderStepper()}
+      </div>
+    `}
     `;
   }
 
@@ -200,75 +268,6 @@ ${i === 0
 
     this.datosReporteRpe = [...orderedList];
     this.showPage(0);
-  }
-
-  generarReporteRpe() {
-    return html`
-      <table class="tableRpe">
-        <tr>
-          <th name="dia">
-            <div class="divFlexThRpe">
-              <div>
-                <label>Día</label>
-              </div>
-              <button class="order"></button>
-                <div @click=${() => this.orderList('dia')} class="campoOrdenar">
-                  ${svgBeniRpeOrdenarInt}
-                  <div class="divTextoCampoOrdenar">
-                    <label id="${CONSTANTS_RPE.idOrdenarDiaRpe}" class="textoCampoOrdenar"></label>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </th>
-
-          <th name="tipoPermiso">
-            <div class="divFlexThRpe">
-              <div>
-                  <label>Tipo de permiso</label>
-              </div>
-              <button class="order"></button>
-                <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
-                  ${svgXBeniRpeOrderString}
-                  <div class="divTextoCampoOrdenar">
-                    <label id="${CONSTANTS_RPE.idOrdenarTipoPermisoRpe}" class="textoCampoOrdenar"></label>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </th>
-
-          <th>Horas</th>
-        </tr>
-
-        ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
-          <tr>
-            <td>
-                <label>
-                    ${item.dia}
-                </label>
-            </td>
-            <td>
-                <label>
-                    ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
-                </label>
-            </td>
-            <td>
-                <label>
-                    ${item.horas}
-                </label>
-            </td>
-          </tr>
-        `)}
-      </table>
-      ${this.datosReporteRpe.length <= 10
-    ? html``
-    : html`
-      <div class="divBodyStepper">
-        ${this.renderStepper()}
-      </div>
-    `}
-    `;
   }
 
   cambiarFormatoTipoPermiso(dato) {
