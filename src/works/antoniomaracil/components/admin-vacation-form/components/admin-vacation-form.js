@@ -182,7 +182,7 @@ export class AdminVacationForm extends LitElement {
         this.list[i].statusDate = formatDate(new Date(), true);
       }
     }
-    this.sendData();
+    // this.sendData();
   }
 
   orderList(column) {

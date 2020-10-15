@@ -281,11 +281,11 @@ class VacationForm extends LitElement {
             </tr>
             ${this.list.slice(this.from, this.to).map(item => html`
             <tr>
-              <td>${item.applicationDate ? item.applicationDate : nothing}</td>
-              <td>${item.startDate ? item.startDate : nothing}</td>
-              <td>${item.endDate ? item.endDate : nothing}</td>
-              <td>${item.status ? item.status : nothing}</td>
-              <td>${item.statusDate ? item.startDate : nothing}</td>
+              <td>${item.applicationDate}</td>
+              <td>${item.startDate}</td>
+              <td>${item.endDate}</td>
+              <td>${item.status}</td>
+              <td>${item.statusDate}</td>
               <td><button @click="${() => this.removeRow(item.id)}">Eliminar</button></td>
             </tr>
             `)}
