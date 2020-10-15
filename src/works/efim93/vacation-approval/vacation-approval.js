@@ -3,6 +3,7 @@ import { commonStyles } from './utills/common-styles';
 import { dataRequest } from './utills/request';
 import { svgArrowsSort } from '../comun_files/svg-icons';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { formatDate } from './utills/functions';
 
 class VacationApproval extends LitElement {
   static get styles() {
@@ -34,8 +35,13 @@ class VacationApproval extends LitElement {
     this.index = 0;
   }
 
-  onSelectChange(event) {
-    console.log(event.target.value);
+  onSelectChange(event, item, i) {
+    const today = new Date();
+    if (item.estado !== event.target.value) {
+      if (dataRequest[i].nombre_apellido.includes(item.nombre_apellido)) {
+        dataRequest[i] = { nombre_apellido: dataRequest[i].nombre_apellido, fecha_solicitud: dataRequest[i].fecha_solicitud, fecha_inicio: dataRequest[i].fecha_inicio, fecha_fin: dataRequest[i].fecha_fin, estado: event.target.value, fecha_estado: formatDate(today).default };
+      }
+    }
   }
 
   async firstUpdated() {
@@ -140,7 +146,7 @@ class VacationApproval extends LitElement {
                     <td>${item.fecha_inicio}</td>
                     <td>${item.fecha_fin}</td>
                     <td>
-                    <select @change="${(e) => this.onSelectChange(e)}" name="selectEstado">
+                    <select @change="${(e) => this.onSelectChange(e, item, i)}" name="selectEstado">
                         ${this.options.map(option => html`
                         <option selected="${ifDefined(option.value === item.estado ? 'true' : undefined)}" value="${option.value}">${option.text}</option>
                         `)} 
