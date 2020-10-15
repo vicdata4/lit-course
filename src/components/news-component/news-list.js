@@ -4,8 +4,9 @@ import { dateFormatter } from '../../utils/functions';
 import { info } from '../../utils/svg-icons';
 import { newListStyles } from './news-list-style';
 
-const urlUserProfile = 'https://news.ycombinator.com/user?id=';
-const urlPost = 'https://news.ycombinator.com/item?id=';
+const domain = 'https://news.ycombinator.com/';
+const urlUserProfile = `${domain}user?id=`;
+const urlPost = `${domain}item?id=`;
 
 class NewsList extends LitElement {
   static get styles() {

@@ -12,8 +12,10 @@ export const newListStyles = css`
     padding-right: 10px;
 
     height: 30px;
-    line-height: 30px;
+    line-height: 30px;   
+  }
 
+  .row > *, .info-container {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -111,6 +113,10 @@ export const newListStyles = css`
       padding: 10px;
       outline: none;
       cursor: pointer;
+  }
+
+  .show-more:hover {
+    background-color: #f1f1f1;
   }
 
   @media (min-width: 768px) {
