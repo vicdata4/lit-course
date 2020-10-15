@@ -15,7 +15,7 @@ class InputComponent extends LitElement {
   render() {
     return html`
       <input id="message" type="text" placeholder="escribe aqui..">
-      <button @click="${this.sendData}">Guardar</button>
+      <button @click="${this.sendData}"><slot></slot></button>
     `;
   }
 }
