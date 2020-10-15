@@ -21,6 +21,15 @@ export class ElementTrello008 extends LitElement {
         this.listaPeticiones = []
     }
 
+    showPetition(id){
+        this.listaPeticiones = JSON.parse(window.localStorage.getItem('list-peticion'));
+        this.listaPeticiones.map((peticion) => {
+            if(peticion.id === id){
+                alert("Titulo: " + peticion.titulo + "Descripcion: " + peticion.descripcion + " Fecha: " + peticion.fecha);
+            }
+        });
+        
+    }
 
     verListaPeticiones(){
         this.listaPeticiones = JSON.parse(window.localStorage.getItem('list-peticion'));
@@ -39,7 +48,7 @@ export class ElementTrello008 extends LitElement {
                             if(peticion.publicar === true){
                                 return html`
                                     <tr>
-                                    <td class="text-left"><a href="">${peticion.titulo}</a></td>
+                                    <td class="text-left"><a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a></td>
                                     <td class="text-left">${peticion.fecha}</td>
                                     </tr>
                                 `
