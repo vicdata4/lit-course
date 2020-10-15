@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from './utills/common-styles';
 import { dataRequest } from './utills/request';
 import { svgArrowsSort } from '../comun_files/svg-icons';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 class VacationApproval extends LitElement {
   static get styles() {
@@ -14,6 +15,7 @@ class VacationApproval extends LitElement {
     return {
       ListaDatos: { type: Array },
       nElements: { type: Number },
+      options: { type: Object },
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
@@ -24,6 +26,7 @@ class VacationApproval extends LitElement {
   constructor() {
     super();
     this.listaDatos = dataRequest;
+    this.options = [{ value: 0, text: 'Pendiente de Aprobación' }, { value: 1, text: 'Aprobado' }, { value: 2, text: 'No Aprobado' }];
     this.nElements = 10;
     this.stepper = [];
     this.from = 0;
@@ -31,34 +34,8 @@ class VacationApproval extends LitElement {
     this.index = 0;
   }
 
-  showOptions(element) {
-    if (element === 2) {
-      return html`
-        <option value="0">${this.getEstado(0)}</option>
-        <option value="1">${this.getEstado(1)}</option>
-        `;
-    } else if (element === 1) {
-      return html`
-        <option value="0">${this.getEstado(0)}</option>
-        <option value="2">${this.getEstado(2)}</option>
-        `;
-    } else {
-      return html`
-        <option value="1">${this.getEstado(1)}</option>
-        <option value="2">${this.getEstado(2)}</option>
-        `;
-    }
-  }
-
-  getEstado(es) {
-    switch (es) {
-      case 1:
-        return 'Aprobado';
-      case 2:
-        return 'No Aprobado';
-      default:
-        return 'Pendiente de Aprobación';
-    };
+  onSelectChange(event) {
+    console.log(event.target.value);
   }
 
   async firstUpdated() {
@@ -163,10 +140,11 @@ class VacationApproval extends LitElement {
                     <td>${item.fecha_inicio}</td>
                     <td>${item.fecha_fin}</td>
                     <td>
-                        <select id="selectEstado" name="selectEstado">
-                            <option value="${item.estado}" selected>${this.getEstado(item.estado)}</option>
-                            ${this.showOptions(item.estado)};   
-                        </select>
+                    <select @change="${(e) => this.onSelectChange(e)}" name="selectEstado">
+                        ${this.options.map(option => html`
+                        <option selected="${ifDefined(option.value === item.estado ? 'true' : undefined)}" value="${option.value}">${option.text}</option>
+                        `)} 
+                    </select>
                     </td>
                     <td>${item.fecha_estado}</td>
                 </tr> `)}
