@@ -25,6 +25,18 @@ export const viewHoliday = css`
   h2 {
     font-family: "Comic Sans MS", cursive, sans-serif; 
   }
+  .btnOrder {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: transform .2s ease-in;
+    font-size: 20px;
+  }
+  
+  .btnOrder.rotate {
+    transform: rotate(180deg);
+  }
   
   
   }

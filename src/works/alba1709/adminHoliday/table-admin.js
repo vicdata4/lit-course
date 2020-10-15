@@ -34,12 +34,32 @@ export class TableAdmin extends LitElement {
     this.index = 0;
   }
 
+  rotateButton(e) {
+    const btn = e.currentTarget;
+
+    if (!btn.classList.contains('rotate')) {
+      btn.classList.add('rotate');
+    } else {
+      btn.classList.remove('rotate');
+    }
+  }
+
   render() {
     return html`
         <table id="tableAdmin">
             <tr>
-              <th>Nombre del empleado</th>
-              <th>Fecha de solicitud</th>
+              <th>
+                Nombre del empleado
+                <button class = "btnOrder" @click="${() => this.orderDate('infoFF')}">   
+                  <button class = "btnOrder" @click="${this.rotateButton}">&#9662;</button>
+                </button> 
+            </th>
+              <th>
+                Fecha de solicitud
+                <button class = "btnOrder" @click="${() => this.orderDate('infoFF')}">
+                    <button class = "btnOrder" @click="${this.rotateButton}">&#9662;</button>
+                </button>    
+            </th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
               <th>Estado de la solicitud</th>
