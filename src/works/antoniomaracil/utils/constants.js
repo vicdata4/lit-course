@@ -99,3 +99,24 @@ export const empData = [
     statusDate: '15/08/2020'
   }
 ];
+
+export const vacationDays = [
+  {
+    id: 1,
+    startDate: '15/08/2020',
+    endDate: '19/08/2020',
+    range: 4
+  },
+  {
+    id: 2,
+    startDate: '24/12/2020',
+    endDate: '05/01/2021',
+    range: 12
+  },
+  {
+    id: 3,
+    startDate: '14/03/2021',
+    endDate: '19/03/2021',
+    range: 5
+  }
+];
