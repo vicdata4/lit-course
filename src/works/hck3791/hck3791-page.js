@@ -5,6 +5,7 @@ import '../../components/work-header';
 import './components/hours-component';
 import './components/candidates-component';
 import './components/requestlist-component';
+import './components/permissions-component';
 
 class Hck3791Page extends LitElement {
   static get styles() {
@@ -23,6 +24,8 @@ class Hck3791Page extends LitElement {
         <candidates-component></candidates-component>
         <hr>
         <requestlist-component></requestlist-component>
+        <hr>
+        <permissions-component></permissions-component>
       </section>
     `;
   }
