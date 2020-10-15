@@ -14,7 +14,7 @@ class VacationApproval extends LitElement {
 
   static get properties() {
     return {
-      ListaDatos: { type: Array },
+      listaDatos: { type: Array },
       nElements: { type: Number },
       options: { type: Object },
       stepper: { type: Array, attribute: false },
@@ -27,7 +27,7 @@ class VacationApproval extends LitElement {
   constructor() {
     super();
     this.listaDatos = dataRequest;
-    this.options = [{ value: 0, text: 'Pendiente de Aprobación' }, { value: 1, text: 'Aprobado' }, { value: 2, text: 'No Aprobado' }];
+    this.options = [{ value: '0', text: 'Pendiente de Aprobación' }, { value: '1', text: 'Aprobado' }, { value: '2', text: 'No Aprobado' }];
     this.nElements = 10;
     this.stepper = [];
     this.from = 0;
@@ -38,8 +38,8 @@ class VacationApproval extends LitElement {
   onSelectChange(event, item, i) {
     const today = new Date();
     if (item.estado !== event.target.value) {
-      if (dataRequest[i].nombre_apellido.includes(item.nombre_apellido)) {
-        dataRequest[i] = { nombre_apellido: dataRequest[i].nombre_apellido, fecha_solicitud: dataRequest[i].fecha_solicitud, fecha_inicio: dataRequest[i].fecha_inicio, fecha_fin: dataRequest[i].fecha_fin, estado: event.target.value, fecha_estado: formatDate(today).default };
+      if (this.listaDatos[i].nombre_apellido.includes(item.nombre_apellido)) {
+        this.listaDatos[i] = { nombre_apellido: this.listaDatos[i].nombre_apellido, fecha_solicitud: this.listaDatos[i].fecha_solicitud, fecha_inicio: this.listaDatos[i].fecha_inicio, fecha_fin: this.listaDatos[i].fecha_fin, estado: event.target.value, fecha_estado: formatDate(today).default };
       }
     }
   }
