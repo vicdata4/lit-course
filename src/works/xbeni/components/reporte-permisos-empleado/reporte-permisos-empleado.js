@@ -250,7 +250,7 @@ ${i === 0
             </td>
             <td>
                 <label>
-                    ${item.tipoPermiso}
+                    ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
                 </label>
             </td>
             <td>
@@ -269,6 +269,11 @@ ${i === 0
       </div>
     `}
     `;
+  }
+
+  cambiarFormatoTipoPermiso(dato) {
+    const resultado = dato[0].toUpperCase() + dato.slice(1);
+    return resultado;
   }
 
   clearCamposOrdenar() {
