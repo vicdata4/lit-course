@@ -151,5 +151,44 @@ export const RpeStyles = css`
   user-select: none;
 }
 
+.order {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0;
+  cursor: pointer;
+  height:10px;
+}
+
+.svgRpe{
+  width:17px;
+  height:auto;
+}
+
+.svgRpe:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.campo_ordenar{
+  margin-left: auto;
+  float:right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.divFlexThRpe {
+  display: flex;
+}
+
+.divTextoCampoOrdenar {
+  margin-top: -10px;
+}
+
+.textoCampoOrdenar{
+  font-size: 9px;
+}
+
 
 `;

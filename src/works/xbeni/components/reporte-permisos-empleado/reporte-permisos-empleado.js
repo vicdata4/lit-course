@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reporte-permisos-empleado/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reporte-permisos-empleado/mocks';
 import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reporte-permisos-empleado/constantes';
+import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt } from '../../archivos_comunes/ac_reporte-permisos-empleado/svg_icons';
 
 class BeniReportePermisosEmpleado extends LitElement {
   constructor() {
@@ -111,7 +112,6 @@ ${
 
   renderStepper() {
     return html`
-      <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map((x, i) => html`
 ${i === 0
@@ -120,7 +120,6 @@ ${i === 0
 }
         `)}
         <div class="step" @click="${this.next}">&#x25B7;</div>
-      </div>
     `;
   }
 
@@ -157,10 +156,41 @@ ${i === 0
     return html`
       <table class="tableRpe">
         <tr>
-          <th>Dia</th>
-          <th>Tipo de permiso</th>
+          <th>
+            <div class="divFlexThRpe">
+              <div>
+                <label>Día</label>
+              </div>
+              <button class="order"></button>
+                <div @click=${() => this.orderList('name')} class="campo_ordenar">
+                  ${svgBeniRpeOrdenarInt}
+                  <div class="divTextoCampoOrdenar">                    
+                    <label id="" class="textoCampoOrdenar"></label>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </th>
+
+          <th>
+            <div class="divFlexThRpe">
+              <div>
+                  <label>Tipo de permiso</label>
+              </div>
+              <button class="order"></button>
+                <div @click=${() => this.orderList('name')} class="campo_ordenar">
+                  ${svgXBeniRpeOrderString}
+                  <div class="divTextoCampoOrdenar">                    
+                    <label id="" class="textoCampoOrdenar"></label>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </th>
+
           <th>Horas</th>
         </tr>
+
         ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
           <tr>
             <td>
