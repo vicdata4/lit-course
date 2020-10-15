@@ -120,11 +120,12 @@ export const RpeStyles = css`
 }
 /* FIN ESTILOS TABLA PE */
 
-.stepper {
-  margin: 10px 0;
+.divBodyStepper {
+  margin: 5px 0;
+  color: black;
 }
 
-.stepper .step:hover {
+.divBodyStepper .step:hover {
   background-color: #f1f1f1;
 }
 
@@ -132,19 +133,16 @@ export const RpeStyles = css`
   display: inline-block;
   padding: 5px;
   border: 1px solid #d8d7d7;
-  width: 20px;
+  width: 25px;
   height: auto;
   text-align: center;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .step.active {
-  background-color: #535353 !important;
+  background-color: #000442;
   color: white;
-}
-
-.step.left {
-  transform: rotate(180deg);
 }
 
 .stepper, .step {

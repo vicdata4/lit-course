@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reporte-permisos-empleado/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reporte-permisos-empleado/mocks';
 import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reporte-permisos-empleado/constantes';
-import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt } from '../../archivos_comunes/ac_reporte-permisos-empleado/svg_icons';
+import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt, svgBeniRpeIconRight, svgBeniRpeIconLeft } from '../../archivos_comunes/ac_reporte-permisos-empleado/svg_icons';
 
 class BeniReportePermisosEmpleado extends LitElement {
   constructor() {
@@ -112,14 +112,14 @@ ${
 
   renderStepper() {
     return html`
-        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+      <button class="step" @click="${this.prev}">${svgBeniRpeIconLeft}</button>
         ${this.stepper.map((x, i) => html`
 ${i === 0
-    ? html`<div id="${`_${i}`}" class="step active" @click="${() => this.showPage(i)}">${i + 1}</div>`
-    : html`<div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>`
+    ? html`<button id="${`_${i}`}" class="step active" @click="${() => this.showPage(i)}">${i + 1}</button>`
+    : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`
 }
         `)}
-        <div class="step" @click="${this.next}">&#x25B7;</div>
+      <button class="step" @click="${this.next}">${svgBeniRpeIconRight}</button>
     `;
   }
 
