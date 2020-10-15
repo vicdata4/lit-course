@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
+import { nothing } from 'lit-html';
 import { formatDate, getDate, checkDate } from './../../../utils/functions';
 
 class VacationForm extends LitElement {
@@ -22,6 +23,14 @@ class VacationForm extends LitElement {
     .inp-controls button{
       margin-right: 1.5rem;
       margin-left: 1.5rem;
+    }
+    .order {
+      background-color: transparent;
+      font-family: 'Muli', sans-serif;
+      font-weight: bold;
+      font-size: 0.7rem;
+      border: none;
+      cursor: pointer;
     }
     .table-box{
       border-top: solid 2px black;
@@ -216,8 +225,7 @@ class VacationForm extends LitElement {
     if (JSON.stringify(oldList) === JSON.stringify((orderedList))) {
       orderedList.reverse();
     }
-    this.list = orderedList;
-    this.requestUpdate();
+    this.list = [...orderedList];
     this.showPage(0);
   }
 
@@ -273,22 +281,12 @@ class VacationForm extends LitElement {
             </tr>
             ${this.list.slice(this.from, this.to).map(item => html`
             <tr>
-              <td>${item.applicationDate}</td>
-              <td>${item.startDate}</td>
-              <td>${item.endDate}</td>
-              <td>${item.status}</td>
-              <td>${item.statusDate}</td>
+              <td>${item.applicationDate ? item.applicationDate : nothing}</td>
+              <td>${item.startDate ? item.startDate : nothing}</td>
+              <td>${item.endDate ? item.endDate : nothing}</td>
+              <td>${item.status ? item.status : nothing}</td>
+              <td>${item.statusDate ? item.startDate : nothing}</td>
               <td><button @click="${() => this.removeRow(item.id)}">Eliminar</button></td>
-            </tr>
-            `)}
-            ${this.table.map(item => html`
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
             </tr>
             `)}
           </table>
