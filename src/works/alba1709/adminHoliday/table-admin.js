@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { viewHoliday } from './utils/styles-admin-holidays';
 import { getFormatterDate } from './utils/functions';
+import { nothing } from 'lit-html';
 
 export class TableAdmin extends LitElement {
   static get styles() {
@@ -14,6 +15,7 @@ export class TableAdmin extends LitElement {
       adminTable: { type: Array },
       numEmp: { type: Number },
       status: { type: Array },
+      currentDate: { type: String },
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
@@ -26,6 +28,7 @@ export class TableAdmin extends LitElement {
     this.adminTable = [];
     this.numEmp = 10;
     this.status = ['Pendiente de aprobación', 'Aprobado', 'No aprobado'];
+    this.currentDate = new Date();
     this.stepper = [];
     this.from = 0;
     this.to = this.numEmp;
@@ -82,6 +85,15 @@ export class TableAdmin extends LitElement {
     `;
   }
 
+  sendStat(e) {
+    const id = parseInt(e.target.id);
+    const status = e.target.value;
+    const empFound = this.adminTable.find(item => item.id === id);
+    empFound.status = status;
+    empFound.dStatus = this.currentDate;
+    this.adminTable = [...this.adminTable];
+  }
+
   orderEmployees(column) {
     const myTable = [...this.adminTable];
 
@@ -136,9 +148,10 @@ export class TableAdmin extends LitElement {
               <td>${getFormatterDate(item.dStart).defaultDate}</td>
               <td>${getFormatterDate(item.dEnd).defaultDate}</td>
               <td>
-                <select name="estado" id="estadoSoli" @change="${this.selected}">
-                  <option value="">Pendiente de aprobación</option> 
-                  <option value="">Aprobado</option>                              
+                <select id="${item.id}" @change="${this.sendStat}" >
+                  <option value="${item.status}">${item.status}</option>
+                    ${this.status.map(st => html`
+                    ${item.status.toUpperCase() !== st.toUpperCase() ? html`<option value="${st}">${st}</option>` : nothing}`)}
                 </select> 
               </td>
               <td>${getFormatterDate(item.dStatus).defaultDate}</td>
