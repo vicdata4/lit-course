@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
-import { nothing } from 'lit-html';
 import { formatDate, getDate, checkDate } from './../../../utils/functions';
 
 class VacationForm extends LitElement {
