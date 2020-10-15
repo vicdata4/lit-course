@@ -3,7 +3,7 @@ import { commonStyles } from './utills/common-styles';
 import { dataRequest } from './utills/request';
 import { svgArrowsSort } from '../comun_files/svg-icons';
 
-class HolidayApproval extends LitElement {
+class VacationApproval extends LitElement {
   static get styles() {
     return [
       commonStyles
@@ -178,4 +178,4 @@ class HolidayApproval extends LitElement {
   }
 }
 
-window.customElements.define('holiday-approval', HolidayApproval);
+window.customElements.define('vacation-approval', VacationApproval);
