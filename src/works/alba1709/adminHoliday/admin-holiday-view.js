@@ -13,7 +13,7 @@ export class AdminHolidayView extends LitElement {
   render() {
     return html`
             <h2>Solicitud de vacaciones</h2>
-            <table-admin .adminTable="${employeeRequest}" .numEmp="${3}"></table-admin>
+            <table-admin .adminTable="${employeeRequest}" .numEmp="${10}"></table-admin>
         `;
   }
 }
