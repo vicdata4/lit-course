@@ -120,3 +120,30 @@ export const vacationDays = [
     range: 5
   }
 ];
+
+export const empHistory = [
+  {
+    id: 1,
+    year: '2018',
+    total: '21',
+    generated: '21',
+    used: '21',
+    reserved: '0'
+  },
+  {
+    id: 2,
+    year: '2019',
+    total: '21',
+    generated: '21',
+    used: '18',
+    reserved: '3'
+  },
+  {
+    id: 3,
+    year: '2020',
+    total: '24',
+    generated: '19',
+    used: '20',
+    reserved: '0'
+  }
+];

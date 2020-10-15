@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
-import { empData, vacationDays } from './utils/constants';
+import { empData, vacationDays, empHistory } from './utils/constants';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-form/components/vacation-form';
 import './components/admin-vacation-form/components/admin-vacation-form';
 import './components/vacation-detail/components/vacation-detail';
+import './components/admin-vacation-detail/components/admin-vacation-detail';
 
 class AntoniomaracilPage extends LitElement {
   static get styles() {
@@ -46,6 +47,10 @@ class AntoniomaracilPage extends LitElement {
         <h2 style="text-align:center;">Vacation detail</h2>
         <hr>
         <vacation-detail .list="${vacationDays}"></vacation-detail>
+        <hr>
+        <h2 style="text-align:center;">Admin vacation detail</h2>
+        <hr>
+        <admin-vacation-detail .list="${vacationDays}" .history="${empHistory}"></admin-vacation-detail>
       </section>
     `;
   }
