@@ -153,6 +153,15 @@ ${i === 0
   }
 
   orderList(column) {
+    if (column === 'dia') {
+      this.clearCamposOrdenar();
+      this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = 'ASC';
+    }
+    if (column === 'tipoPermiso') {
+      this.clearCamposOrdenar();
+      this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = 'ASC';
+    }
+
     const myList = [...this.datosReporteRpe];
 
     var orderedList;
@@ -179,6 +188,14 @@ ${i === 0
 
     if (JSON.stringify(this.datosReporteRpe) === JSON.stringify((orderedList))) {
       orderedList.reverse();
+      if (column === 'dia') {
+        this.clearCamposOrdenar();
+        this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = 'DES';
+      }
+      if (column === 'tipoPermiso') {
+        this.clearCamposOrdenar();
+        this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = 'DES';
+      }
     }
 
     this.datosReporteRpe = [...orderedList];
@@ -197,8 +214,8 @@ ${i === 0
               <button class="order"></button>
                 <div @click=${() => this.orderList('dia')} class="campoOrdenar">
                   ${svgBeniRpeOrdenarInt}
-                  <div class="divTextoCampoOrdenar">                    
-                    <label id="" class="textoCampoOrdenar"></label>
+                  <div class="divTextoCampoOrdenar">
+                    <label id="${CONSTANTS_RPE.idOrdenarDiaRpe}" class="textoCampoOrdenar"></label>
                   </div>
                 </div>
               </button>
@@ -213,8 +230,8 @@ ${i === 0
               <button class="order"></button>
                 <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
                   ${svgXBeniRpeOrderString}
-                  <div class="divTextoCampoOrdenar">                    
-                    <label id="" class="textoCampoOrdenar"></label>
+                  <div class="divTextoCampoOrdenar">
+                    <label id="${CONSTANTS_RPE.idOrdenarTipoPermisoRpe}" class="textoCampoOrdenar"></label>
                   </div>
                 </div>
               </button>
@@ -252,6 +269,11 @@ ${i === 0
       </div>
     `}
     `;
+  }
+
+  clearCamposOrdenar() {
+    this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = '';
   }
 
   controlErroresRpe() {

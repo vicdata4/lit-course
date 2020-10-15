@@ -187,6 +187,4 @@ export const RpeStyles = css`
 .textoCampoOrdenar{
   font-size: 9px;
 }
-
-
 `;

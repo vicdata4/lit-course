@@ -5,5 +5,7 @@ export const CONSTANTS_RPE = {
   idFechaFinRpe: 'idFechaFinRpe',
   idErroresFinalesRpe: 'idErroresFinalesRpe',
   idPadreErroresFinalesRpe: 'idPadreErroresFinalesRpe',
-  idExitoDatosRpe: 'idExitoDatosRpe'
+  idExitoDatosRpe: 'idExitoDatosRpe',
+  idOrdenarDiaRpe: 'idOrdenarDiaRpe',
+  idOrdenarTipoPermisoRpe: 'idOrdenarTipoPermisoRpe'
 };
