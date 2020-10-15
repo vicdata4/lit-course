@@ -152,17 +152,49 @@ ${i === 0
     }
   }
 
+  orderList(column) {
+    const myList = [...this.datosReporteRpe];
+
+    var orderedList;
+    if (column !== 'dia') {
+      orderedList = myList.sort((a, b) => {
+        if (a[column] < b[column]) return -1;
+        if (a[column] > b[column]) return 1;
+        return 0;
+      });
+    } else {
+      orderedList = myList.sort((a, b) => {
+        var arrayDatosFechaA = a[column].split('/');
+        var dateA = new Date(parseInt(arrayDatosFechaA[2]), (parseInt(arrayDatosFechaA[1]) - parseInt(1)), parseInt(arrayDatosFechaA[0]));
+
+        var arrayDatosFechaB = b[column].split('/');
+        var dateB = new Date(parseInt(arrayDatosFechaB[2]), (parseInt(arrayDatosFechaB[1]) - parseInt(1)), parseInt(arrayDatosFechaB[0]));
+
+        if (dateA.getTime() < dateB.getTime()) return -1;
+        if (dateA.getTime() > dateB.getTime()) return 1;
+        return 0;
+      });
+    }
+
+    if (JSON.stringify(this.datosReporteRpe) === JSON.stringify((orderedList))) {
+      orderedList.reverse();
+    }
+
+    this.datosReporteRpe = [...orderedList];
+    this.showPage(0);
+  }
+
   generarReporteRpe() {
     return html`
       <table class="tableRpe">
         <tr>
-          <th>
+          <th name="dia">
             <div class="divFlexThRpe">
               <div>
                 <label>Día</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('name')} class="campo_ordenar">
+                <div @click=${() => this.orderList('dia')} class="campoOrdenar">
                   ${svgBeniRpeOrdenarInt}
                   <div class="divTextoCampoOrdenar">                    
                     <label id="" class="textoCampoOrdenar"></label>
@@ -172,13 +204,13 @@ ${i === 0
             </div>
           </th>
 
-          <th>
+          <th name="tipoPermiso">
             <div class="divFlexThRpe">
               <div>
                   <label>Tipo de permiso</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('name')} class="campo_ordenar">
+                <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
                   ${svgXBeniRpeOrderString}
                   <div class="divTextoCampoOrdenar">                    
                     <label id="" class="textoCampoOrdenar"></label>
