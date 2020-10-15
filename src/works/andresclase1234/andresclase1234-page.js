@@ -3,7 +3,6 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './empleado-vacaciones/solicitud-vacaciones';
-import './admin-vacaciones/admin-vacaciones';
 
 class Andresclase1234Page extends LitElement {
   static get styles() {
@@ -19,7 +18,6 @@ class Andresclase1234Page extends LitElement {
         <work-header>Andresclase1234</work-header>
       </section>
       <solicitud-vacaciones></solicitud-vacaciones>
-      <admin-vacaciones></admin-vacaciones>
     `;
   }
 }
