@@ -164,6 +164,7 @@ ${i === 0
       });
     } else {
       orderedList = myList.sort((a, b) => {
+        // FORMATO FECHA RECIBIDA DD/MM/YYYY
         var arrayDatosFechaA = a[column].split('/');
         var dateA = new Date(parseInt(arrayDatosFechaA[2]), (parseInt(arrayDatosFechaA[1]) - parseInt(1)), parseInt(arrayDatosFechaA[0]));
 
@@ -243,9 +244,13 @@ ${i === 0
           </tr>
         `)}
       </table>
+      ${this.datosReporteRpe.length <= 10
+    ? html``
+    : html`
       <div class="divBodyStepper">
         ${this.renderStepper()}
       </div>
+    `}
     `;
   }
 
