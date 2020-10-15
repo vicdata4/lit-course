@@ -283,6 +283,8 @@ ${i === 0
 
   controlErroresRpe() {
     var erroresDatosReporte = '';
+    var fechaInicio = '';
+    var fechaFin = '';
 
     /* CONTROL DE QUE SE HAYA SELECCIONADO UN EMPLEADO */
     var empleado = this.shadowRoot.getElementById(CONSTANTS_RPE.idSelectEmpleadosRpe);
@@ -294,13 +296,33 @@ ${i === 0
     }
 
     var regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
-    var fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
-    if (!regexDateFormat.test(fechaInicio)) {
-      erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>';
+    fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
+    if (fechaInicio !== '') {
+      if (!regexDateFormat.test(fechaInicio)) {
+        erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>';
+      }
+    } else {
+      fechaInicio = null;
     }
-    var fechaFin = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaFinRpe).value;
-    if (!regexDateFormat.test(fechaFin)) {
-      erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>';
+
+    fechaFin = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaFinRpe).value;
+    if (fechaFin !== '') {
+      if (!regexDateFormat.test(fechaFin)) {
+        erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>';
+      }
+    } else {
+      fechaFin = null;
+    }
+
+    if (fechaInicio !== null && fechaFin !== null) {
+      const dateInicio = new Date(fechaInicio);
+      const dateFin = new Date(fechaFin);
+      if (dateInicio.getTime() > dateFin.getTime()) {
+        erroresDatosReporte += 'La fecha de inicio no puede ser mayor que la fecha de fin<br>';
+      }
+      if (dateInicio.getTime() === dateFin.getTime()) {
+        erroresDatosReporte += 'La fecha de inicio no puede ser igual a la fecha de fin<br>';
+      }
     }
 
     if (erroresDatosReporte !== '') {
