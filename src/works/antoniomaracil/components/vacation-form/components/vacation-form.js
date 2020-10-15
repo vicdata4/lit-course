@@ -1,103 +1,11 @@
 /* eslint-disable no-console */
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { formatDate, getDate, checkDate } from './../../../utils/functions';
+import { vacationStyles } from './../../../utils/custom-styles';
 
 class VacationForm extends LitElement {
   static get styles() {
-    return css`
-    .component-box{
-      margin: 1rem;
-      font-family: "Comic Sans MS", cursive, sans-serif;
-    }
-    .inp-controls{
-      display:flex;
-      align-items: center;
-    }
-    .inp-controls p{
-      margin-right: 1rem;
-    }
-    .inp-controls input+p{
-      margin-left: 1rem;
-    }
-    .inp-controls button{
-      margin-right: 1.5rem;
-      margin-left: 1.5rem;
-    }
-    .order {
-      background-color: transparent;
-      font-family: 'Muli', sans-serif;
-      font-weight: bold;
-      font-size: 0.7rem;
-      border: none;
-      cursor: pointer;
-    }
-    .table-box{
-      border-top: solid 2px black;
-      border-bottom: solid 2px black;
-      margin-top: 1.5rem;
-    }
-    table {
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      empty-cells: hide;
-      width: 100%;
-    }
-    tr:nth-child(even) {
-      background-color: #EEEEEE;
-    }
-    table th{
-      border-left: solid 2px black;
-      border-right: solid 2px black;
-      background-color: #CCCCCC;
-      font-size: 0.7rem;
-      text-align: left;
-    }
-    table td{
-      border-right: solid 2px black;
-      border-left: solid 2px black;
-    }
-    td{
-      height: 2rem;
-    }
-    span span{
-      cursor: pointer;
-    }
-    .table-cntr{
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .stepper {
-      margin: 10px 0;
-    }
-
-    .stepper .step:hover {
-      background-color: #f1f1f1;
-    }
-
-    .step {
-      display: inline-block;
-      padding: 5px;
-      border: 1px solid #d8d7d7;
-      width: 20px;
-      height: auto;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .step.active {
-      background-color: #535353 !important;
-      color: white;
-    }
-
-    .step.left {
-      transform: rotate(180deg);
-    }
-
-    .stepper, .step {
-      user-select: none;
-    }
-    `;
+    return vacationStyles;
   }
 
   static get properties() {
@@ -126,7 +34,6 @@ class VacationForm extends LitElement {
   }
 
   async firstUpdated() {
-    this.table = new Array(this.nElements).fill({});
     this.updateStepper();
   }
 

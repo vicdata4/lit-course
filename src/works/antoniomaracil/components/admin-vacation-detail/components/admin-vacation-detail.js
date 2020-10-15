@@ -41,6 +41,12 @@ export class adminVacationDetail extends LitElement {
       td{
         height: 2rem;
       }
+      @media (max-width: 768px) {
+        .history-box{
+          display: block;
+          overflow-x: auto;
+      }
+      }
     `;
   }
 

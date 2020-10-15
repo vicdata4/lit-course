@@ -60,9 +60,8 @@ export class VacationDetail extends LitElement {
                         <td>${item.startDate}</td>
                         <td>${item.endDate}</td>
                         <td>${item.range}</td>
-                    `)}
-                    <tr>
                     </tr>
+                    `)}
                 </table>
             </div>
         

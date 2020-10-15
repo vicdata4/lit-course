@@ -21,6 +21,7 @@ export class AdminVacationForm extends LitElement {
       border-top: solid 2px black;
       border-bottom: solid 2px black;
       margin-top: 1.5rem;
+      overflow-x: auto;
     }
     table {
       border-collapse: collapse;
