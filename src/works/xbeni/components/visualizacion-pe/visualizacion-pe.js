@@ -83,13 +83,13 @@ class BeniListaPe extends LitElement {
         ${this.datosListaPe.map(item => html`
           <tr>
             <td>
-              <label @click=${() => this.loadDateResults(item.id_peticion, item.titulo, item.fecha_publicacion)} class="label_titulo_tabla_pe">
+              <label @click=${() => this.loadDateResults(item.id_peticion, item.titulo, item.fechaPublicacion)} class="label_titulo_tabla_pe">
                 ${item.titulo}
               </label>
             </td>
             <td>
               <label>
-                ${item.fecha_publicacion}
+                ${item.fechaPublicacion}
               </label>
             </td>
           </tr>
