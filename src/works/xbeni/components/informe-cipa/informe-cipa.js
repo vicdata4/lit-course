@@ -228,19 +228,16 @@ export class BeniListaCipa extends LitElement {
     console.log('URL: REDIRIGIR URL - EDITAR CANDIDATO [ ' + idCandidatoEditar + ' ]');
   }
 
-  /* CAMBIAR FORMATO PERFIL */
   cambiarFormatoPerfil(perfil) {
     let resultado = perfil[0].toUpperCase() + perfil.slice(1);
     return resultado;
   }
 
-  /* CAMBIAR FORMATO EMAIL - TODO MINUSCULAS */
   cambiarFormatoCorreo(email) {
     let resultado = email.toLowerCase();
     return resultado;
   }
 
-  /* CAMBIAR FORMATO NOMBRE RECIBIDO - 1 MAYUSCULA - RESTO MINUSCULA */
   cambiarFormatoNombre(nombre) {
     let dato = nombre.toLowerCase();
     let arrayDatos = dato.split(' ');
@@ -396,7 +393,6 @@ export class BeniListaCipa extends LitElement {
   calcularDiferenciaFechaSemaforo(fechaVencimiento) {
     let date = new Date();
 
-    /* DIAS QUE HAY EN ESOS 3 MESES FECHA ACTUAL - VENCIMIENTO */
     let arrayDatosFecha = fechaVencimiento.split('/');
     let fechaVenciminetoFormato = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
     let fechaVencimiento3Meses = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
@@ -404,13 +400,11 @@ export class BeniListaCipa extends LitElement {
     let diff3Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento3Meses.getTime();
     let diasDif3Meses = (Math.floor(diff3Milis / (1000 * 60 * 60 * 24)));
 
-    /* FECHA VENCIMIENTO  FECHA ACTUAL - FECHA VENCIMIENTO | DIAS QUE TIENE 1 MES */
     let fechaVencimiento1Meses = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) - parseInt('1')), arrayDatosFecha[0]);
     fechaVencimiento1Meses.setMonth(fechaVenciminetoFormato.getMonth() - 1);
     let diff1Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento1Meses.getTime();
     let diasDif1Meses = (Math.floor(diff1Milis / (1000 * 60 * 60 * 24)));
 
-    // DIAS QUE HAY ENTRE LA fechaVencimiento Y LA FECHA_ACTUAL
     var fechaInicio = new Date(fechaVenciminetoFormato).getTime();
     var fechaFin = new Date(date).getTime();
     var diff = fechaInicio - fechaFin;
@@ -432,26 +426,12 @@ export class BeniListaCipa extends LitElement {
     let arrayDatosFecha = fechaUltimaActualizacion.split('/');
     let date = new Date(arrayDatosFecha[2], (parseInt(arrayDatosFecha[1]) + parseInt('1')), arrayDatosFecha[0]);
     date.setMonth(date.getMonth() + 18);
-    let fechaFinal = '';
 
     let day = date.getDate();
     let month = date.getMonth();
     let year = date.getFullYear();
 
-    fechaFinal = (`${day}/${month}/${year}`);
-    if (month < 10) {
-      fechaFinal = (`${day}/0${month}/${year}`);
-      if (day < 10) {
-        fechaFinal = (`0${day}/0${month}/${year}`);
-      }
-    }
-    if (day < 10) {
-      fechaFinal = (`0${day}/${month}/${year}`);
-      if (month < 10) {
-        fechaFinal = (`0${day}/0${month}/${year}`);
-      }
-    }
-    return fechaFinal;
+    return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
   }
 }
 
