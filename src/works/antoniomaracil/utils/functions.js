@@ -50,3 +50,14 @@ export const minMaxDate = (date, max = false) => {
     return `${date.getUTCFullYear()}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
   }
 };
+
+export const orderedList = (list, column) => {
+  return list.sort((a, b) => {
+    if (a[column] > b[column]) {
+      return 1;
+    } else if (a[column] < b[column]) {
+      return -1;
+    }
+    return 0;
+  });
+};

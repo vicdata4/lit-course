@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
-import { formatDate, getDate, checkDate } from './../../../utils/functions';
+import { formatDate, getDate, checkDate, orderedList } from './../../../utils/functions';
 import { vacationStyles } from './../../../utils/custom-styles';
 
 class VacationForm extends LitElement {
@@ -115,18 +115,12 @@ class VacationForm extends LitElement {
 
   orderList(column) {
     const oldList = [...this.list];
-    const orderedList = this.list.sort((a, b) => {
-      if (a[column] > b[column]) {
-        return 1;
-      } else if (a[column] < b[column]) {
-        return -1;
-      }
-      return 0;
-    });
-    if (JSON.stringify(oldList) === JSON.stringify((orderedList))) {
-      orderedList.reverse();
+
+    const newList = orderedList(this.list, column);
+    if (JSON.stringify(oldList) === JSON.stringify((newList))) {
+      newList.reverse();
     }
-    this.list = [...orderedList];
+    this.list = [...newList];
     this.showPage(0);
   }
 
