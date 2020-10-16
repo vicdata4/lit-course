@@ -40,6 +40,7 @@ class VacationApproval extends LitElement {
     if (item.estado !== event.target.value) {
       if (this.listaDatos[i].nombre_apellido.includes(item.nombre_apellido)) {
         this.listaDatos[i] = { nombre_apellido: this.listaDatos[i].nombre_apellido, fecha_solicitud: this.listaDatos[i].fecha_solicitud, fecha_inicio: this.listaDatos[i].fecha_inicio, fecha_fin: this.listaDatos[i].fecha_fin, estado: event.target.value, fecha_estado: formatDate(today).default };
+        this.listaDatos = [...this.listaDatos];
       }
     }
   }
