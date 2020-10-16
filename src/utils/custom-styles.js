@@ -20,13 +20,17 @@ export const navigatorStyles = css`
     cursor: pointer;
   }
 
+  .menu-list li a:hover {
+    background-color: #3e5c7b;
+    color: white;
+  }
+
   .menu-list li a {
     display: block;
     text-decoration: none;
     color: black;
     padding: 20px;
     text-align: center;
-
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
@@ -45,11 +49,6 @@ export const navigatorStyles = css`
       border-radius: 3px;
     }
 
-    .menu-list li a:hover {
-      background-color: #3e5c7b;
-      color: white;
-    }
-
     .menu-list li a {
       height: 150px;
       width: 150px;
@@ -60,5 +59,22 @@ export const navigatorStyles = css`
 export const commonStyles = css`
   .container {
     padding: 20px;
+  }
+
+  .common-list {
+    margin: 40px 0px;
+  }
+
+  .common-btn {
+      background-color: transparent;
+      border: 1px solid grey;
+      padding: 10px;
+      margin: 5px;
+      outline: none;
+      cursor: pointer;
+  }
+
+  .common-btn:hover {
+    background-color: #f1f1f1;
   }
 `;
