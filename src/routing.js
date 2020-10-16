@@ -10,6 +10,7 @@ import './views/data-binding';
 import './views/list-example-view';
 import './views/works-view';
 import './views/pagination-view';
+import './views/news-view';
 
 import './works/alba1709/alba1709-page';
 import './works/andresclase1234/andresclase1234-page';
@@ -38,6 +39,7 @@ export const routing = function() {
     { path: '/list-example', component: 'list-example-view' },
     { path: '/works', component: 'works-view' },
     { path: '/pagination', component: 'pagination-view' },
+    { path: '/news-searcher', component: 'news-view' },
     { path: '(.*)', component: 'not-found-view' }
   ];
 
