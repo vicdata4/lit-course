@@ -14,7 +14,7 @@ class VacationApproval extends LitElement {
 
   static get properties() {
     return {
-      listaDatos: { type: Array },
+      listaDatos: { type: Object },
       nElements: { type: Number },
       options: { type: Object },
       stepper: { type: Array, attribute: false },
@@ -26,6 +26,13 @@ class VacationApproval extends LitElement {
 
   constructor() {
     super();
+    for (const i in dataRequest) {
+      const arr = dataRequest[i];
+      Array.prototype.fill(formatDate(arr.fecha_solicitud).default, 1, 2);
+      Array.prototype.fill(formatDate(arr.fecha_inicio).default, 2, 3);
+      Array.prototype.fill(formatDate(arr.fecha_fin).default, 3, 4);
+      Array.prototype.fill(formatDate(arr.fecha_estado).default, 5);
+    }
     this.listaDatos = dataRequest;
     this.options = [{ value: '0', text: 'Pendiente de Aprobación' }, { value: '1', text: 'Aprobado' }, { value: '2', text: 'No Aprobado' }];
     this.nElements = 10;
