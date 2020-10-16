@@ -1,12 +1,12 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import { hoursStyle } from '../styles/styles';
-import { employees } from '../emp';
+import { hoursStyles } from '../styles/hoursStyles';
+import { employees } from '../resources/emp';
 
 class HoursComponent extends LitElement {
   static get styles() {
     return [
-      hoursStyle
+      hoursStyles
     ];
   }
 

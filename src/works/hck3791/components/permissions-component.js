@@ -1,6 +1,6 @@
 
 import { LitElement, html } from 'lit-element';
-import { permissions } from '../permissions';
+import { permissions } from '../resources/permissions';
 import { permissionsStyles } from '../styles/permissionsStyles';
 
 class PermissionsComponent extends LitElement {
@@ -22,7 +22,6 @@ class PermissionsComponent extends LitElement {
   constructor() {
     super();
     this.list = permissions;
-    this.numberOfPages = Math.ceil(this.list.length / 10);
     this.currentPage = 0;
   }
 
@@ -33,17 +32,16 @@ class PermissionsComponent extends LitElement {
 
   navigation(e) {
     const step = e.target.id;
-
     switch (step) {
       case 'first':
         this.currentPage = 0;
         this.showTable(this.currentPage);
         break;
       case 'next':
-        if (this.currentPage < this.numberOfPages) {
-          this.currentPage++;
+        if (this.currentPage === this.numberOfPages - 1) {
+          this.currentPage = this.numberOfPages - 1;
         } else {
-          this.currentPage = this.numberOfPages;
+          this.currentPage++;
         }
         this.showTable(this.currentPage * 10);
         break;
@@ -56,7 +54,7 @@ class PermissionsComponent extends LitElement {
         this.showTable(this.currentPage * 10);
         break;
       case 'last':
-        this.currentPage = this.numberOfPages;
+        this.currentPage = this.numberOfPages - 1;
         this.showTable(this.currentPage * 10);
         break;
     }
@@ -74,7 +72,6 @@ class PermissionsComponent extends LitElement {
       if ((startDate.toString() !== 'Invalid Date' && endDate.toString() === 'Invalid Date') || (startDate.toString() === 'Invalid Date' && endDate.toString() !== 'Invalid Date')) {
         const formatStartDate = this.formatDate(startDate);
         const formatEndDate = this.formatDate(endDate);
-        this.listPermissions = [...this.list.find(employee => employee.name === option).permissions];
         for (let i = 0; i < this.listPermissions.length; i++) {
           if (this.listPermissions[i].startDate === formatStartDate || this.listPermissions[i].endDate === formatEndDate) {
             newListPermissions.push(this.listPermissions[i]);
@@ -83,14 +80,12 @@ class PermissionsComponent extends LitElement {
       } else if (startDate.toString() !== 'Invalid Date' && endDate.toString() !== 'Invalid Date') {
         const formatStartDate = this.formatDate(startDate);
         const formatEndDate = this.formatDate(endDate);
-        this.listPermissions = [...this.list.find(employee => employee.name === option).permissions];
         for (let i = 0; i < this.listPermissions.length; i++) {
           if (this.listPermissions[i].startDate === formatStartDate && this.listPermissions[i].endDate === formatEndDate) {
             newListPermissions.push(this.listPermissions[i]);
           }
         }
       } else {
-        this.listPermissions = [...this.list.find(employee => employee.name === option).permissions];
         newListPermissions = [...this.listPermissions.slice(position, position + 10)];
       }
 
@@ -129,6 +124,10 @@ class PermissionsComponent extends LitElement {
   }
 
   generateReport() {
+    const option = this.shadowRoot.getElementById('employeeSelect').value;
+    this.listPermissions = [...this.list.find(employee => employee.name === option).permissions];
+    this.numberOfPages = Math.ceil(this.listPermissions.length / 10);
+    console.log(this.numberOfPages);
     this.currentPage = 0;
     this.showTable(0);
   }

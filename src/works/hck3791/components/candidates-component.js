@@ -1,12 +1,12 @@
 /* eslint-disable indent */
 import { LitElement, html } from 'lit-element';
-import { candidates } from '../cand';
-import { candidatesStyle } from '../styles/styles';
+import { candidates } from '../resources/cand';
+import { candidatesStyles } from '../styles/candidatesStyles';
 
 class CandidatesComponent extends LitElement {
   static get styles() {
     return [
-      candidatesStyle
+      candidatesStyles
     ];
   }
 

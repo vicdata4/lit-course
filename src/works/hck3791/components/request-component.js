@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { request } from '../request';
+import { request } from '../resources/request';
 import { requestStyles } from '../styles/requestStyles';
 
 class RequestComponent extends LitElement {

@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
+import { mainStyles } from './styles/mainStyles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/hours-component';
@@ -8,28 +9,29 @@ import './components/requestlist-component';
 import './components/permissions-component';
 
 const components = {
+  permissionsComponent: () => html`<permissions-component></permissions-component>`,
   hoursComponent: () => html`<hours-component>Submit</hours-component>`,
   candidatesComponent: () => html`<candidates-component></candidates-component>`,
-  permissionsComponent: () => html`<permissions-component></permissions-component>`,
   requestlistComponent: () => html`<requestlist-component></requestlist-component>`
 };
 
 class Hck3791Page extends LitElement {
   static get styles() {
     return [
-      commonStyles
+      commonStyles,
+      mainStyles
     ];
   }
 
   static get properties() {
     return {
-      current: { type: String }
+      current: { type: String, Attribute: false }
     };
   }
 
   constructor() {
     super();
-    this.current = 'inputComponent';
+    this.current = 'permissionsComponent';
   }
 
   setComponent(component) {
