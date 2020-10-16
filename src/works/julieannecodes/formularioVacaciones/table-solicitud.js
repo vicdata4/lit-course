@@ -1,24 +1,11 @@
-import { LitElement, html, css } from 'lit-element';
-import { tableStyles } from '../utils/custom-styles';
+import { LitElement, html } from 'lit-element';
+import { mediaQueries, tableStyles } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
   static get styles() {
-    return [
-      tableStyles,
-      css`
-      .deleteB, .order {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-      }
-      .order.rotated {transform: rotate(180deg);}
-      .buttonWrap {
-        width: 50%;
-        margin: 0 auto;
-      }`
-    ];
+    return [tableStyles, mediaQueries];
   }
 
   static get properties() {
@@ -26,7 +13,10 @@ class TableSolicitud extends LitElement {
       requestsList: { type: Array },
       tableTitles: { type: Array },
       sortedArray: { type: Array },
-      orderType: { type: Array }
+      orderType: { type: Array },
+      fromT: { type: Number },
+      toT: { type: Number },
+      firstIndex: { type: Number }
     };
   }
 
@@ -36,6 +26,9 @@ class TableSolicitud extends LitElement {
     this.sortedArray = [];
     this.tableTitles = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
     this.orderType = ['currentDate', 'startDate', 'endDate'];
+    this.firstIndex = 0;
+    this.toT = 0;
+    this.fromT = 0;
   }
 
   order(e) {
@@ -49,6 +42,7 @@ class TableSolicitud extends LitElement {
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
+    // this.showPartOf(this.firstIndex);
   }
 
   deleteDate(i) {
@@ -72,7 +66,7 @@ class TableSolicitud extends LitElement {
             <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>` : nothing}
           </th>`)}
         </tr>
-        ${this.requestsList.map((item, i) => html`
+        ${this.requestsList.slice(this.fromT, this.toT).map((item, i) => html`
         <tr id="${i}">
           <td>${dateFormatter(item.currentDate).solicitudDate}</td>
           <td>${dateFormatter(item.startDate).tableDate}</td>
