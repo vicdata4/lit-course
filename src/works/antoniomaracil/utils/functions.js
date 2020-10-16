@@ -43,12 +43,13 @@ export const formatDate = (date, minutes = false) => {
   }
 };
 
-export const minMaxDate = (date, max = false) => {
-  if (max) {
-    return `${date.getUTCFullYear() + 2}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
-  } else {
-    return `${date.getUTCFullYear()}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
-  }
+export const maxDate = () => {
+  const date = new Date();
+  return `${date.getUTCFullYear() + 2}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
+};
+export const minDate = () => {
+  const date = new Date();
+  return `${date.getUTCFullYear()}-${(date.getMonth() + 1)}-${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}`;
 };
 
 export const orderedList = (list, column) => {

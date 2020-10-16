@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
-import { formatDate, getDate, checkDate, orderedList } from './../../../utils/functions';
+import { formatDate, getDate, checkDate, orderedList, minDate, maxDate } from './../../../utils/functions';
 import { vacationStyles } from './../../../utils/custom-styles';
 
 class VacationForm extends LitElement {
@@ -153,14 +153,15 @@ class VacationForm extends LitElement {
           <p>Solicitud de vacaciones:</p>
           <div class="inp-controls">
             <p>Fecha de inicio</p>
-            <input id="start" type="date">
+            <input id="start" type="date" min="${minDate()}" max="${maxDate()}">
             <p>Fecha de final</p>
-            <input id="end" type="date">
+            <input id="end" type="date" min="${minDate()}" max="${maxDate()}">
             <button @click="${this.add}">Agregar</button>
           </div>
         </div>
       
         ${this.renderStepper()}
+
         <div class="table-box">
           <table>
             <tr>
