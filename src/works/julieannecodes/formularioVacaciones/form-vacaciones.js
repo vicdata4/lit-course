@@ -1,8 +1,13 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
+import { mediaQueries, formStyles } from '../utils/custom-styles';
 import { dateFormatter } from '../utils/functions';
 
 class FormVacaciones extends LitElement {
+  static get styles() {
+    return [formStyles, mediaQueries];
+  }
+
   static get properties() {
     return {
       message: { type: String, attribute: false }
@@ -74,13 +79,19 @@ class FormVacaciones extends LitElement {
   render() {
     return html`
     <form onsubmit="return false">
-            <label for="start">Fecha inicio</label>
-            <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}">
-            <label for="end">Fecha fin</label>
-            <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}">
-            <button type="submit" @click="${this.onSubmit}">Agregar</button> 
-        </form>
-        ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
+      <div class="formWrap">
+        <div class="startWrap">
+          <label for="start" class="startLabel">Fecha inicio</label>
+          <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}">
+        </div>
+        <div class="endWrap">
+          <label for="end" class="endLabel">Fecha fin</label>
+          <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}">
+        </div>
+        <button type="submit" @click="${this.onSubmit}">Agregar</button>
+      </div>  
+    </form>
+    ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
     `;
   }
 }
