@@ -8,13 +8,13 @@ import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_infor
 export class BeniListaCipa extends LitElement {
   constructor() {
     super();
-    this.datosCipa = cargarInformacionCandidatosCipa();
+    this.datosCipa = cargarInformacionCandidatosCipa;
     this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
   }
 
   static get properties() {
     return {
-      datosCipa: { type: Object },
+      datosCipa: { type: Array },
       tituloFormulario: { type: String }
     };
   }
@@ -146,31 +146,31 @@ export class BeniListaCipa extends LitElement {
             </tr>
 
             <!--  MAIN TABLA -->
-            ${Object.keys(this.datosCipa).map(item => html`
+            ${Array.this.datosCipa.map(item => html`
             <tr>
               <td>
                 <label class="label_nombre_candidato_cipa" @click=${() => this.dirigirUrlEditarCandidato(this.datosCipa[item].nombre)}>
-                  ${this.cambiarFormatoNombre(this.datosCipa[item].nombre)}
+                  ${this.cambiarFormatoNombre(item.nombre)}
                 </label>
               </td>
               <td>
                 <label>
-                  ${this.cambiarFormatoCorreo(this.datosCipa[item].email)}
+                  ${this.cambiarFormatoCorreo(item.email)}
                 </label>
               </td>
               <td>
                 <label>
-                  ${this.datosCipa[item].telefono}
+                  ${this.item.telefono}
                 </label>
               </td>
               <td>
                 <label>
-                  ${this.cambiarFormatoPerfil(this.datosCipa[item].perfil)}
+                  ${this.cambiarFormatoPerfil(item.perfil)}
                 </label>
               </td>
               <td>
                 <div class="checkbox">
-                  ${this.datosCipa[item].en_plantilla
+                  ${item.en_plantilla
     ? html`<input checked disabled id="checkbox1_${item}" type="checkbox" value="1" />
                     <label for="checkbox1_${item}"></label>`
     : html`<input disabled id="checkbox1_${item}" type="checkbox" value="1" />
@@ -180,19 +180,19 @@ export class BeniListaCipa extends LitElement {
               </td>
               <td>
                 <label>
-                  ${this.datosCipa[item].fecha_ultima_actualizacion}
+                  ${this.item.fecha_ultima_actualizacion}
                 </label>
               </td>
               <td>
                 <label>
-                  ${this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)}
+                  ${this.calcularFechaVencimiento(item.fecha_ultima_actualizacion)}
                 </label>
               </td>
               <td>
                 <div class="div_semaforo">
-        ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)) === 'rojo'
+        ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(item.fecha_ultima_actualizacion)) === 'rojo'
     ? html`${svgBeniCircleRed}`
-    : html` ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(this.datosCipa[item].fecha_ultima_actualizacion)) === 'amarillo'
+    : html` ${this.calcularDiferenciaFechaSemaforo(this.calcularFechaVencimiento(item.fecha_ultima_actualizacion)) === 'amarillo'
       ? html`${svgBeniCircleYellow}`
       : html``}
         `}
