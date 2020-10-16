@@ -146,10 +146,10 @@ export class BeniListaCipa extends LitElement {
             </tr>
 
             <!--  MAIN TABLA -->
-            ${Array.this.datosCipa.map(item => html`
+            ${this.datosCipa.map(item => html`
             <tr>
               <td>
-                <label class="label_nombre_candidato_cipa" @click=${() => this.dirigirUrlEditarCandidato(this.datosCipa[item].nombre)}>
+                <label class="label_nombre_candidato_cipa" @click=${() => this.dirigirUrlEditarCandidato(item.nombre)}>
                   ${this.cambiarFormatoNombre(item.nombre)}
                 </label>
               </td>
@@ -160,7 +160,7 @@ export class BeniListaCipa extends LitElement {
               </td>
               <td>
                 <label>
-                  ${this.item.telefono}
+                  ${item.telefono}
                 </label>
               </td>
               <td>
@@ -180,7 +180,7 @@ export class BeniListaCipa extends LitElement {
               </td>
               <td>
                 <label>
-                  ${this.item.fecha_ultima_actualizacion}
+                  ${item.fecha_ultima_actualizacion}
                 </label>
               </td>
               <td>
