@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
-import { formatDate, getDate } from '../../../utils/functions';
+import { formatDate } from '../../../utils/functions';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
@@ -189,28 +189,6 @@ export class AdminVacationForm extends LitElement {
   orderList(column) {
     const oldList = [...this.list];
     const orderedList = this.list.sort((a, b) => {
-      if (
-        getDate(a[column], true).getTime() >
-        getDate(b[column], true).getTime()
-      ) {
-        return 1;
-      } else if (
-        getDate(a[column], true).getTime() <
-        getDate(b[column], true).getTime()) {
-        return -1;
-      }
-      return 0;
-    });
-    if (JSON.stringify(oldList) === JSON.stringify((orderedList))) {
-      orderedList.reverse();
-    }
-    this.list = [...orderedList];
-    this.showPage(0);
-  }
-
-  orderList1(column) {
-    const oldList = [...this.list];
-    const orderedList = this.list.sort((a, b) => {
       if (a[column] > b[column]) {
         return 1;
       } else if (a[column] < b[column]) {
@@ -245,13 +223,13 @@ export class AdminVacationForm extends LitElement {
         <div class="table-box">
           <table>
             <tr>
-              <th><button class="order" @click="${() => this.orderList1('name')}">Nombre del empleado
+              <th><button class="order" @click="${() => this.orderList('name')}">Nombre del empleado
                   <span>&#9662;</span></button></th>
-              <th><button class="order" @click="${() => this.orderList1('applicationDate')}">Fecha de solicitud
+              <th><button class="order" @click="${() => this.orderList('applicationDate')}">Fecha de solicitud
                   <span>&#9662;</span></button></th>
-              <th><button class="order" @click="${() => this.orderList1('startDate')}">Fecha de inicio <span>&#9662;</span></button>
+              <th><button class="order" @click="${() => this.orderList('startDate')}">Fecha de inicio <span>&#9662;</span></button>
               </th>
-              <th><button class="order" @click="${() => this.orderList1('endDate')}">Fecha de fin <span>&#9662;</span></button>
+              <th><button class="order" @click="${() => this.orderList('endDate')}">Fecha de fin <span>&#9662;</span></button>
               </th>
               <th>Estado de solicitud</th>
               <th>Fecha de estado</th>
@@ -259,16 +237,16 @@ export class AdminVacationForm extends LitElement {
             ${this.list.slice(this.from, this.to).map(item => html`
             <tr>
               <td>${item.name}</td>
-              <td>${item.applicationDate}</td>
-              <td>${item.startDate}</td>
-              <td>${item.endDate}</td>
+              <td>${formatDate(item.applicationDate)}</td>
+              <td>${formatDate(item.startDate)}</td>
+              <td>${formatDate(item.endDate)}</td>
               <td>  
                 <select id="sel-${item.id}"class="selectOptions" @change="${() => this.changeStatus(item.id)}">
                   <option value="0">Pendiente de aprobación</option>
                   <option value="1">Aprobado</option>
                   <option value="2">No aprobado</option>
                 </select></td>
-              <td>${item.statusDate}</td>
+              <td>${formatDate(item.statusDate)}</td>
             </tr>
             `)}
           </table>

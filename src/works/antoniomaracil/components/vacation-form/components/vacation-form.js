@@ -56,11 +56,11 @@ class VacationForm extends LitElement {
     if (checkDate(start, end)) {
       this.vacation = {
         id: this.id,
-        startDate: formatDate(start),
-        applicationDate: formatDate(this.actualDate),
-        endDate: formatDate(end),
+        startDate: start,
+        applicationDate: this.actualDate,
+        endDate: end,
         status: 'Pendiente de aprobación',
-        statusDate: formatDate(this.actualDate, true)
+        statusDate: this.actualDate
       };
 
       this.list.push(this.vacation);
@@ -116,14 +116,9 @@ class VacationForm extends LitElement {
   orderList(column) {
     const oldList = [...this.list];
     const orderedList = this.list.sort((a, b) => {
-      if (
-        getDate(a[column], true).getTime() >
-        getDate(b[column], true).getTime()
-      ) {
+      if (a[column] > b[column]) {
         return 1;
-      } else if (
-        getDate(a[column], true).getTime() <
-        getDate(b[column], true).getTime()) {
+      } else if (a[column] < b[column]) {
         return -1;
       }
       return 0;
@@ -187,11 +182,11 @@ class VacationForm extends LitElement {
             </tr>
             ${this.list.slice(this.from, this.to).map(item => html`
             <tr>
-              <td>${item.applicationDate}</td>
-              <td>${item.startDate}</td>
-              <td>${item.endDate}</td>
+              <td>${formatDate(item.applicationDate)}</td>
+              <td>${formatDate(item.startDate)}</td>
+              <td>${formatDate(item.endDate)}</td>
               <td>${item.status}</td>
-              <td>${item.statusDate}</td>
+              <td>${formatDate(item.statusDate)}</td>
               <td><button @click="${() => this.removeRow(item.id)}">Eliminar</button></td>
             </tr>
             `)}
