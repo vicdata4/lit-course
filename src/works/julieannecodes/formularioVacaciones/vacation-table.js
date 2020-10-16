@@ -1,15 +1,24 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
+import { mediaQueries } from '../utils/custom-styles';
 import './form-vacaciones';
 import './table-solicitud';
+import './stepper';
 
 class VacationTable extends LitElement {
+  static get styles() {
+    return [mediaQueries];
+  }
+
   static get properties() {
     return {
       vacationData: { type: Array },
       errorMessage: { type: String },
-      inArray: { type: Object }
+      inArray: { type: Object },
+      from: { type: Number },
+      to: { type: Number },
+      nEmployees: { type: Number }
     };
   }
 
@@ -18,6 +27,9 @@ class VacationTable extends LitElement {
     this.vacationData = [];
     this.errorMessage = '';
     this.inArray = new Date();
+    this.from = 0;
+    this.nEmployees = 2;
+    this.to = this.nEmployees;
   }
 
   addVacation(e) {
@@ -28,7 +40,7 @@ class VacationTable extends LitElement {
     if (recived.getTime() === this.inArray.getTime()) {
       this.errorMessage = 'Date already exists';
     } else {
-      this.vacationData = [...[e.detail.dates], ...this.vacationData];
+      this.vacationData = [e.detail.dates, ...this.vacationData];
       this.errorMessage = '';
     }
   }
@@ -39,17 +51,21 @@ class VacationTable extends LitElement {
     this.vacationData = [...arr];
   }
 
-  renderStepper() {
-    return html`aaaaaa`;
+  getValues(e) {
+    this.from = e.detail.values[0];
+    this.to = e.detail.values[1];
   }
 
   render() {
     return html`
-        <h1>Solicitud de vacaciones</h1>
-        <form-vacation @send-dates="${this.addVacation}"></form-vacation>
-        ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        ${this.vacationData.length >= 5 ? this.renderStepper() : nothing}
-        <table-solicitud .requestsList="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
+        <div class="container">
+          <h1>Solicitud de vacaciones</h1>
+          <form-vacation @send-dates="${this.addVacation}"></form-vacation>
+          ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
+
+        ${this.vacationData.length >= this.nEmployees ? html`<stepper-component .listLength="${this.vacationData.length}" @interval-values="${this.getValues}"></stepper-component>` : nothing}
+          <table-solicitud .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></table-solicitud>
+        </div>  
         `;
   }
 }
