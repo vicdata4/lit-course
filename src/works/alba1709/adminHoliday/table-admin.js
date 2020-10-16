@@ -128,11 +128,11 @@ export class TableAdmin extends LitElement {
     return html`
         <table id="tableAdmin">
             <tr>
-              <th>
+              <th id="thName">
                 Nombre del empleado
                 <button class = "btnOrder" value="asc" @click="${() => this.orderEmployees('name')}">&#9662;</button>
               </th>
-              <th>
+              <th id="thDRequest">
                 Fecha de solicitud
                 <button class = "btnOrder" id="btn" @click="${() => this.orderEmployees('dRequest')}">&#9662;</button>    
               </th>

@@ -66,7 +66,8 @@ export const viewHoliday = css`
   .step.active {
     background-color: #535353 !important;
     color: white;
-   
+  }
+
   .step.left {
     transform: rotate(180deg);
   }
@@ -74,5 +75,9 @@ export const viewHoliday = css`
   .stepper, .step {
     user-select: none;
   }  
+
+  @media (min-width: 768px) {
+
   }
+
 `;
