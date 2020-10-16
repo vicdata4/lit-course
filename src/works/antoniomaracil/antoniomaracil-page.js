@@ -9,6 +9,13 @@ import './components/admin-vacation-form/components/admin-vacation-form';
 import './components/vacation-detail/components/vacation-detail';
 import './components/admin-vacation-detail/components/admin-vacation-detail';
 
+const components = {
+  vacationForm: () => html`<vacation-form @update-array="${this.updateArray}" .nElements="${10}"></vacation-form>`,
+  adminVacationForm: () => html`<admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>`,
+  vacationDetail: () => html`<vacation-detail .list="${vacationDays}"></vacation-detail>`,
+  adminVacationDetail: () => html`<admin-vacation-detail .list="${vacationDays}" .history="${empHistory}"></admin-vacation-detail>`
+};
+
 class AntoniomaracilPage extends LitElement {
   static get styles() {
     return [
@@ -18,13 +25,19 @@ class AntoniomaracilPage extends LitElement {
 
   static get properties() {
     return {
-      list: { type: Array }
+      list: { type: Array },
+      current: { type: String, attribute: false }
     };
   }
 
   constructor() {
     super();
     this.list = [];
+    this.current = 'vacationForm';
+  }
+
+  setComponent(component) {
+    this.current = component;
   }
 
   updateArray(e) {
@@ -36,21 +49,12 @@ class AntoniomaracilPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>antoniomaracil</work-header>
-        <h2 style="text-align:center;">Vacation Form</h2>
-        <hr>
-        <vacation-form @update-array="${this.updateArray}" .nElements="${10}" .list="${this.list}"></vacation-form>
-        <hr>
-        <h2 style="text-align:center;">Admin vacation Form</h2>
-        <hr>
-        <admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>
-        <hr>
-        <h2 style="text-align:center;">Vacation detail</h2>
-        <hr>
-        <vacation-detail .list="${vacationDays}"></vacation-detail>
-        <hr>
-        <h2 style="text-align:center;">Admin vacation detail</h2>
-        <hr>
-        <admin-vacation-detail .list="${vacationDays}" .history="${empHistory}"></admin-vacation-detail>
+        <div class="common-list">
+          ${Object.keys(components).map(item => html`
+            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
+          `)}
+        </div>
+        ${components[this.current]()}
       </section>
     `;
   }
