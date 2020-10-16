@@ -127,7 +127,6 @@ class PermissionsComponent extends LitElement {
     const option = this.shadowRoot.getElementById('employeeSelect').value;
     this.listPermissions = [...this.list.find(employee => employee.name === option).permissions];
     this.numberOfPages = Math.ceil(this.listPermissions.length / 10);
-    console.log(this.numberOfPages);
     this.currentPage = 0;
     this.showTable(0);
   }
