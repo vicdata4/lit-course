@@ -60,4 +60,21 @@ export const commonStyles = css`
   .container {
     padding: 20px;
   }
+
+  .common-list {
+    margin: 40px 0px;
+  }
+
+  .common-btn {
+      background-color: transparent;
+      border: 1px solid grey;
+      padding: 10px;
+      margin: 5px;
+      outline: none;
+      cursor: pointer;
+  }
+
+  .common-btn:hover {
+    background-color: #f1f1f1;
+  }
 `;
