@@ -257,17 +257,16 @@ export class BeniListaCipa extends LitElement {
   }
 
   ordenarTablaCipaFecha(n, type) {
+    this.vaciarCamposOrdena();
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
     table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
     dir = 'asc';
 
     if (n === 5) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
     }
     if (n === 6) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
     }
 
@@ -308,11 +307,9 @@ export class BeniListaCipa extends LitElement {
       } else {
         if (switchcount === 0 && dir === 'asc') {
           if (n === 5) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
           }
           if (n === 6) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
           }
           dir = 'desc';
@@ -323,25 +320,22 @@ export class BeniListaCipa extends LitElement {
   }
 
   ordenarTablaCipaString(n, type) {
+    this.vaciarCamposOrdena();
     let table; let rows; let switching; let i; let x; let y; let shouldSwitch; let dir; let switchcount = 0;
     table = this.shadowRoot.getElementById(CONSTANTS_ITEM002.table_id);
     switching = true;
     dir = 'asc';
 
     if (n === 0) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
     }
     if (n === 1) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
     }
     if (n === 3) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
     }
     if (n === 4) {
-      this.vaciarCamposOrdena();
       this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
     }
 
@@ -372,19 +366,15 @@ export class BeniListaCipa extends LitElement {
       } else {
         if (switchcount === 0 && dir === 'asc') {
           if (n === 0) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
           }
           if (n === 1) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
           }
           if (n === 3) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
           }
           if (n === 4) {
-            this.vaciarCamposOrdena();
             this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
           }
           dir = 'desc';
