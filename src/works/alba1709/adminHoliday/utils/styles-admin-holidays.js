@@ -3,15 +3,15 @@ import { css } from 'lit-element';
 export const viewHoliday = css`
   #tableAdmin {
     border: 3px solid black;
-    justify-content: center;
-    align-items: center;
+    text-align: left;
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
-    height: 100%;
     font-size: 0.8em;
-    overflow: scroll;
-    overflow-x: auto;
+  }
+
+  #idTable {
+    overflow-x: scroll;
   }
 
   #tableAdmin tr:nth-child(odd) {
@@ -22,13 +22,14 @@ export const viewHoliday = css`
     border-right: solid 3px black;
     border-left: solid 3px black;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    white-space: nowrap;
+    text-align: left;
+    padding: 8px;
   }
   th {
     background-color: #cccccc;
   }
 
-  h2 {
+  h2, select {
     font-family: "Comic Sans MS", cursive, sans-serif; 
   }
 
@@ -77,7 +78,10 @@ export const viewHoliday = css`
   }  
 
   @media (min-width: 768px) {
-
+    #tableAdmin {
+      width: 90%;
+    }
+    
   }
 
 `;

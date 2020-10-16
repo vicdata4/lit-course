@@ -126,6 +126,7 @@ export class TableAdmin extends LitElement {
 
   render() {
     return html`
+      <div id="idTable">
         <table id="tableAdmin">
             <tr>
               <th id="thName">
@@ -158,6 +159,7 @@ export class TableAdmin extends LitElement {
             </tr>`)}
 
         </table>
+      </div>
         ${this.renderStepper()}
         `;
   }
