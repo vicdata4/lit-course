@@ -8,14 +8,14 @@ class BeniListaPe extends LitElement {
   static get properties() {
     return {
       tituloLista: { type: String },
-      datosListaPe: { type: Object }
+      datosListaPe: { type: Array }
     };
   }
 
   constructor() {
     super();
     this.tituloLista = 'Lista de peticiones';
-    this.datosListaPe = extraerDatosListaPe();
+    this.datosListaPe = extraerDatosListaPe;
   }
 
   static get styles() {
@@ -80,16 +80,16 @@ class BeniListaPe extends LitElement {
             <label>Fecha de publicación</label>
           </th>
         </tr>
-        ${Object.keys(this.datosListaPe).map(item => html`
+        ${this.datosListaPe.map(item => html`
           <tr>
             <td>
-              <label @click=${() => this.loadDateResults(this.datosListaPe[item].id_peticion, this.datosListaPe[item].titulo, this.datosListaPe[item].fecha_publicacion)} class="label_titulo_tabla_pe">
-                ${this.datosListaPe[item].titulo}
+              <label @click=${() => this.loadDateResults(item.id_peticion, item.titulo, item.fecha_publicacion)} class="label_titulo_tabla_pe">
+                ${item.titulo}
               </label>
             </td>
             <td>
               <label>
-                ${this.datosListaPe[item].fecha_publicacion}
+                ${item.fecha_publicacion}
               </label>
             </td>
           </tr>
