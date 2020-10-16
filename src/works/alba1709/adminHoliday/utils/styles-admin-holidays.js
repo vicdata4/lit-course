@@ -9,22 +9,29 @@ export const viewHoliday = css`
     border-collapse: collapse;
     width: 100%;
     height: 100%;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     overflow: scroll;
     overflow-x: auto;
   }
+
   #tableAdmin tr:nth-child(odd) {
     background-color: #eeeeee;
   }
+
   td, th {
     border-right: solid 3px black;
     border-left: solid 3px black;
     font-family: "Comic Sans MS", cursive, sans-serif;
     white-space: nowrap;
   }
+  th {
+    background-color: #cccccc;
+  }
+
   h2 {
     font-family: "Comic Sans MS", cursive, sans-serif; 
   }
+
   .btnOrder {
     background-color: transparent;
     border: none;
@@ -39,36 +46,33 @@ export const viewHoliday = css`
   }
 
   .stepper {
-        margin: 10px 0;
-      }
+    margin: 10px 0;
+  }
 
-      .stepper .step:hover {
-        background-color: #f1f1f1;
-      }
+  .stepper .step:hover {
+    background-color: #f1f1f1;
+  }
 
-      .step {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #d8d7d7;
-        width: 20px;
-        height: auto;
-        text-align: center;
-        cursor: pointer;
-      }
+  .step {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #d8d7d7;
+    width: 20px;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+  }
 
-      .step.active {
-        background-color: #535353 !important;
-        color: white;
-      }
+  .step.active {
+    background-color: #535353 !important;
+    color: white;
+   
+  .step.left {
+    transform: rotate(180deg);
+  }
 
-      .step.left {
-        transform: rotate(180deg);
-      }
-
-      .stepper, .step {
-        user-select: none;
-      }
-  
-  
+  .stepper, .step {
+    user-select: none;
+  }  
   }
 `;
