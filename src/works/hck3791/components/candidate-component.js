@@ -3,6 +3,12 @@ import { candidateStyles } from '../styles/candidateStyles';
 import { candidates } from '../resources/cand';
 import { getUrlParams } from '../resources/functions';
 
+/*
+* En este archivo hay dos funcionalidades, una activa que consiste en escribir un nombre de un candidato en "Editar usuario" y el formulario te devuelve sus datos
+* y la otra (añadida por si se necesita) sin estar activa que consiste en hacer click en la página anterior en uno de los candidatos y al llegar a este componente los campos se llenan
+* con los datos de éste.
+*/
+
 class CandidateComponent extends LitElement {
   static get styles() {
     return [
