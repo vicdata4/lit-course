@@ -23,71 +23,12 @@ class CandidatesComponent extends LitElement {
     this.candidates = candidates;
   }
 
-  sortByName() {
+  sortColumn(e) {
+    const column = e.target.id;
     const toOrder = [...this.candidates];
     const orderedCandidatesList = toOrder.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-
-    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
-      orderedCandidatesList.reverse();
-    }
-
-    this.candidates = [...orderedCandidatesList];
-  }
-
-  sortByEmail() {
-    const toOrder = [...this.candidates];
-    const orderedCandidatesList = toOrder.sort((a, b) => {
-      if (a.email < b.email) return -1;
-      if (a.email > b.email) return 1;
-      return 0;
-    });
-
-    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
-      orderedCandidatesList.reverse();
-    }
-
-    this.candidates = [...orderedCandidatesList];
-  }
-
-  sortByOnStaff() {
-    const toOrder = [...this.candidates];
-    const orderedCandidatesList = toOrder.sort((a, b) => {
-      if (a.onStaff < b.onStaff) return -1;
-      if (a.onStaff > b.onStaff) return 1;
-      return 0;
-    });
-
-    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
-      orderedCandidatesList.reverse();
-    }
-
-    this.candidates = [...orderedCandidatesList];
-  }
-
-  sortByLastUpdate() {
-    const toOrder = [...this.candidates];
-    const orderedCandidatesList = toOrder.sort((a, b) => {
-      if (a.lastUpdate < b.lastUpdate) return -1;
-      if (a.lastUpdate > b.lastUpdate) return 1;
-      return 0;
-    });
-
-    if (JSON.stringify(this.candidates) === JSON.stringify(orderedCandidatesList)) {
-      orderedCandidatesList.reverse();
-    }
-
-    this.candidates = [...orderedCandidatesList];
-  }
-
-  sortByExpDate() {
-    const toOrder = [...this.candidates];
-    const orderedCandidatesList = toOrder.sort((a, b) => {
-      if (a.expirationDate < b.expirationDate) return -1;
-      if (a.expirationDate > b.expirationDate) return 1;
+      if (a[column] < b[column]) return -1;
+      if (a[column] > b[column]) return 1;
       return 0;
     });
 
@@ -108,13 +49,13 @@ class CandidatesComponent extends LitElement {
             <th>
               <div>
                 <span>Nombre</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" @click="${this.sortByName}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="name" @click="${this.sortColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Correo electrónico</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" @click="${this.sortByEmail}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="email" @click="${this.sortColumn}">
               </div>
             </th>
             <th>Teléfono</th>
@@ -122,19 +63,19 @@ class CandidatesComponent extends LitElement {
             <th>
               <div>
                 <span>En plantilla</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" @click="${this.sortByOnStaff}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="onStaff" @click="${this.sortColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Fecha de última actualización de datos</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" @click="${this.sortByLastUpdate}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="lastUpdate" @click="${this.sortColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Fecha de vencimiento</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" @click="${this.sortByExpDate}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="expirationDate" @click="${this.sortColumn}">
               </div>
             </th>
             <th>Semáforo</th>
