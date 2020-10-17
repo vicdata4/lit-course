@@ -20,7 +20,7 @@ export const hoursStyles = css`
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-        background: url('/assets/hck3791/icons/down-arrow-64.png') 100% / 20% no-repeat;
+        background: url('/assets/hck3791/icons/down-arrow-64.png') 101% / 20% no-repeat;
         padding: 2px;
     }
 

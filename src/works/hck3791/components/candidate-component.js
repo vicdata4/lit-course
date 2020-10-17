@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { candidateStyles } from '../styles/candidateStyles';
 import { candidates } from '../resources/cand';
+import { getUrlParams } from '../resources/functions';
 
 class CandidateComponent extends LitElement {
   static get styles() {
@@ -14,7 +15,9 @@ class CandidateComponent extends LitElement {
       candidate: { type: Object },
       params: { type: Array },
       candidateToFind: { type: Array },
-      foundCandidate: { type: Object }
+      foundCandidate: { type: Object },
+      levels: { type: Array },
+      profiles: { type: Array }
     };
   }
 
@@ -25,9 +28,10 @@ class CandidateComponent extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    const urlParams = new URLSearchParams(window.location.search);
-    this.params = urlParams.get('id');
+    this.params = getUrlParams('id');
     this.candidate = candidates[this.params - 1];
+    this.levels = ['', 'A1', 'A2', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C2', 'C2+'];
+    this.profiles = ['', 'Programmer', 'Arquitect', 'RRHH', 'Analyst'];
   }
 
   findCandidate(e) {
@@ -60,19 +64,20 @@ class CandidateComponent extends LitElement {
       }
 
       for (let i = 0; i < optionList.length; i++) {
-        if (optionList[i].value === this.foundCandidate.profile.toLowerCase()) {
+        if (optionList[i].value.toLowerCase() === this.foundCandidate.profile.toLowerCase()) {
           optionList[i].selected = 'selected';
-        } else if (optionList[i].value === this.foundCandidate.language.toLowerCase()) {
+        } else if (optionList[i].value.toLowerCase() === this.foundCandidate.language.toLowerCase()) {
           optionList[i].selected = 'selected';
         }
       }
     } else {
       this.shadowRoot.querySelector('form').reset();
       for (let i = 0; i < optionList.length; i++) {
-        if (optionList[i].value === 'default') {
+        if (optionList[i].value === '') {
           optionList[i].selected = 'selected';
         }
       }
+      this.shadowRoot.getElementById('onStaff').removeAttribute('checked');
     }
   }
 
@@ -116,11 +121,7 @@ class CandidateComponent extends LitElement {
             <div class="custom-select">
               <label for="profile">Perfil</label>
               <select id="profile">
-                <option value="default"></option>
-                <option value="programmer">Programmer</option>
-                <option value="arquitect">Arquitect</option>
-                <option value="rrhh">RRHH</option>
-                <option value="analyst">Analyst</option>
+                ${this.profiles.map(level => { return html`<option value='${level}'>${level}</option>`; })}
               </select>
             </div>
             <div>
@@ -142,16 +143,7 @@ class CandidateComponent extends LitElement {
             <div class="custom-select">
               <label for="language">Nivel de inglés</label>
               <select id="language">
-                <option value="0"></option>
-                <option value="a1">A1</option>
-                <option value="a2">A2</option>
-                <option value="b1">B1</option>
-                <option value="b1+">B1+</option>
-                <option value="b2">B2</option>
-                <option value="b2+">B2+</option>
-                <option value="c1">C1</option>
-                <option value="c2">C2</option>
-                <option value="c2+">C2+</option>
+                ${this.levels.map(level => { return html`<option value='${level}'>${level}</option>`; })}
               </select>
             </div>
             <div>
