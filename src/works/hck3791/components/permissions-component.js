@@ -81,18 +81,18 @@ class PermissionsComponent extends LitElement {
   }
 
   showTable(position) {
-    const tableBody = this.shadowRoot.getElementById('items');
     const option = this.shadowRoot.getElementById('employeeSelect').value;
     const startDate = new Date(this.shadowRoot.getElementById('startDateInput').value);
     const endDate = new Date(this.shadowRoot.getElementById('endDateInput').value);
     this.newList = [];
+
     if (option !== 'default') {
       if ((startDate.toString() !== 'Invalid Date' && endDate.toString() === 'Invalid Date') || (startDate.toString() === 'Invalid Date' && endDate.toString() !== 'Invalid Date')) {
         const formatStartDate = this.formatDate(startDate);
         const formatEndDate = this.formatDate(endDate);
         for (let i = 0; i < this.listPermissions.length; i++) {
           if (this.listPermissions[i].startDate === formatStartDate || this.listPermissions[i].endDate === formatEndDate) {
-            this.newList = [...this.listPermissions[i]];
+            this.newList.push(this.listPermissions[i]);
           }
         }
       } else if (startDate.toString() !== 'Invalid Date' && endDate.toString() !== 'Invalid Date') {
@@ -100,24 +100,12 @@ class PermissionsComponent extends LitElement {
         const formatEndDate = this.formatDate(endDate);
         for (let i = 0; i < this.listPermissions.length; i++) {
           if (this.listPermissions[i].startDate === formatStartDate && this.listPermissions[i].endDate === formatEndDate) {
-            this.newList = [...this.listPermissions[i]];
+            this.newList.push(this.listPermissions[i]);
           }
         }
       } else {
         this.newList = [...this.listPermissions.slice(position, position + 10)];
       }
-
-      if (tableBody.hasChildNodes) {
-        this.shadowRoot.getElementById('navigation').classList.remove('no-visible');
-      }
-    } else {
-      this.cleanTable(tableBody);
-    }
-  }
-
-  cleanTable(table) {
-    while (table.hasChildNodes()) {
-      table.removeChild(table.firstChild);
     }
   }
 
@@ -129,6 +117,7 @@ class PermissionsComponent extends LitElement {
       this.currentPage = 0;
       this.showTable(this.currentPage);
     } else {
+      this.newList = [];
       // eslint-disable-next-line no-alert
       alert('Seleccione un empleado');
     }

@@ -36,13 +36,13 @@ export const permissions = [
       {
         startDate: '01/01/2020',
         endDate: '10/01/2020',
-        typeOfPermit: 'Tipo 1',
+        typeOfPermit: 'Baja médica',
         hours: 4
       },
       {
         startDate: '01/01/2020',
         endDate: '10/02/2020',
-        typeOfPermit: 'Tipo 1',
+        typeOfPermit: 'Formación',
         hours: 3
       },
       {
