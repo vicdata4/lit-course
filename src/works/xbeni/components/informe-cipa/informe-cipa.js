@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { LitElement, html } from 'lit-element';
 import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
-import { CONSTANTS_ITEM002 } from '../../archivos_comunes/ac_informe-cipa/constantes';
+import { CONSTANTS_INFORME_CIPA } from '../../archivos_comunes/ac_informe-cipa/constantes';
 import { svgBeniX, svgBeniOrdenarString, svgBeniOrdenarOther, svgBeniOrdenarInt, svgBeniCircleRed, svgBeniCircleYellow } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
 import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-cipa/mocks';
 
@@ -38,13 +38,13 @@ export class BeniListaCipa extends LitElement {
         </slot> 
       </div>
 
-      <div id="${CONSTANTS_ITEM002.divBodyAbrirCipa}" class="div_body_abrir_cipa">
+      <div id="${CONSTANTS_INFORME_CIPA.divBodyAbrirCipa}" class="div_body_abrir_cipa">
         <div class="div_button_abrir_cipa">
           <button @click="${this.hiddenBodyAbrirCipa}" class="button_abrir_cipa" >Abrir lista de candidatos con información pendiente a actualizar </button>
         </div>
       </div>
 
-      <div id="${CONSTANTS_ITEM002.divBodyCipa}"  class="div_body_cipa">
+      <div id="${CONSTANTS_INFORME_CIPA.divBodyCipa}"  class="div_body_cipa">
         <div class="div_header_cipa">
           <div class="div_titulo_cipa">
             <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
@@ -58,7 +58,7 @@ export class BeniListaCipa extends LitElement {
         </div>
         <div class="div_main_cipa">
 
-          <table id="${CONSTANTS_ITEM002.table_id}" class="tabla_cipa">
+          <table id="${CONSTANTS_INFORME_CIPA.table_id}" class="tabla_cipa">
 
             <!--  HEADER TABLA -->
             <tr>
@@ -70,7 +70,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('nombre')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                     <div class="div_texto_campo_ordenar">                    
-                      <label id="${CONSTANTS_ITEM002.labelOrdenarNombreId}" class="texto_campo_ordenar"></label>
+                      <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarNombreId}" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
@@ -83,7 +83,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('email')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                       <div class="div_texto_campo_ordenar">                    
-                        <label id="${CONSTANTS_ITEM002.labelOrdenarCorreoId}" class="texto_campo_ordenar"></label>
+                        <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarCorreoId}" class="texto_campo_ordenar"></label>
                       </div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('perfil')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                     <div class="div_texto_campo_ordenar">                    
-                      <label id="${CONSTANTS_ITEM002.labelOrdenarPerfilId}" class="texto_campo_ordenar"></label>
+                      <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarPerfilId}" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('en_plantilla')}" class="campo_ordenar">
                     ${svgBeniOrdenarOther}
                     <div class="div_texto_campo_ordenar">                    
-                      <label id="${CONSTANTS_ITEM002.labelOrdenarPlantillaId}" class="texto_campo_ordenar"></label>
+                      <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarPlantillaId}" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="campo_ordenar">
                     ${svgBeniOrdenarInt}
                     <div class="div_texto_campo_ordenar">                    
-                      <label id="${CONSTANTS_ITEM002.labelOrdenarFuaId}" class="texto_campo_ordenar"></label>
+                      <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarFuaId}" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export class BeniListaCipa extends LitElement {
                   <div @click="${() => this.orderList('fechaVencimiento')}" class="campo_ordenar">
                     ${svgBeniOrdenarInt}
                     <div class="div_texto_campo_ordenar">                    
-                      <label id="${CONSTANTS_ITEM002.labelOrdenarFvId}" class="texto_campo_ordenar"></label>
+                      <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarFvId}" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
@@ -226,22 +226,22 @@ export class BeniListaCipa extends LitElement {
 
     switch (column) {
       case 'nombre':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarNombreId).innerHTML = 'ASC';
         break;
       case 'email':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarCorreoId).innerHTML = 'ASC';
         break;
       case 'perfil':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPerfilId).innerHTML = 'ASC';
         break;
       case 'en_plantilla':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPlantillaId).innerHTML = 'SI';
         break;
       case 'fecha_ultima_actualizacion':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFuaId).innerHTML = 'ASC';
         break;
       case 'fechaVencimiento':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
+        this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFvId).innerHTML = 'ASC';
         break;
     }
 
@@ -280,22 +280,22 @@ export class BeniListaCipa extends LitElement {
       orderedList.reverse();
       switch (column) {
         case 'nombre':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarNombreId).innerHTML = 'DES';
           break;
         case 'email':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarCorreoId).innerHTML = 'DES';
           break;
         case 'perfil':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPerfilId).innerHTML = 'DES';
           break;
         case 'en_plantilla':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPlantillaId).innerHTML = 'NO';
           break;
         case 'fecha_ultima_actualizacion':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFuaId).innerHTML = 'DES';
           break;
         case 'fechaVencimiento':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
+          this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFvId).innerHTML = 'DES';
           break;
       }
     }
@@ -305,13 +305,13 @@ export class BeniListaCipa extends LitElement {
   }
 
   hiddenBodyCipa() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyCipa).style.display = 'none';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyAbrirCipa).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.divBodyCipa).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.divBodyAbrirCipa).style.display = 'block';
   }
 
   hiddenBodyAbrirCipa() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyCipa).style.display = 'block';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.divBodyAbrirCipa).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.divBodyCipa).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.divBodyAbrirCipa).style.display = 'none';
   }
 
   dirigirUrlEditarCandidato(idCandidatoEditar) {
@@ -346,12 +346,12 @@ export class BeniListaCipa extends LitElement {
   }
 
   vaciarCamposOrdena() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarNombreId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarCorreoId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPerfilId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarPlantillaId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFuaId).innerHTML = '';
+    this.shadowRoot.getElementById(CONSTANTS_INFORME_CIPA.labelOrdenarFvId).innerHTML = '';
   }
 
   calcularDiferenciaFechaSemaforo(fechaVencimiento) {

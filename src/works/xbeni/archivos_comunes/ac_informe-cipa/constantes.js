@@ -1,4 +1,4 @@
-export const CONSTANTS_ITEM002 = {
+export const CONSTANTS_INFORME_CIPA = {
   table_id: 'table_cipa',
   divBodyCipa: 'div_body_cipa',
   divBodyAbrirCipa: 'div_body_abrir_cipa',
