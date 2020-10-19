@@ -1,6 +1,6 @@
 import { css } from 'lit-element';
 
-export const item008ListaPeStyles = css`
+export const visualizacionPeStyles = css`
 /* ESTILOS CUERPO PRINCIPAL PE */
 
 .div_body_full {

@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { LitElement, html } from 'lit-element';
-import { item002ListaCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
+import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
 import { CONSTANTS_ITEM002 } from '../../archivos_comunes/ac_informe-cipa/constantes';
 import { svgBeniX, svgBeniOrdenarString, svgBeniOrdenarOther, svgBeniOrdenarInt, svgBeniCircleRed, svgBeniCircleYellow } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
 import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-cipa/mocks';
@@ -21,7 +21,7 @@ export class BeniListaCipa extends LitElement {
 
   static get styles() {
     return [
-      item002ListaCipaStyles
+      informeCipaStyles
     ];
   }
 

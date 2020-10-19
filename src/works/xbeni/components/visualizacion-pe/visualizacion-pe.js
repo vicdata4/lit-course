@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit-element';
-import { item008ListaPeStyles } from '../../archivos_comunes/ac_visualizacion-pe/styles_items008';
-import { CONSTANTS_ITEM008 } from '../../archivos_comunes/ac_visualizacion-pe/constants_item008';
-import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/ac_visualizacion-pe/moks_item008';
-import { svgBeniX } from '../../archivos_comunes/ac_visualizacion-pe/svg_item008';
+import { visualizacionPeStyles } from '../../archivos_comunes/ac_visualizacion-pe/styles';
+import { CONSTANTS_ITEM008 } from '../../archivos_comunes/ac_visualizacion-pe/constants';
+import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/ac_visualizacion-pe/moks';
+import { svgBeniX } from '../../archivos_comunes/ac_visualizacion-pe/svg_icons';
 
 class BeniListaPe extends LitElement {
   static get properties() {
@@ -20,7 +20,7 @@ class BeniListaPe extends LitElement {
 
   static get styles() {
     return [
-      item008ListaPeStyles
+      visualizacionPeStyles
     ];
   }
 
