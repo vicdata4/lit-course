@@ -72,7 +72,6 @@ export class DocumentForm extends LitElement {
       };
     }
     this.list.push(this.file);
-    console.log(this.file);
   }
 
   removeDocument(index) {
