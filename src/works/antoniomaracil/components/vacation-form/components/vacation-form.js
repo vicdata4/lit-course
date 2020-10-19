@@ -70,14 +70,7 @@ class VacationForm extends LitElement {
     }
   }
 
-  removeRow(id) {
-    let index = 0;
-    for (let i = 0; i < this.list.length; i++) {
-      if (this.list[i].id === id) {
-        index = i;
-        break;
-      }
-    }
+  removeRow(index) {
     const newList = [...this.list];
     newList.splice(index, 1);
     this.list = [...newList];
@@ -175,14 +168,14 @@ class VacationForm extends LitElement {
               <th>Fecha de solicitud</th>
               <th>Eliminar</th>
             </tr>
-            ${this.list.slice(this.from, this.to).map(item => html`
+            ${this.list.slice(this.from, this.to).map((item, i) => html`
             <tr>
               <td>${formatDate(item.applicationDate)}</td>
               <td>${formatDate(item.startDate)}</td>
               <td>${formatDate(item.endDate)}</td>
               <td>${item.status}</td>
               <td>${formatDate(item.statusDate)}</td>
-              <td><button @click="${() => this.removeRow(item.id)}">Eliminar</button></td>
+              <td><button @click="${() => this.removeRow(i)}">Eliminar</button></td>
             </tr>
             `)}
           </table>
