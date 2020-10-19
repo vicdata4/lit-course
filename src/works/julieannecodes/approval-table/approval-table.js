@@ -103,9 +103,6 @@ class ApprovalTable extends LitElement {
   }
 
   async firstUpdated() {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    this.addEventListener('change', this.sendStatus);
-
     const nPages = Math.ceil(this.requests.length / this.nEmployees);
     this.steps = new Array(nPages).fill({});
     this.to = this.nEmployees;
