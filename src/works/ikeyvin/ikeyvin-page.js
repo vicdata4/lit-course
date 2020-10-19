@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/elementTrello007.js';
-import './components/elementTrello008.js';
+import './components/formPetition.js';
+import './components/listPetition.js';
 
 class IkeyvinPage extends LitElement {
   static get styles() {
@@ -28,9 +28,9 @@ class IkeyvinPage extends LitElement {
       <section class="container">
         <work-header>iKeyvin</work-header>
           <br>
-          <element-007></element-007>
+          <form-petition></form-petition>
           <hr>
-          <element-008></element-008>
+          <list-petition></list-petition>
       </section>
     `;
   }
