@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { visualizacionPeStyles } from '../../archivos_comunes/ac_visualizacion-pe/styles';
-import { CONSTANTS_ITEM008 } from '../../archivos_comunes/ac_visualizacion-pe/constants';
+import { CONSTANTS_VISUALIZACION_PE } from '../../archivos_comunes/ac_visualizacion-pe/constants';
 import { extraerDatosListaPe, getDatosDescripcionPe } from '../../archivos_comunes/ac_visualizacion-pe/moks';
 import { svgBeniX } from '../../archivos_comunes/ac_visualizacion-pe/svg_icons';
 
@@ -39,18 +39,18 @@ class BeniListaPe extends LitElement {
               </div>
             </div>
           </div>
-          <div id="${CONSTANTS_ITEM008.idBodyDetallesPe}" class="div_body_resultados_pe">
+          <div id="${CONSTANTS_VISUALIZACION_PE.idBodyDetallesPe}" class="div_body_resultados_pe">
           <div>
             <div class="div_resultados_pe_campos">
               <div class="div_resultados_titulo_pe">
                 <label class="texto_resultados_pe">Titulo: </label>
-                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.idResultadosTitulo}"> Analista
+                <label class="texto_resultados_pe_id" id="${CONSTANTS_VISUALIZACION_PE.idResultadosTitulo}"> Analista
                   Programador
                   Java</label>
                 </div>
               <div class="div_resultados_fecha_publicacion_pe">
                 <label class="texto_resultados_pe">Fecha publicacion: </label>
-                <label class="texto_resultados_pe_id" id="${CONSTANTS_ITEM008.idResultadosFechaPublicacion}">18/08/2020</label>
+                <label class="texto_resultados_pe_id" id="${CONSTANTS_VISUALIZACION_PE.idResultadosFechaPublicacion}">18/08/2020</label>
               </div>
               <div class="div_controles_detalles_pe">
                 <div @click="${this.hiddenDateResults}" class="div_x_header_pe">
@@ -61,7 +61,7 @@ class BeniListaPe extends LitElement {
           </div>
           <div class="div_resultados_descripcion_pe">
             <label class="texto_resultados_pe">Descripcion:</label><br>
-            <textarea disabled id="${CONSTANTS_ITEM008.idResultadosDescripcionPublicacion}" class="textarea_resultados_pe"></textarea>
+            <textarea disabled id="${CONSTANTS_VISUALIZACION_PE.idResultadosDescripcionPublicacion}" class="textarea_resultados_pe"></textarea>
           </div>
         </div>
       </div>
@@ -99,15 +99,15 @@ class BeniListaPe extends LitElement {
   }
 
   hiddenDateResults() {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'none';
+    this.shadowRoot.getElementById(CONSTANTS_VISUALIZACION_PE.idBodyDetallesPe).style.display = 'none';
   }
 
   loadDateResults(idPeticion, tituloPeticion, fechaPeticion) {
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosTitulo).textContent = tituloPeticion;
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosFechaPublicacion).textContent = fechaPeticion;
+    this.shadowRoot.getElementById(CONSTANTS_VISUALIZACION_PE.idResultadosTitulo).textContent = tituloPeticion;
+    this.shadowRoot.getElementById(CONSTANTS_VISUALIZACION_PE.idResultadosFechaPublicacion).textContent = fechaPeticion;
     // SOLICITUD AJAX QUE RPEGUNTE POR LA DESCRIPCION
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idResultadosDescripcionPublicacion).textContent = getDatosDescripcionPe(idPeticion);
-    this.shadowRoot.getElementById(CONSTANTS_ITEM008.idBodyDetallesPe).style.display = 'block';
+    this.shadowRoot.getElementById(CONSTANTS_VISUALIZACION_PE.idResultadosDescripcionPublicacion).textContent = getDatosDescripcionPe(idPeticion);
+    this.shadowRoot.getElementById(CONSTANTS_VISUALIZACION_PE.idBodyDetallesPe).style.display = 'block';
   }
 }
 
