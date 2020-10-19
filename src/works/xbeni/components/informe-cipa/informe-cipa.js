@@ -26,97 +26,6 @@ export class BeniListaCipa extends LitElement {
     ];
   }
 
-  cargarFechaVencimiento() {
-    for (let i = 0; i < this.datosCipa.length; i++) {
-      this.datosCipa[i].fechaVencimiento = this.calcularFechaVencimiento(this.datosCipa[i].fecha_ultima_actualizacion);
-    }
-  }
-
-  orderList(column) {
-    this.vaciarCamposOrdena();
-    const myList = [...this.datosCipa];
-    var orderedList = [];
-
-    switch (column) {
-      case 'nombre':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
-        break;
-      case 'email':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
-        break;
-      case 'perfil':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
-        break;
-      case 'en_plantilla':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
-        break;
-      case 'fecha_ultima_actualizacion':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
-        break;
-      case 'fechaVencimiento':
-        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
-        break;
-    }
-
-    // ORDENA STRING
-    if (column === 'nombre' || column === 'email' || column === 'perfil') {
-      orderedList = myList.sort((a, b) => {
-        if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
-        if (a[column].toLowerCase() > b[column].toLowerCase()) return 1;
-        return 0;
-      });
-    }
-    // ORDENA BOLEANOS - NUMEROS
-    if (column === 'en_plantilla') {
-      orderedList = myList.sort((a, b) => {
-        if (a[column] < b[column]) return -1;
-        if (a[column] > b[column]) return 1;
-        return 0;
-      });
-    }
-    // ORDENA FECHAS - FORMATO DATOS A RECIBIR DD/MM/YYYY
-    if (column === 'fecha_ultima_actualizacion' || column === 'fechaVencimiento') {
-      orderedList = myList.sort((a, b) => {
-        let arrayDateA = a[column].split('/');
-        let dateA = new Date(arrayDateA[2], (parseInt(arrayDateA[1]) + parseInt('-1')), arrayDateA[0]);
-
-        let arrayDateB = b[column].split('/');
-        let dateB = new Date(arrayDateB[2], (parseInt(arrayDateB[1]) + parseInt('-1')), arrayDateB[0]);
-
-        if (dateA.getTime() < dateB.getTime()) return -1;
-        if (dateA.getTime() > dateB.getTime()) return 1;
-        return 0;
-      });
-    }
-
-    if (JSON.stringify(this.datosCipa) === JSON.stringify((orderedList))) {
-      orderedList.reverse();
-      switch (column) {
-        case 'nombre':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
-          break;
-        case 'email':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
-          break;
-        case 'perfil':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
-          break;
-        case 'en_plantilla':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
-          break;
-        case 'fecha_ultima_actualizacion':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
-          break;
-        case 'fechaVencimiento':
-          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
-          break;
-      }
-    }
-
-    this.datosCipa = [...orderedList];
-    this.showPage(0);
-  }
-
   render() {
     return html`
       <div class="div_slot_top">
@@ -302,6 +211,97 @@ export class BeniListaCipa extends LitElement {
         </slot>
       </div>
     `;
+  }
+
+  cargarFechaVencimiento() {
+    for (let i = 0; i < this.datosCipa.length; i++) {
+      this.datosCipa[i].fechaVencimiento = this.calcularFechaVencimiento(this.datosCipa[i].fecha_ultima_actualizacion);
+    }
+  }
+
+  orderList(column) {
+    this.vaciarCamposOrdena();
+    const myList = [...this.datosCipa];
+    var orderedList = [];
+
+    switch (column) {
+      case 'nombre':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
+        break;
+      case 'email':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
+        break;
+      case 'perfil':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
+        break;
+      case 'en_plantilla':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
+        break;
+      case 'fecha_ultima_actualizacion':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
+        break;
+      case 'fechaVencimiento':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
+        break;
+    }
+
+    // ORDENA STRING
+    if (column === 'nombre' || column === 'email' || column === 'perfil') {
+      orderedList = myList.sort((a, b) => {
+        if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
+        if (a[column].toLowerCase() > b[column].toLowerCase()) return 1;
+        return 0;
+      });
+    }
+    // ORDENA BOLEANOS - NUMEROS
+    if (column === 'en_plantilla') {
+      orderedList = myList.sort((a, b) => {
+        if (a[column] < b[column]) return -1;
+        if (a[column] > b[column]) return 1;
+        return 0;
+      });
+    }
+    // ORDENA FECHAS - FORMATO DATOS A RECIBIR DD/MM/YYYY
+    if (column === 'fecha_ultima_actualizacion' || column === 'fechaVencimiento') {
+      orderedList = myList.sort((a, b) => {
+        let arrayDateA = a[column].split('/');
+        let dateA = new Date(arrayDateA[2], (parseInt(arrayDateA[1]) + parseInt('-1')), arrayDateA[0]);
+
+        let arrayDateB = b[column].split('/');
+        let dateB = new Date(arrayDateB[2], (parseInt(arrayDateB[1]) + parseInt('-1')), arrayDateB[0]);
+
+        if (dateA.getTime() < dateB.getTime()) return -1;
+        if (dateA.getTime() > dateB.getTime()) return 1;
+        return 0;
+      });
+    }
+
+    if (JSON.stringify(this.datosCipa) === JSON.stringify((orderedList))) {
+      orderedList.reverse();
+      switch (column) {
+        case 'nombre':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
+          break;
+        case 'email':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
+          break;
+        case 'perfil':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
+          break;
+        case 'en_plantilla':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
+          break;
+        case 'fecha_ultima_actualizacion':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
+          break;
+        case 'fechaVencimiento':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
+          break;
+      }
+    }
+
+    this.datosCipa = [...orderedList];
+    this.showPage(0);
   }
 
   hiddenBodyCipa() {
