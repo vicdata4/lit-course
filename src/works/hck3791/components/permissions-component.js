@@ -28,6 +28,23 @@ class PermissionsComponent extends LitElement {
     this.currentPage = 0;
   }
 
+  sort(e) {
+    const column = e.currentTarget.id;
+    const toOrder = [...this.listPermissions];
+    const orderedList = toOrder.sort((a, b) => {
+      if (a[column] > b[column]) return 1;
+      if (b[column] > a[column]) return -1;
+      return 0;
+    });
+
+    if (JSON.stringify(this.listPermissions) === JSON.stringify(orderedList)) {
+      orderedList.reverse();
+    }
+
+    this.listPermissions = [...orderedList];
+    this.showTable(0);
+  }
+
   formatDate(date) {
     const formattedDate = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '/' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '/' + date.getFullYear();
     return formattedDate;
@@ -119,6 +136,7 @@ class PermissionsComponent extends LitElement {
 
   render() {
     return html`
+    <div class='permissions-container'>
       <h3>Reporte de permisos detallado</h3>
       <div id='filters'>
         <div id='employee'>
@@ -137,15 +155,15 @@ class PermissionsComponent extends LitElement {
           <input type='date' id='endDateInput'>
         </div>
       </div>
-      <input type='button' value='Generar reporte' @click='${this.generateReport}'>
+      <input type='button' value='Generar reporte' id='generateReport' @click='${this.generateReport}'>
       <div id='pagination'>
         <div id='content'>
           <table>
             <thead>
               <tr>
-                <th>Día</th>
-                <th>Tipo de permiso</th>
-                <th>Horas</th>
+                <th><div class='filter'><p>Día</p><div id='startDate' @click='${this.sort}'><span>&#129168;</span><span>&#129170;</span></div></div></th>
+                <th><div class='filter'><p>Tipo de permiso</p><div id='typeOfPermit' @click='${this.sort}'><span>&#129168;</span><span>&#129170;</span></div></div></th>
+                <th><p>Horas</p></th>
               </tr>
             </thead>
             <tbody id='items'>
@@ -159,13 +177,18 @@ class PermissionsComponent extends LitElement {
             </tbody>
           </table>
           <div id='navigation' class='no-visible'>
-              <input type="button" id="first" value="primera" @click="${this.navigation}">
-              <input type="button" id="next" value="siguiente"  @click="${this.navigation}">
-              <input type="button" id="previous" value="anterior" @click="${this.navigation}">
-              <input type="button" id="last" value="ultima" @click="${this.navigation}">
+            <div>
+              <input type="button" id="first" value="&#129168;&#129168;" @click="${this.navigation}">
+              <input type="button" id="previous" value="&#129168;" @click="${this.navigation}">
             </div>
+            <div>
+              <input type="button" id="next" value="&#129170;"  @click="${this.navigation}">
+              <input type="button" id="last" value="&#129170;&#129170;" @click="${this.navigation}">
+            </div>
+          </div>
         </div>
       </div>
+    </div>
     `;
   }
 }

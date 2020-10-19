@@ -9,27 +9,52 @@ export const permissionsStyles = css`
   }
 
   .no-visible {
-    display: none;
+    visibility: hidden;
+  }
+
+  .permissions-container {
+    display: flex;
+    flex-direction: column;
+    aling-item: center;
+  }
+
+  .filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .filter div {
+    transform: rotate(90deg);
+    cursor: pointer;
+  }
+
+  .filter span {
+    margin-right: 2px;
   }
 
   #filters div {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
 
   #filters div label {
-    width: 20%;
+    width: 30%;
+    font-size: 0.8rem;
   }
 
   #filters div #employeeSelect {
-    width: 20%;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: url('/assets/hck3791/icons/down-arrow-64.png') 101% / 20% no-repeat;
-    padding: 2px;
+    width: 60%;
+    height: 20px;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: 0.7rem;
   }
 
   #filters div #employeeSelect:focus,  #filters div input:focus {
@@ -37,20 +62,107 @@ export const permissionsStyles = css`
   }
 
   #filters div input {
-    width: 20%;
+    width: 60%;
+    height: 20px;
     box-sizing: border-box;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: 0.7rem;
   }
 
-  .custom-input::-webkit-datetime-edit-day-field,
-  .custom-input::-webkit-datetime-edit-month-field,
-  .custom-input::-webkit-datetime-edit-year-field {
-    visibility:hidden;
+  #generateReport {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-family: 'Comic Neue', cursive;
+    font-weight: bold;
+    font-size: 0.7rem;
   }
 
-  .custom-default::-webkit-datetime-edit-day-field,
-  .custom-default::-webkit-datetime-edit-month-field,
-  .custom-default::-webkit-datetime-edit-year-field {
-    visibility:visible;
+  table {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
+
+  table thead tr {
+    background-color: #ccc;
+  }
+
+  table thead tr p {
+    padding-left: 5px;
+  }
+
+  table tbody tr:nth-child(odd) {
+    background-color: #eee;
+  }
+
+  table tbody tr td {
+    padding: 10px 0 10px 5px;
+  }
+
+  table thead th, table tbody td {
+    text-align: left;
+    border-right: 1px solid #000;
+  }
+
+  #navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #navigation input {
+    background-color: transparent;
+    border: none;
+  }
+
+  #navigation input:focus {
+    outline: none;
+  }
+
+  @media screen and (min-width: 40em) {
+    .permissions-container {
+      width: 80%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    
+    #filters div {
+      justify-content: flex-start;
+    }
+
+    #filters div label {
+      width: 20%;
+      font-size: 1rem;
+    }
+  
+    #filters div #employeeSelect {
+      width: 40%;
+      height: auto;
+      font-size: 0.9rem;
+    }
+  
+    #filters div input {
+      width: 40%;
+      height: auto;
+      font-size: 0.9rem;
+    }
+
+    #generateReport {
+      width: 120px;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    #navigation input {
+      font-size: 1.5rem;
+    }
   }
 
 `;
