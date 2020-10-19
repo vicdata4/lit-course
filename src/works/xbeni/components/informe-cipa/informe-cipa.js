@@ -10,6 +10,7 @@ export class BeniListaCipa extends LitElement {
     super();
     this.datosCipa = cargarInformacionCandidatosCipa;
     this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
+    this.cargarFechaVencimiento();
   }
 
   static get properties() {
@@ -23,6 +24,12 @@ export class BeniListaCipa extends LitElement {
     return [
       informeCipaStyles
     ];
+  }
+
+  cargarFechaVencimiento() {
+    for (let i = 0; i < this.datosCipa.length; i++) {
+      this.datosCipa[i].fechaVencimiento = this.calcularFechaVencimiento(this.datosCipa[i].fecha_ultima_actualizacion);
+    }
   }
 
   orderList(column) {
@@ -44,8 +51,8 @@ export class BeniListaCipa extends LitElement {
         return 0;
       });
     }
-    // ORDENA BOLEANOS
-    if (column === 'fecha_ultima_actualizacion') {
+    // ORDENA FECHAS - FORMATO DATOS A RECIBIR DD/MM/YYYY
+    if (column === 'fecha_ultima_actualizacion' || column === 'fechaVencimiento') {
       orderedList = myList.sort((a, b) => {
         let arrayDateA = a[column].split('/');
         let dateA = new Date(arrayDateA[2], (parseInt(arrayDateA[1]) + parseInt('-1')), arrayDateA[0]);
@@ -158,7 +165,7 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Fecha de ultima actualizacion de datos</label>
@@ -171,12 +178,12 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Fecha de vencimiento</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaFecha(6, 'fecha')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('fechaVencimiento')}" class="campo_ordenar">
                     ${svgBeniOrdenarInt}
                     <div class="div_texto_campo_ordenar">                    
                       <label id="${CONSTANTS_ITEM002.labelOrdenarFvId}" class="texto_campo_ordenar"></label>
@@ -184,7 +191,7 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">Semaforo</th>
+              <th>Semaforo</th>
             </tr>
 
             <!--  MAIN TABLA -->
@@ -227,7 +234,7 @@ export class BeniListaCipa extends LitElement {
               </td>
               <td>
                 <label>
-                  ${this.calcularFechaVencimiento(item.fecha_ultima_actualizacion)}
+                  ${item.fechaVencimiento}
                 </label>
               </td>
               <td>
