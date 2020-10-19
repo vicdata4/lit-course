@@ -1,10 +1,15 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
+import { mediaQueries } from '../utils/custom-styles';
 import '../../../components/common-header';
 import './form-vacaciones';
 import './table-solicitud';
 
 class VacationTable extends LitElement {
+  static get styles() {
+    return [mediaQueries];
+  }
+
   static get properties() {
     return {
       vacationData: { type: Array },
@@ -40,11 +45,13 @@ class VacationTable extends LitElement {
 
   render() {
     return html`
+      <div class="container">
         <h1>Solicitud de vacaciones</h1>
         <form-vacation @send-dates="${this.addVacation}"></form-vacation>
         ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
         <table-solicitud .arraySolicitudes="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
-        `;
+      </div>
+     `;
   }
 }
 
