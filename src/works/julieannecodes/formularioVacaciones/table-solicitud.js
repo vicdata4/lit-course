@@ -38,7 +38,7 @@ class TableSolicitud extends LitElement {
       e.target.value = 'desc';
       e.currentTarget.classList.add('rotated');
     } else {
-      this.requestsList.reverse();
+      this.requestsList = [...this.requestsList.reverse()];
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }

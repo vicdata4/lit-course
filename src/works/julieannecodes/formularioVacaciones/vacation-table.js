@@ -45,10 +45,15 @@ class VacationTable extends LitElement {
     }
   }
 
-  deleteDate(e) {
+  async deleteDate(e) {
     const arr = this.vacationData;
     arr.splice(e.detail.index, 1);
     this.vacationData = [...arr];
+
+    if (this.from > 0 && this.vacationData.length === this.from) {
+      this.from = this.from - this.nEmployees;
+      this.to = this.to - this.nEmployees;
+    }
   }
 
   getValues(e) {
