@@ -8,12 +8,14 @@ import './components/vacation-form/components/vacation-form';
 import './components/admin-vacation-form/components/admin-vacation-form';
 import './components/vacation-detail/components/vacation-detail';
 import './components/admin-vacation-detail/components/admin-vacation-detail';
+import './components/document-form/components/document-form';
 
 const components = {
   vacationForm: () => html`<vacation-form @update-array="${this.updateArray}" .nElements="${10}"></vacation-form>`,
   adminVacationForm: () => html`<admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>`,
   vacationDetail: () => html`<vacation-detail .list="${vacationDays}"></vacation-detail>`,
-  adminVacationDetail: () => html`<admin-vacation-detail .list="${vacationDays}" .history="${empHistory}"></admin-vacation-detail>`
+  adminVacationDetail: () => html`<admin-vacation-detail .list="${vacationDays}" .history="${empHistory}"></admin-vacation-detail>`,
+  documentForm: () => html`<document-form></document-form>`
 };
 
 class AntoniomaracilPage extends LitElement {
