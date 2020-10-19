@@ -30,3 +30,22 @@ export const orderItems = (arr, order) => {
   arr.sort((a, b) => a[order] - b[order]);
   return arr;
 };
+
+export const vacationDays = (arr) => {
+  const nDays = arr.map(day => (day.endDate - day.startDate) / (3600 * 24 * 1000));
+  const isWeekend = date => date.getDay() === 6 || date.getDay() === 0;
+  let count = 0;
+  let fechas= [];
+  nDays.forEach(range => {
+    for (let i = 0; i <= range; i++) {
+      const _date = new Date(arr.startDate);
+      _date.setDate(_date.getDate() + i);
+
+      if (!isWeekend(_date)) {
+        fechas = newArray(nDays.length)fechas.push(count++);
+      }
+    }
+  });
+  console.log(fechas);
+  return fechas;
+};
