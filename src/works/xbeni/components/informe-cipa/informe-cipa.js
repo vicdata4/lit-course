@@ -31,18 +31,30 @@ export class BeniListaCipa extends LitElement {
     // ORDENA STRING
     if (column === 'nombre' || column === 'email' || column === 'perfil') {
       orderedList = myList.sort((a, b) => {
-        alert(column + ' ' + a[column].toLowerCase() + ' ' + b[column].toLowerCase());
         if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
         if (a[column].toLowerCase() > b[column].toLowerCase()) return 1;
         return 0;
       });
     }
-    // ORDENA BOLEANOS
+    // ORDENA BOLEANOS - NUMEROS
     if (column === 'en_plantilla') {
       orderedList = myList.sort((a, b) => {
-        alert(column + ' ' + a[column] + ' ' + b[column]);
         if (a[column] < b[column]) return -1;
         if (a[column] > b[column]) return 1;
+        return 0;
+      });
+    }
+    // ORDENA BOLEANOS
+    if (column === 'fecha_ultima_actualizacion') {
+      orderedList = myList.sort((a, b) => {
+        let arrayDateA = a[column].split('/');
+        let dateA = new Date(arrayDateA[2], (parseInt(arrayDateA[1]) + parseInt('-1')), arrayDateA[0]);
+
+        let arrayDateB = b[column].split('/');
+        let dateB = new Date(arrayDateB[2], (parseInt(arrayDateB[1]) + parseInt('-1')), arrayDateB[0]);
+
+        if (dateA.getTime() < dateB.getTime()) return -1;
+        if (dateA.getTime() > dateB.getTime()) return 1;
         return 0;
       });
     }
@@ -151,7 +163,7 @@ export class BeniListaCipa extends LitElement {
                   <div>
                     <label>Fecha de ultima actualizacion de datos</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaFecha(5, 'fecha')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="campo_ordenar">
                     ${svgBeniOrdenarInt}
                     <div class="div_texto_campo_ordenar">                    
                       <label id="${CONSTANTS_ITEM002.labelOrdenarFuaId}" class="texto_campo_ordenar"></label>
