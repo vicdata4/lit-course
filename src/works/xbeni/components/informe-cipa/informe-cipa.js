@@ -33,8 +33,31 @@ export class BeniListaCipa extends LitElement {
   }
 
   orderList(column) {
+    this.vaciarCamposOrdena();
     const myList = [...this.datosCipa];
     var orderedList = [];
+
+    switch (column) {
+      case 'nombre':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'ASC';
+        break;
+      case 'email':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'ASC';
+        break;
+      case 'perfil':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'ASC';
+        break;
+      case 'en_plantilla':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'SI';
+        break;
+      case 'fecha_ultima_actualizacion':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'ASC';
+        break;
+      case 'fechaVencimiento':
+        this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'ASC';
+        break;
+    }
+
     // ORDENA STRING
     if (column === 'nombre' || column === 'email' || column === 'perfil') {
       orderedList = myList.sort((a, b) => {
@@ -68,6 +91,26 @@ export class BeniListaCipa extends LitElement {
 
     if (JSON.stringify(this.datosCipa) === JSON.stringify((orderedList))) {
       orderedList.reverse();
+      switch (column) {
+        case 'nombre':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarNombreId).innerHTML = 'DES';
+          break;
+        case 'email':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarCorreoId).innerHTML = 'DES';
+          break;
+        case 'perfil':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPerfilId).innerHTML = 'DES';
+          break;
+        case 'en_plantilla':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarPlantillaId).innerHTML = 'NO';
+          break;
+        case 'fecha_ultima_actualizacion':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFuaId).innerHTML = 'DES';
+          break;
+        case 'fechaVencimiento':
+          this.shadowRoot.getElementById(CONSTANTS_ITEM002.labelOrdenarFvId).innerHTML = 'DES';
+          break;
+      }
     }
 
     this.datosCipa = [...orderedList];
