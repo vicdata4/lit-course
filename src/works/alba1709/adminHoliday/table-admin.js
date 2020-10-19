@@ -107,10 +107,6 @@ export class TableAdmin extends LitElement {
     }
 
     this.adminTable = [...orderedadminTable];
-    const btn = this.shadowRoot.querySelector('.btnOrder');
-    const btn1 = this.shadowRoot.querySelector('#btn');
-    btn.addEventListener('click', this.rotateButton);
-    btn1.addEventListener('click', this.rotateButton);
     this.showPage(0);
   }
 
@@ -124,6 +120,11 @@ export class TableAdmin extends LitElement {
     }
   }
 
+  orderAndRotate(e, column) {
+    this.rotateButton(e);
+    this.orderEmployees(column);
+  }
+
   render() {
     return html`
       <div id="idTable">
@@ -131,11 +132,11 @@ export class TableAdmin extends LitElement {
             <tr>
               <th id="thName">
                 Nombre del empleado
-                <button class = "btnOrder" value="asc" @click="${() => this.orderEmployees('name')}">&#9662;</button>
+                <button class="btnOrder" value="asc" @click="${e => this.orderAndRotate(e, 'name')}">&#9662;</button>
               </th>
               <th id="thDRequest">
                 Fecha de solicitud
-                <button class = "btnOrder" id="btn" @click="${() => this.orderEmployees('dRequest')}">&#9662;</button>    
+                <button class="btnOrder" @click="${e => this.orderAndRotate(e, 'dRequest')}">&#9662;</button>    
               </th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
