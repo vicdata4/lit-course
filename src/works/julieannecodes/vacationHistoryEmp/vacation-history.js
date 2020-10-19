@@ -18,12 +18,6 @@ class VacationHistory extends LitElement {
   constructor() {
     super();
     this.vacationDates = [...vacationDates];
-    this.vacationDays = [vacationDays(this.vacationDates)];
-  }
-
-  getVacationDays() {
-    this.vacationDays = [...vacationDays(this.vacationDates)];
-    return this.vacationDays;
   }
 
   render() {
@@ -36,13 +30,11 @@ class VacationHistory extends LitElement {
                   <th>Día Fin de Vacaciones</th>
                   <th>Días Tomados</th>
                 </tr>
-                ${this.vacationDates.map((dates, i) => html`
+                ${this.vacationDates.map(dates => html`
                 <tr>
                   <td>${dateFormatter(dates.startDate).slashDate}</td>
                   <td>${dateFormatter(dates.endDate).slashDate}</td>
-                  ${this.vacationDays.map(item => html`
-                  <td>${item[i]}</td>
-                  `)}
+                  <td>${vacationDays(dates)}</td>
                 </tr>
                 `)}
               </table>
