@@ -25,6 +25,36 @@ export class BeniListaCipa extends LitElement {
     ];
   }
 
+  orderList(column) {
+    const myList = [...this.datosCipa];
+    var orderedList = [];
+    // ORDENA STRING
+    if (column === 'nombre' || column === 'email' || column === 'perfil') {
+      orderedList = myList.sort((a, b) => {
+        alert(column + ' ' + a[column].toLowerCase() + ' ' + b[column].toLowerCase());
+        if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
+        if (a[column].toLowerCase() > b[column].toLowerCase()) return 1;
+        return 0;
+      });
+    }
+    // ORDENA BOLEANOS
+    if (column === 'en_plantilla') {
+      orderedList = myList.sort((a, b) => {
+        alert(column + ' ' + a[column] + ' ' + b[column]);
+        if (a[column] < b[column]) return -1;
+        if (a[column] > b[column]) return 1;
+        return 0;
+      });
+    }
+
+    if (JSON.stringify(this.datosCipa) === JSON.stringify((orderedList))) {
+      orderedList.reverse();
+    }
+
+    this.datosCipa = [...orderedList];
+    this.showPage(0);
+  }
+
   render() {
     return html`
       <div class="div_slot_top">
@@ -61,12 +91,12 @@ export class BeniListaCipa extends LitElement {
 
             <!--  HEADER TABLA -->
             <tr>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Nombre</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaString(0, 'str')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('nombre')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                     <div class="div_texto_campo_ordenar">                    
                       <label id="${CONSTANTS_ITEM002.labelOrdenarNombreId}" class="texto_campo_ordenar"></label>
@@ -74,12 +104,12 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Correo electronico</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaString(1, 'str')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('email')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                       <div class="div_texto_campo_ordenar">                    
                         <label id="${CONSTANTS_ITEM002.labelOrdenarCorreoId}" class="texto_campo_ordenar"></label>
@@ -87,15 +117,15 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">
+              <th>
                 <label>Telefono</label>
               </th>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Perfil</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaString(3, 'str')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('perfil')}" class="campo_ordenar">
                     ${svgBeniOrdenarString}
                     <div class="div_texto_campo_ordenar">                    
                       <label id="${CONSTANTS_ITEM002.labelOrdenarPerfilId}" class="texto_campo_ordenar"></label>
@@ -103,12 +133,12 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th scope="row">
+              <th>
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>En plantilla</label>
                   </div>
-                  <div @click=${() => this.ordenarTablaCipaString(4, 'str')} class="campo_ordenar">
+                  <div @click="${() => this.orderList('en_plantilla')}" class="campo_ordenar">
                     ${svgBeniOrdenarOther}
                     <div class="div_texto_campo_ordenar">                    
                       <label id="${CONSTANTS_ITEM002.labelOrdenarPlantillaId}" class="texto_campo_ordenar"></label>
