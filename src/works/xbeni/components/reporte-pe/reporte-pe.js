@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit-element';
-import { RpeStyles } from '../../archivos_comunes/ac_reporte-permisos-empleado/styles';
-import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reporte-permisos-empleado/mocks';
-import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reporte-permisos-empleado/constantes';
-import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt, svgBeniRpeIconRight, svgBeniRpeIconLeft } from '../../archivos_comunes/ac_reporte-permisos-empleado/svg_icons';
+import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
+import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
+import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reportePe/constantes';
+import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt, svgBeniRpeIconRight, svgBeniRpeIconLeft } from '../../archivos_comunes/ac_reportePe/svg_icons';
 
 class BeniReportePermisosEmpleado extends LitElement {
   constructor() {
@@ -235,8 +235,8 @@ ${i === 0
     var orderedList;
     if (column !== 'dia') {
       orderedList = myList.sort((a, b) => {
-        if (a[column] < b[column]) return -1;
-        if (a[column] > b[column]) return 1;
+        if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
+        if (a[column].toLowerCase() > b[column].toLowerCase()) return 1;
         return 0;
       });
     } else {
@@ -331,6 +331,7 @@ ${i === 0
       this.shadowRoot.getElementById(CONSTANTS_RPE.idPadreErroresFinalesRpe).style.display = 'none';
       this.shadowRoot.getElementById(CONSTANTS_RPE.idErroresFinalesRpe).innerHTML = '';
 
+      // SHOW INFO REPORTE TO GENERATE
       var informeDatosExitoGenerarRpe = `<b>Reorte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
       this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).innerHTML = informeDatosExitoGenerarRpe;
       this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).style.display = 'block';
@@ -343,4 +344,4 @@ ${i === 0
   }
 }
 
-customElements.define('reporte-permisos-empleado', BeniReportePermisosEmpleado);
+customElements.define('reporte-pe', BeniReportePermisosEmpleado);

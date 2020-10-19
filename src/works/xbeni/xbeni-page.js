@@ -3,7 +3,7 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/item002_lista-cipa/item002_lista-cipa';
-import './components/reporte-permisos-empleado/reporte-permisos-empleado';
+import './components/reporte-pe/reporte-pe';
 
 class XbeniPage extends LitElement {
   static get styles() {
@@ -19,7 +19,7 @@ class XbeniPage extends LitElement {
         <work-header>XBeni</work-header>
         <item002_lista-cipa></item002_lista-cipa>
         <div>
-          <reporte-permisos-empleado></reporte-permisos-empleado>
+          <reporte-pe></reporte-pe>
         </div>
       </section>
     `;
