@@ -58,15 +58,15 @@ class VacationTable extends LitElement {
 
   render() {
     return html`
-        <div class="container">
-          <h1>Solicitud de vacaciones</h1>
-          <form-vacation @send-dates="${this.addVacation}"></form-vacation>
-          ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
+      <div class="container">
+        <h1>Solicitud de vacaciones</h1>
+        <form-vacation @send-dates="${this.addVacation}"></form-vacation>
+        ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
 
         ${this.vacationData.length >= this.nEmployees ? html`<stepper-component .listLength="${this.vacationData.length}" @interval-values="${this.getValues}"></stepper-component>` : nothing}
-          <table-solicitud .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></table-solicitud>
-        </div>  
-        `;
+        <table-solicitud .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></table-solicitud>
+      </div>  
+    `;
   }
 }
 
