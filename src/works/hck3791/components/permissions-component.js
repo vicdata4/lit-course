@@ -93,6 +93,9 @@ class PermissionsComponent extends LitElement {
           this.newList.push(this.listPermissions[i]);
         }
       }
+      if (this.newList.length === 0) {
+        this.shadowRoot.getElementById('navigation').classList.add('no-visible');
+      }
     } else if (startDate.toString() !== 'Invalid Date' && endDate.toString() !== 'Invalid Date') {
       const formatStartDate = this.formatDate(startDate);
       const formatEndDate = this.formatDate(endDate);
@@ -100,6 +103,9 @@ class PermissionsComponent extends LitElement {
         if (this.listPermissions[i].startDate === formatStartDate && this.listPermissions[i].endDate === formatEndDate) {
           this.newList.push(this.listPermissions[i]);
         }
+      }
+      if (this.newList.length === 0) {
+        this.shadowRoot.getElementById('navigation').classList.add('no-visible');
       }
     } else {
       this.newList = [...this.listPermissions.slice(position, position + 10)];
@@ -165,14 +171,12 @@ class PermissionsComponent extends LitElement {
               </tr>
             </thead>
             <tbody id='items'>
-              ${this.newList.length > 0 ? this.newList.map(permit => { // eslint-disable-next-line indent
-    return html`
+              ${this.newList.length > 0 ? this.newList.map(permit => { return html`
               <tr>
                 <td>${permit.startDate}</td>
                 <td>${permit.typeOfPermit}</td>
                 <td>${permit.hours}</td>
-              </tr>`;
-    }) : nothing}
+              </tr>`; }) : nothing}
             </tbody>
           </table>
           <div id='navigation' class='no-visible'>
