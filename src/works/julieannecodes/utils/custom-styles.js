@@ -1,35 +1,59 @@
 import { css } from 'lit-element';
 
-export const tableStyles = css`
-
-    @media only screen and (max-width: 600px) {
-      .tableDiv { 
-        overflow-x: auto;
-        margin-bottom: 20px;
+export const mediaQueries = css`
+    @media (min-width: 768px) {
+      .container {
+        width: 90%;
+        margin: auto;
+        }
+      .startWrap, .endWrap {
+        display: inline;
+        margin-right: 15px;
+        }
+      .startLabel, .endLabel {
+        margin-right: 15px;
+        }
+      .alert-msg {
+        margin-top: 15px;
+        }
+      .formWrap { 
+        display: inline;
         }
     }
-    @media only screen and (min-width: 1200px) {
-      .tableDiv { width: 80%; margin: auto; }
-      h1 { width: 50%; margin-left: 115px; }
-      .stepper { width: 50%; margin-left: 120px; }
-    }
-    @media only screen and (min-width: 768px) {
-      .container { width: 90%; margin: auto;}
-    }
-    @media only screen and (min-width: 1200px) {
-      .container { width: 70%; margin: auto;}
-    }
-    .tableDiv { 
-      margin-top: 20px;
-      
+    @media (min-width: 1024px) {
+      .container {
+        width: 70%;
       }
-    table tr:nth-child(even) { background-color: lightgray; }
-    table td { border-right: 2px solid black; }
+    }
+`;
+
+export const tableStyles = css`
+    .tableDiv {
+      margin-top: 20px;
+      overflow-x: auto;
+      }
+    table tr:nth-child(even) {
+      background-color: lightgray;
+      }
+    table td {
+      border-right: 2px solid black;
+      }
     table, th { 
       border: 2px solid black;
       border-collapse: collapse;
     }
-    .rotated { transform: rotate(180deg); }
+    .rotated { 
+      transform: rotate(180deg);
+      }
+    .order, .deleteB {
+      border: none; 
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .buttonWrap {
+      width: 60%;
+      margin: auto;
+      }
 `;
 
 export const stepperStyles = css`
@@ -45,5 +69,23 @@ export const stepperStyles = css`
     .selected {
       background-color: #3c3b3b; color: white;
       border: none;
+    }
+    .stepper {
+      margin-top: 20px;
+      }
+`;
+
+export const formStyles = css`
+    .startWrap, .endWrap {
+      margin-bottom: 15px;
+    }
+    .startLabel {
+      margin-right: 15px;
+    }
+    .endLabel {
+      margin-right: 35px;
+    }
+    .alert-msg {
+      margin-top: 15px;
     }
 `;

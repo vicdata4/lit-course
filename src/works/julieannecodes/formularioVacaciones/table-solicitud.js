@@ -1,24 +1,11 @@
 import { LitElement, html, css } from 'lit-element';
-import { tableStyles } from '../utils/custom-styles';
+import { mediaQueries, tableStyles } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
   static get styles() {
-    return [
-      tableStyles,
-      css`
-      .deleteB, .order {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-      }
-      .order.rotated {transform: rotate(180deg);}
-      .buttonWrap {
-        width: 50%;
-        margin: 0 auto;
-      }`
-    ];
+    return [tableStyles, mediaQueries];
   }
 
   static get properties() {
@@ -62,6 +49,7 @@ class TableSolicitud extends LitElement {
 
   tableL() {
     return html`
+    <div class="tableDiv">
         <table>
                 <tr>
                   ${this.titulosTabla.map((items, i) => html`
@@ -83,6 +71,7 @@ class TableSolicitud extends LitElement {
                     </tr>
                   `)}
               </table>
+    </div>
     `;
   }
 
