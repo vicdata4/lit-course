@@ -1,18 +1,10 @@
 import { css } from 'lit-element';
 
 export const commonStyles = css`
-table {
-    border: 1px solid #e4e4e4;
-    padding: 10px;
-  }
-
-  tr {
-    text-align: center;
-  }
 
   .order {
     padding: 0;
-    background-color: transparent;
+    background-color: white;
     border: none;
     margin-bottom: 10px;
     cursor: pointer;
