@@ -39,7 +39,7 @@ class CandidateComponent extends LitElement {
       <div id="header">
         <div id="search">
           <label for="user">Editar el usuario</label>
-          <input type="text" id="user" name="user" @keydown="${this.findCandidate}">
+          <input type="text" id="user" name="user" .value="${this.candidate.name}">
         </div>
         <div id="add">
           <button>añadir nuevo</button>
@@ -73,7 +73,7 @@ class CandidateComponent extends LitElement {
             <div class="custom-select">
               <label for="profile">Perfil</label>
               <select id="profile">
-                ${this.profiles.map(level => { return html`<option value='${level}' ?selected="${(this.candidate.profile === this.value) ? 'selected' : nothing}">${level}</option>`; })}
+                ${this.profiles.map(profile => { return html`<option value='${profile}' ?selected="${profile === this.candidate.profile}">${profile}</option>`; })}
               </select>
             </div>
             <div>
