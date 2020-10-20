@@ -19,11 +19,6 @@ class CandidateComponent extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.candidateToFind = [];
-  }
-
   connectedCallback() {
     super.connectedCallback();
     this.params = getUrlParams('id');

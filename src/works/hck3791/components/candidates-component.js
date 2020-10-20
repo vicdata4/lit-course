@@ -23,7 +23,7 @@ class CandidatesComponent extends LitElement {
     this.candidates = candidates;
   }
 
-  sortColumn(e) {
+  sortByColumn(e) {
     const column = e.target.id;
     const toOrder = [...this.candidates];
     const orderedCandidatesList = toOrder.sort((a, b) => {
@@ -49,13 +49,13 @@ class CandidatesComponent extends LitElement {
             <th>
               <div>
                 <span>Nombre</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" id="name" @click="${this.sortColumn}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="name" @click="${this.sortByColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Correo electrónico</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" id="email" @click="${this.sortColumn}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="email" @click="${this.sortByColumn}">
               </div>
             </th>
             <th>Teléfono</th>
@@ -63,19 +63,19 @@ class CandidatesComponent extends LitElement {
             <th>
               <div>
                 <span>En plantilla</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" id="onStaff" @click="${this.sortColumn}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="onStaff" @click="${this.sortByColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Fecha de última actualización de datos</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" id="lastUpdate" @click="${this.sortColumn}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="lastUpdate" @click="${this.sortByColumn}">
               </div>
             </th>
             <th>
               <div>
                 <span>Fecha de vencimiento</span>
-                <img src="/assets/hck3791/icons/double-arrow.png" id="expirationDate" @click="${this.sortColumn}">
+                <img src="/assets/hck3791/icons/double-arrow.png" id="expirationDate" @click="${this.sortByColumn}">
               </div>
             </th>
             <th>Semáforo</th>
