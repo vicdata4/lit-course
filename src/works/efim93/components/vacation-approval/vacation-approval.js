@@ -4,7 +4,7 @@ import { dataRequest } from '../../utils/request';
 import { svgArrowsSort } from '../../comun_files/svg-icons';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { formatDate } from '../../utils/functions';
-import { newStyles } from './vacation-approval-styles';
+import { newStyles } from '../../comun_files/table-responsive-styles';
 
 class VacationApproval extends LitElement {
   static get styles() {

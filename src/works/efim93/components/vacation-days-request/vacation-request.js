@@ -2,27 +2,20 @@ import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 import { formatDate } from '../../utils/functions';
 import { svgArrowsSort, svgTrash } from '../../comun_files/svg-icons';
+import { newStyles } from '../../comun_files/table-responsive-styles';
 
 class VacationRequest extends LitElement {
   static get styles() {
     return [
+      newStyles,
       css`
     #alerta {
       margin-top:15px;
       display: none;
     }
 
-    #tabla {
+    table{
       margin-top: 15px;
-    }
-    
-    table {
-      border: 1px solid #e4e4e4;
-      padding: 10px;
-    }
-    
-    tr {
-      text-align: center;
     }
 
     .order {
@@ -295,7 +288,7 @@ class VacationRequest extends LitElement {
           <button id="guardar" class="btn btn-info" @click="${this.addArray}" >Agregar</button>
           <div class="alert alert-danger" role="alert" id="alerta">${this.mensaje}</div>
           <br />
-          <table id="tabla" class="table table-striped">
+          <table class="table table-striped">
             <thead>
             <tr>  
               <th>
