@@ -94,6 +94,12 @@ export const vacationStyles = css`
   .stepper, .step {
     user-select: none;
   }
+  .warning.active{
+    color: red;
+  }
+  .warning{
+    color: transparent;
+  }
 `;
 export const commonStyles = css`
   .container {

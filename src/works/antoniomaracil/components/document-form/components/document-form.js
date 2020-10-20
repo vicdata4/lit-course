@@ -39,7 +39,12 @@ export class DocumentForm extends LitElement {
       }
       .margin-btn{
         margin-top: 2rem;
-        margin-bottom: 1rem;
+      }
+      .warning.active{
+        color: red;
+      }
+      .warning{
+        color: transparent;
       }
     
     `;
@@ -62,14 +67,17 @@ export class DocumentForm extends LitElement {
 
   add() {
     const uploadFile = this.shadowRoot.getElementById('input-file');
+    const error = this.shadowRoot.getElementById('error');
     if (uploadFile.files[0].size > 2097152) {
       this.value = '';
+      error.classList.add('active');
     } else {
       this.file = {
         id: this.id++,
         name: uploadFile.files[0].name,
         uploadDate: new Date()
       };
+      error.classList.remove('active');
     }
     this.list.push(this.file);
   }
@@ -87,6 +95,9 @@ export class DocumentForm extends LitElement {
                 <fieldset>
                     <legend>Documentación</legend>
                     <input type="file" class="margin-btn" id="input-file" @change="${() => this.add()}">
+                    <div id="error" class="warning">
+                      <p>El documento no debe pesar mas de 2MB</p>
+                    </div>
                     <div class="table-box">
                         <table class="document-table">
                             <tr>

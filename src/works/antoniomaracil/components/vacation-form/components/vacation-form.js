@@ -52,6 +52,7 @@ class VacationForm extends LitElement {
     this.actualDate = new Date();
     const start = getDate(this.shadowRoot.getElementById('start').value);
     const end = getDate(this.shadowRoot.getElementById('end').value);
+    const error = this.shadowRoot.getElementById('error');
 
     if (checkDate(start, end)) {
       this.vacation = {
@@ -64,9 +65,12 @@ class VacationForm extends LitElement {
       };
 
       this.list.push(this.vacation);
+      error.classList.remove('active');
       this.id++;
       this.updateStepper();
       this.sendData();
+    } else {
+      error.classList.add('active');
     }
   }
 
@@ -150,6 +154,9 @@ class VacationForm extends LitElement {
             <p>Fecha de final</p>
             <input id="end" type="date" min="${minDate()}" max="${maxDate()}">
             <button @click="${this.add}">Agregar</button>
+          </div>
+          <div id="error" class="warning">
+            <p>Error al introducir la fecha</p>
           </div>
         </div>
       
