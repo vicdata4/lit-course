@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import './table-admin';
 import { viewHoliday } from './utils/styles-admin-holidays';
-import { employeeRequest } from './utils/functions';
+import { employeeRequest } from './utils/constants';
 
 export class AdminHolidayView extends LitElement {
   static get styles() {
