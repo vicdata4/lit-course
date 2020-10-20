@@ -12,7 +12,7 @@ export class InputsSolicitud extends LitElement {
                 background-color: white;
                 margin-left: 15px;
                 box-shadow: 3px 3px black;
-                font-family: "Comic Sans MS", cursive, sans-serif;;
+                font-family: 'Open Sans', sans-serif;
             }
             #btnAgregar:hover {
                 background-color: #e8e7e7;
@@ -21,7 +21,7 @@ export class InputsSolicitud extends LitElement {
                 cursor: pointer;
             }
             #lblI, #lblF {
-                font-family: cursive;
+                font-family: 'Open Sans', sans-serif;
             }
             #fechaIni {
                 margin-right: 25px;
