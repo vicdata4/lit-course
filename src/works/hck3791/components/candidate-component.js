@@ -2,7 +2,6 @@ import { LitElement, html } from 'lit-element';
 import { candidateStyles } from '../styles/candidateStyles';
 import { candidates } from '../resources/cand';
 import { getUrlParams } from '../resources/functions';
-import { nothing } from 'lit-html';
 
 class CandidateComponent extends LitElement {
   static get styles() {
