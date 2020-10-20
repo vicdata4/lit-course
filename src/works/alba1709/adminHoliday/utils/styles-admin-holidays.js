@@ -33,6 +33,10 @@ export const viewHoliday = css`
     font-family: 'Open Sans', sans-serif; 
   }
 
+  select {
+    width: 90%;
+  }
+
   .btnOrder {
     background-color: transparent;
     border: none;
@@ -80,6 +84,9 @@ export const viewHoliday = css`
   @media (min-width: 768px) {
     #tableAdmin {
       width: 90%;
+    }
+    select {
+      width: 100%;
     }
     
   }
