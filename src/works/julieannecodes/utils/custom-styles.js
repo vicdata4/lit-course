@@ -89,3 +89,35 @@ export const formStyles = css`
       margin-top: 15px;
     }
 `;
+
+export const anotherStyles = css`
+  .contents {
+    border: 1px solid black;
+  }
+  .buttonsWrap {
+    display: inline-flex;
+    margin-bottom: 20px;
+  }
+  .order{
+    text-align: left;
+    margin-right: 10px;
+    border: 2px solid #3c3b3b;
+    background-color: transparent;
+  }
+  .icon {
+    border: none;
+    background-color: transparent;
+    }
+  .rotated { 
+    transform: rotate(180deg);
+  }
+  .buttonWrap {
+    margin-top: 10px;
+  }
+  .deleteB {
+    border: none; 
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+`;
