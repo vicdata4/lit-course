@@ -2,12 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { candidateStyles } from '../styles/candidateStyles';
 import { candidates } from '../resources/cand';
 import { getUrlParams } from '../resources/functions';
-
-/*
-* En este archivo hay dos funcionalidades, una activa que consiste en escribir un nombre de un candidato en "Editar usuario" y el formulario te devuelve sus datos
-* y la otra (añadida por si se necesita) sin estar activa que consiste en hacer click en la página anterior en uno de los candidatos y al llegar a este componente los campos se llenan
-* con los datos de éste.
-*/
+import { nothing } from 'lit-html';
 
 class CandidateComponent extends LitElement {
   static get styles() {
@@ -20,8 +15,6 @@ class CandidateComponent extends LitElement {
     return {
       candidate: { type: Object },
       params: { type: Array },
-      candidateToFind: { type: Array },
-      foundCandidate: { type: Object },
       levels: { type: Array },
       profiles: { type: Array }
     };
@@ -38,53 +31,6 @@ class CandidateComponent extends LitElement {
     this.candidate = candidates[this.params - 1];
     this.levels = ['', 'A1', 'A2', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C2', 'C2+'];
     this.profiles = ['', 'Programmer', 'Arquitect', 'RRHH', 'Analyst'];
-  }
-
-  findCandidate(e) {
-    const keyPushed = e.keyCode;
-    const inputList = this.shadowRoot.querySelectorAll('input');
-    const optionList = this.shadowRoot.querySelectorAll('select option');
-
-    if (keyPushed >= 65 && keyPushed <= 90) {
-      this.candidateToFind.push(e.key);
-    } else if (keyPushed === 8) {
-      this.candidateToFind.pop();
-    } else if (keyPushed === 46) {
-      const position = e.target.selectionStart;
-      this.candidateToFind.splice(position, 1);
-    }
-
-    this.foundCandidate = candidates.find(obj => obj.name === this.candidateToFind.join(''));
-
-    if (this.foundCandidate) {
-      for (let i = 1; i < (inputList.length - 1); i++) {
-        if (typeof (Object.values(this.foundCandidate)[i]) === 'boolean') {
-          if (Object.values(this.foundCandidate)[i] === true) {
-            inputList[i].setAttribute('checked', 'checked');
-          } else {
-            inputList[i].removeAttribute('checked');
-          }
-        } else {
-          inputList[i].value = Object.values(this.foundCandidate)[i];
-        }
-      }
-
-      for (let i = 0; i < optionList.length; i++) {
-        if (optionList[i].value.toLowerCase() === this.foundCandidate.profile.toLowerCase()) {
-          optionList[i].selected = 'selected';
-        } else if (optionList[i].value.toLowerCase() === this.foundCandidate.language.toLowerCase()) {
-          optionList[i].selected = 'selected';
-        }
-      }
-    } else {
-      this.shadowRoot.querySelector('form').reset();
-      for (let i = 0; i < optionList.length; i++) {
-        if (optionList[i].value === '') {
-          optionList[i].selected = 'selected';
-        }
-      }
-      this.shadowRoot.getElementById('onStaff').removeAttribute('checked');
-    }
   }
 
   render() {
@@ -106,50 +52,50 @@ class CandidateComponent extends LitElement {
             <h5>Información del candidato</h5>
             <div>
               <label for="name">Nombre completo</label>
-              <input type="text" id="name">
+              <input type="text" id="name" .value="${this.candidate.name}">
             </div>
             <div>
               <label for="email">Correo electrónico</label>
-              <input type="email" id="email">
+              <input type="email" id="email" id="$1" .value="${this.candidate.email}">
             </div>
             <div>
               <label for="age">Edad</label>
-              <input type="text" id="age">
+              <input type="text" id="age" .value="${this.candidate.age}">
             </div>
             <div>
               <label for="phone">Teléfono</label>
-              <input type="text" id="phone">
+              <input type="text" id="phone" .value="${this.candidate.phone}">
             </div>
             <div>
               <label for="location">Ubicación</label>
-              <input type="text" id="location">
+              <input type="text" id="location" .value="${this.candidate.location}">
             </div>
             <div class="custom-select">
               <label for="profile">Perfil</label>
               <select id="profile">
-                ${this.profiles.map(level => { return html`<option value='${level}'>${level}</option>`; })}
+                ${this.profiles.map(level => { return html`<option value='${level}' ?selected="${(this.candidate.profile === this.value) ? 'selected' : nothing}">${level}</option>`; })}
               </select>
             </div>
             <div>
               <label for="experience">Años de experiencia</label>
-              <input type="text" id="experience">
+              <input type="text" id="experience" .value="${this.candidate.experience}">
             </div>
             <div>
               <label for="tags">Etiquetas</label>
-              <input type="text" id="tags">
+              <input type="text" id="tags" .value="${this.candidate.tags.join(', ')}">
             </div>
             <div>
               <label for="salary">Expectativas salariales (K)</label>
-              <input type="text" id="salary">
+              <input type="text" id="salary" .value="${this.candidate.salary}">
             </div>
             <div class="custom-checkbox">
               <label for="onStaff">En plantilla</label>
-              <input type="checkbox" id="onStaff">
+              <input type="checkbox" id="onStaff" ?checked="${this.candidate.onStaff ? 'checked' : ''}">
             </div>
             <div class="custom-select">
               <label for="language">Nivel de inglés</label>
               <select id="language">
-                ${this.levels.map(level => { return html`<option value='${level}'>${level}</option>`; })}
+                ${this.levels.map(level => { return html`<option value='${level}' ?selected=${level === this.candidate.language}>${level}</option>`; })}
               </select>
             </div>
             <div>
