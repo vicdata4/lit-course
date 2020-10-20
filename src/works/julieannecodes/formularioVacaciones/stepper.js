@@ -39,10 +39,6 @@ class Stepper extends LitElement {
     });
   }
 
-  stepBack() {
-    this.showPartOf(this.stepB);
-  }
-
   showPartOf(index) {
     this.index = index;
     this.from = this.nEmployees * this.index;
