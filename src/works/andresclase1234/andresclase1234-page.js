@@ -3,8 +3,6 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './empleado-vacaciones/solicitud-vacaciones';
-import './admin-vacaciones/admin-vacaciones';
-import './info-holidays/info-holidays';
 
 const dates = [
   { id: 1, name: 'Andres', holidayFrom: new Date('2020-10-15'), holidayTo: new Date('2020-10-19') },
@@ -26,7 +24,7 @@ class Andresclase1234Page extends LitElement {
       <section class="container">
         <work-header>Andresclase1234</work-header>
       </section>
-      <info-holidays .list="${dates}" .nElements="${2}"></info-holidays>
+      <solicitud-vacaciones .list="${dates}" .nElements="${2}"></solicitud-vacaciones>
     `;
   }
 }
