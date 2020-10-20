@@ -21,7 +21,7 @@ export const viewHoliday = css`
   td, th {
     border-right: solid 3px black;
     border-left: solid 3px black;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     text-align: left;
     padding: 8px;
   }
@@ -30,7 +30,7 @@ export const viewHoliday = css`
   }
 
   h2, select {
-    font-family: "Comic Sans MS", cursive, sans-serif; 
+    font-family: 'Open Sans', sans-serif; 
   }
 
   .btnOrder {
