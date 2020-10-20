@@ -3,6 +3,7 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './vacation-approval/vacation-approval';
+import './components/vacation-days-request/vacation-request';
 
 class Efim93Page extends LitElement {
   static get styles() {
@@ -17,6 +18,7 @@ class Efim93Page extends LitElement {
       <section class="container">
         <work-header>efim93</work-header>
         <vacation-approval></vacation-approval>
+        <vacation-request></vacation-request>
       </section>
     `;
   }

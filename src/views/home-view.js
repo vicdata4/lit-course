@@ -15,6 +15,7 @@ class HomeView extends LitElement {
       <common-header></common-header>
       <nav>
         <ul class="menu-list">
+          <li><a href="/news-searcher">News searcher</a></li>
           <li><a href="/pagination">Pagination</a></li>
           <li><a href="/form-example-view">Form Example</a></li>
           <li><a href="/paris-view">Paris</a></li>
