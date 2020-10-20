@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit-element';
-import { commonStyles } from './utills/common-styles';
-import { dataRequest } from './utills/request';
-import { svgArrowsSort } from '../comun_files/svg-icons';
+import { commonStyles } from '../../utils/common-styles';
+import { dataRequest } from '../../utils/request';
+import { svgArrowsSort } from '../../comun_files/svg-icons';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import { formatDate } from './utills/functions';
+import { formatDate } from '../../utils/functions';
 import { newStyles } from './vacation-approval-styles';
 
 class VacationApproval extends LitElement {

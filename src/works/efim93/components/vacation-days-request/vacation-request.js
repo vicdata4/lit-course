@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
-import { formatDate } from './utils/functions';
+import { formatDate } from '../../utils/functions';
 import { svgArrowsSort, svgTrash } from '../../comun_files/svg-icons';
 
 class VacationRequest extends LitElement {
