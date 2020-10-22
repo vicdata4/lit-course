@@ -39,14 +39,6 @@ export class ListPetition extends LitElement {
         this.popupOpen = false;
     }
 
-    verListaPeticiones(){
-        if(this.listaPeticiones !== null){
-            return html`
-                
-            `;
-        }
-    }
-
     render() {
 
         if(this.listaPeticiones !== null){
