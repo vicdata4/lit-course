@@ -37,7 +37,7 @@ npm run test
 Run ESLint
 
 ```
-npm run lint:check
+npm run lint
 ```
 
 Run ESLint Autofix

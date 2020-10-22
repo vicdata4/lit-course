@@ -7,11 +7,16 @@
         "test": "karma start --coverage",
         "dev": "node ./scripts/dev.js",
         "build": "node ./scripts/build.js",
-        "lint": "eslint",
-        "lint:check": "eslint ./src/**",
+        "lint": "eslint ./src/**",
         "lint:fix": "eslint --fix ./src/**",
         "storybook": "start-storybook -s ./build -p 9001",
         "storybook:build": "build-storybook -o build -s storybook-static"
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "npm run lint && npm run test",
+        "pre-push": "npm run lint && npm run test"
+      }
     },
     "author": "",
     "license": "ISC",
@@ -27,6 +32,7 @@
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.0",
+        "husky": "^4.3.0",
         "prettier": "^2.1.2",
         "pwa-helpers": "^0.9.1",
         "rollup": "^1.12.4",
