@@ -125,6 +125,7 @@ class VacationApproval extends LitElement {
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <section>
             <table id="tabla" class="table table-striped">
+            <caption>Solicitud de vacaciones de los Empleados</caption>
                 <thead>
                     <tr>  
                         <th>
@@ -147,23 +148,23 @@ class VacationApproval extends LitElement {
                         <th><label for="fechadeEstado">Fecha de Estado</label></th>
                     </tr>
                 </thead>
-            <tbody>   
-                ${this.listaDatos.slice(this.from, this.to).map((item, i) => html`  
-                <tr>
-                    <td><label for="${item.nombre_apellido}">${item.nombre_apellido}</label></td>
-                    <td><label for="${item.fecha_solicitud}">${item.fecha_solicitud}</label></td>
-                    <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
-                    <td><label for="${item.fecha_fin}">${item.fecha_fin}</td>
-                    <td>
-                    <select @change="${(e) => this.onSelectChange(e, item, i)}" name="selectEstado" id="select">
-                        ${this.options.map(option => html`
-                        <option selected="${ifDefined(option.value === item.estado ? 'true' : undefined)}" value="${option.value}" class="i${option.value}">${option.text}</option>
-                        `)} 
-                    </select>
-                    </td>
-                    <td><label for="${item.fecha_estado}">${item.fecha_estado}</label></td>
-                </tr> `)}
-            </tbody>       
+                <tbody>   
+                    ${this.listaDatos.slice(this.from, this.to).map((item, i) => html`  
+                    <tr>
+                        <td><label for="${item.nombre_apellido}">${item.nombre_apellido}</label></td>
+                        <td><label for="${item.fecha_solicitud}">${item.fecha_solicitud}</label></td>
+                        <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
+                        <td><label for="${item.fecha_fin}">${item.fecha_fin}</td>
+                        <td>
+                        <select name="selectEstado" id="select" title="selectestado" @change="${(e) => this.onSelectChange(e, item, i)}" >
+                            ${this.options.map(option => html`
+                            <option selected="${ifDefined(option.value === item.estado ? 'true' : undefined)}" value="${option.value}" class="i${option.value}">${option.text}</option>
+                            `)} 
+                        </select>
+                        </td>
+                        <td><label for="${item.fecha_estado}">${item.fecha_estado}</label></td>
+                    </tr> `)}
+                </tbody>       
         </table>
         ${this.renderStepper()}
         </section>
