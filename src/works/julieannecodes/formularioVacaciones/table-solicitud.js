@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
-import { mediaQueries, tableStyles } from '../utils/custom-styles';
+import { anotherStyles, mediaQueries } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class TableSolicitud extends LitElement {
   static get styles() {
-    return [tableStyles, mediaQueries];
+    return [mediaQueries, anotherStyles];
   }
 
   static get properties() {
@@ -24,7 +24,7 @@ class TableSolicitud extends LitElement {
     super();
     this.requestsList = [];
     this.sortedArray = [];
-    this.tableTitles = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado', 'Eliminar'];
+    this.tableTitles = ['Fecha de solicitud', 'Fecha Inicio', 'Fecha Fin', 'Estado de la solicitud', 'Fecha de Estado'];
     this.orderType = ['currentDate', 'startDate', 'endDate'];
     this.firstIndex = 0;
     this.toT = 0;
@@ -56,30 +56,34 @@ class TableSolicitud extends LitElement {
 
   tableL() {
     return html`
+    <h3>Ordenar por: </h3>
     <div class="tableDiv">
-      <table>
-        <tr>
-          ${this.tableTitles.map((items, i) => html`
-          <th>${items} ${items === 'Fecha de solicitud' ||
+      <div>
+        <div class="buttonsWrap">
+          ${this.tableTitles.map((items, i) => items === 'Fecha de solicitud' ||
             items === 'Fecha Inicio' ||
-            items === 'Fecha Fin' ? html`
-            <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>` : nothing}
-          </th>`)}
-        </tr>
+            items === 'Fecha Fin' ? html`<div class="order">${items}<button class="icon" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button></div>` : nothing)}
+        </div>
         ${this.requestsList.slice(this.fromT, this.toT).map((item, i) => html`
-        <tr id="${i}">
-          <td>${dateFormatter(item.currentDate).solicitudDate}</td>
-          <td>${dateFormatter(item.startDate).tableDate}</td>
-          <td>${dateFormatter(item.endDate).tableDate}</td>
-          <td>${item.status}</td>
-          <td>${item.statusDate}</td>
-          <td>
-            <div class="buttonWrap">
-              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash.png"></button>
-            </div>
-          </td>
-        </tr>`)}
-      </table>
+        <div id="${i}">
+            <details class="detailsWrap">
+                <summary>from: ${dateFormatter(item.startDate).tableDate} to: ${dateFormatter(item.endingDate).tableDate}</summary>
+                <div class="contents">
+                    <div>${this.tableTitles[0]}: ${dateFormatter(item.applicationD).solicitudDate}</div>
+                    <div>${this.tableTitles[1]}: ${dateFormatter(item.startDate).tableDate}</div>
+                    <div>${this.tableTitles[2]}: ${dateFormatter(item.endingDate).tableDate}</div>
+                    <div>${this.tableTitles[3]}: ${item.status}</div>
+                    <div>${this.tableTitles[4]}: ${dateFormatter(item.statusDate).tableDate}</div>
+                </div>
+                <div>
+                    <div class="buttonWrap">
+                        <button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash.png"></button>
+                    </div>
+                </div>
+            </details>
+          </div>
+        </div>`)}
+      </div>
     </div>
     `;
   }

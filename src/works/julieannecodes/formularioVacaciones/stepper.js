@@ -21,7 +21,7 @@ class Stepper extends LitElement {
   constructor() {
     super();
     this.steps = [];
-    this.nEmployees = 2;
+    this.nEmployees = 5;
     this.from = 0;
     this.index = 0;
     this.to = this.nEmployees;

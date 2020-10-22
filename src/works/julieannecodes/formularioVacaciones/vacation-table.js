@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
+import { employeeList } from '../utils/employees';
 import './form-vacaciones';
-// import './table-solicitud-res';
 import './table-solicitud';
 import './stepper';
 
@@ -25,11 +25,11 @@ class VacationTable extends LitElement {
 
   constructor() {
     super();
-    this.vacationData = [];
+    this.vacationData = [...employeeList];
     this.errorMessage = '';
     this.inArray = new Date();
     this.from = 0;
-    this.nEmployees = 2;
+    this.nEmployees = 5;
     this.to = this.nEmployees;
   }
 

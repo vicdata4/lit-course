@@ -113,11 +113,16 @@ export const anotherStyles = css`
   }
   .buttonWrap {
     margin-top: 10px;
+    width: 15%;
+    margin-left: 85%;
   }
   .deleteB {
     border: none; 
     background-color: transparent;
     cursor: pointer;
+  }
+  .detailsWrap:nth-child(even) {
+    background-color: gray;
   }
   
 `;
