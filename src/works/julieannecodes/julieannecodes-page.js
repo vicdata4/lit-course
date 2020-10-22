@@ -6,9 +6,7 @@ import './VacationRequests/vacation-table';
 
 class JulieannecodesPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {
