@@ -43,6 +43,18 @@ Run tests
 npm run test
 ```
 
+Run ESLint
+
+```
+npm run lint:check
+```
+
+Run ESLint Autofix
+
+```
+npm run lint:fix
+```
+
 Run storybook
 
 ```
