@@ -24,9 +24,9 @@ class ListComponent extends LitElement {
   render() {
     return html`
       <ul>
-        ${this.list.map((item, i) => {
-          return html`<li>${item} <button @click="${() => this.deleteItem(i)}">&times;</button></li>`;
-        })}
+        ${this.list.map((item, i) => html`
+          <li>${item} <button @click="${() => this.deleteItem(i)}">&times;</button></li>
+        `)}
       </ul>
     `;
   }

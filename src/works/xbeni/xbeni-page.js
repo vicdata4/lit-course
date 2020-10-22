@@ -3,6 +3,12 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/reporte-pe/reporte-pe';
+import './components/informe-cipa/informe-cipa';
+
+const components = {
+  InformeCandidatosInformacionDesactualizada: () => html`<informe-cipa></informe-cipa>`,
+  reportePermisosEmpleado: () => html`<reporte-pe></reporte-pe>`
+};
 
 class XbeniPage extends LitElement {
   static get styles() {
@@ -11,14 +17,32 @@ class XbeniPage extends LitElement {
     ];
   }
 
+  static get properties() {
+    return {
+      current: { type: String, attribute: false }
+    };
+  }
+
+  constructor() {
+    super();
+    this.current = 'InformeCandidatosInformacionDesactualizada';
+  }
+
+  setComponent(component) {
+    this.current = component;
+  }
+
   render() {
     return html`
       <common-header></common-header>
       <section class="container">
         <work-header>XBeni</work-header>
-        <div>
-          <reporte-pe></reporte-pe>
+        <div class="common-list">
+          ${Object.keys(components).map(item => html`
+            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
+          `)}
         </div>
+        ${components[this.current]()}
       </section>
     `;
   }
