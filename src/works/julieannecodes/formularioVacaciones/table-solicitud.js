@@ -68,7 +68,7 @@ class TableSolicitud extends LitElement {
         ` : nothing)}
       </div>
         ${this.requestsList.slice(this.fromT, this.toT).map((item, i) => html`
-        <div id="${item.id}">
+        <div id="${item.id}" class="dataRows">
           <details class="detailsWrap">
             <summary class="summaryWrap">
               <span>Inicio: </span>${dateFormatter(item.startDate).tableDate}

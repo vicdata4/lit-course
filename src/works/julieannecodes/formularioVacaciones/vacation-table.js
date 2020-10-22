@@ -29,7 +29,7 @@ class VacationTable extends LitElement {
     this.errorMessage = '';
     this.inArray = new Date();
     this.from = 0;
-    this.nEmployees = 5;
+    this.nEmployees = 4;
     this.to = this.nEmployees;
   }
 
