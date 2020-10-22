@@ -1,4 +1,5 @@
-import { LitElement, html, nothing } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { nothing } from 'lit-html';
 import './formPetition';
 import { tablePeticion, modalPopup } from '../utils/costum-css';
 
