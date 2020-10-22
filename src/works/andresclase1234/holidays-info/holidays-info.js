@@ -153,9 +153,9 @@ export class HolidaysInfo extends LitElement {
         ${this.renderStepper()}
         <table>
         <tr>
-          <th><button class="order" @click="${() => this.orderList('name')}">Dia de inicio de vacaciones <span>&#9662;</span></button></th>
-          <th><button class="order" @click="${() => this.orderList('request')}">Dia de fin de vacaciones <span>&#9662;</span></button></th>
-          <th><button class="order" @click="${() => this.orderList('start')}">Dias tomados <span>&#9662;</span></button></th>
+          <th><button class="order" @click="${() => this.orderList('holidayFrom')}"> Dia de inicio de vacaciones <span>&#9662;</span></button></th>
+          <th><button class="order" @click="${() => this.orderList('holidayTo')}" > Dia de fin de vacaciones <span>&#9662;</span></button></th>
+          <th> Dias tomados </th>
         </tr>
         ${this.list.slice(this.from, this.to).map(item => html`
           <tr>
