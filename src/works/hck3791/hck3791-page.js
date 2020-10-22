@@ -3,7 +3,6 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/hours-component';
-import './components/candidates-component';
 import './components/requestlist-component';
 
 class Hck3791Page extends LitElement {
@@ -19,8 +18,6 @@ class Hck3791Page extends LitElement {
       <section class="container">
         <work-header>hck3791</work-header>
         <hours-component></hours-component>
-        <hr>
-        <candidates-component></candidates-component>
         <hr>
         <requestlist-component></requestlist-component>
       </section>
