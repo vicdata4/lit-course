@@ -147,3 +147,24 @@ export const empHistory = [
     reserved: '0'
   }
 ];
+
+export const empDocument = [
+  {
+    id: 1,
+    name: 'Antonio_Martin_CV',
+    uploadDate: new Date(2020, 10, 5),
+    path: 'assets/antoniomaracil/Antonio_Martin_CV.pdf'
+  },
+  {
+    id: 2,
+    name: 'Informe_20/20',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/Informe_Económico.pdf'
+  },
+  {
+    id: 3,
+    name: 'Presentación_reunión',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/presentacion.potx'
+  }
+];
