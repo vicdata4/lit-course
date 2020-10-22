@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { svgArrowsSort } from '../../comun_files/svg-icons';
 import { dataDetail } from '../../utils/vacation-detail';
 import { newStyles } from '../../comun_files/table-responsive-styles';
