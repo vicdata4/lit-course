@@ -2,11 +2,9 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/visualizacion-pe/visualizacion-pe';
 import './components/informe-cipa/informe-cipa';
 
 const components = {
-  VisualizacionPeticionesEmpleados: () => html`<visualizacion-pe></visualizacion-pe>`,
   InformeCandidatosInformacionDesactualizada: () => html`<informe-cipa></informe-cipa>`
 };
 
@@ -25,7 +23,7 @@ class XbeniPage extends LitElement {
 
   constructor() {
     super();
-    this.current = 'VisualizacionPeticionesEmpleados';
+    this.current = 'InformeCandidatosInformacionDesactualizada';
   }
 
   setComponent(component) {
