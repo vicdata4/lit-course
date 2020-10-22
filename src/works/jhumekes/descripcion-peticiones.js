@@ -17,6 +17,7 @@ export class DescripcionPeticiones extends LitElement {
         };
     }
 
+    
     constructor(){
         super();
         this.desc=peticiones;
