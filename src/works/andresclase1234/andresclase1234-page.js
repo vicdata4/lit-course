@@ -1,7 +1,13 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
+import { dates } from './utils/data';
+import './info-holidays/info-holidays';
 import '../../components/common-header';
 import '../../components/work-header';
+
+const components = {
+  infoVacaciones: () => html`<info-holidays .list="${dates}" .nElements="${4}"></info-holidays>`
+};
 
 class Andresclase1234Page extends LitElement {
   static get styles() {
@@ -10,13 +16,34 @@ class Andresclase1234Page extends LitElement {
     ];
   }
 
+  static get properties() {
+    return {
+      current: { type: String, attribute: false }
+    };
+  }
+
+  constructor() {
+    super();
+    this.current = 'infoVacaciones';
+  }
+
+  setComponent(component) {
+    this.current = component;
+  }
+
   render() {
     return html`
-      <common-header></common-header>
-      <section class="container">
-        <work-header>Andresclase1234</work-header>
-      </section>
-    `;
+        <common-header></common-header>
+        <section class="container">
+          <work-header>andresclase1234</work-header>
+          <div class="common-list">
+            ${Object.keys(components).map(item => html`
+              <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
+            `)}
+          </div>
+          ${components[this.current]()}
+        </section>
+      `;
   }
 }
 
