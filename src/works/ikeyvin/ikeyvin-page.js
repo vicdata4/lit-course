@@ -7,20 +7,16 @@ import '../../components/work-header';
 
 class IkeyvinPage extends LitElement {
   static get styles() {
-    return [ 
+    return [
       commonStyles
     ];
   }
 
-  static get properties(){
-    return{
-        listaPeticion: {type: Array}
-    }
-}
-
-  constructor() {
-    super();
-}
+  static get properties() {
+    return {
+      listaPeticion: { type: Array }
+    };
+  }
 
   render() {
     return html`

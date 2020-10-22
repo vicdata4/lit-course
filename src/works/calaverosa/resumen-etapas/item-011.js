@@ -2,26 +2,24 @@ import { LitElement, html, css } from 'lit-element';
 import { mediaQueriesStyles } from '../utils/styles.js';
 import { datos } from '../utils/datos.js';
 
-
 class Item011 extends LitElement {
-    
-    static get properties() {
-        return {
-            total : { type : Number },
-            staticData : { type : Array }
-        };
-    }
-    
-    constructor() {
-        super();
-        this.total = 0;
-        this.staticData = datos;
-    }
+  static get properties() {
+    return {
+      total: { type: Number },
+      staticData: { type: Array }
+    };
+  }
 
-    static get styles() {
-        return [
-          mediaQueriesStyles,
-          css`
+  constructor() {
+    super();
+    this.total = 0;
+    this.staticData = datos;
+  }
+
+  static get styles() {
+    return [
+      mediaQueriesStyles,
+      css`
             table{
                 border: 1px solid #cecece;
                 font-family: Arial, sans-serif;
@@ -64,31 +62,31 @@ class Item011 extends LitElement {
                 cursor: pointer;
             }
           `
-        ];
-      }    
-    
-    /** Pruebas Agrega nueva etapa */
-    agrega(){
-        const input = this.shadowRoot.querySelector('#add');
-        const newData = {
-            id: input.value,
-            data: 1
-        };
-        
-        this.staticData = [...this.staticData, ...[newData]];
-    }
+    ];
+  }
 
-    /** Suma total */
-    getTotal() {
-        const arrayOfNumbers = this.staticData.map(function (obj) {
-            return obj.data || 0;
-        });
-        
-        return arrayOfNumbers.reduce(function(a, b) { return a + b; }, 0);
-    }
+  /** Pruebas Agrega nueva etapa */
+  agrega() {
+    const input = this.shadowRoot.querySelector('#add');
+    const newData = {
+      id: input.value,
+      data: 1
+    };
 
-    render() {
-        return html`
+    this.staticData = [...this.staticData, ...[newData]];
+  }
+
+  /** Suma total */
+  getTotal() {
+    const arrayOfNumbers = this.staticData.map(function(obj) {
+      return obj.data || 0;
+    });
+
+    return arrayOfNumbers.reduce(function(a, b) { return a + b; }, 0);
+  }
+
+  render() {
+    return html`
         <table>
             <caption>Candidatos por etapa</caption>
             <tbody>
@@ -111,6 +109,6 @@ class Item011 extends LitElement {
         <div><input id="add"><button @click="${this.agrega}">Añadir etapa</button></div>
         
         `;
-    }
+  }
 }
 customElements.define('item-011', Item011);

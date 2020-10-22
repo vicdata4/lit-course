@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { LitElement, html, css } from 'lit-element';
 import { commonStyles } from '../../../utils/custom-styles';
 import './tabla-solicitud';
