@@ -67,13 +67,13 @@ class TableSolicitud extends LitElement {
         ${this.requestsList.slice(this.fromT, this.toT).map((item, i) => html`
         <div id="${i}">
             <details class="detailsWrap">
-                <summary>from: ${dateFormatter(item.startDate).tableDate} to: ${dateFormatter(item.endingDate).tableDate}</summary>
+                <summary class="summaryWrap"><span>Inicio: </span>${dateFormatter(item.startDate).tableDate}<span> Fin: </span>${dateFormatter(item.endingDate).tableDate}</summary>
                 <div class="contents">
-                    <div>${this.tableTitles[0]}: ${dateFormatter(item.applicationD).solicitudDate}</div>
-                    <div>${this.tableTitles[1]}: ${dateFormatter(item.startDate).tableDate}</div>
-                    <div>${this.tableTitles[2]}: ${dateFormatter(item.endingDate).tableDate}</div>
-                    <div>${this.tableTitles[3]}: ${item.status}</div>
-                    <div>${this.tableTitles[4]}: ${dateFormatter(item.statusDate).tableDate}</div>
+                    <div><span>${this.tableTitles[0]}:</span>${dateFormatter(item.applicationD).solicitudDate}</div>
+                    <div><span>${this.tableTitles[1]}:</span>${dateFormatter(item.startDate).tableDate}</div>
+                    <div><span>${this.tableTitles[2]}:</span>${dateFormatter(item.endingDate).tableDate}</div>
+                    <div><span>${this.tableTitles[3]}:</span>${item.status}</div>
+                    <div><span>${this.tableTitles[4]}:</span>${dateFormatter(item.statusDate).tableDate}</div>
                 </div>
                 <div>
                     <div class="buttonWrap">

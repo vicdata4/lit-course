@@ -92,7 +92,7 @@ export const formStyles = css`
 
 export const anotherStyles = css`
   .contents {
-    border: 1px solid black;
+    padding: 5px;
   }
   .buttonsWrap {
     display: inline-flex;
@@ -121,8 +121,21 @@ export const anotherStyles = css`
     background-color: transparent;
     cursor: pointer;
   }
-  .detailsWrap:nth-child(even) {
-    background-color: gray;
+  .detailsWrap { 
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 5px;
   }
-  
+  details[open] {
+    border: none;
+  }
+  .detailsWrap > summary::-webkit-details-marker {
+    display: none;
+  }
+  .contents > div > span, .summaryWrap > span {
+    font-weight: bold;
+  }
+  .detailsWrap[open] > summary::-webkit-details-marker {
+    display: initial;
+  }
 `;
