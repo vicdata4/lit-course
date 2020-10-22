@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { formatDate, orderedList } from '../../../utils/functions';
+import './admin-vacation-list';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
@@ -179,6 +180,7 @@ export class AdminVacationForm extends LitElement {
 
   render() {
     return html`
+    <admin-vacation-list></admin-vacation-list>
       <div class="container">
         <p>Solicitud de vacaciones:</p>
         ${this.renderStepper()}
