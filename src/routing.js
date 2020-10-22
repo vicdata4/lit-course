@@ -22,5 +22,6 @@ export const routing = function() {
     { path: '(.*)', component: 'not-found-view' }
   ];
 
+  
   router.setRoutes(routes);
 };
