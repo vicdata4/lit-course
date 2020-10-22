@@ -7,5 +7,5 @@ export const CONSTANTS_INFORME_CIPA = {
   labelOrdenarPerfilId: 'label_ordenar_perfil_id',
   labelOrdenarPlantillaId: 'label_ordenar_plantilla_id',
   labelOrdenarFuaId: 'label_ordenar_fua_id',
-  labelOrdenarFvId: 'label_ordenar_fv_id'
+  labelOrdenarFvId: 'label_ordenar_fv_id',
 };

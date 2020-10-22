@@ -7,5 +7,5 @@ export const datos = [
   { id: 'Contratado', data: 2 },
   { id: 'Rechazado', data: 1 },
   { id: 'Declina la Oferta', data: 0 },
-  { id: 'Ya no está disponible', data: 2 }
+  { id: 'Ya no está disponible', data: 2 },
 ];

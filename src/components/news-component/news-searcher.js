@@ -16,7 +16,6 @@ const errorHandler = (response) => {
 class NewsSearcher extends LitElement {
   static get styles() {
     return css`
-
       .centered {
         display: flex;
         justify-content: center;
@@ -51,7 +50,7 @@ class NewsSearcher extends LitElement {
       search: { type: String },
       showSpinner: { type: Boolean },
       nbHits: { type: Number },
-      hitsPerPage: { type: Number }
+      hitsPerPage: { type: Number },
     };
   }
 
@@ -72,8 +71,12 @@ class NewsSearcher extends LitElement {
   async getDataFromApi() {
     return fetch(`${url}${this.search}&page=${this.page}&hitsPerPage=${this.hitsPerPage}`, { method: 'GET' })
       .then(errorHandler)
-      .then(response => { return response; })
-      .catch(error => { return { error }; });
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return { error };
+      });
   }
 
   async searchNews(e) {
@@ -109,10 +112,11 @@ class NewsSearcher extends LitElement {
       <div class="centered">
         <input-component @my-event="${this.searchNews}">Search posts</input-component>
       </div>
-      ${!this.showSpinner ? html`
-        <div class="search-info">
-          ${this.nbHits} results about <span class="search-light">${this.search}</span>
-        </div>` : nothing}
+      ${!this.showSpinner
+        ? html` <div class="search-info">
+            ${this.nbHits} results about <span class="search-light">${this.search}</span>
+          </div>`
+        : nothing}
 
       <news-list .list="${this.list}" @show-more="${this.searchNews}"></news-list>
       ${this.showSpinner ? html`<div class="centered spinner">${spinner}</div>` : nothing}

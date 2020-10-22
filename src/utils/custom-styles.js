@@ -66,12 +66,12 @@ export const commonStyles = css`
   }
 
   .common-btn {
-      background-color: transparent;
-      border: 1px solid grey;
-      padding: 10px;
-      margin: 5px;
-      outline: none;
-      cursor: pointer;
+    background-color: transparent;
+    border: 1px solid grey;
+    padding: 10px;
+    margin: 5px;
+    outline: none;
+    cursor: pointer;
   }
 
   .common-btn:hover {

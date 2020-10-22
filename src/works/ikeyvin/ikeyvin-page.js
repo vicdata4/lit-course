@@ -7,14 +7,12 @@ import '../../components/work-header';
 
 class IkeyvinPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      listaPeticion: { type: Array }
+      listaPeticion: { type: Array },
     };
   }
 
@@ -23,10 +21,10 @@ class IkeyvinPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>iKeyvin</work-header>
-          <br>
-          <form-petition></form-petition>
-          <hr>
-          <list-petition></list-petition>
+        <br />
+        <form-petition></form-petition>
+        <hr />
+        <list-petition></list-petition>
       </section>
     `;
   }
