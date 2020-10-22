@@ -9,7 +9,7 @@ export class SolicitudVacaciones extends LitElement {
       commonStyles,
       css`
             h2 {
-              font-family: "Comic Sans MS", cursive, sans-serif;;
+              font-family: 'Open Sans', sans-serif;
             }
           `
     ];
