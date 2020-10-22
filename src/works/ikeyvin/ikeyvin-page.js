@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-// import './components/formPetition.js';
-// import './components/listPetition.js';
+import './components/formPetition.js';
+import './components/listPetition.js';
 
 class IkeyvinPage extends LitElement {
   static get styles() {

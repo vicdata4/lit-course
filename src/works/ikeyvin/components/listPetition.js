@@ -14,22 +14,26 @@ export class ListPetition extends LitElement {
     static get properties() {
         return {
           listaPeticiones : {type: Array},
-          popupOpen : {type: Boolean}
+          popupOpen : {type: Boolean},
         };
       }
       
     constructor() { 
         super();
         this.listaPeticiones = JSON.parse(window.localStorage.getItem('list-peticion')),
-        this.popupOpen = false;
+        this.popupOpen = false,
+        this.popupPetTitulo = '';
+        this.popupPetDescripcion = '';
     }
 
-    showPetition(id){
+    
 
-        let popupPetTitulo = this.shadowRoot.querySelector('#peticionTitulo');
+    
+    showPetition(id){
         this.listaPeticiones.map((peticion) => {
             if(peticion.id === id){
-                popupPetTitulo = peticion.titulo;
+                this.popupPetTitulo = peticion.titulo;
+                this.popupPetDescripcion = peticion.descripcion;
                 this.popupOpen = true;
             }
         });
@@ -40,7 +44,6 @@ export class ListPetition extends LitElement {
     }
 
     render() {
-
         if(this.listaPeticiones !== null){
             return html`
             <section class="listaPeticiones">
@@ -74,7 +77,12 @@ export class ListPetition extends LitElement {
             <div id="myModal" class="modal ${(this.popupOpen) ? 'active' : ''}">
                 <div class="modal-content">
                     <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
-                    <h1 id="popupPetitionTitle"></h1>
+                    <h3 id="popupPetitionTitle">Petition</h3>
+                    <p>Titulo: </p>
+                    <input type="text" value="${this.popupPetTitulo}"></input>
+                    <br>
+                    <p>Descripcion: </p>
+                    <textarea>${this.popupPetDescripcion}</textarea>
                 </div>
             </div>   
             `;
