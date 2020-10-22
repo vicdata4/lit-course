@@ -11,9 +11,9 @@ class RequestsTable extends LitElement {
   static get properties() {
     return {
       requestsList: { type: Array },
-      tableTitles: { type: Array },
+      tableTitles: { type: Array, attribute: false },
       sortedArray: { type: Array },
-      orderType: { type: Array },
+      orderType: { type: Array, attribute: false },
       fromT: { type: Number },
       toT: { type: Number },
       firstIndex: { type: Number }
