@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import { formPeticion } from '../utils/costum-css.js';
 
 export default class FormPetition extends LitElement {
@@ -51,7 +51,6 @@ export default class FormPetition extends LitElement {
           
     }   
     
-
     render() {
       return html`
         <div class="form">

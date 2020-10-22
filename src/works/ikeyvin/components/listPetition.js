@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit-element';
+import { LitElement, html, nothing } from 'lit-element';
 import './formPetition';
 import { tablePeticion, modalPopup } from '../utils/costum-css';
 
@@ -29,7 +29,6 @@ export class ListPetition extends LitElement {
         this.listaPeticiones.map((peticion) => {
             if(peticion.id === id){
                 popupPetTitulo = peticion.titulo;
-                
                 this.popupOpen = true;
             }
         });
@@ -49,36 +48,33 @@ export class ListPetition extends LitElement {
                         <h2>LISTA PETICIÓN</h2>
                     </div>
                     <table class="table-fill">
-                    <thead>
-                        <tr>
-                            <th class="text-left">TITULO</th>
-                                <th class="text-left">FECHA</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-hover">  
-                        ${this.listaPeticiones.map((peticion) => {
-                            if(peticion.publicar === true){
-                                return html`
-                                    <tr>
-                                    <td class="text-left"><a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a></td>
-                                    <td class="text-left">${peticion.fecha}</td>
-                                    </tr>
-                                `
-                            }
-                        })}   
-                    </tbody>
-                </table>
+                        <thead>
+                            <tr>
+                                <th class="text-left">TITULO</th>
+                                    <th class="text-left">FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-hover">  
+                            ${this.listaPeticiones.map((peticion) => html`
+                                ${peticion.publicar ?
+                                    html`
+                                        <tr>
+                                        <td class="text-left"><a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a></td>
+                                        <td class="text-left">${peticion.fecha}</td>
+                                        </tr>
+                                    `
+                                : nothing}`
+                            )}   
+                        </tbody>
+                    </table>
                 </div>
             </section>
             
             <div id="myModal" class="modal ${(this.popupOpen) ? 'active' : ''}">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                        <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
-                        <h1 id="popupPetitionTitle"></h1>
-                        </div>
-
+                <div class="modal-content">
+                    <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
+                    <h1 id="popupPetitionTitle"></h1>
+                </div>
             </div>   
             `;
         }
