@@ -53,6 +53,8 @@ class VacationTable extends LitElement {
     if (this.from > 0 && this.vacationData.length === this.from) {
       this.from = this.from - this.nEmployees;
       this.to = this.to - this.nEmployees;
+      const stepper = this.shadowRoot.querySelector('stepper-component');
+      stepper.setActiveStep(this.from / this.nEmployees);
     }
   }
 
