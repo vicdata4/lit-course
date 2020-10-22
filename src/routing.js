@@ -19,7 +19,6 @@ import './works/calaverosa/calaverosa-page';
 import './works/efim93/efim93-page';
 import './works/ikeyvin/ikeyvin-page';
 import './works/hck3791/hck3791-page';
-import './works/hck3791/components/candidate-component';
 import './works/hck3791/components/request-component';
 import './works/jhumekes/jhumekes-page';
 import './works/julieannecodes/julieannecodes-page';
@@ -44,7 +43,6 @@ export const routing = function() {
   ];
 
   routes.unshift(
-    { path: '/hck3791-comp', component: 'candidate-component' },
     { path: '/request', component: 'request-component' }
   );
 
