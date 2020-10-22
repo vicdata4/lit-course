@@ -3,9 +3,11 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-approval/vacation-approval';
+import './components/vacation-detail/vacation-detail-admin';
 
 const components = {
-  vacationApproval: () => html`<vacation-approval></vacation-approval>`
+  vacationApproval: () => html`<vacation-approval></vacation-approval>`,
+  vacationDetail: () => html`<vacation-detail-admin></vacation-detail-admin>`
 };
 
 class Efim93Page extends LitElement {
