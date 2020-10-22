@@ -103,7 +103,6 @@ export class AdminVacationForm extends LitElement {
   constructor() {
     super();
     this.list = [];
-    this.table = [];
     this.nElements = 3;
     this.from = 0;
     this.to = this.nElements;
@@ -113,7 +112,6 @@ export class AdminVacationForm extends LitElement {
   }
 
   async firstUpdated() {
-    this.table = new Array(this.nElements).fill({});
     this.updateStepper();
   }
 
@@ -154,36 +152,6 @@ export class AdminVacationForm extends LitElement {
     if (this.index > 0) {
       this.showPage(this.index - 1);
     }
-  }
-
-  updated(changedProperties) {
-    changedProperties.forEach((oldValue, propName) => {
-      if (propName === 'list') {
-        this.updateStepper();
-      }
-    });
-  }
-
-  sendData() {
-    const event = new CustomEvent('update-array', {
-      detail: {
-        applications: this.list
-      }
-    });
-    this.dispatchEvent(event);
-  }
-
-  changeStatus(id) {
-    const select = this.shadowRoot.getElementById('sel-' + id).value;
-    for (let i = 0; i < this.list.length; i++) {
-      if (this.list[i].id === id) {
-        if (select === '0') { this.list[i].status = 'Pendiente de aprobación'; };
-        if (select === '1') { this.list[i].status = 'Aprobado'; };
-        if (select === '2') { this.list[i].status = 'No aprobado'; };
-        this.list[i].statusDate = formatDate(new Date(), true);
-      }
-    }
-    // this.sendData();
   }
 
   orderList(column) {
@@ -235,7 +203,7 @@ export class AdminVacationForm extends LitElement {
               <td>${formatDate(item.startDate)}</td>
               <td>${formatDate(item.endDate)}</td>
               <td>  
-                <select id="sel-${item.id}"class="selectOptions" @change="${() => this.changeStatus(item.id)}">
+                <select id="sel-${item.id}"class="selectOptions">
                   <option value="0">Pendiente de aprobación</option>
                   <option value="1">Aprobado</option>
                   <option value="2">No aprobado</option>
