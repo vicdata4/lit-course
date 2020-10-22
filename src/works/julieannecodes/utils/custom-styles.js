@@ -138,18 +138,4 @@ export const anotherStyles = css`
   .detailsWrap[open] > summary::-webkit-details-marker {
     display: initial;
   }
-  @media (min-width: 768px){
-    .dataRows{
-    width: 45%;
-    display: inline-flex;
-    }
-  }
-  @media (min-width: 1440px), (min-width: 1120px) {
-    .dataRows {
-      width: 35%
-    }
-    .buttonsWrap {
-      width: 100%;
-    }
-  }
 `;
