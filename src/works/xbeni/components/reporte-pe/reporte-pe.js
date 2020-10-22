@@ -3,6 +3,7 @@ import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
 import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reportePe/constantes';
 import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt, svgBeniRpeIconRight, svgBeniRpeIconLeft } from '../../archivos_comunes/ac_reportePe/svg_icons';
+import { nothing } from 'lit-html';
 
 class BeniReportePermisosEmpleado extends LitElement {
   constructor() {
@@ -101,7 +102,7 @@ class BeniReportePermisosEmpleado extends LitElement {
       <div class="divBodyReporteGeneradoRpe">
 ${
   this.datosReporteRpe.length === 0
-    ? html``
+    ? nothing
     : this.generarReporteRpe()
 }
       </div>
@@ -169,7 +170,7 @@ ${
         `)}
       </table>
       ${this.datosReporteRpe.length <= 10
-    ? html``
+    ? nothing
     : html`
       <div class="divBodyStepper">
         ${this.renderStepper()}
