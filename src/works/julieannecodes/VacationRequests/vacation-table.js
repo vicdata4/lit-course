@@ -35,7 +35,7 @@ class VacationTable extends LitElement {
   addVacation(e) {
     const recived = e.detail.dates.startDate;
     this.vacationData.length === 0 ? this.inArray : this.vacationData.map(
-      item => { item.startDate.getTime() === recived.getTime() ? this.inArray = item.startDate : nothing; }
+      item => { item.startDate.getTime() === recived.getTime() ? this.inArray = item.startDate : null; }
     );
     if (recived.getTime() === this.inArray.getTime()) {
       this.errorMessage = 'Date already exists';
