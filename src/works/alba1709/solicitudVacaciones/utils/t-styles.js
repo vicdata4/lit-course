@@ -35,7 +35,7 @@ export const viewStyles = css`
     margin-left: 7px;
   }
   td, th {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     white-space: nowrap;
   }
   .btnOrder {
