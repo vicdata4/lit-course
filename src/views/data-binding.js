@@ -37,7 +37,7 @@ class DataBinding extends LitElement {
       <common-header></common-header>
       <section class="container">
         <h1>Data binding</h1>
-        <input-component @my-event="${this.addMessage}"></input-component>
+        <input-component @my-event="${this.addMessage}">Guardar</input-component>
         <list-component .list="${this.messageList}" @delete-event="${this.deleteMessage}"></list-component>
       </section>
     `;

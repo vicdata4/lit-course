@@ -15,10 +15,13 @@ class HomeView extends LitElement {
       <common-header></common-header>
       <nav>
         <ul class="menu-list">
+          <li><a href="/news-searcher">News searcher</a></li>
+          <li><a href="/pagination">Pagination</a></li>
           <li><a href="/form-example-view">Form Example</a></li>
           <li><a href="/paris-view">Paris</a></li>
           <li><a href="/data-binding">Data binding</a></li>
           <li><a href="/list-example">List example</a></li>
+          <li><a href="/works">Works</a></li>
         </ul>
       </nav>
     `;

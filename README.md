@@ -7,15 +7,6 @@ https://lit-element.polymer-project.org/guide
 https://lit-html.polymer-project.org/guide
 
 
-
-### Dependencies
-
-- Lit-element
-- Rollup
-- Karma
-- Eslint
-- @Openwc testing
-
 ## Quick start
 
 Run from command line
@@ -41,6 +32,18 @@ Run tests
 
 ```
 npm run test
+```
+
+Run ESLint
+
+```
+npm run lint:check
+```
+
+Run ESLint Autofix
+
+```
+npm run lint:fix
 ```
 
 Run storybook
