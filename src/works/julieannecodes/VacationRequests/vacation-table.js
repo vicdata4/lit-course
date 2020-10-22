@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
-import './form-vacaciones';
-import './table-solicitud';
+import './holidays-form';
+import './requests-table';
 import './stepper';
 
 class VacationTable extends LitElement {
@@ -45,7 +45,7 @@ class VacationTable extends LitElement {
     }
   }
 
-  async deleteDate(e) {
+  deleteDate(e) {
     const arr = this.vacationData;
     arr.splice(e.detail.index, 1);
     this.vacationData = [...arr];
@@ -65,11 +65,11 @@ class VacationTable extends LitElement {
     return html`
       <div class="container">
         <h1>Solicitud de vacaciones</h1>
-        <form-vacation @send-dates="${this.addVacation}"></form-vacation>
+        <holidays-form @send-dates="${this.addVacation}"></holidays-form>
         ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
 
         ${this.vacationData.length >= this.nEmployees ? html`<stepper-component .listLength="${this.vacationData.length}" @interval-values="${this.getValues}"></stepper-component>` : nothing}
-        <table-solicitud .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></table-solicitud>
+        <requests-table .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></requests-table>
       </div>  
     `;
   }

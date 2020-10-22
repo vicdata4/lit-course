@@ -3,7 +3,7 @@ import { mediaQueries, tableStyles } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
-class TableSolicitud extends LitElement {
+class RequestsTable extends LitElement {
   static get styles() {
     return [tableStyles, mediaQueries];
   }
@@ -42,7 +42,6 @@ class TableSolicitud extends LitElement {
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
-    // this.showPartOf(this.firstIndex);
   }
 
   deleteDate(i) {
@@ -72,7 +71,7 @@ class TableSolicitud extends LitElement {
           <td>${dateFormatter(item.startDate).tableDate}</td>
           <td>${dateFormatter(item.endDate).tableDate}</td>
           <td>${item.status}</td>
-          <td>${item.statusDate}</td>
+          <td>${dateFormatter(item.statusDate).tableDate}</td>
           <td>
             <div class="buttonWrap">
               <button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}"><img src="/assets/images/trash.png"></button>
@@ -88,4 +87,4 @@ class TableSolicitud extends LitElement {
     return html`${this.requestsList.length === 0 ? html`<h3>No hay solicitudes de vacaciones aún</h3>` : this.tableL()}`;
   }
 }
-window.customElements.define('table-solicitud', TableSolicitud);
+window.customElements.define('requests-table', RequestsTable);

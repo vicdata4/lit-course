@@ -3,7 +3,7 @@ import { nothing } from 'lit-html';
 import { mediaQueries, formStyles } from '../utils/custom-styles';
 import { dateFormatter } from '../utils/functions';
 
-class FormVacaciones extends LitElement {
+class HolidaysForm extends LitElement {
   static get styles() {
     return [formStyles, mediaQueries];
   }
@@ -26,33 +26,21 @@ class FormVacaciones extends LitElement {
     return date;
   }
 
-  dateTransformer(fi, ff) {
+  dateValidator(fi, ff) {
     const startDate = new Date(fi);
     const endDate = new Date(ff);
-
-    return {
-      sDate: startDate,
-      eDate: endDate
-    };
-  }
-
-  dateValidator(fi, ff) {
-    const startDate = this.dateTransformer(fi, ff).sDate;
-    const endDate = this.dateTransformer(fi, ff).eDate;
 
     return startDate < endDate;
   }
 
-  sendData() {
-    const startDate = this.shadowRoot.querySelector('#start');
-    const endDate = this.shadowRoot.querySelector('#end');
+  sendData(startDate, endDate) {
     const currentDate = new Date();
     const obj = {
       currentDate: currentDate,
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',
-      statusDate: dateFormatter(currentDate).tableDate
+      statusDate: currentDate
     };
 
     const event = new CustomEvent('send-dates', {
@@ -72,7 +60,7 @@ class FormVacaciones extends LitElement {
     if (!this.dateValidator(startDate.value, endDate.value)) {
       this.message = 'Enter a valid date';
       return false;
-    } else { this.sendData(); }
+    } else { this.sendData(startDate, endDate); }
     this.message = '';
   }
 
@@ -95,4 +83,4 @@ class FormVacaciones extends LitElement {
     `;
   }
 }
-window.customElements.define('form-vacation', FormVacaciones);
+window.customElements.define('holidays-form', HolidaysForm);
