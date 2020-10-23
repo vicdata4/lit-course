@@ -1,11 +1,13 @@
 import { LitElement, html } from 'lit-element';
 import { getDate } from './utils/functions';
 import { viewStyles } from './utils/t-styles';
+import { responsiveTable } from './utils/table-responsive';
 
 export class TablaSolicitud extends LitElement {
   static get styles() {
     return [
-      viewStyles
+      viewStyles,
+      responsiveTable
     ];
   }
 
@@ -129,8 +131,8 @@ export class TablaSolicitud extends LitElement {
                 </th>
                 <th>Fecha Fin
                   <span>
-                    <button class = "btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
-                    <button class = "btnOrder" @click="${() => this.orderDate('infoFF', 'desc')}">&#9662;</button>
+                    <button data-btn="" class="btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
+                    <button class="btnOrder" @click="${() => this.orderDate('infoFF', 'desc')}">&#9662;</button>
                   </span>
                 </th>
                 <th>Estado de la solicitud</th>
@@ -140,12 +142,12 @@ export class TablaSolicitud extends LitElement {
           
     ${this.miTabla.slice(this.from, this.to).map(item => html`
               <tr>
-                <td class="first">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
-                <td>${item.infoFI.split('-').reverse().join('-')}</td>
-                <td>${item.infoFF.split('-').reverse().join('-')}</td>
-                <td>Pendiente de aprobación</td>
-                <td>${item.fHoy.split('-').reverse().join('-')}</td>
-                <td> <button id="btnPapelera" @click="${() => this.deleteItem()}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
+                <td data-title="Fecha de solicitud: ">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
+                <td data-title="Fecha Inicio: ">${item.infoFI.split('-').reverse().join('-')}</td>
+                <td data-title="Fecha Fin: ">${item.infoFF.split('-').reverse().join('-')}</td>
+                <td data-title="Estado de la solicitud: ">Pendiente de aprobación</td>
+                <td data-title="Fecha de estado: ">${item.fHoy.split('-').reverse().join('-')}</td>
+                <td data-title="Eliminar: "> <button id="btnPapelera" @click="${() => this.deleteItem()}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
               </tr>`)}
 
           </table>
