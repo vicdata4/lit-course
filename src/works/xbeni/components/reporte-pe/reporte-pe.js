@@ -72,12 +72,12 @@ class BeniReportePermisosEmpleado extends LitElement {
               </div>
 
               <div class="divFlexRpe">
-                  <div class="divCamposRpe">
-                      <label>Fecha de fin:</label>
-                  </div>
-                  <div class="divCamposDatos">
-                      <input type="date" id="${CONSTANTS_RPE.idFechaFinRpe}" class="inputFechasRpe"/>
-                  </div>
+                <div class="divCamposRpe">
+                  <label>Fecha de fin:</label>
+                </div>
+                <div class="divCamposDatos">
+                  <input type="date" id="${CONSTANTS_RPE.idFechaFinRpe}" class="inputFechasRpe"/>
+                </div>
               </div>
     
               <div>
@@ -133,7 +133,7 @@ ${
           <th name="tipoPermiso">
             <div class="divFlexThRpe">
               <div>
-                  <label>Tipo de permiso</label>
+                <label>Tipo de permiso</label>
               </div>
               <button class="order"></button>
                 <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
@@ -152,19 +152,19 @@ ${
         ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
           <tr>
             <td>
-                <label>
-                    ${item.dia}
-                </label>
+              <label>
+                ${this.dateToFormatRequired(item.dia.getFullYear(), item.dia.getMonth(), item.dia.getDate())}
+              </label>
             </td>
             <td>
-                <label>
-                    ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
-                </label>
+              <label>
+                ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
+              </label>
             </td>
             <td>
-                <label>
-                    ${item.horas}
-                </label>
+              <label>
+                ${item.horas}
+              </label>
             </td>
           </tr>
         `)}
@@ -177,6 +177,10 @@ ${
       </div>
     `}
     `;
+  }
+
+  dateToFormatRequired(year, month, day) {
+    return `${day < 10 ? '0' : ''}${day}/${(month + parseInt(1)) < 10 ? '0' : ''}${(month + parseInt(1))}/${year}`;
   }
 
   renderStepper() {
