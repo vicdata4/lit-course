@@ -1,124 +1,11 @@
 /* eslint-disable no-console */
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { adminVacationStyles } from '../../../utils/custom-styles';
 import { formatDate, orderedList } from '../../../utils/functions';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
-    return css`
-      .component-box {
-        margin: 1rem;
-        font-family: 'Comic Sans MS', cursive, sans-serif;
-      }
-      .order {
-        background-color: transparent;
-        font-family: 'Muli', sans-serif;
-        font-weight: bold;
-        font-size: 0.7rem;
-        border: none;
-        cursor: pointer;
-      }
-
-      table.vacations {
-        width: 100%;
-      }
-      table.vacations thead,
-      th {
-        display: none;
-      }
-
-      table.vacations tr {
-        border-bottom: 3px solid;
-      }
-
-      table.vacations td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        text-align: right;
-        padding: 10px;
-      }
-      tr:nth-child(even) {
-        background-color: #eeeeee;
-      }
-      table.vacations td:before {
-        content: attr(data-label);
-        float: left;
-        color: #273b47;
-        font-weight: bold;
-        font-size: 1em;
-        padding: 1px 5px;
-      }
-
-      .stepper {
-        margin: 10px 0;
-      }
-      .stepper .step:hover {
-        background-color: #f1f1f1;
-      }
-      .step {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #d8d7d7;
-        width: 20px;
-        height: auto;
-        text-align: center;
-        cursor: pointer;
-      }
-      .step.active {
-        background-color: #535353 !important;
-        color: white;
-      }
-      .step.left {
-        transform: rotate(180deg);
-      }
-      .stepper,
-      .step {
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .table-box {
-          border-top: solid 2px black;
-          border-bottom: solid 2px black;
-          margin-top: 1.5rem;
-        }
-        table.vacations thead,
-        th {
-          display: table-cell;
-        }
-
-        table.vacations tr {
-          border-bottom: 3px solid;
-        }
-        table {
-          border-collapse: collapse;
-          font-size: 0.8rem;
-          empty-cells: hide;
-          width: 100%;
-        }
-        tr:nth-child(even) {
-          background-color: #eeeeee;
-        }
-        table th {
-          border-left: solid 2px black;
-          border-right: solid 2px black;
-          background-color: #cccccc;
-          font-size: 0.7rem;
-          text-align: left;
-        }
-        table.vacations td {
-          display: table-cell;
-          border-right: solid 2px black;
-          border-left: solid 2px black;
-          text-align: left;
-        }
-        table.vacations td:before {
-          content: none;
-        }
-        td {
-          height: 2rem;
-        }
-      }
-    `;
+    return [adminVacationStyles];
   }
 
   static get properties() {
@@ -218,6 +105,16 @@ export class AdminVacationForm extends LitElement {
       <div class="container">
         <p>Solicitud de vacaciones:</p>
         ${this.renderStepper()}
+
+        <div class="order-box">
+          <button class="order" @click="${() => this.orderList('name')}">Nombre <span>&#9662;</span></button>
+          <button class="order" @click="${() => this.orderList('applicationDate')}">
+            Solicitud <span>&#9662;</span>
+          </button>
+          <button class="order" @click="${() => this.orderList('startDate')}">Inicio <span>&#9662;</span></button>
+          <button class="order" @click="${() => this.orderList('endDate')}">Fin <span>&#9662;</span></button>
+        </div>
+
         <div class="table-box">
           <table class="vacations">
             <tr>
@@ -268,6 +165,7 @@ export class AdminVacationForm extends LitElement {
             )}
           </table>
         </div>
+        ${this.renderStepper()}
       </div>
     `;
   }
