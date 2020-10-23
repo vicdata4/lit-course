@@ -7,19 +7,17 @@ import './components/informe-cipa/informe-cipa';
 
 const components = {
   InformeCandidatosInformacionDesactualizada: () => html`<informe-cipa></informe-cipa>`,
-  reportePermisosEmpleado: () => html`<reporte-pe></reporte-pe>`
+  reportePermisosEmpleado: () => html`<reporte-pe></reporte-pe>`,
 };
 
 class XbeniPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -38,9 +36,9 @@ class XbeniPage extends LitElement {
       <section class="container">
         <work-header>XBeni</work-header>
         <div class="common-list">
-          ${Object.keys(components).map(item => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html`<button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>`,
+          )}
         </div>
         ${components[this.current]()}
       </section>

@@ -1,4 +1,4 @@
-![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/polymer.png?v=4&s=100)
+![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo.png?v=4&s=100)
 
 ### Documentation
 
@@ -6,15 +6,6 @@ https://lit-element.polymer-project.org/guide
 
 https://lit-html.polymer-project.org/guide
 
-
-
-### Dependencies
-
-- Lit-element
-- Rollup
-- Karma
-- Eslint
-- @Openwc testing
 
 ## Quick start
 
@@ -41,6 +32,18 @@ Run tests
 
 ```
 npm run test
+```
+
+Run ESLint
+
+```
+npm run lint
+```
+
+Run ESLint Autofix
+
+```
+npm run lint:fix
 ```
 
 Run storybook

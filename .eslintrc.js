@@ -1,5 +1,5 @@
 module.exports = {
-  'extends': 'standard',
+  'extends': ['standard', 'prettier'],
   'env': {
     'browser': true,
     'commonjs': true,
@@ -7,8 +7,9 @@ module.exports = {
     'es6': true,
     'mocha': true
   },
+  'plugins': ['prettier'],
   'rules': {
-    'indent': ['error', 2, { 'SwitchCase': 1 }],
+    'space-before-function-paren': ['error', 'ignore'],
     'max-len': 'off',
     'no-console': 'error',
     'no-alert': 'error',
@@ -18,6 +19,7 @@ module.exports = {
     'semi': [2, 'always'],
     'space-before-function-paren': ['error', 'never'],
     'quote-props': ['error', 'as-needed'],
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    'prettier/prettier': ['error']
   },
 };
