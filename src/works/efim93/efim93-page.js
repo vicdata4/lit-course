@@ -5,19 +5,17 @@ import '../../components/work-header';
 import './components/vacation-approval/vacation-approval';
 
 const components = {
-  vacationApproval: () => html`<vacation-approval></vacation-approval>`
+  vacationApproval: () => html`<vacation-approval></vacation-approval>`,
 };
 
 class Efim93Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -36,9 +34,9 @@ class Efim93Page extends LitElement {
       <section class="container">
         <work-header>efim93</work-header>
         <div class="common-list">
-          ${Object.keys(components).map(item => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
         </div>
         ${components[this.current]()}
       </section>

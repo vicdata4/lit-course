@@ -5,9 +5,7 @@ import '../components/form-example';
 
 class FormExampleView extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {

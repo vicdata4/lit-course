@@ -22,7 +22,7 @@ class InputComponent extends LitElement {
         .btn-submit:hover {
           background-color: #f1f1f1;
         }
-      `
+      `,
     ];
   }
 
@@ -31,8 +31,8 @@ class InputComponent extends LitElement {
     if (inputValue.value) {
       const event = new CustomEvent('my-event', {
         detail: {
-          message: inputValue.value
-        }
+          message: inputValue.value,
+        },
       });
       this.dispatchEvent(event);
       inputValue.value = '';
@@ -43,7 +43,7 @@ class InputComponent extends LitElement {
 
   render() {
     return html`
-      <input id="message" type="text" class="input-text" placeholder="write here..">
+      <input id="message" type="text" class="input-text" placeholder="write here.." />
       <button class="btn-submit" @click="${this.sendData}"><slot></slot></button>
     `;
   }
