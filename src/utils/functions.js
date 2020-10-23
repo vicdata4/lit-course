@@ -1,8 +1,8 @@
 import { months, days } from './constants';
 
 /**
-  * FORMATTERS
-  */
+ * FORMATTERS
+ */
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
@@ -17,7 +17,7 @@ export const dateFormatter = (date_) => {
     default: monthName + ' ' + monthDay + ', ' + year,
     short: monthName.slice(0, 3) + ' ' + monthDay,
     day: weekDayName,
-    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
+    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
 };
 export const emailValidator = (email) => {

@@ -8,7 +8,7 @@ class VacationTable extends LitElement {
   static get properties() {
     return {
       vacationData: { type: Array },
-      errorMessage: { type: String }
+      errorMessage: { type: String },
     };
   }
 
@@ -21,9 +21,11 @@ class VacationTable extends LitElement {
   addVacation(e) {
     const recived = e.detail.fechas.fechaInicio;
     let inArray = new Date();
-    this.vacationData.length === 0 ? inArray : this.vacationData.map(
-      item => { item.fechaInicio.getTime() === recived.getTime() ? inArray = item.fechaInicio : nothing; }
-    );
+    this.vacationData.length === 0
+      ? inArray
+      : this.vacationData.map((item) => {
+          item.fechaInicio.getTime() === recived.getTime() ? (inArray = item.fechaInicio) : nothing;
+        });
     if (recived.getTime() === inArray.getTime()) {
       this.errorMessage = 'Date already exists';
     } else {
@@ -40,11 +42,11 @@ class VacationTable extends LitElement {
 
   render() {
     return html`
-        <h1>Solicitud de vacaciones</h1>
-        <form-vacation @send-dates="${this.addVacation}"></form-vacation>
-        ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        <table-solicitud .arraySolicitudes="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
-        `;
+      <h1>Solicitud de vacaciones</h1>
+      <form-vacation @send-dates="${this.addVacation}"></form-vacation>
+      ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
+      <table-solicitud .arraySolicitudes="${this.vacationData}" @delete-date="${this.deleteDate}"></table-solicitud>
+    `;
   }
 }
 

@@ -15,6 +15,6 @@ export const getFormatterDate = (date_) => {
 
   return {
     defaultDate: day + '-' + month + '-' + year,
-    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
+    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
 };

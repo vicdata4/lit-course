@@ -7,19 +7,17 @@ import './adminHoliday/admin-holiday-view';
 
 const components = {
   solicitudVacaciones: () => html`<solicitud-vacaciones-view>h</solicitud-vacaciones-view>`,
-  adminHoliday: () => html`<admin-holiday-view></admin-holiday-view>`
+  adminHoliday: () => html`<admin-holiday-view></admin-holiday-view>`,
 };
 
 class Alba1709Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -39,9 +37,9 @@ class Alba1709Page extends LitElement {
       <section class="container">
         <work-header>alba1709</work-header>
         <div class="common-list">
-          ${Object.keys(components).map(item => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
         </div>
         ${components[this.current]()}
       </section>

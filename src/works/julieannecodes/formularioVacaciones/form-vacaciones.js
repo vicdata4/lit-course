@@ -6,7 +6,7 @@ class FormVacaciones extends LitElement {
   static get properties() {
     return {
       message: { type: String, attribute: false },
-      minDate: { type: String }
+      minDate: { type: String },
     };
   }
 
@@ -22,7 +22,7 @@ class FormVacaciones extends LitElement {
 
     return {
       fechaIni: startDate,
-      fechaFin: endDate
+      fechaFin: endDate,
     };
   }
 
@@ -31,7 +31,7 @@ class FormVacaciones extends LitElement {
     const fechaInicio = this.dateTransformer(fi, ff).fechaIni;
     const fechaFin = this.dateTransformer(fi, ff).fechaFin;
 
-    fechaInicio < fechaFin ? aux : aux = false;
+    fechaInicio < fechaFin ? aux : (aux = false);
 
     return aux;
   }
@@ -46,13 +46,13 @@ class FormVacaciones extends LitElement {
       fechaInicio: new Date(fechaInicio.value),
       fechaFin: new Date(fechaFin.value),
       estado: 'Pendiente de aprobación',
-      statusDate: dateFormatter(currentDate).tableDate
+      statusDate: dateFormatter(currentDate).tableDate,
     };
 
     const event = new CustomEvent('send-dates', {
       detail: {
-        fechas: obj
-      }
+        fechas: obj,
+      },
     });
     this.dispatchEvent(event);
     fechaInicio.value = '';
@@ -66,20 +66,22 @@ class FormVacaciones extends LitElement {
     if (!this.dateValidator(fechaInicio.value, fechaFin.value)) {
       this.message = 'Enter a valid date';
       return false;
-    } else { this.sendData(); }
+    } else {
+      this.sendData();
+    }
     this.message = '';
   }
 
   render() {
     return html`
-    <form onsubmit="return false">
-            <label for="inicio">Fecha inicio</label>
-            <input type="date" id="inicio" value="${this.minDate}" min="${this.minDate}">
-            <label for="fin">Fecha fin</label>
-            <input type="date" id="fin">
-            <button type="submit" @click="${this.onSubmit}">Agregar</button> 
-        </form>
-        ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
+      <form onsubmit="return false">
+        <label for="inicio">Fecha inicio</label>
+        <input type="date" id="inicio" value="${this.minDate}" min="${this.minDate}" />
+        <label for="fin">Fecha fin</label>
+        <input type="date" id="fin" />
+        <button type="submit" @click="${this.onSubmit}">Agregar</button>
+      </form>
+      ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
     `;
   }
 }

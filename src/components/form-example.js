@@ -55,14 +55,14 @@ class FormExample extends LitElement {
             justify-content: center;
           }
         }
-      `
+      `,
     ];
   }
 
   static get properties() {
     return {
       validated: { type: Boolean, attribute: false },
-      message: { type: String, attribute: false }
+      message: { type: String, attribute: false },
     };
   }
 
@@ -97,9 +97,9 @@ class FormExample extends LitElement {
   render() {
     return html`
       <form onsubmit="return false">
-        <input id="email" type="text" class="form-field" placeholder="email">
-        <input id="password" type="password" class="form-field" placeholder="password">
-        <input type="submit" @click="${this.onSubmit}" class="form-submit" value="Acceder">
+        <input id="email" type="text" class="form-field" placeholder="email" />
+        <input id="password" type="password" class="form-field" placeholder="password" />
+        <input type="submit" @click="${this.onSubmit}" class="form-submit" value="Acceder" />
         ${this.validated && this.message === '' ? html`<div class="alert-succesfull">&#128077;</div>` : nothing}
       </form>
       ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}

@@ -10,7 +10,7 @@ export const months = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ];
 export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 export const users = [
@@ -24,5 +24,5 @@ export const users = [
   'Jhumekes',
   'julieanneCodes',
   'XBeni',
-  'vicdata4'
+  'vicdata4',
 ];
