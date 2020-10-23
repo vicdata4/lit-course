@@ -241,23 +241,8 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       });
     } else {
       orderedList = myList.sort((a, b) => {
-        // FORMATO FECHA RECIBIDA DD/MM/YYYY
-        var arrayDatosFechaA = a[column].split('/');
-        var dateA = new Date(
-          parseInt(arrayDatosFechaA[2]),
-          parseInt(arrayDatosFechaA[1]) - parseInt(1),
-          parseInt(arrayDatosFechaA[0]),
-        );
-
-        var arrayDatosFechaB = b[column].split('/');
-        var dateB = new Date(
-          parseInt(arrayDatosFechaB[2]),
-          parseInt(arrayDatosFechaB[1]) - parseInt(1),
-          parseInt(arrayDatosFechaB[0]),
-        );
-
-        if (dateA.getTime() < dateB.getTime()) return -1;
-        if (dateA.getTime() > dateB.getTime()) return 1;
+        if (a[column].getTime() < b[column].getTime()) return -1;
+        if (a[column].getTime() > b[column].getTime()) return 1;
         return 0;
       });
     }
