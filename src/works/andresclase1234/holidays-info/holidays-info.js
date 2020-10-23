@@ -20,7 +20,7 @@ export class HolidaysInfo extends LitElement {
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      
+
       .order {
         padding: 0;
         background-color: transparent;
@@ -33,7 +33,7 @@ export class HolidaysInfo extends LitElement {
         margin: 10px 0;
         width: 90%;
         margin-left: 5%;
-        margin-right: 5%;        
+        margin-right: 5%;
       }
 
       .stepper .step:hover {
@@ -59,7 +59,8 @@ export class HolidaysInfo extends LitElement {
         transform: rotate(180deg);
       }
 
-      .stepper, .step {
+      .stepper,
+      .step {
         user-select: none;
       }
     `;
@@ -72,7 +73,7 @@ export class HolidaysInfo extends LitElement {
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
     };
   }
 
@@ -96,7 +97,7 @@ export class HolidaysInfo extends LitElement {
   }
 
   setActiveStep(index) {
-    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+    this.shadowRoot.querySelectorAll('.step').forEach((row) => {
       if (row.id === `_${index}`) {
         row.classList.add('active');
       } else {
@@ -133,7 +134,7 @@ export class HolidaysInfo extends LitElement {
       return 0;
     });
 
-    if (JSON.stringify(this.list) === JSON.stringify((orderedList))) {
+    if (JSON.stringify(this.list) === JSON.stringify(orderedList)) {
       orderedList.reverse();
     }
 
@@ -145,9 +146,9 @@ export class HolidaysInfo extends LitElement {
     return html`
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
-        ${this.stepper.map((x, i) => html`
-          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
-        `)}
+        ${this.stepper.map(
+          (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
+        )}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
@@ -158,18 +159,40 @@ export class HolidaysInfo extends LitElement {
       <div class="container">
         ${this.renderStepper()}
         <table>
-        <tr>
-          <th><button class="order" @click="${() => this.orderList('holidayFrom')}"> Dia de inicio de vacaciones <span>&#9662;</span></button></th>
-          <th><button class="order" @click="${() => this.orderList('holidayTo')}" > Dia de fin de vacaciones <span>&#9662;</span></button></th>
-          <th> Dias tomados </th>
-        </tr>
-        ${this.list.slice(this.from, this.to).map(item => html`
           <tr>
-          <td>${item.holidayFrom.getDate() + '/' + (item.holidayFrom.getMonth() + 1) + '/' + item.holidayFrom.getFullYear()}</td>
-          <td>${item.holidayTo.getDate() + '/' + (item.holidayTo.getMonth() + 1) + '/' + item.holidayTo.getFullYear()}</td>
-          <td>${(item.holidayTo.getTime() - item.holidayFrom.getTime()) / 86400000}</td>
+            <th>
+              <button class="order" @click="${() => this.orderList('holidayFrom')}">
+                Dia de inicio de vacaciones <span>&#9662;</span>
+              </button>
+            </th>
+            <th>
+              <button class="order" @click="${() => this.orderList('holidayTo')}">
+                Dia de fin de vacaciones <span>&#9662;</span>
+              </button>
+            </th>
+            <th>Dias tomados</th>
           </tr>
-        `)}
+          ${this.list.slice(this.from, this.to).map(
+            (item) => html`
+              <tr>
+                <td>
+                  ${item.holidayFrom.getDate() +
+                  '/' +
+                  (item.holidayFrom.getMonth() + 1) +
+                  '/' +
+                  item.holidayFrom.getFullYear()}
+                </td>
+                <td>
+                  ${item.holidayTo.getDate() +
+                  '/' +
+                  (item.holidayTo.getMonth() + 1) +
+                  '/' +
+                  item.holidayTo.getFullYear()}
+                </td>
+                <td>${(item.holidayTo.getTime() - item.holidayFrom.getTime()) / 86400000}</td>
+              </tr>
+            `,
+          )}
         </table>
       </div>
     `;

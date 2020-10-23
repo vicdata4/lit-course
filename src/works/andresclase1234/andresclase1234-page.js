@@ -6,7 +6,7 @@ import '../../components/common-header';
 import '../../components/work-header';
 
 const components = {
-  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${4}"></holidays-info>`
+  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${4}"></holidays-info>`,
 };
 
 class Andresclase1234Page extends LitElement {
@@ -16,7 +16,7 @@ class Andresclase1234Page extends LitElement {
 
   static get properties() {
     return {
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -31,17 +31,17 @@ class Andresclase1234Page extends LitElement {
 
   render() {
     return html`
-        <common-header></common-header>
-        <section class="container">
-          <work-header>andresclase1234</work-header>
-          <div class="common-list">
-            ${Object.keys(components).map(item => html`
-              <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-            `)}
-          </div>
-          ${components[this.current]()}
-        </section>
-      `;
+      <common-header></common-header>
+      <section class="container">
+        <work-header>andresclase1234</work-header>
+        <div class="common-list">
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
+        </div>
+        ${components[this.current]()}
+      </section>
+    `;
   }
 }
 

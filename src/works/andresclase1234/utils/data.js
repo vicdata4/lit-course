@@ -8,5 +8,5 @@ export const dates = [
   { id: 7, holidayFrom: new Date('2020-11-02'), holidayTo: new Date('2020-11-05') },
   { id: 8, holidayFrom: new Date('2020-11-11'), holidayTo: new Date('2020-11-24') },
   { id: 9, holidayFrom: new Date('2020-11-25'), holidayTo: new Date('2020-11-30') },
-  { id: 10, holidayFrom: new Date('2020-11-30'), holidayTo: new Date('2020-12-08') }
+  { id: 10, holidayFrom: new Date('2020-11-30'), holidayTo: new Date('2020-12-08') },
 ];
