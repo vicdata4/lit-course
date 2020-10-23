@@ -1,7 +1,7 @@
 import { numericMonths, numericDays } from './constants';
 /**
-  * FORMATTERS
-  */
+ * FORMATTERS
+ */
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
@@ -14,13 +14,18 @@ export const dateFormatter = (date_) => {
   const wholeHour = hour + ':' + minute + 'h,  ';
 
   return {
-    tableDate: monthDay >= 10 ? monthDay + '-' + monthNumber + '-' + year : formattedDay + '-' + monthNumber + '-' + year,
-    solicitudDate: monthDay >= 10 ? wholeHour + monthDay + '-' + monthNumber + '-' + year : wholeHour + formattedDay + '-' + monthNumber + '-' + year,
-    inputDate: monthDay >= 10 ? year + '-' + monthNumber + '-' + monthDay : year + '-' + monthNumber + '-' + formattedDay
+    tableDate:
+      monthDay >= 10 ? monthDay + '-' + monthNumber + '-' + year : formattedDay + '-' + monthNumber + '-' + year,
+    solicitudDate:
+      monthDay >= 10
+        ? wholeHour + monthDay + '-' + monthNumber + '-' + year
+        : wholeHour + formattedDay + '-' + monthNumber + '-' + year,
+    inputDate:
+      monthDay >= 10 ? year + '-' + monthNumber + '-' + monthDay : year + '-' + monthNumber + '-' + formattedDay,
   };
 };
 export const dateInputReverse = (value) => {
-  const aux = ((value.split('-')).reverse()).join('-');
+  const aux = value.split('-').reverse().join('-');
 
   return aux;
 };

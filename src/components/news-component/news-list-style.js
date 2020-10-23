@@ -3,7 +3,7 @@ import { css } from 'lit-element';
 export const newListStyles = css`
   .container {
     width: 100%;
-    font-family: "Open Sans", sans-serif, Arial;
+    font-family: 'Open Sans', sans-serif, Arial;
     letter-spacing: 0.4px;
   }
 
@@ -12,17 +12,18 @@ export const newListStyles = css`
     padding-right: 10px;
 
     height: 30px;
-    line-height: 30px;   
+    line-height: 30px;
   }
 
-  .row > *, .info-container {
+  .row > *,
+  .info-container {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .row.header {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .row.header > * {
@@ -96,23 +97,23 @@ export const newListStyles = css`
   }
 
   .row.data {
-      margin-bottom: 40px;
+    margin-bottom: 40px;
   }
 
   .show-more-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin: 50px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 50px 0px;
   }
 
   .show-more {
-      background-color: transparent;
-      border: 1px solid grey;
-      padding: 10px;
-      outline: none;
-      cursor: pointer;
+    background-color: transparent;
+    border: 1px solid grey;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
   }
 
   .show-more:hover {
@@ -128,7 +129,7 @@ export const newListStyles = css`
       width: 15%;
     }
 
-    .index { 
+    .index {
       display: block;
       width: auto;
       min-width: 30px;

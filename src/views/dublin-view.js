@@ -5,9 +5,7 @@ import '../components/common-header';
 
 class DublinView extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {
@@ -15,9 +13,7 @@ class DublinView extends LitElement {
       <common-header></common-header>
       <section class="container">
         <h1>Dublin View</h1>
-        <p>
-          ${dateFormatter(new Date()).default}
-        </p>
+        <p>${dateFormatter(new Date()).default}</p>
       </section>
     `;
   }

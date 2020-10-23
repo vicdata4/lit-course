@@ -30,14 +30,12 @@ const data = [
   { id: 24, name: 'Pablo', phone: '545 64 64 64' },
   { id: 25, name: 'Carlos', phone: '666 46 26 24' },
   { id: 26, name: 'Belen', phone: '265 34 56 45' },
-  { id: 27, name: 'Fatima', phone: '113 45 23 45' }
+  { id: 27, name: 'Fatima', phone: '113 45 23 45' },
 ];
 
 class PaginationView extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {

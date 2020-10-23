@@ -6,9 +6,7 @@ import './formularioVacaciones/vacation-table';
 
 class JulieannecodesPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {
@@ -16,7 +14,7 @@ class JulieannecodesPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>julieanneCodes</work-header>
-          <vacation-table></vacation-table>
+        <vacation-table></vacation-table>
       </section>
     `;
   }

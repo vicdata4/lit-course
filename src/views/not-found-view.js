@@ -11,7 +11,7 @@ class NotFoundView extends LitElement {
         <h1>Not found view</h1>
       </section>
     `;
-  };
+  }
 }
 
 window.customElements.define('not-found-view', NotFoundView);

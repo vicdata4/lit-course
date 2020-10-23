@@ -7,19 +7,17 @@ import '../../components/pagination-component';
 
 const components = {
   inputComponent: () => html`<input-component>Submit</input-component>`,
-  paginationComponent: () => html`<pagination-component></pagination-component>`
+  paginationComponent: () => html`<pagination-component></pagination-component>`,
 };
 
 class Vicdata4Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -38,9 +36,9 @@ class Vicdata4Page extends LitElement {
       <section class="container">
         <work-header>vicdata4</work-header>
         <div class="common-list">
-          ${Object.keys(components).map(item => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
         </div>
         ${components[this.current]()}
       </section>
