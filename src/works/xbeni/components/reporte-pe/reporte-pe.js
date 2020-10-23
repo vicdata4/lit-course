@@ -317,17 +317,21 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       }
     }
 
+    const errorContainer = this.shadowRoot.getElementById(CONSTANTS_RPE.idPadreErroresFinalesRpe);
+    const errorContainerContent = this.shadowRoot.getElementById(CONSTANTS_RPE.idErroresFinalesRpe);
+    const succesContainer = this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe);
+
     if (erroresDatosReporte !== '') {
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idPadreErroresFinalesRpe).style.display = 'block';
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idErroresFinalesRpe).innerHTML = erroresDatosReporte;
+      errorContainer.style.display = 'block';
+      errorContainerContent.innerHTML = erroresDatosReporte;
     } else {
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idPadreErroresFinalesRpe).style.display = 'none';
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idErroresFinalesRpe).innerHTML = '';
+      errorContainer.style.display = 'none';
+      errorContainerContent.innerHTML = '';
 
       // SHOW INFO REPORTE TO GENERATE
       var informeDatosExitoGenerarRpe = `<b>Reorte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).innerHTML = informeDatosExitoGenerarRpe;
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe).style.display = 'block';
+      succesContainer.innerHTML = informeDatosExitoGenerarRpe;
+      succesContainer.style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE
       this.datosReporteRpe = getDatosReporteRpe(empleadoSeleccionadoId, fechaInicio, fechaFin);
       const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
