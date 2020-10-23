@@ -14,6 +14,12 @@ export class HolidaysInfo extends LitElement {
       tr {
         text-align: left;
       }
+
+      td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       
       .order {
         padding: 0;
