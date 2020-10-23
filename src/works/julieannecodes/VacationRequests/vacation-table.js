@@ -45,7 +45,9 @@ class VacationTable extends LitElement {
 
   deleteDate(e) {
     const arr = this.vacationData;
-    arr.splice(e.detail.index, 1);
+    const toRemove = this.vacationData.find((item) => item.id === e.detail.index);
+    const index = this.vacationData.indexOf(toRemove);
+    this.vacationData.splice(index, 1);
     this.vacationData = [...arr];
 
     if (this.from > 0 && this.vacationData.length === this.from) {
