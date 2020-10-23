@@ -6,7 +6,7 @@ export const employeeList = [
     startDate: new Date('2020/12/15'),
     endingDate: new Date('2020/01/12'),
     status: 'No Aprobado',
-    statusDate: new Date('2020/09/16')
+    statusDate: new Date('2020/09/16'),
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ export const employeeList = [
     startDate: new Date('2020/09/11'),
     endingDate: new Date('2020/09/22'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/17')
+    statusDate: new Date('2020/08/17'),
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const employeeList = [
     startDate: new Date('2020/10/15'),
     endingDate: new Date('2020/12/12'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/04')
+    statusDate: new Date('2020/08/04'),
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const employeeList = [
     startDate: new Date('2020/10/20'),
     endingDate: new Date('2020/12/12'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/10')
+    statusDate: new Date('2020/08/10'),
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ export const employeeList = [
     startDate: new Date('2020/11/15'),
     endingDate: new Date('2020/11/30'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/09/04')
+    statusDate: new Date('2020/09/04'),
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ export const employeeList = [
     startDate: new Date('2020/10/20'),
     endingDate: new Date('2020/11/19'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/09/10')
+    statusDate: new Date('2020/09/10'),
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ export const employeeList = [
     startDate: new Date('2020/10/15'),
     endingDate: new Date('2020/12/12'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/04')
+    statusDate: new Date('2020/08/04'),
   },
   {
     id: 7,
@@ -69,7 +69,7 @@ export const employeeList = [
     startDate: new Date('2020/10/02'),
     endingDate: new Date('2020/10/15'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/08')
+    statusDate: new Date('2020/08/08'),
   },
   {
     id: 8,
@@ -78,7 +78,7 @@ export const employeeList = [
     startDate: new Date('2021/01/15'),
     endingDate: new Date('2021/02/14'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/17')
+    statusDate: new Date('2020/08/17'),
   },
   {
     id: 9,
@@ -87,6 +87,6 @@ export const employeeList = [
     startDate: new Date('2020/12/15'),
     endingDate: new Date('2021/01/05'),
     status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/10/05')
-  }
+    statusDate: new Date('2020/10/05'),
+  },
 ];

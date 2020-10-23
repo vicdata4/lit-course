@@ -20,7 +20,6 @@ export const dateFormatter = (date_) => {
 };
 export const dateInputReverse = (value) => {
   const aux = value.split('-').reverse().join('-');
-
   return aux;
 };
 
