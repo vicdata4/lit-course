@@ -287,15 +287,17 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       erroresDatosReporte += 'Debes seleccionar un empleado<br>';
     }
 
+    const inputControl = (date, mensaje) => {
+      if (date !== '' && !regexDateFormat.test(date)) {
+        erroresDatosReporte += mensaje;
+      } else {
+        fechaInicio = null;
+      }
+    };
+
     var regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
     fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
-    if (fechaInicio !== '') {
-      if (!regexDateFormat.test(fechaInicio)) {
-        erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>';
-      }
-    } else {
-      fechaInicio = null;
-    }
+    inputControl(fechaInicio, 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>');
 
     fechaFin = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaFinRpe).value;
     if (fechaFin !== '') {
