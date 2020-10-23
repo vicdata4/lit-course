@@ -19,7 +19,7 @@ class VacationTable extends LitElement {
       inArray: { type: Object },
       from: { type: Number },
       to: { type: Number },
-      nEmployees: { type: Number }
+      nEmployees: { type: Number },
     };
   }
 
@@ -35,9 +35,11 @@ class VacationTable extends LitElement {
 
   addVacation(e) {
     const recived = e.detail.dates.startDate;
-    this.vacationData.length === 0 ? this.inArray : this.vacationData.map(
-      item => { item.startDate.getTime() === recived.getTime() ? this.inArray = item.startDate : nothing; }
-    );
+    this.vacationData.length === 0
+      ? this.inArray
+      : this.vacationData.map((item) => {
+          item.startDate.getTime() === recived.getTime() ? (this.inArray = item.startDate) : nothing;
+        });
     if (recived.getTime() === this.inArray.getTime()) {
       this.errorMessage = 'Date already exists';
     } else {
@@ -69,10 +71,19 @@ class VacationTable extends LitElement {
         <h1>Solicitud de vacaciones</h1>
         <form-vacation @send-dates="${this.addVacation}"></form-vacation>
         ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-
-        ${this.vacationData.length >= this.nEmployees ? html`<stepper-component .listLength="${this.vacationData.length}" @interval-values="${this.getValues}"></stepper-component>` : nothing}
-        <table-solicitud .requestsList="${this.vacationData}" .fromT="${this.from}" .toT="${this.to}" @delete-date="${this.deleteDate}"></table-solicitud>
-      </div>  
+        ${this.vacationData.length >= this.nEmployees
+          ? html`<stepper-component
+              .listLength="${this.vacationData.length}"
+              @interval-values="${this.getValues}"
+            ></stepper-component>`
+          : nothing}
+        <table-solicitud
+          .requestsList="${this.vacationData}"
+          .fromT="${this.from}"
+          .toT="${this.to}"
+          @delete-date="${this.deleteDate}"
+        ></table-solicitud>
+      </div>
     `;
   }
 }

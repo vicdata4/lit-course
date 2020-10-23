@@ -1,7 +1,7 @@
 import { numericMonths } from './constants';
 /**
-  * FORMATTERS
-  */
+ * FORMATTERS
+ */
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
@@ -15,11 +15,11 @@ export const dateFormatter = (date_) => {
   return {
     tableDate: monthDay + '-' + monthNumber + '-' + year,
     solicitudDate: wholeHour + monthDay + '-' + monthNumber + '-' + year,
-    inputDate: year + '-' + monthNumber + '-' + monthDay
+    inputDate: year + '-' + monthNumber + '-' + monthDay,
   };
 };
 export const dateInputReverse = (value) => {
-  const aux = ((value.split('-')).reverse()).join('-');
+  const aux = value.split('-').reverse().join('-');
 
   return aux;
 };

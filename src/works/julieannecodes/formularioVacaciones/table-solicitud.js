@@ -16,7 +16,7 @@ class TableSolicitud extends LitElement {
       orderType: { type: Array },
       fromT: { type: Number },
       toT: { type: Number },
-      firstIndex: { type: Number }
+      firstIndex: { type: Number },
     };
   }
 
@@ -48,45 +48,52 @@ class TableSolicitud extends LitElement {
   deleteDate(i) {
     const event = new CustomEvent('delete-date', {
       detail: {
-        index: i
-      }
+        index: i,
+      },
     });
     this.dispatchEvent(event);
   }
 
   tableL() {
     return html`
-      <h3>Ordenar por: </h3>
+      <h3>Ordenar por:</h3>
       <div class="buttonsWrap">
-        ${this.tableTitles.map((items, i) => items === 'Fecha de solicitud' ||
-        items === 'Fecha Inicio' ||
-        items === 'Fecha Fin' ? html`
-        <div class="order">
-          ${items}
-          <button class="icon" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>
-        </div>
-        ` : nothing)}
+        ${this.tableTitles.map((items, i) =>
+          items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
+            ? html`
+                <div class="order">
+                  ${items}
+                  <button class="icon" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>
+                </div>
+              `
+            : nothing,
+        )}
       </div>
-        ${this.requestsList.slice(this.fromT, this.toT).map((item, i) => html`
-        <div id="${item.id}" class="dataRows">
-          <details class="detailsWrap">
-            <summary class="summaryWrap">
-              <span>Inicio: </span>${dateFormatter(item.startDate).tableDate}
-              <span> Fin: </span>${dateFormatter(item.endingDate).tableDate}
-            </summary>
-            <div class="contents">
-              <div><span>${this.tableTitles[0]}:</span>${dateFormatter(item.applicationD).solicitudDate}</div>
-              <div><span>${this.tableTitles[1]}:</span>${dateFormatter(item.startDate).tableDate}</div>
-              <div><span>${this.tableTitles[2]}:</span>${dateFormatter(item.endingDate).tableDate}</div>
-              <div><span>${this.tableTitles[3]}:</span>${item.status}</div>
-              <div><span>${this.tableTitles[4]}:</span>${dateFormatter(item.statusDate).tableDate}</div>
-            </div>
-            <div class="buttonWrap">
-              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}"><img src="/assets/images/trash.png"></button>
-            </div>
-          </details>
-        </div>
-      `)}
+      ${this.requestsList.slice(this.fromT, this.toT).map(
+        (item, i) => html`
+          <div id="${item.id}" class="dataRows">
+            <details class="detailsWrap">
+              <summary class="summaryWrap">
+                <span>Inicio: </span>${dateFormatter(item.startDate).tableDate} <span> Fin: </span>${dateFormatter(
+                  item.endingDate,
+                ).tableDate}
+              </summary>
+              <div class="contents">
+                <div><span>${this.tableTitles[0]}:</span>${dateFormatter(item.applicationD).solicitudDate}</div>
+                <div><span>${this.tableTitles[1]}:</span>${dateFormatter(item.startDate).tableDate}</div>
+                <div><span>${this.tableTitles[2]}:</span>${dateFormatter(item.endingDate).tableDate}</div>
+                <div><span>${this.tableTitles[3]}:</span>${item.status}</div>
+                <div><span>${this.tableTitles[4]}:</span>${dateFormatter(item.statusDate).tableDate}</div>
+              </div>
+              <div class="buttonWrap">
+                <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}">
+                  <img src="/assets/images/trash.png" />
+                </button>
+              </div>
+            </details>
+          </div>
+        `,
+      )}
     `;
   }
 

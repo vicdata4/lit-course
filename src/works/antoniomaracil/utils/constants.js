@@ -6,7 +6,7 @@ export const empData = [
     startDate: new Date(2020, 8, 25),
     endDate: new Date(2020, 8, 28),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 7, 15)
+    statusDate: new Date(2020, 7, 15),
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const empData = [
     startDate: new Date(2020, 11, 2),
     endDate: new Date(2020, 11, 8),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 7, 15)
+    statusDate: new Date(2020, 7, 15),
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const empData = [
     startDate: new Date(2021, 0, 15),
     endDate: new Date(2021, 0, 21),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 8, 14)
+    statusDate: new Date(2020, 8, 14),
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const empData = [
     startDate: new Date(2020, 7, 14),
     endDate: new Date(2020, 7, 21),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 7, 3)
+    statusDate: new Date(2020, 7, 3),
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const empData = [
     startDate: new Date(2020, 9, 1),
     endDate: new Date(2020, 9, 10),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
+    statusDate: new Date(2020, 11, 20),
   },
   {
     id: 11,
@@ -96,8 +96,8 @@ export const empData = [
     startDate: new Date(2020, 7, 15),
     endDate: new Date(2020, 7, 15),
     status: 'Pendiente de aprobación',
-    statusDate: new Date(2020, 11, 20)
-  }
+    statusDate: new Date(2020, 11, 20),
+  },
 ];
 
 export const vacationDays = [
@@ -105,20 +105,20 @@ export const vacationDays = [
     id: 1,
     startDate: '15/08/2020',
     endDate: '19/08/2020',
-    range: 4
+    range: 4,
   },
   {
     id: 2,
     startDate: '24/12/2020',
     endDate: '05/01/2021',
-    range: 12
+    range: 12,
   },
   {
     id: 3,
     startDate: '14/03/2021',
     endDate: '19/03/2021',
-    range: 5
-  }
+    range: 5,
+  },
 ];
 
 export const empHistory = [
@@ -128,7 +128,7 @@ export const empHistory = [
     total: '21',
     generated: '21',
     used: '21',
-    reserved: '0'
+    reserved: '0',
   },
   {
     id: 2,
@@ -136,7 +136,7 @@ export const empHistory = [
     total: '21',
     generated: '21',
     used: '18',
-    reserved: '3'
+    reserved: '3',
   },
   {
     id: 3,
@@ -144,6 +144,27 @@ export const empHistory = [
     total: '24',
     generated: '19',
     used: '20',
-    reserved: '0'
-  }
+    reserved: '0',
+  },
+];
+
+export const empDocument = [
+  {
+    id: 1,
+    name: 'Antonio_Martin_CV',
+    uploadDate: new Date(2020, 10, 5),
+    path: 'assets/antoniomaracil/Antonio_Martin_CV.pdf',
+  },
+  {
+    id: 2,
+    name: 'Informe_20/20',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/Informe_Económico.pdf',
+  },
+  {
+    id: 3,
+    name: 'Presentación_reunión',
+    uploadDate: new Date(2020, 10, 10),
+    path: 'assets/antoniomaracil/presentacion.potx',
+  },
 ];
