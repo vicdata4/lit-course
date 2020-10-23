@@ -8,6 +8,13 @@ export class DocumentList extends LitElement {
       input[type='file'] {
         color: transparent;
       }
+      img {
+        width: 20%;
+      }
+      button {
+        border: none;
+        background-color: transparent;
+      }
       .table-box {
         border-top: solid 2px black;
         border-bottom: solid 2px black;
@@ -80,7 +87,11 @@ export class DocumentList extends LitElement {
                     <tr>
                       <td><a href="${item.path}" download>${item.name}</a></td>
                       <td>${formatDate(item.uploadDate)}</td>
-                      <td><button @click="${() => this.removeDocument(i)}">Eliminar</button></td>
+                      <td>
+                        <button @click="${() => this.removeDocument(i)}">
+                          <img src="assets/antoniomaracil/remove.png" alt="remove" />
+                        </button>
+                      </td>
                     </tr>
                   `,
                 )}
