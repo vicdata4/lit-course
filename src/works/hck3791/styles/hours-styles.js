@@ -2,7 +2,10 @@ import { css } from 'lit-element';
 
 export const hours_styles = css`
   
-  * { box-sizing: border-box }
+  * { 
+    box-sizing: border-box; 
+    font-family: Muli, sans-serif;
+  }
 
   #container {
       display: flex;
@@ -21,14 +24,21 @@ export const hours_styles = css`
     margin-bottom: 5px;
   }
 
-  #container .filters label { width: 40% }
+  #container .filters label { 
+    width: 40%;
+    font-size: .8rem;
+  }
 
-  #container .filters select { width: 60% }
+  #container .filters select { 
+    width: 60%;
+    font-size: .8rem;
+  }
 
   #container #generateReport { margin-bottom: 5px }
 
   #container #generateReport button {
     padding: 5px 10px 5px 10px;
+    font-size: .8rem;
   }
 
   #container section table {
@@ -57,7 +67,7 @@ export const hours_styles = css`
     border: 1px solid #ccc;
     margin-bottom: 10px;
     padding: 5px;
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 
   td { 
@@ -66,8 +76,6 @@ export const hours_styles = css`
     padding-top: 5px;
     height: 30px;
   }
-
-  
 
   td:before { 
     position: absolute;
@@ -97,6 +105,8 @@ export const hours_styles = css`
       font-size: 0.85em;
     }
 
+    td { padding-top: 8px }
+
   }
 
   @media all and (min-width: 670px) {
@@ -105,9 +115,15 @@ export const hours_styles = css`
       justify-content: flex-start;
     }
 
-    #container .filters label { width: 200px }
+    #container .filters label { 
+      width: 200px;
+      font-size: .8rem;
+    }
 
-    #container .filters select { width: 300px }
+    #container .filters select { 
+      width: 300px;
+      font-size: .8rem;
+    }
 
     thead, tbody {
       display: table-row-group;
@@ -126,13 +142,14 @@ export const hours_styles = css`
         display: table-cell;
         text-align: left;
         padding: 5px 15px 5px 5px;
-        font-size: .7em;
+        font-size: .8rem;
     }
 
     tbody tr td {
         display: table-cell;
         text-align: left;
         padding: 10px 15px 10px 5px;
+        font-size: .8rem;
     }
 
     tr { 

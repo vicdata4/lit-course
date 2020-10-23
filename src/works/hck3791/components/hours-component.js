@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import { hours_styles } from '../styles/hours-styles';
-import { employees } from '../hours-data';
+import { employees } from '../data/hours-data';
 
 class HoursComponent extends LitElement {
   static get styles() {
