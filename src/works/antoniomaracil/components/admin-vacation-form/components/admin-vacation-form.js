@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html, css } from 'lit-element';
 import { formatDate, orderedList } from '../../../utils/functions';
-import './admin-vacation-list';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
@@ -24,51 +23,37 @@ export class AdminVacationForm extends LitElement {
       }
       table.vacations thead,
       th {
-        border: none;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
+        display: none;
       }
 
-      /*
-    table.vacations tr{
-      border-bottom: 3px solid; 
-    }
-   
-    table.vacations td {
-      border-bottom: 1px solid #ddd;
-      display: block;
-      text-align: right;
-      padding: 10px;
-     }
-    tr:nth-child(even) {
-      background-color: #EEEEEE;
-    }
-    table.vacations td:before{
-      content: attr(data-label);
-      float: left;
-      color: #273b47;
-      font-weight: bold;
-      font-size: 1em;
-      padding: 1px 5px;
-    }
-    */
-      select {
-        width: 50%;
-        padding: 5px 3px;
+      table.vacations tr {
+        border-bottom: 3px solid;
       }
+
+      table.vacations td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        text-align: right;
+        padding: 10px;
+      }
+      tr:nth-child(even) {
+        background-color: #eeeeee;
+      }
+      table.vacations td:before {
+        content: attr(data-label);
+        float: left;
+        color: #273b47;
+        font-weight: bold;
+        font-size: 1em;
+        padding: 1px 5px;
+      }
+
       .stepper {
         margin: 10px 0;
       }
-
       .stepper .step:hover {
         background-color: #f1f1f1;
       }
-
       .step {
         display: inline-block;
         padding: 5px;
@@ -78,16 +63,13 @@ export class AdminVacationForm extends LitElement {
         text-align: center;
         cursor: pointer;
       }
-
       .step.active {
         background-color: #535353 !important;
         color: white;
       }
-
       .step.left {
         transform: rotate(180deg);
       }
-
       .stepper,
       .step {
         user-select: none;
@@ -98,9 +80,16 @@ export class AdminVacationForm extends LitElement {
           border-top: solid 2px black;
           border-bottom: solid 2px black;
           margin-top: 1.5rem;
-          overflow-x: auto;
         }
-        table.vacations {
+        table.vacations thead,
+        th {
+          display: table-cell;
+        }
+
+        table.vacations tr {
+          border-bottom: 3px solid;
+        }
+        table {
           border-collapse: collapse;
           font-size: 0.8rem;
           empty-cells: hide;
@@ -109,7 +98,7 @@ export class AdminVacationForm extends LitElement {
         tr:nth-child(even) {
           background-color: #eeeeee;
         }
-        table.vacations th {
+        table th {
           border-left: solid 2px black;
           border-right: solid 2px black;
           background-color: #cccccc;
@@ -117,8 +106,13 @@ export class AdminVacationForm extends LitElement {
           text-align: left;
         }
         table.vacations td {
+          display: table-cell;
           border-right: solid 2px black;
           border-left: solid 2px black;
+          text-align: left;
+        }
+        table.vacations td:before {
+          content: none;
         }
         td {
           height: 2rem;
