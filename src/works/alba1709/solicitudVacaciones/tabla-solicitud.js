@@ -107,36 +107,36 @@ export class TablaSolicitud extends LitElement {
   render() {
     return html`
       <table id="tablaSoli">
-        <tr>
-          <th>
+        <tr id="rowTitle">
+          <th class="ord">
             Fecha de solicitud
             <span>
               <button class="btnOrder" @click="${() => this.orderDate('fHoy', 'asc')}">&#9652;</button>
               <button class="btnOrder" @click="${() => this.orderDate('fHoy', 'desc')}">&#9662;</button>
             </span>
           </th>
-          <th>
+          <th class="ord">
             Fecha Inicio
             <span>
               <button class="btnOrder" @click="${() => this.orderDate('infoFI', 'asc')}">&#9652;</button>
               <button class="btnOrder" @click="${() => this.orderDate('infoFI', 'desc')}">&#9662;</button>
             </span>
           </th>
-          <th>
+          <th class="ord">
             Fecha Fin
             <span>
-              <button data-btn="" class="btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
+              <button class="btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
               <button class="btnOrder" @click="${() => this.orderDate('infoFF', 'desc')}">&#9662;</button>
             </span>
           </th>
-          <th>Estado de la solicitud</th>
-          <th>Fecha de estado</th>
-          <th>Eliminar</th>
+          <th class="cell">Estado de la solicitud</th>
+          <th class="cell">Fecha de estado</th>
+          <th class="cell">Eliminar</th>
         </tr>
 
         ${this.miTabla.slice(this.from, this.to).map(
           (item) => html`
-              <tr>
+              <tr id="rowInfo">
                 <td data-title="Fecha de solicitud: ">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
                 <td data-title="Fecha Inicio: ">${item.infoFI.split('-').reverse().join('-')}</td>
                 <td data-title="Fecha Fin: ">${item.infoFF.split('-').reverse().join('-')}</td>

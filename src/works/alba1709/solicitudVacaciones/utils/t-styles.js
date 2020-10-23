@@ -7,17 +7,15 @@ export const viewStyles = css`
     align-items: center;
     margin-top: 20px;
     border-collapse: collapse;
-    width: 100%;
+    width: 70%;
     font-size: 0.8rem;
-    overflow: scroll;
-    overflow-x: auto;
   }
   td, th {
     border-right: solid 3px black;
     border-left: solid 3px black;
   }
 
-  #tablaSoli tr:nth-child(odd) {
+  #rowInfo:nth-child(odd) {
     background-color: #eeeeee;
   }
   #papelera {
