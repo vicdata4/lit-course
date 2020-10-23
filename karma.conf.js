@@ -9,6 +9,10 @@ module.exports = (config) => {
           pattern: config.grep ? config.grep : 'tests/*.test.js',
           type: 'module',
         },
+        {
+          pattern: config.grep ? config.grep : 'src/works/*/tests/*.test.js',
+          type: 'module',
+        },
       ],
 
       esm: {
