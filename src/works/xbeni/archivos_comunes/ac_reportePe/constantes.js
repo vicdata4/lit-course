@@ -1,4 +1,3 @@
-
 export const CONSTANTS_RPE = {
   idSelectEmpleadosRpe: 'idSelectEmpleadosRpe',
   idFechaInicioRpe: 'idFechaInicioRpe',
@@ -7,5 +6,5 @@ export const CONSTANTS_RPE = {
   idPadreErroresFinalesRpe: 'idPadreErroresFinalesRpe',
   idExitoDatosRpe: 'idExitoDatosRpe',
   idOrdenarDiaRpe: 'idOrdenarDiaRpe',
-  idOrdenarTipoPermisoRpe: 'idOrdenarTipoPermisoRpe'
+  idOrdenarTipoPermisoRpe: 'idOrdenarTipoPermisoRpe',
 };

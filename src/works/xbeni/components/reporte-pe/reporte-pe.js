@@ -2,7 +2,12 @@ import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
 import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reportePe/constantes';
-import { svgXBeniRpeOrderString, svgBeniRpeOrdenarInt, svgBeniRpeIconRight, svgBeniRpeIconLeft } from '../../archivos_comunes/ac_reportePe/svg_icons';
+import {
+  svgXBeniRpeOrderString,
+  svgBeniRpeOrdenarInt,
+  svgBeniRpeIconRight,
+  svgBeniRpeIconLeft,
+} from '../../archivos_comunes/ac_reportePe/svg_icons';
 import { nothing } from 'lit-html';
 
 class BeniReportePermisosEmpleado extends LitElement {
@@ -26,14 +31,12 @@ class BeniReportePermisosEmpleado extends LitElement {
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
       nElements: { type: Number },
-      stepper: { type: Array, attribute: false }
+      stepper: { type: Array, attribute: false },
     };
   }
 
   static get styles() {
-    return [
-      RpeStyles
-    ];
+    return [RpeStyles];
   }
 
   render() {
@@ -53,11 +56,13 @@ class BeniReportePermisosEmpleado extends LitElement {
                 <div class="divCamposDatos">
                   <select name="empleadosRpe" id="${CONSTANTS_RPE.idSelectEmpleadosRpe}" class="selectRpe">
                     <option value="-1">Selecciona un empleado</option>
-                      ${Object.keys(this.empleadosRpe).map(item => html`
-                        <option value="${this.empleadosRpe[item].id_empleado}">
-                          ${this.empleadosRpe[item].nombre}
-                        </option>
-                      `)}
+                      ${Object.keys(this.empleadosRpe).map(
+                        (item) => html`
+                          <option value="${this.empleadosRpe[item].id_empleado}">
+                            ${this.empleadosRpe[item].nombre}
+                          </option>
+                        `,
+                      )}
                   </select>
                 </div>
               </div>
@@ -89,7 +94,8 @@ class BeniReportePermisosEmpleado extends LitElement {
                 </div>
 
                 <div>
-                  <button @click="${() => this.controlErroresRpe()}" id="" class="buttonGenerarReporte">GENERAR REPORTE</button>
+                  <button @click="${() =>
+                    this.controlErroresRpe()}" id="" class="buttonGenerarReporte">GENERAR REPORTE</button>
                 </div>
 
                 <div class="divExitoRpe" id="${CONSTANTS_RPE.idExitoDatosRpe}"></div>
@@ -100,11 +106,7 @@ class BeniReportePermisosEmpleado extends LitElement {
       </div>
 
       <div class="divBodyReporteGeneradoRpe">
-${
-  this.datosReporteRpe.length === 0
-    ? nothing
-    : this.generarReporteRpe()
-}
+${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       </div>
     </div>
     `;
@@ -149,49 +151,42 @@ ${
           <th>Horas</th>
         </tr>
 
-        ${this.datosReporteRpe.slice(this.from, this.to).map(item => html`
-          <tr>
-            <td>
-              <label>
-                ${this.dateToFormatRequired(item.dia.getFullYear(), item.dia.getMonth(), item.dia.getDate())}
-              </label>
-            </td>
-            <td>
-              <label>
-                ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)}
-              </label>
-            </td>
-            <td>
-              <label>
-                ${item.horas}
-              </label>
-            </td>
-          </tr>
-        `)}
+        ${this.datosReporteRpe.slice(this.from, this.to).map(
+          (item) => html`
+            <tr>
+              <td>
+                <label>
+                  ${this.dateToFormatRequired(item.dia.getFullYear(), item.dia.getMonth(), item.dia.getDate())}
+                </label>
+              </td>
+              <td>
+                <label> ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)} </label>
+              </td>
+              <td>
+                <label> ${item.horas} </label>
+              </td>
+            </tr>
+          `,
+        )}
       </table>
-      ${this.datosReporteRpe.length <= 10
-    ? nothing
-    : html`
-      <div class="divBodyStepper">
-        ${this.renderStepper()}
-      </div>
-    `}
+      ${this.datosReporteRpe.length <= 10 ? nothing : html` <div class="divBodyStepper">${this.renderStepper()}</div> `}
     `;
   }
 
   dateToFormatRequired(year, month, day) {
-    return `${day < 10 ? '0' : ''}${day}/${(month + parseInt(1)) < 10 ? '0' : ''}${(month + parseInt(1))}/${year}`;
+    return `${day < 10 ? '0' : ''}${day}/${month + parseInt(1) < 10 ? '0' : ''}${month + parseInt(1)}/${year}`;
   }
 
   renderStepper() {
     return html`
       <button class="step" @click="${this.prev}">${svgBeniRpeIconLeft}</button>
-        ${this.stepper.map((x, i) => html`
-${i === 0
-    ? html`<button id="${`_${i}`}" class="step active" @click="${() => this.showPage(i)}">${i + 1}</button>`
-    : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`
-}
-        `)}
+      ${this.stepper.map(
+        (x, i) => html`
+          ${i === 0
+            ? html`<button id="${`_${i}`}" class="step active" @click="${() => this.showPage(i)}">${i + 1}</button>`
+            : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`}
+        `,
+      )}
       <button class="step" @click="${this.next}">${svgBeniRpeIconRight}</button>
     `;
   }
@@ -210,7 +205,7 @@ ${i === 0
   }
 
   setActiveStep(index) {
-    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+    this.shadowRoot.querySelectorAll('.step').forEach((row) => {
       if (row.id === `_${index}`) {
         row.classList.add('active');
       } else {
@@ -248,10 +243,18 @@ ${i === 0
       orderedList = myList.sort((a, b) => {
         // FORMATO FECHA RECIBIDA DD/MM/YYYY
         var arrayDatosFechaA = a[column].split('/');
-        var dateA = new Date(parseInt(arrayDatosFechaA[2]), (parseInt(arrayDatosFechaA[1]) - parseInt(1)), parseInt(arrayDatosFechaA[0]));
+        var dateA = new Date(
+          parseInt(arrayDatosFechaA[2]),
+          parseInt(arrayDatosFechaA[1]) - parseInt(1),
+          parseInt(arrayDatosFechaA[0]),
+        );
 
         var arrayDatosFechaB = b[column].split('/');
-        var dateB = new Date(parseInt(arrayDatosFechaB[2]), (parseInt(arrayDatosFechaB[1]) - parseInt(1)), parseInt(arrayDatosFechaB[0]));
+        var dateB = new Date(
+          parseInt(arrayDatosFechaB[2]),
+          parseInt(arrayDatosFechaB[1]) - parseInt(1),
+          parseInt(arrayDatosFechaB[0]),
+        );
 
         if (dateA.getTime() < dateB.getTime()) return -1;
         if (dateA.getTime() > dateB.getTime()) return 1;
@@ -259,7 +262,7 @@ ${i === 0
       });
     }
 
-    if (JSON.stringify(this.datosReporteRpe) === JSON.stringify((orderedList))) {
+    if (JSON.stringify(this.datosReporteRpe) === JSON.stringify(orderedList)) {
       orderedList.reverse();
       if (column === 'dia') {
         this.clearCamposOrdenar();
