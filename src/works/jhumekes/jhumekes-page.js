@@ -5,9 +5,7 @@ import '../../components/work-header';
 
 class JhumekesPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {

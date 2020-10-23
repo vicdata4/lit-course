@@ -5,9 +5,7 @@ import { nothing } from 'lit-html';
 
 export class TableAdmin extends LitElement {
   static get styles() {
-    return [
-      viewHoliday
-    ];
+    return [viewHoliday];
   }
 
   static get properties() {
@@ -19,7 +17,7 @@ export class TableAdmin extends LitElement {
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
     };
   }
 
@@ -45,7 +43,7 @@ export class TableAdmin extends LitElement {
   }
 
   setActiveStep(index) {
-    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+    this.shadowRoot.querySelectorAll('.step').forEach((row) => {
       if (row.id === `_${index}`) {
         row.classList.add('active');
       } else {
@@ -77,9 +75,9 @@ export class TableAdmin extends LitElement {
     return html`
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
-        ${this.stepper.map((x, i) => html`
-          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
-        `)}
+        ${this.stepper.map(
+          (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
+        )}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
@@ -88,7 +86,7 @@ export class TableAdmin extends LitElement {
   sendStat(e) {
     const id = parseInt(e.target.id);
     const status = e.target.value;
-    const empFound = this.adminTable.find(item => item.id === id);
+    const empFound = this.adminTable.find((item) => item.id === id);
     empFound.status = status;
     empFound.dStatus = this.currentDate;
     this.adminTable = [...this.adminTable];
@@ -102,7 +100,7 @@ export class TableAdmin extends LitElement {
       if (a[column] > b[column]) return 1;
       return 0;
     });
-    if (JSON.stringify(this.adminTable) === JSON.stringify((orderedadminTable))) {
+    if (JSON.stringify(this.adminTable) === JSON.stringify(orderedadminTable)) {
       orderedadminTable.reverse();
     }
 
@@ -129,40 +127,44 @@ export class TableAdmin extends LitElement {
     return html`
       <div id="idTable">
         <table id="tableAdmin">
-            <tr>
-              <th id="thName">
-                Nombre del empleado
-                <button class="btnOrder" value="asc" @click="${e => this.orderAndRotate(e, 'name')}">&#9662;</button>
-              </th>
-              <th id="thDRequest">
-                Fecha de solicitud
-                <button class="btnOrder" @click="${e => this.orderAndRotate(e, 'dRequest')}">&#9662;</button>    
-              </th>
-              <th>Fecha Inicio</th>
-              <th>Fecha Fin</th>
-              <th>Estado de la solicitud</th>
-              <th>Fecha de estado</th>
-            </tr>
-            ${this.adminTable.slice(this.from, this.to).map(item => html`
-            <tr>
+          <tr>
+            <th id="thName">
+              Nombre del empleado
+              <button class="btnOrder" value="asc" @click="${(e) => this.orderAndRotate(e, 'name')}">&#9662;</button>
+            </th>
+            <th id="thDRequest">
+              Fecha de solicitud
+              <button class="btnOrder" @click="${(e) => this.orderAndRotate(e, 'dRequest')}">&#9662;</button>
+            </th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Estado de la solicitud</th>
+            <th>Fecha de estado</th>
+          </tr>
+          ${this.adminTable.slice(this.from, this.to).map(
+            (item) => html` <tr>
               <td class="first">${item.name}</td>
               <td>${getFormatterDate(item.dRequest).defaultDate}</td>
               <td>${getFormatterDate(item.dStart).defaultDate}</td>
               <td>${getFormatterDate(item.dEnd).defaultDate}</td>
               <td>
-                <select id="${item.id}" @change="${this.sendStat}" >
+                <select id="${item.id}" @change="${this.sendStat}">
                   <option value="${item.status}">${item.status}</option>
-                    ${this.status.map(st => html`
-                    ${item.status.toUpperCase() !== st.toUpperCase() ? html`<option value="${st}">${st}</option>` : nothing}`)}
-                </select> 
+                  ${this.status.map(
+                    (st) =>
+                      html` ${item.status.toUpperCase() !== st.toUpperCase()
+                        ? html`<option value="${st}">${st}</option>`
+                        : nothing}`,
+                  )}
+                </select>
               </td>
               <td>${getFormatterDate(item.dStatus).defaultDate}</td>
-            </tr>`)}
-
+            </tr>`,
+          )}
         </table>
       </div>
-        ${this.renderStepper()}
-        `;
+      ${this.renderStepper()}
+    `;
   }
 }
 customElements.define('table-admin', TableAdmin);

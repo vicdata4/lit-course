@@ -13,7 +13,7 @@ class CalaverosaPage extends LitElement {
           display: block;
           margin-top: 50px;
         }
-      `
+      `,
     ];
   }
 

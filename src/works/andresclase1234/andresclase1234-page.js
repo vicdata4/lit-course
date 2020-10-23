@@ -11,9 +11,7 @@ const components = {
 
 class Andresclase1234Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {

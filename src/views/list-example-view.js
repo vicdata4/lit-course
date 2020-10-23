@@ -23,13 +23,13 @@ class ListExampleView extends LitElement {
           padding: 10px;
           cursor: pointer;
         }
-      `
+      `,
     ];
   }
 
   static get properties() {
     return {
-      list: { type: Array }
+      list: { type: Array },
     };
   }
 
@@ -42,7 +42,7 @@ class ListExampleView extends LitElement {
     const input = this.shadowRoot.querySelector('#message');
     const item = {
       message: input.value,
-      date: new Date()
+      date: new Date(),
     };
 
     this.list = [...[item], ...this.list];
@@ -59,16 +59,17 @@ class ListExampleView extends LitElement {
     return html`
       <common-header></common-header>
       <section class="container">
-        <input id="message" class="form-field" type="text" placeholder="escribe aqui..">
+        <input id="message" class="form-field" type="text" placeholder="escribe aqui.." />
         <button @click="${this.addItem}" class="form-submit">Guardar</button>
         <ul>
-          ${this.list.map((item, i) => html`
-            <li>
-              <button @click="${() => this.deleteItem(i)}">&times;</button>
-              ${dateFormatter(item.date).hour}
-              Mensaje: ${item.message}
-            </li>
-          `)}
+          ${this.list.map(
+            (item, i) => html`
+              <li>
+                <button @click="${() => this.deleteItem(i)}">&times;</button>
+                ${dateFormatter(item.date).hour} Mensaje: ${item.message}
+              </li>
+            `,
+          )}
         </ul>
       </section>
     `;

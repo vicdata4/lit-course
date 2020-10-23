@@ -3,7 +3,7 @@ import { LitElement, html } from 'lit-element';
 class ListComponent extends LitElement {
   static get properties() {
     return {
-      list: { type: Array }
+      list: { type: Array },
     };
   }
 
@@ -15,8 +15,8 @@ class ListComponent extends LitElement {
   deleteItem(i) {
     const event = new CustomEvent('delete-event', {
       detail: {
-        index: i
-      }
+        index: i,
+      },
     });
     this.dispatchEvent(event);
   }
@@ -24,9 +24,9 @@ class ListComponent extends LitElement {
   render() {
     return html`
       <ul>
-        ${this.list.map((item, i) => html`
-          <li>${item} <button @click="${() => this.deleteItem(i)}">&times;</button></li>
-        `)}
+        ${this.list.map(
+          (item, i) => html` <li>${item} <button @click="${() => this.deleteItem(i)}">&times;</button></li> `,
+        )}
       </ul>
     `;
   }
