@@ -66,7 +66,7 @@ class RequestsTable extends LitElement {
         <table>
           <tr>
             ${this.tableTitles.map(
-              (items, i) => html` <th>
+              (items, i) => html`<th>
                 ${items}
                 ${items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
                   ? html` <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">
@@ -77,7 +77,7 @@ class RequestsTable extends LitElement {
             )}
           </tr>
           ${this.requestsList.slice(this.fromT, this.toT).map(
-            (item, i) => html` <tr id="${i}">
+            (item) => html`<tr>
               <td>${dateFormatter(item.currentDate).solicitudDate}</td>
               <td>${dateFormatter(item.startDate).tableDate}</td>
               <td>${dateFormatter(item.endDate).tableDate}</td>
@@ -85,7 +85,7 @@ class RequestsTable extends LitElement {
               <td>${dateFormatter(item.statusDate).tableDate}</td>
               <td>
                 <div class="buttonWrap">
-                  <button id="${i}" class="deleteB" @click="${() => this.deleteDate(i)}">
+                  <button class="deleteB" @click="${() => this.deleteDate(item.id)}">
                     <img src="/assets/images/trash.png" />
                   </button>
                 </div>
