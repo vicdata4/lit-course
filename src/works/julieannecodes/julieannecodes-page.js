@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './formularioVacaciones/vacation-table';
+import './VacationRequests/vacation-table';
 
 class JulieannecodesPage extends LitElement {
   static get styles() {
