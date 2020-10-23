@@ -6,9 +6,7 @@ import './components/hours-component';
 
 class Hck3791Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {

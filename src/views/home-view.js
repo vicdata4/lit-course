@@ -4,10 +4,7 @@ import '../components/common-header';
 
 class HomeView extends LitElement {
   static get styles() {
-    return [
-      navigatorStyles,
-      css``
-    ];
+    return [navigatorStyles, css``];
   }
 
   render() {

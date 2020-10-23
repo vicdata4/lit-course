@@ -3,13 +3,11 @@ import { routing } from './routing';
 
 class AppShell extends LitElement {
   firstUpdated() {
-    routing.call(this);
+    routing(this.shadowRoot.getElementById('root'));
   }
 
   render() {
-    return html`
-        <div id="root"></div>
-    `;
+    return html` <div id="root"></div> `;
   }
 }
 

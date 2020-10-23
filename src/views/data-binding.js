@@ -5,14 +5,12 @@ import '../components/list-component';
 
 class DataBinding extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
-      messageList: { type: Array }
+      messageList: { type: Array },
     };
   }
 

@@ -10,7 +10,7 @@ class HolidaysForm extends LitElement {
 
   static get properties() {
     return {
-      message: { type: String, attribute: false }
+      message: { type: String, attribute: false },
     };
   }
 
@@ -40,13 +40,13 @@ class HolidaysForm extends LitElement {
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',
-      statusDate: currentDate
+      statusDate: currentDate,
     };
 
     const event = new CustomEvent('send-dates', {
       detail: {
-        dates: obj
-      }
+        dates: obj,
+      },
     });
     this.dispatchEvent(event);
     startDate.value = '';
@@ -60,26 +60,28 @@ class HolidaysForm extends LitElement {
     if (!this.dateValidator(startDate.value, endDate.value)) {
       this.message = 'Enter a valid date';
       return false;
-    } else { this.sendData(startDate, endDate); }
+    } else {
+      this.sendData(startDate, endDate);
+    }
     this.message = '';
   }
 
   render() {
     return html`
-    <form onsubmit="return false">
-      <div class="formWrap">
-        <div class="startWrap">
-          <label for="start" class="startLabel">Fecha inicio</label>
-          <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}">
+      <form onsubmit="return false">
+        <div class="formWrap">
+          <div class="startWrap">
+            <label for="start" class="startLabel">Fecha inicio</label>
+            <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}" />
+          </div>
+          <div class="endWrap">
+            <label for="end" class="endLabel">Fecha fin</label>
+            <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}" />
+          </div>
+          <button type="submit" @click="${this.onSubmit}">Agregar</button>
         </div>
-        <div class="endWrap">
-          <label for="end" class="endLabel">Fecha fin</label>
-          <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}">
-        </div>
-        <button type="submit" @click="${this.onSubmit}">Agregar</button>
-      </div>  
-    </form>
-    ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
+      </form>
+      ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
     `;
   }
 }

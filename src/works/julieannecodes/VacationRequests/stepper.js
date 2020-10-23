@@ -14,7 +14,7 @@ class Stepper extends LitElement {
       index: { type: Number },
       to: { type: Number, attribute: false },
       listLength: { type: Number },
-      stepB: { type: Number }
+      stepB: { type: Number },
     };
   }
 
@@ -30,7 +30,7 @@ class Stepper extends LitElement {
   }
 
   setActiveStep(index) {
-    this.shadowRoot.querySelectorAll('.bSteps').forEach(cButton => {
+    this.shadowRoot.querySelectorAll('.bSteps').forEach((cButton) => {
       if (parseInt(cButton.id) === index) {
         cButton.classList.add('selected');
       } else {
@@ -47,8 +47,8 @@ class Stepper extends LitElement {
     this.setActiveStep(index);
     const event = new CustomEvent('interval-values', {
       detail: {
-        values: [this.from, this.to]
-      }
+        values: [this.from, this.to],
+      },
     });
     this.dispatchEvent(event);
   }
@@ -72,12 +72,14 @@ class Stepper extends LitElement {
     const nPages = Math.ceil(this.listLength / this.nEmployees);
     this.steps = new Array(nPages).fill({});
     return html`
-        <div class="stepper">
-            <button class="left" id="leftB" @click="${this.prevOrNext}">&#x25C0;</button>
-            ${this.steps.map((step, i) => html`<button id="${i}" class="bSteps" @click="${() => this.showPartOf(i)}">${i + 1}</button>`)}
-            <button class="right" id="rightB" @click="${this.prevOrNext}">&#x25BA;</button>
-       </div>
-      `;
+      <div class="stepper">
+        <button class="left" id="leftB" @click="${this.prevOrNext}">&#x25C0;</button>
+        ${this.steps.map(
+          (step, i) => html`<button id="${i}" class="bSteps" @click="${() => this.showPartOf(i)}">${i + 1}</button>`,
+        )}
+        <button class="right" id="rightB" @click="${this.prevOrNext}">&#x25BA;</button>
+      </div>
+    `;
   }
 }
 window.customElements.define('stepper-component', Stepper);
