@@ -57,11 +57,13 @@ export const hours_styles = css`
     border: 1px solid #ccc;
     margin-bottom: 10px;
     padding: 5px;
+    font-size: 0.9em;
   }
 
   td { 
     position: relative;
-    padding-left: 70%;
+    padding-left: 75%;
+    padding-top: 5px;
     height: 30px;
   }
 
@@ -69,18 +71,33 @@ export const hours_styles = css`
 
   td:before { 
     position: absolute;
-    top: 5px;
     left: 0;
     white-space: nowrap;
   }
 
-  td:nth-of-type(1):before { content: "" }
+  td:nth-of-type(1):before { content: ""}
   td:nth-of-type(2):before { content: "Horas trabajadas" }
   td:nth-of-type(3):before { content: "Horas de permisos" }
   td:nth-of-type(4):before { content: "Horas de intervenciones" }
   td:nth-of-type(5):before { content: "Jornadas trabajadas" }
   td:nth-of-type(6):before { content: "Jornadas de guardia" }
   td:nth-of-type(7):before { content: "Jornadas de vacaciones" }
+
+  @media all and (max-width: 350px) {
+    :host {
+      font-size: 0.8rem;
+    }
+
+    #container .filters select { 
+      width: 50%;
+      font-size: 0.8rem;
+    }
+
+    #container #generateReport button {
+      font-size: 0.85em;
+    }
+
+  }
 
   @media all and (min-width: 670px) {
 
