@@ -11,12 +11,14 @@ class HolidaysForm extends LitElement {
   static get properties() {
     return {
       message: { type: String, attribute: false },
+      id: { type: Number },
     };
   }
 
   constructor() {
     super();
     this.message = '';
+    this.id = 0;
   }
 
   minDateInput(days) {
@@ -36,13 +38,14 @@ class HolidaysForm extends LitElement {
   sendData(startDate, endDate) {
     const currentDate = new Date();
     const obj = {
+      id: this.id,
       currentDate: currentDate,
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',
       statusDate: currentDate,
     };
-
+    this.id += 1;
     const event = new CustomEvent('send-dates', {
       detail: {
         dates: obj,
