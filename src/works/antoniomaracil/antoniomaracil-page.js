@@ -8,21 +8,24 @@ import './components/admin-vacation-form/components/admin-vacation-form';
 import './components/document-list/components/document-list';
 
 const components = {
-  adminVacationForm: () => html`<admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}"></admin-vacation-form>`,
-  documentList: () => html`<document-list .list="${empDocument}"></document-list>`
+  adminVacationForm: () =>
+    html`<admin-vacation-form
+      .list="${empData}"
+      .nElements="${10}"
+      @update-array="${this.updateArray}"
+    ></admin-vacation-form>`,
+  documentList: () => html`<document-list .list="${empDocument}"></document-list>`,
 };
 
 class AntoniomaracilPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   static get properties() {
     return {
       list: { type: Array },
-      current: { type: String, attribute: false }
+      current: { type: String, attribute: false },
     };
   }
 
@@ -46,9 +49,9 @@ class AntoniomaracilPage extends LitElement {
       <section class="container">
         <work-header>antoniomaracil</work-header>
         <div class="common-list">
-          ${Object.keys(components).map(item => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
         </div>
         ${components[this.current]()}
       </section>

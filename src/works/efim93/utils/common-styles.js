@@ -1,7 +1,6 @@
 import { css } from 'lit-element';
 
 export const commonStyles = css`
-
   .order {
     padding: 0;
     background-color: white;
@@ -9,7 +8,7 @@ export const commonStyles = css`
     margin-bottom: 10px;
     cursor: pointer;
   }
-    
+
   .stepper {
     margin: 10px 0;
   }
@@ -37,11 +36,13 @@ export const commonStyles = css`
     transform: rotate(180deg);
   }
 
-  .stepper, .step {
+  .stepper,
+  .step {
     user-select: none;
   }
 
-  .svg_sort, .svg_trash{
+  .svg_sort,
+  .svg_trash {
     width: 15px;
     height: auto;
     margin: 0;
