@@ -31,7 +31,6 @@ export class AdminVacationList extends LitElement {
     }
   
     .row.header > * {
-      letter-spacing: 1.2px;
       color: #959595;
     }
   
@@ -46,26 +45,26 @@ export class AdminVacationList extends LitElement {
       border: none;
     }
   
-    .clear-btn {
-      padding: 0;
-      border: none;
-      background-color: transparent;
-      outline: none;
-      cursor: pointer;
-    }
-  
-    .index {
-      display: none;
-      padding-left: 20px;
-      color: #999999;
-    }
-  
     .name {
-      width: 70%;
+      width: 50%;
       color: #285659;
+    }
+
+    .statusDate{
+      display: none;
+      width: 20%;
+    }
+
+    .status{
+      width: 50%;
     }
   
     .applicationDate {
+      display: none;
+      width: 20%;
+    }
+
+    .startDate {
       display: none;
       width: 15%;
     }
@@ -88,41 +87,18 @@ export class AdminVacationList extends LitElement {
       color: #878943;
     }
   
-    .startDate {
-      width: 15%;
+    .date {
+      width: 10%;
     }
   
-    .status {
-      width: 20%;
-    }
-  
-    .status-container {
+    .date-container {
       display: block;
     }
   
     .row.data {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
   
-    .show-more-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin: 50px 0px;
-    }
-  
-    .show-more {
-        background-color: transparent;
-        border: 1px solid grey;
-        padding: 10px;
-        outline: none;
-        cursor: pointer;
-    }
-  
-    .show-more:hover {
-      background-color: #f1f1f1;
-    }
   
     @media (min-width: 768px) {
       .name {
@@ -130,7 +106,7 @@ export class AdminVacationList extends LitElement {
       }
   
       .startDate {
-        width: 15%;
+        width: 20%;
       }
   
       .index { 
@@ -140,6 +116,10 @@ export class AdminVacationList extends LitElement {
       }
   
       .applicationDate {
+        display: block;
+      }
+      
+      .startDate {
         display: block;
       }
   
@@ -190,28 +170,32 @@ export class AdminVacationList extends LitElement {
               <div class="startDate">Fecha de inicio</div>
               <div class="endDate">Fecha de fin</div>
               <div class="status">Estado</div>
-              <div class="status">Fecha de estado</div>
+              <div class="statusDate">Fecha de estado</div>
             </div>
+
             ${this.list.map((item, i) => html`
-              <div class="status-container">
-                <span class="blue">${item.name}</span> -
-                <span class="light-grey">${formatDate(item.applicationDate)}</span>
+              <div class="date-container">
+                <span class="blue">${formatDate(item.startDate)}</span> -
+                <span class="light-grey">${formatDate(item.endDate)}</span>
               </div>
+
               <div class="row data">
                 <div class="name">${item.name}</div>
                 <div class="applicationDate light-grey">${formatDate(item.applicationDate)}</div>
                 <div class="startDate yellow">${formatDate(item.startDate)}</div>
                 <div class="endDate blue">${formatDate(item.endDate)}
-                </div>
-                <div class="status">
+              </div>
+
+              <div class="status">
                 <select id="sel-${item.id}"class="selectOptions">
                   <option value="0">Pendiente de aprobación</option>
                   <option value="1">Aprobado</option>
                   <option value="2">No aprobado</option>
                 </select>
-                </div>
-                <div class="status">${formatDate(item.statusDate)}</div>
               </div>
+
+              <div class="statusDate">${formatDate(item.statusDate)}</div>
+              
             `)}
           </div>
           ${this.showMore ? html`

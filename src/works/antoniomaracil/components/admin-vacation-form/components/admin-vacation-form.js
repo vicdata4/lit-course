@@ -18,43 +18,49 @@ export class AdminVacationForm extends LitElement {
       border: none;
       cursor: pointer;
     }
-    .table-box{
-      border-top: solid 2px black;
-      border-bottom: solid 2px black;
-      margin-top: 1.5rem;
-      overflow-x: auto;
-    }
-    table {
-      border-collapse: collapse;
-      font-size: 0.8rem;
-      empty-cells: hide;
+    
+    
+    table.vacations{
       width: 100%;
     }
+    table.vacations thead, th {
+      border: none;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    /*
+    table.vacations tr{
+      border-bottom: 3px solid; 
+    }
+   
+    table.vacations td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      text-align: right;
+      padding: 10px;
+     }
     tr:nth-child(even) {
       background-color: #EEEEEE;
     }
-    table th{
-      border-left: solid 2px black;
-      border-right: solid 2px black;
-      background-color: #CCCCCC;
-      font-size: 0.7rem;
-      text-align: left;
+    table.vacations td:before{
+      content: attr(data-label);
+      float: left;
+      color: #273b47;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 1px 5px;
     }
-    table td{
-      border-right: solid 2px black;
-      border-left: solid 2px black;
+    */
+    select{
+      width: 50%;
+      padding: 5px 3px;
     }
-    td{
-      height: 2rem;
-    }
-    span span{
-      cursor: pointer;
-    }
-    .table-cntr{
-      display: flex;
-      justify-content: space-between;
-    }
-
     .stepper {
       margin: 10px 0;
     }
@@ -84,6 +90,38 @@ export class AdminVacationForm extends LitElement {
 
     .stepper, .step {
       user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .table-box{
+        border-top: solid 2px black;
+        border-bottom: solid 2px black;
+        margin-top: 1.5rem;
+        overflow-x: auto;
+      }
+      table.vacations {
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        empty-cells: hide;
+        width: 100%;
+      }
+      tr:nth-child(even) {
+        background-color: #EEEEEE;
+      }
+      table.vacations th{
+        border-left: solid 2px black;
+        border-right: solid 2px black;
+        background-color: #CCCCCC;
+        font-size: 0.7rem;
+        text-align: left;
+      }
+      table.vacations td{
+        border-right: solid 2px black;
+        border-left: solid 2px black;
+      }
+      td{
+        height: 2rem;
+      }
     }
     `;
   }
@@ -180,37 +218,48 @@ export class AdminVacationForm extends LitElement {
 
   render() {
     return html`
-    <admin-vacation-list></admin-vacation-list>
       <div class="container">
         <p>Solicitud de vacaciones:</p>
         ${this.renderStepper()}
         <div class="table-box">
-          <table>
+          <table class="vacations">
             <tr>
-              <th><button class="order" @click="${() => this.orderList('name')}">Nombre del empleado
-                  <span>&#9662;</span></button></th>
-              <th><button class="order" @click="${() => this.orderList('applicationDate')}">Fecha de solicitud
-                  <span>&#9662;</span></button></th>
-              <th><button class="order" @click="${() => this.orderList('startDate')}">Fecha de inicio <span>&#9662;</span></button>
+              <th data-label="Nombre">
+                <button class="order" @click="${() => this.orderList('name')}">Nombre del empleado
+                  <span>&#9662;</span>
+                </button>
               </th>
-              <th><button class="order" @click="${() => this.orderList('endDate')}">Fecha de fin <span>&#9662;</span></button>
+              <th data-label="Fecha de solicitud">
+                <button class="order" @click="${() => this.orderList('applicationDate')}">Fecha de solicitud
+                  <span>&#9662;</span>
+                </button>
               </th>
-              <th>Estado de solicitud</th>
-              <th>Fecha de estado</th>
+              <th data-label="Fecha de inicio">
+                <button class="order" @click="${() => this.orderList('startDate')}">Fecha de inicio 
+                  <span>&#9662;</span>
+                </button>
+              </th>
+              <th data-label="Fecha de fin">
+                <button class="order" @click="${() => this.orderList('endDate')}">Fecha de fin 
+                  <span>&#9662;</span>
+                </button>
+              </th>
+              <th data-label="Estado">Estado de solicitud</th>
+              <th data-label="Fecha de estado">Fecha de estado</th>
             </tr>
             ${this.list.slice(this.from, this.to).map(item => html`
             <tr>
-              <td>${item.name}</td>
-              <td>${formatDate(item.applicationDate)}</td>
-              <td>${formatDate(item.startDate)}</td>
-              <td>${formatDate(item.endDate)}</td>
-              <td>  
+              <td data-label="Nombre">${item.name}</td>
+              <td data-label="Fecha de solicitud">${formatDate(item.applicationDate)}</td>
+              <td data-label="Fecha de inicio">${formatDate(item.startDate)}</td>
+              <td data-label="Fecha de fin">${formatDate(item.endDate)}</td>
+              <td data-label="Estado">  
                 <select id="sel-${item.id}"class="selectOptions">
                   <option value="0">Pendiente de aprobación</option>
                   <option value="1">Aprobado</option>
                   <option value="2">No aprobado</option>
                 </select></td>
-              <td>${formatDate(item.statusDate)}</td>
+              <td data-label="Fecha de estado">${formatDate(item.statusDate)}</td>
             </tr>
             `)}
           </table>
