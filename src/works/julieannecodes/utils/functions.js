@@ -1,27 +1,18 @@
-import { numericMonths, numericDays } from './constants';
-/**
- * FORMATTERS
- */
+import { numericMonths } from './constants';
 export const dateFormatter = (date_) => {
   const date = new Date(date_);
 
-  const monthDay = date.getDate();
+  const monthDay = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   const year = date.getFullYear();
   const hour = date.getHours();
-  const minute = date.getMinutes();
+  const minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
   const monthNumber = numericMonths[date.getMonth()];
-  const formattedDay = numericDays[date.getDate() - 1];
   const wholeHour = hour + ':' + minute + 'h,  ';
 
   return {
-    tableDate:
-      monthDay >= 10 ? monthDay + '-' + monthNumber + '-' + year : formattedDay + '-' + monthNumber + '-' + year,
-    solicitudDate:
-      monthDay >= 10
-        ? wholeHour + monthDay + '-' + monthNumber + '-' + year
-        : wholeHour + formattedDay + '-' + monthNumber + '-' + year,
-    inputDate:
-      monthDay >= 10 ? year + '-' + monthNumber + '-' + monthDay : year + '-' + monthNumber + '-' + formattedDay,
+    tableDate: monthDay + '-' + monthNumber + '-' + year,
+    solicitudDate: wholeHour + monthDay + '-' + monthNumber + '-' + year,
+    inputDate: year + '-' + monthNumber + '-' + monthDay,
   };
 };
 export const dateInputReverse = (value) => {
