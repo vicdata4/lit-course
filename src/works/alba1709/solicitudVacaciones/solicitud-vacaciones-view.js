@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { LitElement, html, css } from 'lit-element';
 import { commonStyles } from '../../../utils/custom-styles';
 import './tabla-solicitud';
@@ -8,19 +9,19 @@ export class SolicitudVacaciones extends LitElement {
     return [
       commonStyles,
       css`
-            h2 {
-              font-family: "Comic Sans MS", cursive, sans-serif;;
-            }
-          `
+        h2 {
+          font-family: 'Open Sans', sans-serif;
+        }
+      `,
     ];
   }
 
   /**
-     * Object describing property-related metadata used by Polymer features
-     */
+   * Object describing property-related metadata used by Polymer features
+   */
   static get properties() {
     return {
-      infoSolicitud: { type: Array }
+      infoSolicitud: { type: Array },
     };
   }
 
@@ -36,13 +37,21 @@ export class SolicitudVacaciones extends LitElement {
     const twoYears = anoActual + 1;
     const dateTwoYears = fechaActual.replace(anoActual, twoYears);
     // Validación rango desde hoy hasta 1 año
-    const rangoFechas = e.detail.infoFI <= e.detail.fHoy || e.detail.infoFF <= e.detail.infoFI || e.detail.infoFI > dateTwoYears || e.detail.infoFF > dateTwoYears;
+    const rangoFechas =
+      e.detail.infoFI <= e.detail.fHoy ||
+      e.detail.infoFF <= e.detail.infoFI ||
+      e.detail.infoFI > dateTwoYears ||
+      e.detail.infoFF > dateTwoYears;
     // Validación fecha
     if (e.detail.infoFI === '' || e.detail.infoFF === '') {
       alert('Por favor introduzca fechas de inicio y fin');
       return false;
     } else if (rangoFechas) {
-      alert('El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' + twoYears + ')');
+      alert(
+        'El rango de fechas que debe introducir es a partir de hoy y hasta la fecha actual del año siguente (' +
+          twoYears +
+          ')',
+      );
       return false;
     } else {
       this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
@@ -62,11 +71,14 @@ export class SolicitudVacaciones extends LitElement {
 
   render() {
     return html`
-            <h2>Solicitud de vacaciones</h2>
-            <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
-            <tabla-solicitud .miTabla="${this.infoSolicitud}" .nElements="${10}" @delete-event="${this.deleteSolicitud}"></tabla-solicitud>
-           
-        `;
+      <h2>Solicitud de vacaciones</h2>
+      <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
+      <tabla-solicitud
+        .miTabla="${this.infoSolicitud}"
+        .nElements="${10}"
+        @delete-event="${this.deleteSolicitud}"
+      ></tabla-solicitud>
+    `;
   }
 }
 customElements.define('solicitud-vacaciones-view', SolicitudVacaciones);

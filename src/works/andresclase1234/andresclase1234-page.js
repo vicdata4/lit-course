@@ -2,13 +2,10 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './empleado-vacaciones/solicitud-vacaciones';
 
 class Andresclase1234Page extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {
@@ -17,7 +14,6 @@ class Andresclase1234Page extends LitElement {
       <section class="container">
         <work-header>Andresclase1234</work-header>
       </section>
-      <solicitud-vacaciones></solicitud-vacaciones>
     `;
   }
 }

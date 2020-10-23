@@ -5,9 +5,7 @@ import '../components/news-component/news-searcher';
 
 class NewsView extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
   }
 
   render() {
