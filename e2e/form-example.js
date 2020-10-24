@@ -1,7 +1,8 @@
 require('chromedriver');
 const assert = require('assert');
-const { Builder, By } = require('selenium-webdriver');
-const { setConfig, findElement } = require('./utils/shadow-utils.js');
+const { By } = require('selenium-webdriver');
+const { setConfig, findElement } = require('./utils/shadow-dom.js');
+const { browserOptions } = require('./utils/config.js');
 
 const url = 'http://localhost:2900/form-example-view';
 
@@ -9,7 +10,9 @@ describe('Form-example happy path', function () {
   let driver;
 
   before(async function () {
-    driver = await new Builder().forBrowser('chrome').build();
+    driver = await browserOptions({
+      headless: true,
+    });
     await setConfig(driver, { url });
   });
 
