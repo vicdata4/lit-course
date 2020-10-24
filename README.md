@@ -7,10 +7,9 @@
 - [Karma](https://karma-runner.github.io/) Unit tests
 - [Selenium](https://www.selenium.dev/documentation/en/) E2E testing
 - [Vaadin](https://www.npmjs.com/package/@vaadin/router) Routing
-- [ESLint](https://eslint.org) Coding style
-- [Prettier](https://prettier.io/) Coding style
+- [ESLint](https://eslint.org) Linter tool
+- [Prettier](https://prettier.io/) Code formatter
 - [Storybook](https://storybook.js.org/) UI components tool
-
 
 
 ## Quick start
@@ -33,32 +32,36 @@ Run application
 ```
 npm run dev
 ```
+\
+\
+Unit Test - [Directory](https://github.com/vicdata4/lit-course/tree/master/tests)
 
-Run unit tests
 
 ```
 npm run test
 ```
 
-Run e2e
+E2E - [Directory](https://github.com/vicdata4/lit-course/tree/master/e2e)
 
 ```
 npm run test:e2e
 ```
 
-Run ESLint
+Run ESLint 
+- [ESLint Config](https://github.com/vicdata4/lit-course/tree/master/.eslintrc.js)
+- [Prettier Config](https://github.com/vicdata4/lit-course/tree/master/.prettierrc)
 
 ```
 npm run lint
 ```
-
-Run ESLint Autofix
-
 ```
 npm run lint:fix
 ```
 
-Run storybook
+Storybook
+
+- [Configuration](https://github.com/vicdata4/lit-course/tree/master/.storybook)
+- [Stories](https://github.com/vicdata4/lit-course/tree/master/stories)
 
 ```
 npm run storybook
