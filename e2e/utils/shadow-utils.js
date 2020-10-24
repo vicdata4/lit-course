@@ -1,7 +1,7 @@
 const { By } = require('selenium-webdriver');
 
 let config = {};
-const url = 'http://localhost:2900';
+let webComponent = {};
 
 async function getExtShadowRoot(driver, parent) {
   let shadowHost;
@@ -14,18 +14,45 @@ async function findShadowDomElement(driver, parent, child = null) {
   return getExtShadowRoot(driver, parent).then(async (result) => result.findElement(findBy));
 }
 
-const shadowFinder = async (config, findBy) => {
-  const app = await config.driver.findElement(By.css('app-shell'));
-  const view = await findShadowDomElement(config.driver, app, config.view);
-  const component = await findShadowDomElement(config.driver, view, config.component);
+async function findShadowDomElementList(driver, parent, child = null) {
+  const findBy = typeof child === 'string' ? By.css(child) : child;
+  return getExtShadowRoot(driver, parent).then(async (result) => result.findElements(findBy));
+}
 
-  return findShadowDomElement(config.driver, component, findBy);
+const shadowFinderWC = async (parent, tag) => {
+  const list = await findShadowDomElementList(config.driver, parent, By.css('*'));
+
+  for (const file of list) {
+    const contents = await file.getTagName();
+    if (contents.includes('-')) {
+      await shadowFinderWC(file, tag);
+      if (contents === tag) {
+        webComponent = file;
+        break;
+      }
+    }
+  }
 };
 
-exports.findElement = async (by) => shadowFinder(config, by);
+const findSingle = async (element, findBy) => {
+  const app = await config.driver.findElement(By.css('app-shell'));
+  await shadowFinderWC(app, element);
+};
+
+exports.findElement = async (element, findBy) => {
+  await findSingle(element, findBy);
+  return findShadowDomElement(config.driver, webComponent, findBy);
+};
+
+exports.findElements = async (element, findBy) => {
+  await findSingle(element, findBy);
+  return findShadowDomElementList(config.driver, webComponent, findBy);
+};
 
 exports.setConfig = async (driver, _config) => {
   config = _config;
-  await driver.get(`${url}${config.path}`);
+  await driver.get(config.url);
   config.driver = driver;
+
+  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
 };
