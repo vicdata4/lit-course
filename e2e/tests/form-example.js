@@ -1,8 +1,8 @@
 require('chromedriver');
 const assert = require('assert');
 const { By } = require('selenium-webdriver');
-const { setConfig, findElement } = require('./utils/shadow-dom.js');
-const { browserOptions } = require('./utils/config.js');
+const { setConfig, findElement } = require('../utils/shadow-dom.js');
+const { browserOptions } = require('../utils/config.js');
 
 const url = 'http://localhost:2900/form-example-view';
 
