@@ -1,10 +1,16 @@
 ![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo.png?v=4&s=100)
 
-### Documentation
+## Dependencies
+- [Rollup.js](https://rollupjs.org) Module bundler
+- [LitElement](https://lit-element.polymer-project.org) Web Components
+- [LitHtml](https://lit-html.polymer-project.org) HTML templating library
+- [Karma](https://karma-runner.github.io/) Unit tests
+- [Selenium](https://www.selenium.dev/documentation/en/) E2E testing
+- [Vaadin](https://www.npmjs.com/package/@vaadin/router) Routing
+- [ESLint](https://eslint.org) Coding style
+- [Prettier](https://prettier.io/) Coding style
+- [Storybook](https://storybook.js.org/) UI components tool
 
-https://lit-element.polymer-project.org/guide
-
-https://lit-html.polymer-project.org/guide
 
 
 ## Quick start
@@ -28,10 +34,16 @@ Run application
 npm run dev
 ```
 
-Run tests
+Run unit tests
 
 ```
 npm run test
+```
+
+Run e2e
+
+```
+npm run test:e2e
 ```
 
 Run ESLint
