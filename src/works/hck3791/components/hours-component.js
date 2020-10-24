@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import { HOURS } from '../styles/styles';
-import { employees } from '../emp';
+import { hoursStyles } from '../styles/hours-styles';
+import { employees } from '../data/hours-data';
 
 class HoursComponent extends LitElement {
   static get styles() {
-    return [HOURS];
+    return [hoursStyles];
   }
 
   static get properties() {
@@ -62,10 +62,10 @@ class HoursComponent extends LitElement {
 
   render() {
     return html`
-      <div class="hours-container">
+      <div id="container">
         <section>
           <h3>Reporte de horas consolidadas</h3>
-          <div>
+          <div class="filters">
             <label>Empleado</label>
             <select name="employees" id="employees" @change="${this.selected}">
               <option value=""></option>
@@ -75,7 +75,7 @@ class HoursComponent extends LitElement {
             </select>
           </div>
 
-          <div>
+          <div class="filters">
             <label>Proyecto</label>
             <select name="proyects" id="proyects" @change="${this.selected}">
               <option value=""></option>
@@ -87,7 +87,7 @@ class HoursComponent extends LitElement {
             </select>
           </div>
 
-          <div>
+          <div class="filters">
             <label>Año</label>
             <select name="years" id="years" @change="${this.selected}">
               <option value=""></option>
@@ -97,7 +97,7 @@ class HoursComponent extends LitElement {
             </select>
           </div>
 
-          <div>
+          <div id="generateReport">
             <button @click="${this.generateReport}" id="generateReport">Generar reporte</button>
           </div>
 
@@ -113,17 +113,17 @@ class HoursComponent extends LitElement {
                 <th>Jornadas de vacaciones</th>
               </tr>
             </thead>
-            <tbody id="tbody">
+            <tbody>
               ${this.monthsList.map(
                 (month) => html`
                   <tr id="${month}">
                     <td>${month}</td>
-                    <td class="data">${this.findMonth(month).hours[0]}</td>
-                    <td class="data">${this.findMonth(month).hours[1]}</td>
-                    <td class="data">${this.findMonth(month).hours[2]}</td>
-                    <td class="data">${this.findMonth(month).hours[3]}</td>
-                    <td class="data">${this.findMonth(month).hours[4]}</td>
-                    <td class="data">${this.findMonth(month).hours[5]}</td>
+                    <td>${this.findMonth(month).hours[0]}</td>
+                    <td>${this.findMonth(month).hours[1]}</td>
+                    <td>${this.findMonth(month).hours[2]}</td>
+                    <td>${this.findMonth(month).hours[3]}</td>
+                    <td>${this.findMonth(month).hours[4]}</td>
+                    <td>${this.findMonth(month).hours[5]}</td>
                   </tr>
                 `,
               )}
