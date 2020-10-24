@@ -9,16 +9,14 @@ async function getExtShadowRoot(driver, parent) {
   return driver.executeScript('return arguments[0].shadowRoot', shadowHost);
 }
 
-async function findShadowDomElement(driver, parent, findBy) {
-  return getExtShadowRoot(driver, parent).then(async (result) => result.findElement(findBy));
-}
-
-async function findShadowDomElements(driver, parent, findBy) {
-  return getExtShadowRoot(driver, parent).then(async (result) => result.findElements(findBy));
+async function findShadowDomElement(driver, parent, findBy, list = false) {
+  return getExtShadowRoot(driver, parent).then(async (result) =>
+    !list ? result.findElement(findBy) : result.findElements(findBy),
+  );
 }
 
 const findWebComponent = async (parent, tag) => {
-  const list = await findShadowDomElements(config.driver, parent, By.css('*'));
+  const list = await findShadowDomElement(config.driver, parent, By.css('*'), true);
 
   for (const file of list) {
     const contents = await file.getTagName();
@@ -44,7 +42,7 @@ exports.findElement = async (element, findBy) => {
 
 exports.findElements = async (element, findBy) => {
   await rootNode(element, findBy);
-  return findShadowDomElements(config.driver, webComponent, findBy);
+  return findShadowDomElement(config.driver, webComponent, findBy, true);
 };
 
 exports.setConfig = async (driver, _config) => {
