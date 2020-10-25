@@ -24,10 +24,10 @@ class NewsComponentPage extends CommonActions {
     assert.strictEqual(list.length, number);
   }
 
-  async noResultsMessage() {
+  async resultsMessage(nResults) {
     const messageBox = await findElement('news-searcher', By.css('.result-msg'));
     const text = await messageBox.getAttribute('textContent');
-    assert.strictEqual(text, '0 results about');
+    assert.strictEqual(text, `${nResults} results about`);
   }
 }
 
