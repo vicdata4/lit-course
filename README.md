@@ -16,20 +16,20 @@
 
 Run from command line
 
-```
+```bash
 git clone https://github.com/vicdata4/lit-course
 
 cd lit-course
 ```
 
 Install dependencies
-```
+```bash
 npm install
 ```
 
 Run application
 
-```
+```bash
 npm run dev
 ```
 \
@@ -37,13 +37,13 @@ npm run dev
 Unit Test - [Directory](https://github.com/vicdata4/lit-course/tree/master/tests)
 
 
-```
+```bash
 npm run test
 ```
 
 E2E - [Directory](https://github.com/vicdata4/lit-course/tree/master/e2e)
 
-```
+```bash
 npm run test:e2e
 ```
 
@@ -51,10 +51,10 @@ Run ESLint
 - [ESLint Config](https://github.com/vicdata4/lit-course/tree/master/.eslintrc.js)
 - [Prettier Config](https://github.com/vicdata4/lit-course/tree/master/.prettierrc)
 
-```
+```bash
 npm run lint
 ```
-```
+```bash
 npm run lint:fix
 ```
 
@@ -63,6 +63,6 @@ Storybook
 - [Configuration](https://github.com/vicdata4/lit-course/tree/master/.storybook)
 - [Stories](https://github.com/vicdata4/lit-course/tree/master/stories)
 
-```
+```bash
 npm run storybook
 ```

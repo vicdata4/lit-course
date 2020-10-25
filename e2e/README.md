@@ -9,21 +9,21 @@ Default configuration:
 
 - Enabled headless mode
 - Default URL = http://localhost:2900
-```
+```js
 before(async () => {
   driver = await browserConfig();
 });
 ```
 Disable headless mode
-```
+```js
 driver = await browserConfig({ headless: false });
 ```
 Custom URL
-```
-driver = await browserConfig({ url: 'https://google.com, headless: false });
+```js
+driver = await browserConfig({ url: 'https://google.com', headless: false });
 ```
 Custom window size
-```
+```js
 driver = await browserConfig({
   windowSize: {
     width: 640,
@@ -37,7 +37,7 @@ driver = await browserConfig({
 ## Test file
 e2e/tests/form-example.test.js
 
-```
+```js
 require('chromedriver');
 const { browserConfig } = require('../config.js');
 const CommonPage = require('../pages/CommonPage.js');
@@ -59,7 +59,7 @@ describe('Form-example happy path', function () {
 ## Page Object
 e2e/pages/CommonPage.js
 
-```
+```js
 const { By } = require('selenium-webdriver/lib/by');
 const assert = require('assert');
 
