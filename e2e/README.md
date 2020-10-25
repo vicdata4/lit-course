@@ -5,10 +5,10 @@ https://www.selenium.dev/documentation/en/
 
 ## Browser Configuration
 \
-Default configuration:
+By default:
 
 - Enabled headless mode
-- Default URL = http://localhost:2900
+- URL = http://localhost:2900
 ```js
 before(async () => {
   driver = await browserConfig();
@@ -75,4 +75,41 @@ class CommonPage {
 }
 
 module.exports = CommonPage;
+```
+
+## Shadow Root Support
+
+If you are using web-components, you can import `findElement` and `findElements` functions in order to find elements across the shadow-root node.
+
+Example
+```js
+const { By } = require('selenium-webdriver/lib/by');
+const { findElement, findElements } = require('../utils/shadow-dom.js');
+
+class FormExamplePage {
+  constructor(driver) {
+    this.driver = driver;
+    this.wc = 'form-example';
+  }
+
+  async enterFormFields(email) {
+    // Get a single element
+    const mail = await findElement(this.wc, By.id('email'));
+    await mail.sendKeys(email);
+  }
+
+  async numberOfSearchResults(number) {
+    // Get a list of elements
+    const list = await findElements(this.wc, By.css('.row.data'));
+    assert.strictEqual(list.length, number);
+  }
+
+  async formSubmit() {
+    const submit = await findElement(this.wc, By.css('input[type=submit]'));
+    await submit.click();
+  }
+}
+
+module.exports = FormExamplePage;
+
 ```

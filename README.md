@@ -33,21 +33,20 @@ Run application
 npm run dev
 ```
 \
-\
-Unit Test - [Directory](https://github.com/vicdata4/lit-course/tree/master/tests)
+[Unit Tests](https://github.com/vicdata4/lit-course/tree/master/tests)
 
 
 ```bash
 npm run test
 ```
 
-E2E - [Directory](https://github.com/vicdata4/lit-course/tree/master/e2e)
+[E2E](https://github.com/vicdata4/lit-course/tree/master/e2e)
 
 ```bash
 npm run test:e2e
 ```
 
-Run ESLint 
+ESLint 
 - [ESLint Config](https://github.com/vicdata4/lit-course/tree/master/.eslintrc.js)
 - [Prettier Config](https://github.com/vicdata4/lit-course/tree/master/.prettierrc)
 
