@@ -23,6 +23,12 @@ class NewsComponentPage extends CommonActions {
     const list = await findElements(this.wcList, By.css('.row.data'));
     assert.strictEqual(list.length, number);
   }
+
+  async noResultsMessage() {
+    const messageBox = await findElement('news-searcher', By.css('.result-msg'));
+    const text = await messageBox.getAttribute('textContent');
+    assert.strictEqual(text, '0 results about');
+  }
 }
 
 module.exports = NewsComponentPage;

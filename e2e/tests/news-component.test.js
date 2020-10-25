@@ -21,6 +21,8 @@ describe('News searcher', () => {
   it('Default search "Polymer" return 20 results', async () => newsComponent.numberOfSearchResults(20));
   it('Search "React" term', async () => newsComponent.searchAnotherTerm('React'));
   it('Search result for "React" return 20 results', async () => newsComponent.numberOfSearchResults(20));
+  it('Search term without results', async () => newsComponent.searchAnotherTerm('alskdfnlaksd'));
+  it('No results message', async () => newsComponent.noResultsMessage());
 
   after(() => driver && driver.quit());
 });
