@@ -1,4 +1,4 @@
-const { By } = require('selenium-webdriver/lib/by');
+const { By } = require('selenium-webdriver');
 const { findElement } = require('../utils/shadow-dom.js');
 const assert = require('assert');
 

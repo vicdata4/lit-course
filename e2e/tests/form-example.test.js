@@ -2,7 +2,7 @@ require('chromedriver');
 const { browserConfig } = require('../config.js');
 
 const FormExamplePage = require('../pages/FormExamplePage.js');
-const CommonPage = require('../pages/CommonPage.js');
+const CommonActions = require('../pages/CommonActions.js');
 
 describe('Form-example happy path', function () {
   let driver;
@@ -13,11 +13,11 @@ describe('Form-example happy path', function () {
     driver = await browserConfig();
 
     formExample = new FormExamplePage(driver);
-    common = new CommonPage(driver);
+    common = new CommonActions(driver);
   });
 
   it('Page title is correct', async () => common.checkPageTitle());
-  it('Go to form example view', async () => common.goToFromHomePage('Form Example'));
+  it('Go to form example view', async () => common.selectListElement('Form Example'));
   it('Fill email and password fields', async () => formExample.enterFormFields('test@email.com', 'vic12345'));
   it('Click on submit button', async () => formExample.formSubmit());
   it('Succesfull alert is visible', async () => formExample.isAlertVisible('.alert-succesfull'));
@@ -31,11 +31,10 @@ describe('Form-example error', async () => {
 
   before(async () => {
     driver = await browserConfig();
-
     formExample = new FormExamplePage(driver);
   });
 
-  it('Go to form example view', async () => new CommonPage(driver).goToFromHomePage('Form Example'));
+  it('Go to form example view', async () => new CommonActions(driver).selectListElement('Form Example'));
   it('Fill email and password fields', async () => formExample.enterFormFields('test@email', 'vic12345'));
   it('Click on submit button', async () => formExample.formSubmit());
   it('Error message is visible', async () => formExample.isAlertVisible('.alert-msg'));

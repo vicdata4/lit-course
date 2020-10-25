@@ -2,6 +2,8 @@
 
 https://www.selenium.dev/documentation/en/
 
+https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/
+
 
 ## Browser Configuration
 \
@@ -40,7 +42,7 @@ e2e/tests/form-example.test.js
 ```js
 require('chromedriver');
 const { browserConfig } = require('../config.js');
-const CommonPage = require('../pages/CommonPage.js');
+const CommonActions = require('../pages/CommonActions.js');
 
 describe('Form-example happy path', function () {
   let driver;
@@ -48,7 +50,7 @@ describe('Form-example happy path', function () {
 
   before(async () => {
     driver = await browserConfig();
-    common = new CommonPage(driver);
+    common = new CommonActions(driver);
   });
 
   it('Page title is correct', async () => common.checkPageTitle());
@@ -57,13 +59,13 @@ describe('Form-example happy path', function () {
 ```
 
 ## Page Object
-e2e/pages/CommonPage.js
+e2e/pages/CommonActions.js
 
 ```js
 const { By } = require('selenium-webdriver/lib/by');
 const assert = require('assert');
 
-class CommonPage {
+class CommonActions {
   constructor(driver) {
     this.driver = driver;
   }
@@ -74,7 +76,7 @@ class CommonPage {
   }
 }
 
-module.exports = CommonPage;
+module.exports = CommonActions;
 ```
 
 ## Shadow Root Support
