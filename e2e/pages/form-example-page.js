@@ -1,5 +1,6 @@
 const { By } = require('selenium-webdriver/lib/by');
 const { findElement } = require('../utils/shadow-dom.js');
+const assert = require('assert');
 
 class FormExamplePage {
   constructor(driver) {
@@ -22,6 +23,13 @@ class FormExamplePage {
 
   async isAlertVisible(className) {
     await findElement(this.ref, By.css(className));
+  }
+
+  async checkErrorMessage(message) {
+    const alert = await findElement(this.ref, By.css('.alert-msg'));
+    const text = await alert.getText();
+
+    assert.strictEqual(text, message);
   }
 }
 
