@@ -5,7 +5,7 @@ const assert = require('assert');
 class CommonPage {
   constructor(driver) {
     this.driver = driver;
-    this.ref = 'home-view';
+    this.wc = 'home-view';
   }
 
   async checkPageTitle(title = 'LitCourse') {
@@ -14,7 +14,7 @@ class CommonPage {
   }
 
   async goToFromHomePage(buttonText) {
-    const listButton = await findElement(this.ref, By.linkText(buttonText));
+    const listButton = await findElement(this.wc, By.linkText(buttonText));
     await listButton.click();
   }
 }

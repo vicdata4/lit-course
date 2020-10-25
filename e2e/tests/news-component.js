@@ -10,13 +10,7 @@ describe('News searcher', function () {
   let driver;
 
   before(async function () {
-    driver = await browserOptions({
-      windowSize: {
-        width: 640,
-        height: 480,
-      },
-      headless: true,
-    });
+    driver = await browserOptions();
     await setConfig(driver, { url });
   });
 
