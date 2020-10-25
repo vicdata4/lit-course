@@ -50,5 +50,5 @@ exports.setConfig = async (driver, _config) => {
   await driver.get(config.url);
   config.driver = driver;
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await driver.sleep(1000);
 };

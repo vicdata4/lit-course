@@ -1,6 +1,8 @@
 const { Builder } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
+exports.url = 'http://localhost:2900';
+
 exports.browserOptions = async (config = {}) => {
   let builder = new Builder().forBrowser('chrome');
 

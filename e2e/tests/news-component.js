@@ -2,7 +2,7 @@ require('chromedriver');
 const assert = require('assert');
 const { By } = require('selenium-webdriver');
 const { setConfig, findElements } = require('../utils/shadow-dom.js');
-const { browserOptions } = require('../utils/config.js');
+const { browserOptions } = require('../config.js');
 
 const url = 'http://localhost:2900/news-searcher';
 
@@ -24,6 +24,7 @@ describe('News searcher', function () {
     const wc = 'news-list';
 
     const list = await findElements(wc, By.css('.row.data'));
+
     assert.strictEqual(list.length, 20);
   });
 
