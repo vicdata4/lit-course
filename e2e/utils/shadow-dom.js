@@ -45,6 +45,6 @@ exports.findElements = async (element, findBy) => {
   return findShadowDomElement(webComponent, findBy, true);
 };
 
-exports.setConfig = async (driver_) => {
+exports.setDriver = async (driver_) => {
   driver = driver_;
 };

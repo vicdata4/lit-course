@@ -3,58 +3,76 @@
 https://www.selenium.dev/documentation/en/
 
 
-## Browser options
+## Browser Configuration
 \
-Default config is { headless: true } with the default browser windowSize.
+Default configuration:
 
+- Enabled headless mode
+- Default URL = http://localhost:2900
 ```
-const { browserOptions } = require('../utils/config.js');
-
-before(async function () {
-  driver = await browserOptions();
-  await setConfig(driver, { url });
+before(async () => {
+  driver = await browserConfig();
 });
 ```
-
-### Configuration examples:
-\
+Disable headless mode
+```
+driver = await browserConfig({ headless: false });
+```
+Custom URL
+```
+driver = await browserConfig({ url: 'https://google.com, headless: false });
+```
 Custom window size
-
 ```
-before(async function () {
-  driver = await browserOptions({
-    windowSize: {
-      width: 640,
-      height: 480,
-    }
-  });
-
-  await setConfig(driver, { url });
+driver = await browserConfig({
+  windowSize: {
+    width: 640,
+    height: 480
+  }
 });
 ```
 
-Headless mode
+
+
+## Test file
+e2e/tests/form-example.test.js
 
 ```
-before(async function () {
-  driver = await browserOptions({
-    headless: false
+require('chromedriver');
+const { browserConfig } = require('../config.js');
+const CommonPage = require('../pages/CommonPage.js');
+
+describe('Form-example happy path', function () {
+  let driver;
+  let common;
+
+  before(async () => {
+    driver = await browserConfig();
+    common = new CommonPage(driver);
   });
 
-  await setConfig(driver, { url });
+  it('Page title is correct', async () => common.checkPageTitle());
+  after(() => driver && driver.quit());
 });
 ```
 
-Window size and headless
+## Page Object
+e2e/pages/CommonPage.js
 
 ```
-before(async function () {
-  driver = await browserOptions({
-    headless: false,
-    windowSize: {
-      width: 640,
-      height: 480,
-    }
-  });
-});
+const { By } = require('selenium-webdriver/lib/by');
+const assert = require('assert');
+
+class CommonPage {
+  constructor(driver) {
+    this.driver = driver;
+  }
+
+  async checkPageTitle(title = 'LitCourse') {
+    const title_ = await this.driver.getTitle();
+    assert.strictEqual(title_, title);
+  }
+}
+
+module.exports = CommonPage;
 ```

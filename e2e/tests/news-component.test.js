@@ -1,5 +1,5 @@
 require('chromedriver');
-const { browserConfig, url } = require('../config.js');
+const { browserConfig } = require('../config.js');
 
 const NewsComponentPage = require('../pages/NewsComponentPage.js');
 const CommonPage = require('../pages/CommonPage.js');
@@ -10,7 +10,7 @@ describe('News searcher', () => {
   let common;
 
   before(async () => {
-    driver = await browserConfig(url);
+    driver = await browserConfig();
 
     newsComponent = new NewsComponentPage(driver);
     common = new CommonPage(driver);
