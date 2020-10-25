@@ -1,4 +1,5 @@
 const { By } = require('selenium-webdriver');
+const { driverConfiguration } = require('../config.js');
 
 let config = {};
 let webComponent = {};
@@ -50,5 +51,5 @@ exports.setConfig = async (driver, _config) => {
   await driver.get(config.url);
   config.driver = driver;
 
-  await driver.sleep(1000);
+  await driverConfiguration(driver);
 };

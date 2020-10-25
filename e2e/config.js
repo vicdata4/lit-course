@@ -3,6 +3,10 @@ const chrome = require('selenium-webdriver/chrome');
 
 exports.url = 'http://localhost:2900';
 
+exports.driverConfiguration = (driver) => {
+  driver.manage().setTimeouts({ implicit: 6000 });
+};
+
 exports.browserOptions = async (config = false) => {
   let builder = new Builder().forBrowser('chrome');
 

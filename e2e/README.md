@@ -5,7 +5,7 @@ https://www.selenium.dev/documentation/en/
 
 ## Browser options
 \
-Default config is { headless: false } with the default browser windowSize.
+Default config is { headless: true } with the default browser windowSize.
 
 ```
 const { browserOptions } = require('../utils/config.js');
@@ -38,7 +38,7 @@ Headless mode
 ```
 before(async function () {
   driver = await browserOptions({
-    headless: true
+    headless: false
   });
 
   await setConfig(driver, { url });
@@ -50,7 +50,7 @@ Window size and headless
 ```
 before(async function () {
   driver = await browserOptions({
-    headless: true,
+    headless: false,
     windowSize: {
       width: 640,
       height: 480,
