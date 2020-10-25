@@ -1,13 +1,10 @@
 const { Builder } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
+const { setConfig } = require('./utils/shadow-dom.js');
 
 exports.url = 'http://localhost:2900';
 
-exports.driverConfiguration = (driver) => {
-  driver.manage().setTimeouts({ implicit: 6000 });
-};
-
-exports.browserOptions = async (config = false) => {
+exports.browserConfig = async (url, config = false) => {
   let builder = new Builder().forBrowser('chrome');
 
   if (config !== {} && config.windowSize) {
@@ -18,5 +15,11 @@ exports.browserOptions = async (config = false) => {
     builder = builder.setChromeOptions(new chrome.Options().headless());
   }
 
-  return builder.build();
+  const driver = await builder.build();
+  await driver.manage().setTimeouts({ implicit: 6000 });
+  await driver.get(url);
+
+  await setConfig(driver, { url });
+
+  return driver;
 };

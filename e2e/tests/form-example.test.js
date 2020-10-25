@@ -1,6 +1,5 @@
 require('chromedriver');
-const { setConfig } = require('../utils/shadow-dom.js');
-const { browserOptions, url } = require('../config.js');
+const { browserConfig, url } = require('../config.js');
 
 const FormExamplePage = require('../pages/FormExamplePage.js');
 const CommonPage = require('../pages/CommonPage.js');
@@ -11,8 +10,7 @@ describe('Form-example happy path', function () {
   let common;
 
   before(async () => {
-    driver = await browserOptions();
-    await setConfig(driver, { url });
+    driver = await browserConfig(url);
 
     formExample = new FormExamplePage(driver);
     common = new CommonPage(driver);
@@ -32,8 +30,7 @@ describe('Form-example error', async () => {
   let formExample;
 
   before(async () => {
-    driver = await browserOptions();
-    await setConfig(driver, { url });
+    driver = await browserConfig(url);
 
     formExample = new FormExamplePage(driver);
   });
