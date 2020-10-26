@@ -1,3 +1,8 @@
 /tests
 /scripts
 /stories
+/node_modules
+/assets
+package.json
+package-lock.json
+index.html

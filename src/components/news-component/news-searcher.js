@@ -114,7 +114,8 @@ class NewsSearcher extends LitElement {
       </div>
       ${!this.showSpinner
         ? html` <div class="search-info">
-            ${this.nbHits} results about <span class="search-light">${this.search}</span>
+            <span class="result-msg">${this.nbHits} results about</span>
+            <span class="search-light">${this.search}</span>
           </div>`
         : nothing}
 
