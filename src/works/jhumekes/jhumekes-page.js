@@ -13,6 +13,7 @@ class JhumekesPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>Jhumekes</work-header>
+        <visualizacion-peticiones></visualizacion-peticiones>
       </section>
     `;
   }
