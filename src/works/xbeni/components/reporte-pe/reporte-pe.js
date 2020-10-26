@@ -232,7 +232,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
     const myList = [...this.datosReporteRpe];
 
-    var orderedList;
+    let orderedList;
     if (column !== 'dia') {
       orderedList = myList.sort((a, b) => {
         if (a[column].toLowerCase() < b[column].toLowerCase()) return -1;
@@ -274,15 +274,15 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   }
 
   controlErroresRpe() {
-    var erroresDatosReporte = '';
-    var fechaInicio = '';
-    var fechaFin = '';
+    let erroresDatosReporte = '';
+    let fechaInicio = '';
+    let fechaFin = '';
 
     /* CONTROL DE QUE SE HAYA SELECCIONADO UN EMPLEADO */
-    var empleado = this.shadowRoot.getElementById(CONSTANTS_RPE.idSelectEmpleadosRpe);
-    var empleadoSeleccionado = parseInt(empleado.options[empleado.selectedIndex].value);
-    var empleadoSeleccionadoId = empleado.options[empleado.selectedIndex].value;
-    var empleadoSeleccionadoNombre = empleado.options[empleado.selectedIndex].text;
+    const empleado = this.shadowRoot.getElementById(CONSTANTS_RPE.idSelectEmpleadosRpe);
+    const empleadoSeleccionado = parseInt(empleado.options[empleado.selectedIndex].value);
+    const empleadoSeleccionadoId = empleado.options[empleado.selectedIndex].value;
+    const empleadoSeleccionadoNombre = empleado.options[empleado.selectedIndex].text;
     if (empleadoSeleccionado === -1) {
       erroresDatosReporte += 'Debes seleccionar un empleado<br>';
     }
@@ -295,7 +295,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       }
     };
 
-    var regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
+    const regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
     fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
     inputControl(fechaInicio, 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>');
 
@@ -331,7 +331,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       errorContainerContent.innerHTML = '';
 
       // SHOW INFO REPORTE TO GENERATE
-      var informeDatosExitoGenerarRpe = `<b>Reorte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
+      const informeDatosExitoGenerarRpe = `<b>Reorte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
       succesContainer.innerHTML = informeDatosExitoGenerarRpe;
       succesContainer.style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE

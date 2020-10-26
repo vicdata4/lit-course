@@ -220,7 +220,7 @@ export class BeniListaCipa extends LitElement {
   orderList(column) {
     this.vaciarCamposOrdena();
     const myList = [...this.datosCipa];
-    var orderedList = [];
+    let orderedList = [];
 
     switch (column) {
       case 'nombre':
@@ -379,9 +379,9 @@ export class BeniListaCipa extends LitElement {
     let diff1Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento1Meses.getTime();
     let diasDif1Meses = Math.floor(diff1Milis / (1000 * 60 * 60 * 24));
 
-    var fechaInicio = new Date(fechaVenciminetoFormato).getTime();
-    var fechaFin = new Date(date).getTime();
-    var diff = fechaInicio - fechaFin;
+    let fechaInicio = new Date(fechaVenciminetoFormato).getTime();
+    let fechaFin = new Date(date).getTime();
+    let diff = fechaInicio - fechaFin;
     let diferenciaFechasActualVencimiento = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     let valorFinalEnviar = null;
