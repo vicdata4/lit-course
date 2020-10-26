@@ -71,7 +71,7 @@ class BeniReportePermisosEmpleado extends LitElement {
                   <label>Fecha de inicio:</label>
                 </div>
                 <div class="divCamposDatos">
-                  <input type="date" id='id_start_date_rpe' class="inputFechasRpe"/>
+                  <input type="date" id="id_start_date_rpe" class="inputFechasRpe"/>
                 </div>
               </div>
 
@@ -80,7 +80,7 @@ class BeniReportePermisosEmpleado extends LitElement {
                   <label>Fecha de fin:</label>
                 </div>
                 <div class="divCamposDatos">
-                  <input type="date" id='id_end_date_rpe' class="inputFechasRpe"/>
+                  <input type="date" id="id_end_date_rpe" class="inputFechasRpe"/>
                 </div>
               </div>
     
@@ -287,7 +287,8 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     }
 
     const inputControl = (date, mensaje) => {
-      date !== '' && !regexDateFormat.test(date) ? (erroresDatosReporte += mensaje) : (fechaInicio = null);
+      date !== '' && !regexDateFormat.test(date) ? (erroresDatosReporte += mensaje) : nothing;
+      date === '' ? (fechaInicio = null) : nothing;
     };
 
     const regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
@@ -297,7 +298,8 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     fechaFin = this.shadowRoot.getElementById('id_end_date_rpe').value;
     fechaFin !== '' && !regexDateFormat.test(fechaFin)
       ? (erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>')
-      : (fechaFin = null);
+      : nothing;
+    fechaFin === '' ? (fechaFin = null) : nothing;
 
     if (fechaInicio !== null && fechaFin !== null) {
       const dateInicio = new Date(fechaInicio);
