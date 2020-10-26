@@ -3,10 +3,10 @@ import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
 import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reportePe/constantes';
 import {
-  svgXBeniRpeOrderString,
-  svgBeniRpeOrdenarInt,
-  svgBeniRpeIconRight,
-  svgBeniRpeIconLeft,
+  svgXRpeOrderString,
+  svgRpeOrdenarInt,
+  svgRpeIconRight,
+  svgRpeIconLeft,
 } from '../../archivos_comunes/ac_reportePe/svg_icons';
 import { nothing } from 'lit-html';
 
@@ -123,7 +123,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
               </div>
               <button class="order"></button>
                 <div @click=${() => this.orderList('dia')} class="campoOrdenar">
-                  ${svgBeniRpeOrdenarInt}
+                  ${svgRpeOrdenarInt}
                   <div class="divTextoCampoOrdenar">
                     <label id="${CONSTANTS_RPE.idOrdenarDiaRpe}" class="textoCampoOrdenar"></label>
                   </div>
@@ -139,7 +139,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
               </div>
               <button class="order"></button>
                 <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
-                  ${svgXBeniRpeOrderString}
+                  ${svgXRpeOrderString}
                   <div class="divTextoCampoOrdenar">
                     <label id="${CONSTANTS_RPE.idOrdenarTipoPermisoRpe}" class="textoCampoOrdenar"></label>
                   </div>
@@ -179,7 +179,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
   renderStepper() {
     return html`
-      <button class="step" @click="${this.prev}">${svgBeniRpeIconLeft}</button>
+      <button class="step" @click="${this.prev}">${svgRpeIconLeft}</button>
       ${this.stepper.map(
         (x, i) => html`
           ${i === 0
@@ -187,7 +187,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
             : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`}
         `,
       )}
-      <button class="step" @click="${this.next}">${svgBeniRpeIconRight}</button>
+      <button class="step" @click="${this.next}">${svgRpeIconRight}</button>
     `;
   }
 

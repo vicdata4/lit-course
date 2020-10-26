@@ -3,12 +3,12 @@ import { LitElement, html } from 'lit-element';
 import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
 import { CONSTANTS_INFORME_CIPA } from '../../archivos_comunes/ac_informe-cipa/constantes';
 import {
-  svgBeniX,
-  svgBeniOrdenarString,
-  svgBeniOrdenarOther,
-  svgBeniOrdenarInt,
-  svgBeniCircleRed,
-  svgBeniCircleYellow,
+  svgX,
+  svgOrderString,
+  svgOrderOther,
+  svgOrderInt,
+  svgOrderCircleRed,
+  svgCircleYellow,
 } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
 import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-cipa/mocks';
 
@@ -56,7 +56,7 @@ export class BeniListaCipa extends LitElement {
             <label class="titulo_header_cipa">${this.tituloFormulario}</label>
           </div>
           <div class="div_header_controles_cipa">
-            <div @click="${this.hiddenBodyCipa}" class="div_x_header_cipa">${svgBeniX}</div>
+            <div @click="${this.hiddenBodyCipa}" class="div_x_header_cipa">${svgX}</div>
           </div>
         </div>
         <div class="div_main_cipa">
@@ -69,7 +69,7 @@ export class BeniListaCipa extends LitElement {
                     <label>Nombre</label>
                   </div>
                   <div @click="${() => this.orderList('nombre')}" class="campo_ordenar">
-                    ${svgBeniOrdenarString}
+                    ${svgOrderString}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarNombreId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -82,7 +82,7 @@ export class BeniListaCipa extends LitElement {
                     <label>Correo electronico</label>
                   </div>
                   <div @click="${() => this.orderList('email')}" class="campo_ordenar">
-                    ${svgBeniOrdenarString}
+                    ${svgOrderString}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarCorreoId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -98,7 +98,7 @@ export class BeniListaCipa extends LitElement {
                     <label>Perfil</label>
                   </div>
                   <div @click="${() => this.orderList('perfil')}" class="campo_ordenar">
-                    ${svgBeniOrdenarString}
+                    ${svgOrderString}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarPerfilId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -111,7 +111,7 @@ export class BeniListaCipa extends LitElement {
                     <label>En plantilla</label>
                   </div>
                   <div @click="${() => this.orderList('en_plantilla')}" class="campo_ordenar">
-                    ${svgBeniOrdenarOther}
+                    ${svgOrderOther}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarPlantillaId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -124,7 +124,7 @@ export class BeniListaCipa extends LitElement {
                     <label>Fecha de ultima actualizacion de datos</label>
                   </div>
                   <div @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="campo_ordenar">
-                    ${svgBeniOrdenarInt}
+                    ${svgOrderInt}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarFuaId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -137,7 +137,7 @@ export class BeniListaCipa extends LitElement {
                     <label>Fecha de vencimiento</label>
                   </div>
                   <div @click="${() => this.orderList('fechaVencimiento')}" class="campo_ordenar">
-                    ${svgBeniOrdenarInt}
+                    ${svgOrderInt}
                     <div class="div_texto_campo_ordenar">
                       <label id="${CONSTANTS_INFORME_CIPA.labelOrdenarFvId}" class="texto_campo_ordenar"></label>
                     </div>
@@ -188,12 +188,12 @@ export class BeniListaCipa extends LitElement {
                       ${this.calcularDiferenciaFechaSemaforo(
                         this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
                       ) === 'rojo'
-                        ? html`${svgBeniCircleRed}`
+                        ? html`${svgOrderCircleRed}`
                         : html`
                             ${this.calcularDiferenciaFechaSemaforo(
                               this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
                             ) === 'amarillo'
-                              ? html`${svgBeniCircleYellow}`
+                              ? html`${svgCircleYellow}`
                               : html``}
                           `}
                     </div>

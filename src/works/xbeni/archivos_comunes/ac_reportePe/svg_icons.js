@@ -1,6 +1,6 @@
 import { svg } from 'lit-element';
 
-export const svgXBeniRpeOrderString = svg`
+export const svgXRpeOrderString = svg`
 <svg version="1.1" class="svgRpe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.626px" height="511.627px" viewBox="0 0 511.626 511.627" style="enable-background:new 0 0 511.626 511.627;" xml:space="preserve">
   <g>
     <path d="M215.232,401.991h-54.818V9.136c0-2.663-0.854-4.856-2.568-6.567C156.133,0.859,153.946,0,151.279,0H96.461c-2.663,0-4.856,0.855-6.567,2.568c-1.709,1.715-2.568,3.905-2.568,6.567v392.855H32.507c-4.184,0-7.039,1.902-8.563,5.708c-1.525,3.621-0.856,6.95,1.997,9.996l91.361,91.365c2.096,1.707,4.281,2.562,6.567,2.562c2.474,0,4.664-0.855,6.567-2.562l91.076-91.078c1.906-2.279,2.856-4.571,2.856-6.844c0-2.676-0.854-4.859-2.568-6.584C220.086,402.847,217.9,401.991,215.232,401.991z" />
@@ -10,7 +10,7 @@ export const svgXBeniRpeOrderString = svg`
 </svg>
 `;
 
-export const svgBeniRpeOrdenarInt = svg`
+export const svgRpeOrdenarInt = svg`
 <svg version="1.1" class="svgRpe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.63px" height="511.63px" viewBox="0 0 511.63 511.63" style="enable-background:new 0 0 511.63 511.63;" xml:space="preserve">
     <g>
         <path d="M240.214,401.994h-54.816V9.139c0-2.663-0.855-4.856-2.57-6.567c-1.713-1.709-3.899-2.568-6.567-2.568h-54.816c-2.664,0-4.858,0.856-6.567,2.568c-1.711,1.714-2.57,3.905-2.57,6.567v392.855H57.491c-4.186,0-7.042,1.903-8.566,5.709c-1.524,3.62-0.854,6.95,1.999,9.999l91.36,91.365c2.096,1.704,4.283,2.56,6.567,2.56c2.475,0,4.665-0.855,6.567-2.56l91.076-91.078c1.908-2.282,2.857-4.571,2.857-6.848c0-2.673-0.855-4.855-2.57-6.581C245.068,402.85,242.881,401.994,240.214,401.994z" />
@@ -20,7 +20,7 @@ export const svgBeniRpeOrdenarInt = svg`
 </svg>
 `;
 
-export const svgBeniRpeIconRight = svg`
+export const svgRpeIconRight = svg`
 <svg version="1.1" id="svgIconRightLeft" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;" xml:space="preserve">
   <g>
     <path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z"/>
@@ -28,7 +28,7 @@ export const svgBeniRpeIconRight = svg`
 </svg>
 `;
 
-export const svgBeniRpeIconLeft = svg`
+export const svgRpeIconLeft = svg`
 <svg version="1.1" id="svgIconRightLeft" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.175 477.175" style="enable-background:new 0 0 477.175 477.175;" xml:space="preserve">
   <g>
     <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"/>
