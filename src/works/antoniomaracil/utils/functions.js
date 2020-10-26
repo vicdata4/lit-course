@@ -35,26 +35,12 @@ export const checkDate = (start, end) => {
  */
 export const formatDate = (date, minutes = false) => {
   if (minutes) {
-    return `
-      ${date.getDate()}/${date.getMonth() + 1}/${date.getUTCFullYear()} - ${date.getHours()}:${
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getUTCFullYear()} - ${date.getHours()}:${
       date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
     }`;
   } else {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getUTCFullYear()}`;
   }
-};
-
-export const maxDate = () => {
-  const date = new Date();
-  return `${date.getUTCFullYear() + 2}-${date.getMonth() + 1}-${
-    date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  }`;
-};
-export const minDate = () => {
-  const date = new Date();
-  return `${date.getUTCFullYear()}-${date.getMonth() + 1}-${
-    date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  }`;
 };
 
 export const orderedList = (list, column) => {
