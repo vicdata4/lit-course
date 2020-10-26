@@ -40,5 +40,10 @@ export const responsiveTable = css`
       content: attr(data-title);
       width: 130px;
     }
+
+    #inputStart,
+    #inputEnd {
+      margin-bottom: 15px;
+    }
   }
 `;
