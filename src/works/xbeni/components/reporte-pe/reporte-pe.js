@@ -288,11 +288,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     }
 
     const inputControl = (date, mensaje) => {
-      if (date !== '' && !regexDateFormat.test(date)) {
-        erroresDatosReporte += mensaje;
-      } else {
-        fechaInicio = null;
-      }
+      date !== '' && !regexDateFormat.test(date) ? (erroresDatosReporte += mensaje) : (fechaInicio = null);
     };
 
     const regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
@@ -300,13 +296,9 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     inputControl(fechaInicio, 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>');
 
     fechaFin = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaFinRpe).value;
-    if (fechaFin !== '') {
-      if (!regexDateFormat.test(fechaFin)) {
-        erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>';
-      }
-    } else {
-      fechaFin = null;
-    }
+    fechaFin !== '' && !regexDateFormat.test(fechaFin)
+      ? (erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>')
+      : (fechaFin = null);
 
     if (fechaInicio !== null && fechaFin !== null) {
       const dateInicio = new Date(fechaInicio);
