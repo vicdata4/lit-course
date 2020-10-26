@@ -143,6 +143,13 @@ export const documentListStyles = css`
     line-height: 30px;
   }
 
+  .group:nth-child(even) {
+    background-color: #eeeeee;
+  }
+  .group {
+    padding: 10px 10px 0px 10px;
+  }
+
   .row > *,
   .info-container {
     white-space: nowrap;
@@ -190,9 +197,6 @@ export const documentListStyles = css`
     display: block;
   }
 
-  .row.data {
-    margin-bottom: 40px;
-  }
   .italic {
     font-style: italic;
   }

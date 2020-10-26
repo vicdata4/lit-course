@@ -39,16 +39,18 @@ export class DocumentList extends LitElement {
             </div>
             ${this.list.map(
               (item, i) => html`
-                <div class="info-container">
-                  <span class="light-grey italic">${formatDate(item.uploadDate)}</span>
-                </div>
-                <div class="row data">
-                  <div class="title"><a href="${item.path}" download>${item.name}</a></div>
-                  <div class="date light-grey">${formatDate(item.uploadDate)}</div>
-                  <div class="info">
-                    <button @click="${() => this.removeDocument(i)}">
-                      <img src="assets/antoniomaracil/remove.png" alt="remove" />
-                    </button>
+                <div class="group">
+                  <div class="info-container">
+                    <span class="light-grey italic">${formatDate(item.uploadDate)}</span>
+                  </div>
+                  <div class="row data">
+                    <div class="title"><a href="${item.path}" download>${item.name}</a></div>
+                    <div class="date light-grey">${formatDate(item.uploadDate)}</div>
+                    <div class="info">
+                      <button @click="${() => this.removeDocument(i)}">
+                        <img src="assets/antoniomaracil/remove.png" alt="remove" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               `,
