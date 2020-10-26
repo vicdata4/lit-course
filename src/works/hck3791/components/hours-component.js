@@ -17,7 +17,7 @@ class HoursComponent extends LitElement {
   constructor() {
     super();
     this.employees = Object.keys(employees);
-    this.proyects = ['Proyect 1', 'Proyect 2'];
+    this.project = ['Project 1', 'Project 2'];
     this.years = [2020, 2021, 2022];
     this.monthsList = [
       'Enero',
@@ -38,7 +38,7 @@ class HoursComponent extends LitElement {
 
   generateReport() {
     const employee = this.shadowRoot.getElementById('employees').value;
-    const proyect = this.shadowRoot.getElementById('proyects').value;
+    const proyect = this.shadowRoot.getElementById('project').value;
     const year = this.shadowRoot.getElementById('years').value;
 
     if (employee && proyect && year) {
@@ -77,10 +77,10 @@ class HoursComponent extends LitElement {
 
           <div class="filters">
             <label>Proyecto</label>
-            <select name="proyects" id="proyects" @change="${this.selected}">
+            <select name="project" id="project" @change="${this.selected}">
               <option value=""></option>
-              ${this.proyects != null
-                ? this.proyects.map((proyect) => {
+              ${this.project != null
+                ? this.project.map((proyect) => {
                     return html`<option value="${proyect}">${proyect}</option>`;
                   })
                 : nothing}

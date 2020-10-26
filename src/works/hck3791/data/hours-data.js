@@ -1,6 +1,6 @@
 export const employees = {
   'Employee 1': {
-    'Proyect 1': {
+    'Project 1': {
       2020: [
         {
           month: 'Enero',
@@ -22,7 +22,7 @@ export const employees = {
         },
       ],
     },
-    'Proyect 2': {
+    'Project 2': {
       2020: [
         {
           month: 'Enero',
@@ -46,7 +46,7 @@ export const employees = {
     },
   },
   'Employee 2': {
-    'Proyect 1': {
+    'Project 1': {
       2020: [
         {
           month: 'Mayo',
@@ -68,7 +68,7 @@ export const employees = {
         },
       ],
     },
-    'Proyect 2': {
+    'Project 2': {
       2020: [
         {
           month: 'Septiembre',
