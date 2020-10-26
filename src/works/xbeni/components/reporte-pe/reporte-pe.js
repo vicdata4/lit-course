@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
-import { CONSTANTS_RPE } from '../../archivos_comunes/ac_reportePe/constantes';
 import {
   svgXRpeOrderString,
   svgRpeOrdenarInt,
@@ -54,7 +53,7 @@ class BeniReportePermisosEmpleado extends LitElement {
                   <label>Empleado:</label>
                 </div>
                 <div class="divCamposDatos">
-                  <select name="empleadosRpe" id="${CONSTANTS_RPE.idSelectEmpleadosRpe}" class="selectRpe">
+                  <select name="empleadosRpe" id='id_select_empleados_rpe' class="selectRpe">
                     <option value="-1">Selecciona un empleado</option>
                       ${Object.keys(this.empleadosRpe).map(
                         (item) => html`
@@ -72,7 +71,7 @@ class BeniReportePermisosEmpleado extends LitElement {
                   <label>Fecha de inicio:</label>
                 </div>
                 <div class="divCamposDatos">
-                  <input type="date" id="${CONSTANTS_RPE.idFechaInicioRpe}" class="inputFechasRpe"/>
+                  <input type="date" id='id_start_date_rpe' class="inputFechasRpe"/>
                 </div>
               </div>
 
@@ -81,16 +80,16 @@ class BeniReportePermisosEmpleado extends LitElement {
                   <label>Fecha de fin:</label>
                 </div>
                 <div class="divCamposDatos">
-                  <input type="date" id="${CONSTANTS_RPE.idFechaFinRpe}" class="inputFechasRpe"/>
+                  <input type="date" id='id_end_date_rpe' class="inputFechasRpe"/>
                 </div>
               </div>
     
               <div>
-                <div class="divErroresRpe" id="${CONSTANTS_RPE.idPadreErroresFinalesRpe}">
+                <div class="divErroresRpe" id='id_fater_final_errors_rpe'>
                   <div class="divErroresHeaderRpe">
                     <label>Para poder generar un reporte debes corregir los siguientes errores:</label>
                   </div>
-                  <div class="divErroresContenidoRpe" id="${CONSTANTS_RPE.idErroresFinalesRpe}"></div>
+                  <div class="divErroresContenidoRpe" id='id_final_errors_rpe'></div>
                 </div>
 
                 <div>
@@ -98,7 +97,7 @@ class BeniReportePermisosEmpleado extends LitElement {
                     this.controlErroresRpe()}" id="" class="buttonGenerarReporte">GENERAR REPORTE</button>
                 </div>
 
-                <div class="divExitoRpe" id="${CONSTANTS_RPE.idExitoDatosRpe}"></div>
+                <div class="divExitoRpe" id='id_succes_rpe'></div>
               </div>
             </div>
           </div>
@@ -125,7 +124,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
                 <div @click=${() => this.orderList('dia')} class="campoOrdenar">
                   ${svgRpeOrdenarInt}
                   <div class="divTextoCampoOrdenar">
-                    <label id="${CONSTANTS_RPE.idOrdenarDiaRpe}" class="textoCampoOrdenar"></label>
+                    <label id='id_order_day_rpe' class="textoCampoOrdenar"></label>
                   </div>
                 </div>
               </button>
@@ -141,7 +140,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
                 <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
                   ${svgXRpeOrderString}
                   <div class="divTextoCampoOrdenar">
-                    <label id="${CONSTANTS_RPE.idOrdenarTipoPermisoRpe}" class="textoCampoOrdenar"></label>
+                    <label id='id_order_tipo_permiso_rpe' class="textoCampoOrdenar"></label>
                   </div>
                 </div>
               </button>
@@ -223,11 +222,11 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   orderList(column) {
     if (column === 'dia') {
       this.clearCamposOrdenar();
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = 'ASC';
+      this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'ASC';
     }
     if (column === 'tipoPermiso') {
       this.clearCamposOrdenar();
-      this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = 'ASC';
+      this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'ASC';
     }
 
     const myList = [...this.datosReporteRpe];
@@ -251,11 +250,11 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       orderedList.reverse();
       if (column === 'dia') {
         this.clearCamposOrdenar();
-        this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = 'DES';
+        this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'DES';
       }
       if (column === 'tipoPermiso') {
         this.clearCamposOrdenar();
-        this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = 'DES';
+        this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'DES';
       }
     }
 
@@ -269,8 +268,8 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   }
 
   clearCamposOrdenar() {
-    this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarDiaRpe).innerHTML = '';
-    this.shadowRoot.getElementById(CONSTANTS_RPE.idOrdenarTipoPermisoRpe).innerHTML = '';
+    this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = '';
+    this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = '';
   }
 
   controlErroresRpe() {
@@ -279,7 +278,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     let fechaFin = '';
 
     /* CONTROL DE QUE SE HAYA SELECCIONADO UN EMPLEADO */
-    const empleado = this.shadowRoot.getElementById(CONSTANTS_RPE.idSelectEmpleadosRpe);
+    const empleado = this.shadowRoot.getElementById('id_select_empleados_rpe');
     const empleadoSeleccionado = parseInt(empleado.options[empleado.selectedIndex].value);
     const empleadoSeleccionadoId = empleado.options[empleado.selectedIndex].value;
     const empleadoSeleccionadoNombre = empleado.options[empleado.selectedIndex].text;
@@ -292,10 +291,10 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     };
 
     const regexDateFormat = /^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])$/;
-    fechaInicio = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaInicioRpe).value;
+    fechaInicio = this.shadowRoot.getElementById('id_start_date_rpe').value;
     inputControl(fechaInicio, 'Debes introducir una fecha valida en [ Fecha de inicio ]<br>');
 
-    fechaFin = this.shadowRoot.getElementById(CONSTANTS_RPE.idFechaFinRpe).value;
+    fechaFin = this.shadowRoot.getElementById('id_end_date_rpe').value;
     fechaFin !== '' && !regexDateFormat.test(fechaFin)
       ? (erroresDatosReporte += 'Debes introducir una fecha valida en [ Fecha de fin ]<br>')
       : (fechaFin = null);
@@ -311,9 +310,9 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       }
     }
 
-    const errorContainer = this.shadowRoot.getElementById(CONSTANTS_RPE.idPadreErroresFinalesRpe);
-    const errorContainerContent = this.shadowRoot.getElementById(CONSTANTS_RPE.idErroresFinalesRpe);
-    const succesContainer = this.shadowRoot.getElementById(CONSTANTS_RPE.idExitoDatosRpe);
+    const errorContainer = this.shadowRoot.getElementById('id_fater_final_errors_rpe');
+    const errorContainerContent = this.shadowRoot.getElementById('id_final_errors_rpe');
+    const succesContainer = this.shadowRoot.getElementById('id_succes_rpe');
 
     if (erroresDatosReporte !== '') {
       errorContainer.style.display = 'block';
