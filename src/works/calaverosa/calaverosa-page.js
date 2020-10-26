@@ -3,7 +3,7 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './resumen-etapas/item-011.js';
-import './reporte-permisos/permissions-report-detailed.js';
+import './permissions-report/permissions-report-detailed.js';
 
 const components = {
   summaryStagesComponent: () => html`<item-011></item-011>`,

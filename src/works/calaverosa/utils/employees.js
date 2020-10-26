@@ -1,23 +1,23 @@
-export const employees = [
+export const permissions = [
   {
     name: 'Ricardo Heredia',
     permissions: [
       {
         startDate: '01/12/2019',
-        endDate: '01/12/2019',
+        endDate: '02/12/2019',
         type: 'Formación',
         hours: 4,
       },
       {
-        startDate: '10/02/2020',
-        endDate: '10/02/2020',
+        startDate: '10/07/2020',
+        endDate: '11/07/2020',
         type: 'Formación',
         hours: 2,
       },
       {
         startDate: '10/05/2020',
         endDate: '20/05/2020',
-        typeOfPermit: 'Baja médica',
+        type: 'Baja médica',
         hours: 16,
       },
     ],
@@ -109,13 +109,6 @@ export const employees = [
 
   {
     name: 'Pepito el de abajo',
-    permissions: [
-      {
-        startDate: '',
-        endDate: '',
-        type: '',
-        hours: 4,
-      },
-    ],
+    permissions: [],
   },
 ];

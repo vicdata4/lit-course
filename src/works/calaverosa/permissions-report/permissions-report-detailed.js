@@ -1,25 +1,37 @@
 import { LitElement, html } from 'lit-element';
 import { tableFormat } from '../utils/styles.js';
-import { employees } from '../utils/employees.js';
+import { permissions } from '../utils/employees.js';
+import { nothing } from 'lit-html';
 
 class PermissionsReportDetailed extends LitElement {
   static get properties() {
     return {
-      employees: { type: Array },
-      dates: { type: Array },
-      emp: { type: Object },
+      list: { type: Array },
+      newList: { type: Array },
+      currentPage: { type: Number },
+      listPermissions: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.employees = employees;
-    this.dates = [];
-    this.emp = {};
+    this.list = permissions;
+    this.newList = [];
+    this.currentPage = 0;
   }
 
   static get styles() {
     return [tableFormat];
+  }
+
+  formatDate(date) {
+    const formattedDate =
+      (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) +
+      '/' +
+      (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) +
+      '/' +
+      date.getFullYear();
+    return formattedDate;
   }
 
   showCalendarStart() {
@@ -30,21 +42,38 @@ class PermissionsReportDetailed extends LitElement {
     this.shadowRoot.getElementById('inputDateEnd').focus();
   }
 
-  generateReport() {
-    const employee = this.shadowRoot.getElementById('employees').value;
+  showTable(position) {
+    const startDate = new Date(this.shadowRoot.getElementById('inputStartDate').value);
+    const endDate = new Date(this.shadowRoot.getElementById('inputEndDate').value);
+    this.newList = [];
 
-    if (employee) {
-      const data = this.employees.find((item) => item.name === employee);
+    const formatStartDate = this.formatDate(startDate);
+    const formatEndDate = this.formatDate(endDate);
 
-      this.emp = data || {};
-      /* if (data.type.length > 0) {
-        this.employee = data;
+    for (let i = 0; i < this.listPermissions.length; i++) {
+      if (this.listPermissions[i].startDate >= formatStartDate && this.listPermissions[i].endDate <= formatEndDate) {
+        this.newList.push(this.listPermissions[i]);
       } else {
-        alert('No hay permisos reportados para este empleado.');
-      } */
+        this.newList = [...this.listPermissions.slice(position, position + 10)];
+      }
+    }
+
+    if (this.newList.length === 0) {
+      // eslint-disable-next-line no-alert
+      alert('No hay registros en esas fechas para ese empleado');
+    }
+  }
+
+  generateReport() {
+    const opt = this.shadowRoot.getElementById('employees').value;
+
+    if (opt) {
+      this.listPermissions = [...this.list.find((employee) => employee.name === opt).permissions];
+      this.currentPage = 0;
+      this.showTable(this.currentPage);
     } else {
       // eslint-disable-next-line no-alert
-      alert('Error, selecciona empleado.');
+      alert('Selecciona un empleado.');
     }
   }
 
@@ -57,21 +86,21 @@ class PermissionsReportDetailed extends LitElement {
           <label>Empleado:</label>
           <select name="employees" id="employees" @change="${this.selected}">
             <option value=""></option>
-            ${this.employees.map((employee) => {
-              return html`<option value="${employee.name}">${employee.name}</option>`;
+            ${this.list.map((value) => {
+              return html`<option value="${value.name}">${value.name}</option>`;
             })}
           </select>
         </div>
 
         <div>
           <label>Fecha de inicio:</label>
-          <input id="inputDateStart" type="date" />
+          <input id="inputStartDate" type="date" />
           <img src="/assets/calaverosa/icons/calendar.png" alt="imagen calendario" @click="${this.showCalendarStart}" />
         </div>
 
         <div>
           <label>Fecha de fin:</label>
-          <input id="inputDateEnd" type="date" />
+          <input id="inputEndDate" type="date" />
           <img src="/assets/calaverosa/icons/calendar.png" alt="imagen calendario" @click="${this.showCalendarEnd}" />
         </div>
 
@@ -88,16 +117,15 @@ class PermissionsReportDetailed extends LitElement {
             </tr>
           </thead>
           <tbody id="tbody">
-            <tr>
-              <td>${this.emp.date}</td>
-              <td>${this.emp.type}</td>
-              <td>${this.emp.hours}</td>
-            </tr>
-            <tr>
-              <td>${this.emp.date}</td>
-              <td>${this.emp.type}</td>
-              <td>${this.emp.hours}</td>
-            </tr>
+            ${this.newList.length > 0
+              ? this.newList.map((permit) => {
+                  return html` <tr>
+                    <td>${permit.startDate}</td>
+                    <td>${permit.type}</td>
+                    <td>${permit.hours}</td>
+                  </tr>`;
+                })
+              : nothing}
           </tbody>
         </table>
       </div>
