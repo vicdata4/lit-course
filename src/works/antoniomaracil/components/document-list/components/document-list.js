@@ -44,10 +44,6 @@ export class DocumentList extends LitElement {
       .row:first-child {
         border: none;
       }
-      .row:nth-child(even) {
-        background-color: #eeeeee;
-      }
-
       .title {
         width: 70%;
         color: #285659;
@@ -63,7 +59,7 @@ export class DocumentList extends LitElement {
       }
 
       .info {
-        width: 10%;
+        width: 20%;
       }
 
       .info-container {
@@ -105,50 +101,6 @@ export class DocumentList extends LitElement {
         .row.data:hover {
           background-color: #f5f6f7;
         }
-      }
-
-      img {
-        width: 20px;
-        cursor: pointer;
-      }
-      button {
-        border: none;
-        background-color: transparent;
-      }
-      .table-box {
-        border-top: solid 2px black;
-        border-bottom: solid 2px black;
-        margin-top: 1.5rem;
-      }
-      .document-table {
-        border-collapse: collapse;
-        font-size: 0.8rem;
-        empty-cells: hide;
-        width: 100%;
-      }
-      .document-table tr:nth-child(even) {
-        background-color: #eeeeee;
-      }
-      .document-table th {
-        border-left: solid 2px black;
-        border-right: solid 2px black;
-        background-color: #cccccc;
-        font-size: 0.7rem;
-        text-align: left;
-      }
-      .document-table td {
-        border-right: solid 2px black;
-        border-left: solid 2px black;
-      }
-      td {
-        height: 2rem;
-      }
-      .document-table:last-child {
-        text-align: center;
-      }
-      .margin-btn {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
       }
     `;
   }
@@ -199,32 +151,6 @@ export class DocumentList extends LitElement {
               `,
             )}
           </div>
-
-          <fieldset>
-            <legend>Documentación</legend>
-            <div class="table-box">
-              <table class="document-table">
-                <tr>
-                  <th>Nombre documento</th>
-                  <th>Fecha de carga</th>
-                  <th>Eliminar</th>
-                </tr>
-                ${this.list.map(
-                  (item, i) => html`
-                    <tr>
-                      <td><a href="${item.path}" download>${item.name}</a></td>
-                      <td>${formatDate(item.uploadDate)}</td>
-                      <td>
-                        <button @click="${() => this.removeDocument(i)}">
-                          <img src="assets/antoniomaracil/remove.png" alt="remove" />
-                        </button>
-                      </td>
-                    </tr>
-                  `,
-                )}
-              </table>
-            </div>
-          </fieldset>
         </div>
       </div>
     `;
