@@ -161,4 +161,9 @@ export const anotherStyles = css`
       width: 100%;
     }
   }
+  @media (min-width: 890px) {
+    .buttonsWrap {
+      width: 100%;
+    }
+  }
 `;
