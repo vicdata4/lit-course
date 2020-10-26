@@ -196,6 +196,14 @@ export const documentListStyles = css`
   .italic {
     font-style: italic;
   }
+  img {
+    width: 20px;
+    cursor: pointer;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+  }
 
   @media (min-width: 768px) {
     .title {
