@@ -24,8 +24,7 @@ import './works/julieannecodes/julieannecodes-page';
 import './works/xbeni/xbeni-page';
 import './works/vicdata4/vicdata4-page';
 
-export const routing = function() {
-  const outlet = this.shadowRoot.getElementById('root');
+export const routing = (outlet) => {
   const router = new Router(outlet);
 
   var routes = [
@@ -38,10 +37,10 @@ export const routing = function() {
     { path: '/works', component: 'works-view' },
     { path: '/pagination', component: 'pagination-view' },
     { path: '/news-searcher', component: 'news-view' },
-    { path: '(.*)', component: 'not-found-view' }
+    { path: '(.*)', component: 'not-found-view' },
   ];
 
-  users.forEach(user => {
+  users.forEach((user) => {
     routes.unshift({ path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` });
   });
 

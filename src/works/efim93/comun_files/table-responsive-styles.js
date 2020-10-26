@@ -9,7 +9,9 @@ tabla {
 tr {
   text-align: center;
 }
-
+h1:before {
+ font-size: 0.8em;
+}
 td, th { 
   padding: 6px; 
   border: 1px solid #ccc;

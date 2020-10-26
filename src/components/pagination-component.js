@@ -13,7 +13,7 @@ class PaginationComponent extends LitElement {
       }
 
       td {
-        min-width: 200px; 
+        min-width: 200px;
       }
 
       .order {
@@ -23,7 +23,7 @@ class PaginationComponent extends LitElement {
         margin-bottom: 10px;
         cursor: pointer;
       }
-        
+
       .stepper {
         margin: 10px 0;
       }
@@ -51,7 +51,8 @@ class PaginationComponent extends LitElement {
         transform: rotate(180deg);
       }
 
-      .stepper, .step {
+      .stepper,
+      .step {
         user-select: none;
       }
     `;
@@ -64,7 +65,7 @@ class PaginationComponent extends LitElement {
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
     };
   }
 
@@ -88,7 +89,7 @@ class PaginationComponent extends LitElement {
   }
 
   setActiveStep(index) {
-    this.shadowRoot.querySelectorAll('.step').forEach(row => {
+    this.shadowRoot.querySelectorAll('.step').forEach((row) => {
       if (row.id === `_${index}`) {
         row.classList.add('active');
       } else {
@@ -125,7 +126,7 @@ class PaginationComponent extends LitElement {
       return 0;
     });
 
-    if (JSON.stringify(this.list) === JSON.stringify((orderedList))) {
+    if (JSON.stringify(this.list) === JSON.stringify(orderedList)) {
       orderedList.reverse();
     }
 
@@ -137,9 +138,9 @@ class PaginationComponent extends LitElement {
     return html`
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
-        ${this.stepper.map((x, i) => html`
-          <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div>
-        `)}
+        ${this.stepper.map(
+          (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
+        )}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
@@ -150,16 +151,22 @@ class PaginationComponent extends LitElement {
       <div class="container">
         ${this.renderStepper()}
         <table>
-        <tr>
-          <th><button class="order" @click="${() => this.orderList('name')}">Name <span>&#9662;</span></button></th>
-          <th><button class="order" @click="${() => this.orderList('phone')}">Phone <span>&#9662;</span></button></th>
-        </tr>
-        ${this.list.slice(this.from, this.to).map(item => html`
           <tr>
-            <td>${item.name}</td>
-            <td>${item.phone}</td>
+            <th>
+              <button class="order" @click="${() => this.orderList('name')}">Name <span>&#9662;</span></button>
+            </th>
+            <th>
+              <button class="order" @click="${() => this.orderList('phone')}">Phone <span>&#9662;</span></button>
+            </th>
           </tr>
-        `)}
+          ${this.list.slice(this.from, this.to).map(
+            (item) => html`
+              <tr>
+                <td>${item.name}</td>
+                <td>${item.phone}</td>
+              </tr>
+            `,
+          )}
         </table>
       </div>
     `;

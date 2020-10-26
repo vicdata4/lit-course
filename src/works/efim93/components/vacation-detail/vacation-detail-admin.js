@@ -17,7 +17,7 @@ class VacationDetailAdmin extends LitElement {
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
     };
   }
 
@@ -94,8 +94,8 @@ class VacationDetailAdmin extends LitElement {
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
-    (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `
-  )}
+          (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
+        )}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
@@ -143,14 +143,14 @@ class VacationDetailAdmin extends LitElement {
             </thead>
             <tbody>   
               ${this.listaDatos.slice(this.from, this.to).map(
-    (item, i) => html`
+                (item, i) => html`
                   <tr>
                     <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
                     <td><label for="${item.fecha_fin}">${item.fecha_fin}</label></td>
                     <td><label for="dias">${this.calculaDias(item.fecha_inicio, item.fecha_fin)}</label></td>
                   </tr>
-                `
-  )}
+                `,
+              )}
             </tbody>       
           </table>
           <div id="paginator">${this.renderStepper()}</div>

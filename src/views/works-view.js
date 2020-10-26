@@ -25,7 +25,7 @@ class WorksView extends LitElement {
             fill: white;
           }
         }
-      `
+      `,
     ];
   }
 
@@ -34,9 +34,9 @@ class WorksView extends LitElement {
       <common-header></common-header>
       <nav>
         <ul class="menu-list">
-            ${users.map(user => html`
-              <li>${github}<a href="/${user.toLowerCase()}" class="user-link">${user}</a></li>
-            `)}
+          ${users.map(
+            (user) => html` <li>${github}<a href="/${user.toLowerCase()}" class="user-link">${user}</a></li> `,
+          )}
         </ul>
       </nav>
     `;
