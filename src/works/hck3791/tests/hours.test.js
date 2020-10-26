@@ -1,4 +1,4 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import { expect, fixture, html, oneEvent } from '@open-wc/testing';
 import '../components/hours-component';
 
 describe('Hours test', () => {
@@ -11,7 +11,21 @@ describe('Hours test', () => {
     await el.updateComplete;
   });
 
-  it('Works!', async () => {
+  it('Component rendered', async () => {
     expect(el.shadowRoot).not.to.be.null;
+  });
+
+  it('Generate report - All data', async () => {
+    el.shadowRoot.getElementById('employees').value = 'Employee 1';
+    el.shadowRoot.getElementById('project').value = 'Project 1';
+    el.shadowRoot.getElementById('years').value = '2020';
+    el.shadowRoot.querySelector('button').click();
+  });
+
+  it('Generate report - No data', async () => {
+    el.shadowRoot.getElementById('employees').value = 'Employee 3';
+    el.shadowRoot.getElementById('project').value = 'Project 3';
+    el.shadowRoot.getElementById('years').value = '2024';
+    el.shadowRoot.querySelector('button').click();
   });
 });

@@ -38,11 +38,11 @@ class HoursComponent extends LitElement {
 
   generateReport() {
     const employee = this.shadowRoot.getElementById('employees').value;
-    const proyect = this.shadowRoot.getElementById('project').value;
+    const project = this.shadowRoot.getElementById('project').value;
     const year = this.shadowRoot.getElementById('years').value;
 
-    if (employee && proyect && year) {
-      const data = employees[employee][proyect][year];
+    if (employee && project && year) {
+      const data = employees[employee][project][year];
       if (data && data.length > 0) {
         this.months = [...data];
       } else {
@@ -80,8 +80,8 @@ class HoursComponent extends LitElement {
             <select name="project" id="project" @change="${this.selected}">
               <option value=""></option>
               ${this.project != null
-                ? this.project.map((proyect) => {
-                    return html`<option value="${proyect}">${proyect}</option>`;
+                ? this.project.map((project) => {
+                    return html`<option value="${project}">${project}</option>`;
                   })
                 : nothing}
             </select>
