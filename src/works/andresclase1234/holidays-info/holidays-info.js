@@ -154,6 +154,10 @@ export class HolidaysInfo extends LitElement {
     `;
   }
 
+  getFormattedDate(date) {
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  }
+
   render() {
     return html`
       <div class="container">
@@ -175,20 +179,9 @@ export class HolidaysInfo extends LitElement {
           ${this.list.slice(this.from, this.to).map(
             (item) => html`
               <tr>
-                <td>
-                  ${item.holidayFrom.getDate() +
-                  '/' +
-                  (item.holidayFrom.getMonth() + 1) +
-                  '/' +
-                  item.holidayFrom.getFullYear()}
-                </td>
-                <td>
-                  ${item.holidayTo.getDate() +
-                  '/' +
-                  (item.holidayTo.getMonth() + 1) +
-                  '/' +
-                  item.holidayTo.getFullYear()}
-                </td>
+                <td>${this.getFormattedDate(item.holidayFrom)}</td>
+                <td>${this.getFormattedDate(item.holidayTo)}</td>
+
                 <td>${(item.holidayTo.getTime() - item.holidayFrom.getTime()) / 86400000}</td>
               </tr>
             `,
