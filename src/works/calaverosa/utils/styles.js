@@ -52,6 +52,7 @@ export const mediaQueriesStyles = css`
   }
 `;
 
+// css permissions-report-detailed //
 export const tableFormat = css`
   .permissions-report-ctr {
     display: flex;
@@ -75,11 +76,18 @@ export const tableFormat = css`
     width: 10%;
   }
 
-  img {
+  .calendar {
     width: 1.5%;
     margin-left: 1%;
     cursor: pointer;
   }
+
+  .arrow-str {
+    width: 10px;
+    float: right;
+    cursor: pointer;
+  }
+
   div select:focus {
     outline: none;
   }
@@ -109,9 +117,15 @@ export const tableFormat = css`
   table th {
     border-right: 1px solid black;
     padding: 4px 10px 4px 5px;
+    width: 10%;
   }
 
-  button {
+  th:first-child,
+  th:last-child {
+    width: 5%;
+  }
+
+  #generateReport {
     background-color: black;
     color: white;
     font-size: 10px;
@@ -120,5 +134,23 @@ export const tableFormat = css`
     border-radius: 5px;
     padding: 5px 20px;
     cursor: pointer;
+  }
+
+  #previous-btn,
+  #next-btn {
+    width: 2%;
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 1%;
+  }
+
+  #navigation #nPages {
+    margin-top: 1.5%;
+    margin-left: 0.5%;
+  }
+
+  .no-visible {
+    visibility: hidden;
   }
 `;
