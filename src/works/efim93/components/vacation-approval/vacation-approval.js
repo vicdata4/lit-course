@@ -123,7 +123,8 @@ class VacationApproval extends LitElement {
   render() {
     return html`
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <section>
+     <section class="container">
+          <h1>Aprobación de vacaciones</h1>
             <table id="tabla" class="table table-striped">
             <caption>Solicitud de vacaciones de los Empleados</caption>
                 <thead>
