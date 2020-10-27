@@ -1,94 +1,138 @@
-export const employees = {
-  'Employee 1': {
-    'Project 1': {
-      2020: [
-        {
-          month: 'Enero',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Febrero',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-      2021: [
-        {
-          month: 'Marzo',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Abril',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-    },
-    'Project 2': {
-      2020: [
-        {
-          month: 'Enero',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Febrero',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-      2021: [
-        {
-          month: 'Marzo',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Abril',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-    },
+export const hoursData = [
+  {
+    id: 1,
+    name: 'Employee 1',
+    projects: [
+      {
+        name: 'Project 1',
+        years: [
+          {
+            year: 2020,
+            months: [
+              {
+                month: 'Enero',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Febrero',
+                hours: [100, 0, 25, 30, 0, 8]
+              }
+            ]
+          },
+          {
+            year: 2021,
+            months: [
+              {
+                month: 'Marzo',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Abril',
+                hours: [50, 0, 25, 20, 0, 8]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Project 2',
+        years: [
+          {
+            year: 2020,
+            months: [
+              {
+                month: 'Enero',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Febrero',
+                hours: [100, 0, 25, 30, 0, 8]
+              }
+            ]
+          },
+          {
+            year: 2021,
+            months: [
+              {
+                month: 'Marzo',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Abril',
+                hours: [50, 0, 25, 20, 0, 8]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
-  'Employee 2': {
-    'Project 1': {
-      2020: [
-        {
-          month: 'Mayo',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Junio',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-      2021: [
-        {
-          month: 'Julio',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Agosto',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-    },
-    'Project 2': {
-      2020: [
-        {
-          month: 'Septiembre',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Octubre',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-      2021: [
-        {
-          month: 'Noviembre',
-          hours: [100, 0, 0, 22, 0, 8],
-        },
-        {
-          month: 'Diciembre',
-          hours: [50, 0, 0, 20, 0, 8],
-        },
-      ],
-    },
-  },
-};
+  {
+    id: 1,
+    name: 'Employee 2',
+    projects: [
+      {
+        name: 'Project 1',
+        years: [
+          {
+            year: 2020,
+            months: [
+              {
+                month: 'Enero',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Febrero',
+                hours: [100, 0, 25, 30, 0, 8]
+              }
+            ]
+          },
+          {
+            year: 2021,
+            months: [
+              {
+                month: 'Marzo',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Abril',
+                hours: [50, 0, 25, 20, 0, 8]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Project 2',
+        years: [
+          {
+            year: 2020,
+            months: [
+              {
+                month: 'Mayo',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Junio',
+                hours: [100, 0, 25, 30, 0, 8]
+              }
+            ]
+          },
+          {
+            year: 2021,
+            months: [
+              {
+                month: 'Julio',
+                hours: [100, 22, 0, 10, 5, 8]
+              },
+              {
+                month: 'Agosto',
+                hours: [50, 0, 25, 20, 0, 8]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+];

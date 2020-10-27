@@ -1,7 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { nothing } from 'lit-html';
 import { hoursStyles } from '../styles/hours-styles';
-import { employees } from '../data/hours-data';
 
 class HoursComponent extends LitElement {
   static get styles() {
@@ -10,16 +8,21 @@ class HoursComponent extends LitElement {
 
   static get properties() {
     return {
+      names: { type: Array },
+      projects: { type: Array },
+      years: { type: Array },
+      projectMonths: { type: Array },
       months: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.employees = Object.keys(employees);
-    this.project = ['Project 1', 'Project 2'];
-    this.years = [2020, 2021, 2022];
-    this.monthsList = [
+    this.names = [];
+    this.projects = [];
+    this.years = [];
+    this.projectMonths = [];
+    this.months = [
       'Enero',
       'Febrero',
       'Marzo',
@@ -33,31 +36,54 @@ class HoursComponent extends LitElement {
       'Noviembre',
       'Diciembre',
     ];
-    this.months = [];
+  }
+
+  firstUpdated() {
+    this.data.forEach((employee) => {
+      this.names.push(employee.name);
+    });
+    this.requestUpdate();
+  }
+
+  selected(e) {
+    let selection;
+
+    if (e.target.id === 'employees') {
+      selection = e.target.value;
+      const employee = this.data.find((employee) => employee.name === selection);
+      this.projects = [...employee.projects];
+    } else {
+      selection = e.target.value;
+      const project = this.projects.find((project) => project.name === selection);
+      this.years = [...project.years];
+    }
+    this.requestUpdate();
   }
 
   generateReport() {
-    const employee = this.shadowRoot.getElementById('employees').value;
-    const project = this.shadowRoot.getElementById('project').value;
-    const year = this.shadowRoot.getElementById('years').value;
+    const optionEmp = this.shadowRoot.getElementById('employees').value;
+    const optionPro = this.shadowRoot.getElementById('projects').value;
+    const optionYear = this.shadowRoot.getElementById('years').value;
 
-    if (employee && project && year) {
-      const data = employees[employee][project][year];
-      if (data && data.length > 0) {
-        this.months = [...data];
+    if (optionEmp !== 'default' && optionPro !== 'default' && optionYear !== 'default') {
+      const projects = this.data.find((obj) => obj.name === optionEmp).projects;
+      const years = projects.find((obj) => obj.name === optionPro).years;
+      const year = years.find((obj) => obj.year === parseInt(optionYear));
+
+      if (year && year.months.length > 0) {
+        this.projectMonths = [...year.months];
       } else {
-        this.months = [];
-        // eslint-disable-next-line no-alert
-        alert('No se han encontrado registros');
+        this.projectMonths = [];
       }
     } else {
       // eslint-disable-next-line no-alert
-      alert('Rellena todos los campos');
+      alert('Seleccione todos los campos');
+      this.projectMonths = [];
     }
   }
 
   findMonth(month) {
-    return this.months.find((x) => x.month === month) || { month: {}, hours: [] };
+    return this.projectMonths.find((obj) => obj.month === month) || { month: {}, hours: [] };
   }
 
   render() {
@@ -68,31 +94,29 @@ class HoursComponent extends LitElement {
           <div class="filters">
             <label>Empleado</label>
             <select name="employees" id="employees" @change="${this.selected}">
-              <option value=""></option>
-              ${this.employees.map((employee) => {
-                return html`<option value="${employee}">${employee}</option>`;
+              <option value="default"></option>
+              ${this.names.map((obj) => {
+                return html`<option value="${obj}">${obj}</option>`;
               })}
             </select>
           </div>
 
           <div class="filters">
             <label>Proyecto</label>
-            <select name="project" id="project" @change="${this.selected}">
-              <option value=""></option>
-              ${this.project != null
-                ? this.project.map((project) => {
-                    return html`<option value="${project}">${project}</option>`;
-                  })
-                : nothing}
+            <select name="projects" id="projects" @change="${this.selected}">
+              <option value="default"></option>
+              ${this.projects.map((obj) => {
+                return html`<option value="${obj.name}">${obj.name}</option>`;
+              })}
             </select>
           </div>
 
           <div class="filters">
             <label>Año</label>
-            <select name="years" id="years" @change="${this.selected}">
-              <option value=""></option>
-              ${this.years.map((year) => {
-                return html`<option value="${year}">${year}</option>`;
+            <select name="years" id="years">
+              <option value="default"></option>
+              ${this.years.map((obj) => {
+                return html`<option value="${obj.year}">${obj.year}</option>`;
               })}
             </select>
           </div>
@@ -101,7 +125,7 @@ class HoursComponent extends LitElement {
             <button @click="${this.generateReport}" id="generateReport">Generar reporte</button>
           </div>
 
-          <table>
+          <table id="table">
             <thead>
               <tr>
                 <th>Mes</th>
@@ -114,7 +138,7 @@ class HoursComponent extends LitElement {
               </tr>
             </thead>
             <tbody>
-              ${this.monthsList.map(
+              ${this.months.map(
                 (month) => html`
                   <tr id="${month}">
                     <td>${month}</td>
