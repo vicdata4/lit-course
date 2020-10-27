@@ -39,7 +39,7 @@ class HolidaysForm extends LitElement {
     const currentDate = new Date();
     const obj = {
       id: this.id,
-      currentDate: currentDate,
+      applicationD: currentDate,
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',

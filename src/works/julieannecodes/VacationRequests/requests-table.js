@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
-import { mediaQueries, tableStyles } from '../utils/custom-styles';
+import { anotherStyles, mediaQueries } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class RequestsTable extends LitElement {
   static get styles() {
-    return [tableStyles, mediaQueries];
+    return [anotherStyles, mediaQueries];
   }
 
   static get properties() {
@@ -16,7 +16,6 @@ class RequestsTable extends LitElement {
       orderType: { type: Array, attribute: false },
       fromT: { type: Number },
       toT: { type: Number },
-      firstIndex: { type: Number },
     };
   }
 
@@ -33,7 +32,6 @@ class RequestsTable extends LitElement {
       'Eliminar',
     ];
     this.orderType = ['currentDate', 'startDate', 'endDate'];
-    this.firstIndex = 0;
     this.toT = 0;
     this.fromT = 0;
   }
@@ -62,38 +60,44 @@ class RequestsTable extends LitElement {
 
   tableL() {
     return html`
-      <div class="tableDiv">
-        <table>
-          <tr>
-            ${this.tableTitles.map(
-              (items, i) => html`<th>
-                ${items}
-                ${items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
-                  ? html` <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">
-                      &#x25B2;
-                    </button>`
-                  : nothing}
-              </th>`,
-            )}
-          </tr>
-          ${this.requestsList.slice(this.fromT, this.toT).map(
-            (item) => html`<tr>
-              <td>${dateFormatter(item.currentDate).solicitudDate}</td>
-              <td>${dateFormatter(item.startDate).tableDate}</td>
-              <td>${dateFormatter(item.endDate).tableDate}</td>
-              <td>${item.status}</td>
-              <td>${dateFormatter(item.statusDate).tableDate}</td>
-              <td>
-                <div class="buttonWrap">
-                  <button class="deleteB" @click="${() => this.deleteDate(item.id)}">
-                    <img src="/assets/images/trash.png" />
-                  </button>
+      <h3>Ordenar por:</h3>
+      <div class="buttonsWrap">
+        ${this.tableTitles.map((items, i) =>
+          items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
+            ? html`
+                <div class="order">
+                  ${items}
+                  <button class="icon" id="${this.orderType[i]}" value="asc" @click="${this.order}">&#x25B2;</button>
                 </div>
-              </td>
-            </tr>`,
-          )}
-        </table>
+              `
+            : nothing,
+        )}
       </div>
+      ${this.requestsList.slice(this.fromT, this.toT).map(
+        (item, i) => html`
+          <div id="${item.id}" class="dataRows">
+            <details class="detailsWrap">
+              <summary class="summaryWrap">
+                <span>Inicio: </span>${dateFormatter(item.startDate).tableDate} <span> Fin: </span>${dateFormatter(
+                  item.endDate,
+                ).tableDate}
+              </summary>
+              <div class="contents">
+                <div><span>${this.tableTitles[0]}:</span>${dateFormatter(item.applicationD).solicitudDate}</div>
+                <div><span>${this.tableTitles[1]}:</span>${dateFormatter(item.startDate).tableDate}</div>
+                <div><span>${this.tableTitles[2]}:</span>${dateFormatter(item.endDate).tableDate}</div>
+                <div><span>${this.tableTitles[3]}:</span>${item.status}</div>
+                <div><span>${this.tableTitles[4]}:</span>${dateFormatter(item.statusDate).tableDate}</div>
+              </div>
+              <div class="buttonWrap">
+                <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}">
+                  <img src="/assets/images/trash.png" />
+                </button>
+              </div>
+            </details>
+          </div>
+        `,
+      )}
     `;
   }
 
