@@ -25,8 +25,8 @@ export class DescripcionPeticiones extends LitElement {
       <div id="divdesc">
         <section>
           <div id="titulo">
-            <h2>Título:${this.peticiones ? this.peticiones.Titulo : ''}</h2>
-            <h2>Fecha de publicacion: ${this.peticiones ? this.peticiones.FechaPublicacion : ''}</h2>
+            <h2 id="h2titulo">Título:${this.peticiones ? this.peticiones.Titulo : ''}</h2>
+            <h2 id="h2fecha">Fecha de publicacion: ${this.peticiones ? this.peticiones.FechaPublicacion : ''}</h2>
           </div>
           <div>
             <h2>Descripción:</h2>

@@ -42,6 +42,11 @@ export const peticionesCSS = css`
     flex-direction: row;
     justify-content: space-between;
   }
+
+  #h2fecha {
+    text-align: right;
+  }
+
   #reqContainer {
     border: solid black 1px;
     padding-left: 10px;
