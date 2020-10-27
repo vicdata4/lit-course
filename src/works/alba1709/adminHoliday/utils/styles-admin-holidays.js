@@ -18,7 +18,8 @@ export const viewHoliday = css`
     background-color: #eeeeee;
   }
 
-  td, th {
+  td,
+  th {
     border-right: solid 3px black;
     border-left: solid 3px black;
     font-family: 'Open Sans', sans-serif;
@@ -29,8 +30,9 @@ export const viewHoliday = css`
     background-color: #cccccc;
   }
 
-  h2, select {
-    font-family: 'Open Sans', sans-serif; 
+  h2,
+  select {
+    font-family: 'Open Sans', sans-serif;
   }
 
   select {
@@ -42,10 +44,10 @@ export const viewHoliday = css`
     border: none;
     outline: none;
     cursor: pointer;
-    transition: transform .2s ease-in;
+    transition: transform 0.2s ease-in;
     font-size: 20px;
   }
-  
+
   .btnOrder.rotate {
     transform: rotate(180deg);
   }
@@ -77,9 +79,10 @@ export const viewHoliday = css`
     transform: rotate(180deg);
   }
 
-  .stepper, .step {
+  .stepper,
+  .step {
     user-select: none;
-  }  
+  }
 
   @media (min-width: 768px) {
     #tableAdmin {
@@ -88,7 +91,5 @@ export const viewHoliday = css`
     select {
       width: 100%;
     }
-    
   }
-
 `;

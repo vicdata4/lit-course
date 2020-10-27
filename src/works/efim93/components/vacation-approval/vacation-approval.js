@@ -19,7 +19,7 @@ class VacationApproval extends LitElement {
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
-      to: { type: Number, attribute: false }
+      to: { type: Number, attribute: false },
     };
   }
 
@@ -36,7 +36,7 @@ class VacationApproval extends LitElement {
     this.options = [
       { value: '0', text: 'Pendiente de Aprobación' },
       { value: '1', text: 'Aprobado' },
-      { value: '2', text: 'No Aprobado' }
+      { value: '2', text: 'No Aprobado' },
     ];
     this.nElements = 10;
     this.stepper = [];
@@ -55,7 +55,7 @@ class VacationApproval extends LitElement {
           fecha_inicio: this.listaDatos[i].fecha_inicio,
           fecha_fin: this.listaDatos[i].fecha_fin,
           estado: event.target.value,
-          fecha_estado: formatDate(today).default
+          fecha_estado: formatDate(today).default,
         };
         this.listaDatos = [...this.listaDatos];
       }
@@ -122,8 +122,8 @@ class VacationApproval extends LitElement {
       <div class="stepper">
         <div class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
-    (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `
-  )}
+          (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
+        )}
         <div class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
@@ -137,22 +137,22 @@ class VacationApproval extends LitElement {
                         <th>
                             <label for="nombreApellido">Nombre Apellido</label>
                             <button @click="${() =>
-    this.orderList('nombre_apellido')}" class="order" >${svgArrowsSort}</button>
+                              this.orderList('nombre_apellido')}" class="order" >${svgArrowsSort}</button>
                         </th>
                         <th>
                             <label for="fechadeSolicitud">Fecha de solicitud</label>
                             <button @click="${() =>
-    this.orderList('fecha_solicitud')}" class="order" >${svgArrowsSort}</button>
+                              this.orderList('fecha_solicitud')}" class="order" >${svgArrowsSort}</button>
                         </th>
                         <th>
                             <label for="fechadeInicio">Fecha de inicio</label>
                             <button @click="${() =>
-    this.orderList('fecha_inicio')}" class="order" >${svgArrowsSort}</button>
+                              this.orderList('fecha_inicio')}" class="order" >${svgArrowsSort}</button>
                         </th>
                         <th>
                             <label for="fechafinal">Fecha Final</label>
                             <button @click="${() =>
-    this.orderList('fecha_fin')}" class="order" >${svgArrowsSort}</button></th>
+                              this.orderList('fecha_fin')}" class="order" >${svgArrowsSort}</button></th>
                         </th>
                         <th><label for="estado">Estado</label></th>
                         <th><label for="fechadeEstado">Fecha de Estado</label></th>
@@ -160,8 +160,8 @@ class VacationApproval extends LitElement {
                 </thead>
                 <tbody>   
                     ${this.listaDatos.slice(this.from, this.to).map(
-    (item, i) => html`
-                        <tr class="${(i % 2) === 0 ? 'fila_par' : 'fila_impar'}">
+                      (item, i) => html`
+                        <tr class="${i % 2 === 0 ? 'fila_par' : 'fila_impar'}">
                           <td><label for="${item.nombre_apellido}">${item.nombre_apellido}</label></td>
                           <td><label for="${item.fecha_solicitud}">${item.fecha_solicitud}</label></td>
                           <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
@@ -174,7 +174,7 @@ class VacationApproval extends LitElement {
                               @change="${(e) => this.onSelectChange(e, item, i)}"
                             >
                               ${this.options.map(
-    (option) => html`
+                                (option) => html`
                                   <option
                                     selected="${ifDefined(option.value === item.estado ? 'true' : undefined)}"
                                     value="${option.value}"
@@ -182,14 +182,14 @@ class VacationApproval extends LitElement {
                                   >
                                     ${option.text}
                                   </option>
-                                `
-  )}
+                                `,
+                              )}
                             </select>
                           </td>
                           <td><label for="${item.fecha_estado}">${item.fecha_estado}</label></td>
                         </tr>
-                      `
-  )}
+                      `,
+                    )}
                 </tbody>       
         </table>
         ${this.renderStepper()}

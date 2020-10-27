@@ -6,7 +6,7 @@ export const employeeRequest = [
     dStart: new Date('2020-12-01'),
     dEnd: new Date('2020-12-15'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-11-16')
+    dStatus: new Date('2020-11-16'),
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const employeeRequest = [
     dStart: new Date('2020-10-10'),
     dEnd: new Date('2020-10-17'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-09-17')
+    dStatus: new Date('2020-09-17'),
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const employeeRequest = [
     dStart: new Date('2020-07-09'),
     dEnd: new Date('2020-08-12'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-04-07')
+    dStatus: new Date('2020-04-07'),
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const employeeRequest = [
     dStart: new Date('2020-08-02'),
     dEnd: new Date('2020-08-22'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-05-19')
+    dStatus: new Date('2020-05-19'),
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const employeeRequest = [
     dStart: new Date('2020-11-21'),
     dEnd: new Date('2020-11-30'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-10-14')
+    dStatus: new Date('2020-10-14'),
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ export const employeeRequest = [
     dStart: new Date('2020-09-26'),
     dEnd: new Date('2020-10-08'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-08-20')
+    dStatus: new Date('2020-08-20'),
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ export const employeeRequest = [
     dStart: new Date('2020-11-18'),
     dEnd: new Date('2020-12-24'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-09-12')
+    dStatus: new Date('2020-09-12'),
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ export const employeeRequest = [
     dStart: new Date('2020-10-02'),
     dEnd: new Date('2020-10-15'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-08-08')
+    dStatus: new Date('2020-08-08'),
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ export const employeeRequest = [
     dStart: new Date('2021-01-15'),
     dEnd: new Date('2021-02-14'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-08-17')
+    dStatus: new Date('2020-08-17'),
   },
   {
     id: 10,
@@ -87,6 +87,6 @@ export const employeeRequest = [
     dStart: new Date('2020-12-15'),
     dEnd: new Date('2021-01-05'),
     status: 'Pendiente de aprobación',
-    dStatus: new Date('2020-10-05')
-  }
+    dStatus: new Date('2020-10-05'),
+  },
 ];
