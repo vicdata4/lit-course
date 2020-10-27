@@ -1,6 +1,8 @@
 import { LitElement, html } from 'lit-element';
 import { peticiones } from './peticiones';
 import { listaPeticionesCSS } from './styles/peticionesCSS';
+import '../jhumekes/descripcion-peticiones';
+
 export class VisualizacionPeticiones extends LitElement {
   static get styles() {
     return [listaPeticionesCSS];
