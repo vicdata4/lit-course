@@ -1,7 +1,7 @@
 import { css } from 'lit-element';
 
 export const newStyles = css`
-tabla { 
+#tabla { 
   width: 100%; 
   border-collapse: collapse; 
 }
@@ -20,15 +20,7 @@ tr {
 
 td, th { 
   padding: 6px; 
-  border: 1px solid #ccc;
-  text-align: left; 
-}
-
-#select{
-  border: 1px solid #ccc;
-  width: 120px;
-  border-radius: 3px;
-  overflow: hidden;
+  border: 1px solid #ccc; 
 }
 
 @media 
@@ -37,7 +29,16 @@ only screen and (max-width: 760px),
   label #select{
   font-size:1.2em;
 }
-    
+ 
+#select{
+  border: 1px solid #ccc;
+  width: 50%;
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
 table, thead, tbody, th, td, tr { 
   display: block; 
 }
@@ -55,6 +56,9 @@ td {
   border-bottom: 1px solid #eee; 
   position: relative;
   padding-left: 50%; 
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 
 .i0 .i1 .i2{
@@ -63,11 +67,13 @@ td {
 
 td:before { 
   position: absolute;
-  top: 5px;
-  left: 30px;
-  width: 85%; 
-  padding-right: 40px; 
+  top: 20%;
+  left: 3%;
+  width: 50%; 
+  text-aling: right;
   white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
       
 td:nth-of-type(1):before { content: "Nombre Apellido:"; }
