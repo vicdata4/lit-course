@@ -91,11 +91,11 @@ export class AdminVacationForm extends LitElement {
   renderStepper() {
     return html`
       <div class="stepper">
-        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        <div id="prev" class="step left" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
           (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
         )}
-        <div class="step" @click="${this.next}">&#x25B7;</div>
+        <div id="next" class="step" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
   }

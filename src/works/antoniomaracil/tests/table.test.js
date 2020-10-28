@@ -16,32 +16,12 @@ describe('Empty applications table', () => {
   });
 
   it('Render only table header', async () => {
-    const list = el.shadowRoot.querySelectorAll('td');
-    expect(list.length).equal(0);
+    const cells = el.shadowRoot.querySelectorAll('td');
+    expect(cells.length).equal(0);
   });
 });
 
-describe('Table with data and pagination = 3 (default)', () => {
-  let el;
-
-  before(async () => {
-    const component = html` <admin-vacation-form .list="${empData}"></list-component> `;
-
-    el = await fixture(component);
-    await el.updateComplete;
-  });
-
-  it('List is rendered correctly', async () => {
-    expect(el.shadowRoot).not.to.be.null;
-  });
-
-  it('Show 4 rows when the list length is bigger', async () => {
-    const list = el.shadowRoot.querySelectorAll('tr');
-    expect(list.length).equal(4);
-  });
-});
-
-describe('Table with data and pagination = 10 (max)', () => {
+describe('When list length is bigger than pagination', () => {
   let el;
 
   before(async () => {
@@ -55,12 +35,31 @@ describe('Table with data and pagination = 10 (max)', () => {
     expect(el.shadowRoot).not.to.be.null;
   });
 
-  it('Show 11 rows when the list length is bigger', async () => {
-    const list = el.shadowRoot.querySelectorAll('tr');
-    expect(list.length).equal(11);
+  it('Show many rows as pagination + 1 (header)', async () => {
+    const rows = el.shadowRoot.querySelectorAll('tr');
+    expect(rows.length).equal(el.nElements + 1);
   });
 });
 
+describe('When list length is less than pagination', () => {
+  let el;
+
+  before(async () => {
+    const component = html` <admin-vacation-form .list="${empData}" .nElements="${15}"></list-component> `;
+
+    el = await fixture(component);
+    await el.updateComplete;
+  });
+
+  it('List is rendered correctly', async () => {
+    expect(el.shadowRoot).not.to.be.null;
+  });
+
+  it('Show many rows as array elements + 1 (header)', async () => {
+    const rows = el.shadowRoot.querySelectorAll('tr');
+    expect(rows.length).equal(el.list.length + 1);
+  });
+});
 describe('Order method', () => {
   let el;
 
@@ -84,14 +83,41 @@ describe('Order method', () => {
 
     expect(count).equal(8);
   });
-  describe('Pagination navigate', () => {
-    let el;
+  /*
+  it('Order method works properly', async () => {
+    const newList = orderedList(empData, 'name');
+    const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
+    orderButton.click();
+    const stringNewList = JSON.stringify(newList);
+    const ellist = JSON.stringify(el.list);
+    expect(stringNewList).equal(ellist);
+  }); */
+});
 
-    before(async () => {
-      const component = html` <admin-vacation-form .list="${empData}"></list-component> `;
+describe('Pagination navigate', () => {
+  let el;
 
-      el = await fixture(component);
-      await el.updateComplete;
-    });
+  before(async () => {
+    const component = html` <admin-vacation-form .list="${empData}" .nElements="${10}"></list-component> `;
+
+    el = await fixture(component);
+    await el.updateComplete;
+  });
+  it('Show next page properly', async () => {
+    const nextButton = el.shadowRoot.getElementById('next');
+    nextButton.click();
+    expect(el.index).equal(1);
+  });
+  it('Show the same page when array lenght is over', async () => {
+    expect(el.index).equal(1);
+  });
+  it('Show the same page when index is 0', async () => {
+    const nextButton = el.shadowRoot.getElementById('prev');
+    nextButton.click();
+    expect(el.index).equal(0);
+  });
+  it('Show the correct number of pages', async () => {
+    const stepper = Math.ceil(empData.length / 10);
+    expect(stepper).equal(el.stepper.length);
   });
 });
