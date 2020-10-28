@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { formPeticion } from '../utils/costum-css.js';
 
-export default class FormPetition extends LitElement {
+class FormPetition extends LitElement {
   static get styles() {
     return [formPeticion];
   }
