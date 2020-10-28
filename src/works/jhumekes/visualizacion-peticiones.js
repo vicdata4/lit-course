@@ -17,7 +17,6 @@ export class VisualizacionPeticiones extends LitElement {
   constructor() {
     super();
     this.data = peticiones;
-    // const params = new URLSearchParams(window.location.search);
   }
 
   render() {

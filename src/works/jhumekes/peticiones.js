@@ -9,6 +9,6 @@ export const peticiones = [
     id: 2,
     Titulo: 'Analista Programador Java',
     FechaPublicacion: '18/08/2020',
-    Descripcion: ['Un año de experiencia mínimo.', 'Las Tablas.', ['Definición y supervisión de proyectos']],
+    Descripcion: ['Un año de experiencia mínimo.', 'Las Tablas.', ['Definición, gestión y supervisión de proyectos']],
   },
 ];

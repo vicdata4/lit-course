@@ -8,7 +8,6 @@ export class DescripcionPeticiones extends LitElement {
 
   static get properties() {
     return {
-      // desc: { type: Array },
       id: { type: Number },
       peticiones: { type: Object },
     };

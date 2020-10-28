@@ -49,7 +49,7 @@ export const peticionesCSS = css`
 
   #reqContainer {
     border: solid black 1px;
-    padding-left: 10px;
+    padding-left: 11px;
   }
 
   p {
