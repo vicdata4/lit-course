@@ -58,9 +58,8 @@ describe('Form functions', () => {
     submit.click();
     await element.updateComplete;
 
-    if (element.validated) {
-      expect(event).calledOnce;
-      expect(event.args[0][0].type).to.equal('send-dates');
-    }
+    element.validated = true;
+    expect(event).calledOnce;
+    expect(event.args[0][0].type).to.equal('send-dates');
   });
 });

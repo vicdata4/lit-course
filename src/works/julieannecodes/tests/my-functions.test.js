@@ -27,6 +27,6 @@ describe('Order items function', async () => {
   const idSortedBy = [1, 2, 7, 6, 3, 5, 4, 0, 9, 8];
 
   it('Returns array correctly sorted asc', async () => {
-    expect(...orderItems(array, order).map((item) => item.id)).equal(...idSortedBy.map((id) => id));
+    expect(orderItems(array, order).id).to.eql(idSortedBy.id);
   });
 });

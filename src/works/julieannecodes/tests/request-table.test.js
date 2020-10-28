@@ -16,16 +16,16 @@ const data = [
   {
     id: 0,
     currentDate: new Date('2020/09/16'),
-    startDate: new Date('2020/12/15'),
-    endDate: new Date('2020/01/12'),
+    startDate: new Date('2020/01/12'),
+    endDate: new Date('2020/01/20'),
     status: 'No Aprobado',
     statusDate: new Date('2020/09/16'),
   },
   {
     id: 1,
     currentDate: new Date('2020/08/15'),
-    startDate: new Date('2020/09/11'),
-    endDate: new Date('2020/09/22'),
+    startDate: new Date('2020/09/13'),
+    endDate: new Date('2020/09/28'),
     status: 'Pendiente de aprobación',
     statusDate: new Date('2020/08/17'),
   },
@@ -33,7 +33,7 @@ const data = [
     id: 2,
     currentDate: new Date('2020/08/15'),
     startDate: new Date('2020/09/11'),
-    endDate: new Date('2020/09/10'),
+    endDate: new Date('2020/09/27'),
     status: 'Pendiente de aprobación',
     statusDate: new Date('2020/08/17'),
   },
@@ -43,8 +43,8 @@ const sortedData = [
   {
     id: 0,
     currentDate: new Date('2020/09/16'),
-    startDate: new Date('2020/12/15'),
-    endDate: new Date('2020/01/12'),
+    startDate: new Date('2020/01/12'),
+    endDate: new Date('2020/01/20'),
     status: 'No Aprobado',
     statusDate: new Date('2020/09/16'),
   },
@@ -52,21 +52,23 @@ const sortedData = [
     id: 2,
     currentDate: new Date('2020/08/15'),
     startDate: new Date('2020/09/11'),
-    endDate: new Date('2020/09/10'),
+    endDate: new Date('2020/09/27'),
     status: 'Pendiente de aprobación',
     statusDate: new Date('2020/08/17'),
   },
   {
     id: 1,
     currentDate: new Date('2020/08/15'),
-    startDate: new Date('2020/09/11'),
-    endDate: new Date('2020/09/22'),
+    startDate: new Date('2020/09/13'),
+    endDate: new Date('2020/09/28'),
     status: 'Pendiente de aprobación',
     statusDate: new Date('2020/08/17'),
   },
 ];
 
-describe('Default properties and table rendering', () => {
+const component = html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}" .fromT="${0}" .toT="${2}">
+</requests-table>`;
+describe('Default properties and empty table', () => {
   let element;
 
   before(async () => {
@@ -77,27 +79,34 @@ describe('Default properties and table rendering', () => {
 
   it('Default properties', async () => {
     expect(element.sortedArray.length).equal(0);
-    expect(...element.tableTitles).equal(...tableTitles);
-    expect(...element.orderType).equal(...orderType);
+    expect(element.tableTitles).to.eql(tableTitles);
+    expect(element.orderType).to.eql(orderType);
     expect(element.toT).equal(0);
     expect(element.fromT).equal(0);
   });
 
-  it('Table with data', () => {
-    let element;
+  it('Empty table and array', () => {
+    expect(element.shadowRoot).not.to.be.null;
+    expect(element.requestsList.length).equal(0);
+  });
+});
 
-    before(async () => {
-      const component = html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}"></requests-table>`;
+describe('Table with data', async () => {
+  let el;
 
-      element = await fixture(component);
-      await element.updateComplete;
-    });
+  before(async () => {
+    el = await fixture(component);
+    await el.updateComplete;
+  });
+
+  it('Table is rendered correctly', async () => {
+    expect(el.shadowRoot).not.to.be.null;
+    expect(el.requestsList.length).equal(3);
   });
 });
 
 describe('Order func', () => {
   let element, orderButton;
-
   before(async () => {
     element = await fixture(
       html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}"></requests-table>`,
@@ -107,22 +116,21 @@ describe('Order func', () => {
     orderButton = element.shadowRoot.querySelectorAll('.order');
   });
 
-  it('Ascending order', async () => {
-    const arr = orderButton;
-    arr[2].click();
+  it('Ascending order by endDate', async () => {
+    orderButton[2].click();
     await element.updateComplete;
-    expect(...element.requestsList.map((item) => item.id)).equal(...sortedData.map((x) => x.id));
-    expect(arr[2].value).equal('desc');
+
+    expect(element.requestsList).to.eql(sortedData);
+    expect(orderButton[2].value).equal('desc');
   });
 
-  it('Descending order', async () => {
-    const arr = orderButton;
+  it('Descending order by endDate', async () => {
     const arrReversed = [...data.reverse()];
-    arr[2].click();
+    orderButton[2].click();
     await element.updateComplete;
 
-    expect(...element.requestsList.map((item) => item.id)).equal(...arrReversed.map((x) => x.id));
-    expect(arr[2].value).equal('asc');
+    expect(element.requestsList).to.eql(arrReversed);
+    expect(orderButton[2].value).equal('asc');
   });
 });
 
@@ -130,13 +138,7 @@ describe('Delete event', () => {
   let el, deleteButton;
 
   before(async () => {
-    el = await fixture(html`<requests-table
-      .tableTitles="${tableTitles}"
-      .requestsList="${data}"
-      .fromT="${0}"
-      .toT="${2}"
-    >
-    </requests-table>`);
+    el = await fixture(component);
     await el.updateComplete;
 
     deleteButton = el.shadowRoot.querySelectorAll('.deleteB');
