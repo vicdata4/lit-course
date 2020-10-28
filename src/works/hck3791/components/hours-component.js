@@ -52,6 +52,11 @@ class HoursComponent extends LitElement {
       selection = e.target.value;
       const employee = this.data.find((employee) => employee.name === selection);
       this.projects = employee ? [...employee.projects] : [];
+      if (selection === 'default') {
+        this.projects = [];
+        this.years = [];
+        this.projectMonths = [];
+      }
     } else {
       selection = e.target.value;
       const project = this.projects.find((project) => project.name === selection);
