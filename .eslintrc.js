@@ -9,7 +9,6 @@ module.exports = {
   },
   'plugins': ['prettier'],
   'rules': {
-    'space-before-function-paren': ['error', 'ignore'],
     'max-len': 'off',
     'no-console': 'error',
     'no-alert': 'error',
@@ -17,7 +16,7 @@ module.exports = {
     'object-curly-spacing': [1, 'always'],
     'lines-between-class-members': ['error', 'always'],
     'semi': [2, 'always'],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': 0,
     'quote-props': ['error', 'as-needed'],
     'no-unused-expressions': 'off',
     'prettier/prettier': ['error']

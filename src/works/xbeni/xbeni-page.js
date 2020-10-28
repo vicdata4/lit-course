@@ -2,10 +2,12 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
+import './components/reporte-pe/reporte-pe';
 import './components/informe-cipa/informe-cipa';
 
 const components = {
   InformeCandidatosInformacionDesactualizada: () => html`<informe-cipa></informe-cipa>`,
+  reportePermisosEmpleado: () => html`<reporte-pe></reporte-pe>`,
 };
 
 class XbeniPage extends LitElement {
