@@ -6,20 +6,16 @@ export const viewStyles = css`
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    border-collapse: collapse;
+    width: 70%;
+    font-size: 0.8rem;
   }
   td, th {
     border-right: solid 3px black;
     border-left: solid 3px black;
   }
-  #tablaSoli {
-    border-collapse: collapse;
-    width: 100%;
-    height: 100%;
-    font-size: 0.8rem;
-    overflow: scroll;
-    overflow-x: auto;
-  }
-  #tablaSoli tr:nth-child(odd) {
+
+  #rowInfo:nth-child(odd) {
     background-color: #eeeeee;
   }
   #papelera {
@@ -42,6 +38,12 @@ export const viewStyles = css`
     cursor: pointer;
     background-color: #cccccc;
     border: #cccccc;
+    transition: transform 0.2s ease-in;
+    font-size: 20px;
+  }
+
+  .btnOrder.rotate {
+    transform: rotate(180deg);
   }
   .btnOrder:hover {
     background-color: #eeeeee;
@@ -74,16 +76,7 @@ export const viewStyles = css`
   .stepper, .step {
     user-select: none;
     }
-  @media (min-width: 768px) {
-    #tablaSoli {
-        width: 52%;
     }
-    }
-  @media screen and (max-width: 768px) {
-    #tablaSoli {
-        display: block;
-        overflow-x: auto;
-    }
-    }
+
   }
 `;

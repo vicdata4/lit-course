@@ -32,6 +32,7 @@ class Alba1709Page extends LitElement {
 
   render() {
     return html`
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <common-header></common-header>
       <section class="container">
         <work-header>alba1709</work-header>
