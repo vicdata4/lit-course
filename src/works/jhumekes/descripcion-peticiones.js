@@ -13,10 +13,9 @@ export class DescripcionPeticiones extends LitElement {
     };
   }
 
-  firstUpdated() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    this.peticiones = peticiones[id - 1];
+  constructor() {
+    super();
+    this.peticiones = peticiones[1];
   }
 
   render() {

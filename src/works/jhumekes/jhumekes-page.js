@@ -7,6 +7,7 @@ import '../jhumekes/descripcion-peticiones';
 
 const components = {
   visualizacionPeticiones: () => html`<visualizacion-peticiones>Submit</visualizacion-peticiones>`,
+  descripcionPeticiones: () => html`<descripcion-peticiones></descripcion-peticiones>`,
 };
 
 class JhumekesPage extends LitElement {

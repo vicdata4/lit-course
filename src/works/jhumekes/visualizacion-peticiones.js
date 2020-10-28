@@ -33,7 +33,7 @@ export class VisualizacionPeticiones extends LitElement {
           <tbody>
             ${this.data.map((peticiones) => {
               return html`<tr>
-                <td><a href="/descripcion-peticiones?id=${peticiones.id}">${peticiones.Titulo}</a></td>
+                <td><label value="">${peticiones.Titulo}</label></td>
                 <td>${peticiones.FechaPublicacion}</td>
               </tr>`;
             })}

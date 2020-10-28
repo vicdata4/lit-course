@@ -20,7 +20,6 @@ import './works/efim93/efim93-page';
 import './works/ikeyvin/ikeyvin-page';
 import './works/hck3791/hck3791-page';
 import './works/jhumekes/jhumekes-page';
-import './works/jhumekes/descripcion-peticiones';
 import './works/julieannecodes/julieannecodes-page';
 import './works/xbeni/xbeni-page';
 import './works/vicdata4/vicdata4-page';
@@ -42,10 +41,7 @@ export const routing = (outlet) => {
   ];
 
   users.forEach((user) => {
-    routes.unshift(
-      { path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` },
-      { path: `/descripcion-peticiones`, component: `descripcion-peticiones` },
-    );
+    routes.unshift({ path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` });
   });
 
   router.setRoutes(routes);

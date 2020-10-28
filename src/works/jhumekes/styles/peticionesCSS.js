@@ -7,9 +7,7 @@ export const listaPeticionesCSS = css`
   thead tr td {
     background-color: darkgrey;
   }
-  section {
-    width: 60%;
-  }
+
   table {
     display: table;
     border-collapse: collapse;
@@ -17,8 +15,20 @@ export const listaPeticionesCSS = css`
     border-spacing: 0px;
     width: 100%;
   }
+
+  @media only screen and (min-width: 600px) {
+    table {
+      width: 50%;
+    }
+  }
+
   tr:nth-child(2n + 1) {
     background-color: lightgrey;
+  }
+
+  label {
+    color: blue;
+    text-decoration: underline blue;
   }
 `;
 
@@ -35,7 +45,7 @@ export const peticionesCSS = css`
     padding: 15px;
   }
   #divdesc section {
-    width: 70%;
+    width: 100%;
   }
   #titulo {
     display: flex;
@@ -49,7 +59,13 @@ export const peticionesCSS = css`
 
   #reqContainer {
     border: solid black 1px;
-    padding-left: 11px;
+    padding-left: 10px;
+  }
+
+  @media only screen and (min-width: 600px) {
+    #divdesc section {
+      width: 60%;
+    }
   }
 
   p {
