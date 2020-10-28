@@ -1,4 +1,3 @@
-require('chromedriver');
 const { browserConfig } = require('../config.js');
 
 const NewsComponentPage = require('../pages/NewsComponentPage.js');

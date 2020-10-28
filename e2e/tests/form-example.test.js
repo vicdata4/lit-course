@@ -1,4 +1,3 @@
-require('chromedriver');
 const { browserConfig } = require('../config.js');
 
 const FormExamplePage = require('../pages/FormExamplePage.js');
