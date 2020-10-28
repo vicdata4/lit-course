@@ -9,33 +9,14 @@ class HoursComponent extends LitElement {
   static get properties() {
     return {
       names: { type: Array },
-      projects: { type: Array },
-      years: { type: Array },
       projectMonths: { type: Array },
-      months: { type: Array },
     };
   }
 
   constructor() {
     super();
     this.names = [];
-    this.projects = [];
-    this.years = [];
     this.projectMonths = [];
-    this.months = [
-      'Enero',
-      'Febrero',
-      'Marzo',
-      'Abril',
-      'Mayo',
-      'Junio',
-      'Julio',
-      'Agosto',
-      'Septiembre',
-      'Octubre',
-      'Noviembre',
-      'Diciembre',
-    ];
   }
 
   firstUpdated() {
@@ -45,30 +26,11 @@ class HoursComponent extends LitElement {
     this.requestUpdate();
   }
 
-  selected(e) {
-    let selection;
-
-    if (e.target.id === 'employees') {
-      selection = e.target.value;
-      const employee = this.data.find((employee) => employee.name === selection);
-      this.projects = employee ? [...employee.projects] : [];
-      if (selection === 'default') {
-        this.projects = [];
-        this.years = [];
-        this.projectMonths = [];
-      }
-    } else {
-      selection = e.target.value;
-      const project = this.projects.find((project) => project.name === selection);
-      this.years = project ? [...project.years] : [];
-    }
-    this.requestUpdate();
-  }
-
   generateReport() {
     const optionEmp = this.shadowRoot.getElementById('employees').value;
     const optionPro = this.shadowRoot.getElementById('projects').value;
     const optionYear = this.shadowRoot.getElementById('years').value;
+    const filters = this.shadowRoot.querySelectorAll('select');
 
     if (optionEmp !== 'default' && optionPro !== 'default' && optionYear !== 'default') {
       const projects = this.data.find((obj) => obj.name === optionEmp).projects;
@@ -79,11 +41,19 @@ class HoursComponent extends LitElement {
         this.projectMonths = [...year.months];
       } else {
         this.projectMonths = [];
+        // eslint-disable-next-line no-alert
+        alert('No se han encontrado registros');
+        for (let i = 0; i < filters.length; i++) {
+          filters[i].value = 'default';
+        }
       }
     } else {
       // eslint-disable-next-line no-alert
       alert('Seleccione todos los campos');
       this.projectMonths = [];
+      for (let i = 0; i < filters.length; i++) {
+        filters[i].value = 'default';
+      }
     }
   }
 
@@ -98,7 +68,7 @@ class HoursComponent extends LitElement {
           <h3>Reporte de horas consolidadas</h3>
           <div class="filters">
             <label>Empleado</label>
-            <select name="employees" id="employees" @change="${this.selected}">
+            <select name="employees" id="employees">
               <option value="default"></option>
               ${this.names.map((obj) => {
                 return html`<option value="${obj}">${obj}</option>`;
@@ -108,10 +78,10 @@ class HoursComponent extends LitElement {
 
           <div class="filters">
             <label>Proyecto</label>
-            <select name="projects" id="projects" @change="${this.selected}">
+            <select name="projects" id="projects">
               <option value="default"></option>
               ${this.projects.map((obj) => {
-                return html`<option value="${obj.name}">${obj.name}</option>`;
+                return html`<option value="${obj}">${obj}</option>`;
               })}
             </select>
           </div>
@@ -121,13 +91,13 @@ class HoursComponent extends LitElement {
             <select name="years" id="years">
               <option value="default"></option>
               ${this.years.map((obj) => {
-                return html`<option value="${obj.year}">${obj.year}</option>`;
+                return html`<option value="${obj}">${obj}</option>`;
               })}
             </select>
           </div>
 
           <div id="generateReport">
-            <button @click="${this.generateReport}" id="generateReport">Generar reporte</button>
+            <button @click="${this.generateReport}" id="generate">Generar reporte</button>
           </div>
 
           <table id="table">

@@ -1,45 +1,65 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import '../components/hours-component';
+import { hours, months, projects, years } from './data-test';
 
 describe('Hours test', () => {
   let el;
 
   before(async () => {
-    const component = html`<hours-component></hours-component>`;
+    const component = html`<hours-component
+      .data=${hours}
+      .months=${months}
+      .projects=${projects}
+      .years=${years}
+    ></hours-component>`;
 
     el = await fixture(component);
     await el.updateComplete;
   });
 
   it('Component rendered', async () => {
-    expect(el.shadowRoot).not.to.be.null;
-  });
-
-  it('Generate report - All data', async () => {
-    el.shadowRoot.getElementById('employees').value = 'Employee 1';
-    el.shadowRoot.getElementById('project').value = 'Project 1';
-    el.shadowRoot.getElementById('years').value = '2020';
-    el.shadowRoot.querySelector('button').click();
     await el.updateComplete;
-    const table = el.shadowRoot.querySelectorAll('tr');
-    expect(table.length).to.be.equal(13);
-    const td = table[1].querySelectorAll('td');
-    expect(td[0].innerText).to.be.equal('Enero');
-    expect(td[1].innerText).to.be.equal('100');
-    expect(td.length).to.be.equal(7);
+    const rows = el.shadowRoot.querySelector('TABLE').querySelectorAll('TR');
+    const cells = rows[0].querySelectorAll('TH');
+    expect(el.shadowRoot).not.to.be.null;
+    expect(rows.length).to.equal(13);
+    expect(cells.length).to.equal(7);
   });
 
-  it('Generate report - Wrong data', async () => {
+  it('Generate report - Data', async () => {
     el.shadowRoot.getElementById('employees').value = 'Employee 1';
-    el.shadowRoot.getElementById('project').value = 'Project 1';
-    el.shadowRoot.getElementById('years').value = '2022';
-    el.shadowRoot.querySelector('button').click();
+    el.shadowRoot.getElementById('projects').value = 'Project 1';
+    el.shadowRoot.getElementById('years').value = '2020';
+    el.shadowRoot.getElementById('generate').click();
+    await el.updateComplete;
+    const table = el.shadowRoot.querySelector('TABLE');
+    const rows = table.querySelectorAll('TR');
+    const cells = rows[1].querySelectorAll('TD');
+    expect(cells[0].innerText).equal('Enero');
+    expect(cells[1].innerText).equal('100');
   });
 
   it('Generate report - No data', async () => {
-    el.shadowRoot.getElementById('employees').value = '';
-    el.shadowRoot.getElementById('project').value = '';
-    el.shadowRoot.getElementById('years').value = '';
-    el.shadowRoot.querySelector('button').click();
+    el.shadowRoot.getElementById('employees').value = 'default';
+    el.shadowRoot.getElementById('projects').value = 'default';
+    el.shadowRoot.getElementById('years').value = 'default';
+    el.shadowRoot.getElementById('generate').click();
+    await el.updateComplete;
+    const table = el.shadowRoot.querySelector('TABLE');
+    const cells = table.querySelectorAll('TD');
+    let count = 0;
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i] === '') {
+        count++;
+      }
+    }
+    expect(count).equal(0);
+  });
+
+  it('Generate report - No hours', async () => {
+    el.shadowRoot.getElementById('employees').value = 'Employee 1';
+    el.shadowRoot.getElementById('projects').value = 'Project 1';
+    el.shadowRoot.getElementById('years').value = '2022';
+    el.shadowRoot.getElementById('generate').click();
   });
 });
