@@ -98,7 +98,7 @@ export const formPeticion = css`
 
 export const tablePeticion = css`
   div.container-table {
-    width: 400px;
+    width: 100%;
     background: #e6e6e6;
     border-radius: 8px;
     padding: 20px;
@@ -112,8 +112,7 @@ export const tablePeticion = css`
   div.table-title {
     display: block;
     margin: auto;
-    max-width: 600px;
-    padding: 5px;
+    max-width: 80%;
     width: 100%;
   }
 
@@ -189,33 +188,66 @@ export const tablePeticion = css`
 
 export const modalPopup = css`
   .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 
   .modal.active {
     display: block;
   }
 
-  /* Modal Content */
   .modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #78788c;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+  }
+
+  .modal-title {
+    padding-right: 30%;
+    font-weight: bold;
+    float: left;
+  }
+
+  .modal-date {
+    font-weight: bold;
+    padding-right: 30px;
+    float: left;
+  }
+
+  .modal-items {
     width: 80%;
   }
 
-  /* The Close Button */
+  p {
+    font-weight: bold;
+    width: 30%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  .clearBoth {
+    clear: both;
+  }
+
   .close {
     color: #aaaaaa;
     float: right;
