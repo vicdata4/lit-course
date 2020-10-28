@@ -43,7 +43,6 @@ class ListPetition extends LitElement {
         <section class="listaPeticiones">
             <div class="container-table">
               <div class="table-title">
-                <h2>LISTA PETICIÓN</h2>
               </div>
                 <table class="table-fill">
                     <thead>

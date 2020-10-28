@@ -48,7 +48,6 @@ class FormPetition extends LitElement {
   render() {
     return html`
         <div class="form">
-          <h2>ENVIAR PETICIÓN</h2>
           <p type="TITULO:"><input id="peticionTitulo" name="peticionTitulo" placeholder="Escribe el titulo.."></input></p>
           <p type="DESCRIPCIÓN:"><textarea id="peticionDescripcion" name="peticionDescripcion" placeholder="Escribe la descripción.."></textarea></p>
           <input id="peticionPublicar" type="checkbox">
