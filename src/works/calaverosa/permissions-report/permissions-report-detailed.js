@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit-element';
-import { tableFormat } from '../utils/styles.js';
+import { tableFormat, mediaQueriesPerReport } from '../utils/styles.js';
 import { permissions } from '../utils/employees.js';
 
 class PermissionsReportDetailed extends LitElement {
   static get styles() {
-    return [tableFormat];
+    return [tableFormat, mediaQueriesPerReport];
   }
 
   static get properties() {

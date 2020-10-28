@@ -2,7 +2,7 @@ import { css } from 'lit-element';
 
 export const mediaQueriesStyles = css`
   /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 280px) and (max-device-width: 760px) {
     table {
       width: 100%;
     }
@@ -12,31 +12,6 @@ export const mediaQueriesStyles = css`
     }
     input {
       width: 50%;
-    }
-  }
-
-  /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 340px) and (max-device-width: 760px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
-    }
-    input {
-      width: 50%;
-    }
-  }
-
-  /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 411px) and (max-device-width: 731px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
     }
   }
 
@@ -152,5 +127,90 @@ export const tableFormat = css`
 
   .no-visible {
     visibility: hidden;
+  }
+`;
+
+export const mediaQueriesPerReport = css`
+  /* Smartphones (portrait) */
+  @media only screen and (min-width: 280px) and (max-width: 480px) {
+    table {
+      width: 100%;
+    }
+    select,
+    #inputStartDate,
+    #inputEndDate {
+      margin-left: -50%;
+      margin-top: 8%;
+      width: 50%;
+    }
+    .calendar {
+      visibility: hidden;
+    }
+    label {
+      width: 50%;
+    }
+    #previous-btn,
+    #next-btn {
+      width: 10%;
+    }
+    #navigation #nPages {
+      margin-top: 3.5%;
+      margin-left: 1%;
+    }
+    .no-visible {
+      visibility: hidden;
+    }
+  }
+
+  /* Smartphones (landscape) */
+  @media only screen and (min-width: 481px) and (max-width: 850px) {
+    table {
+      width: 100%;
+    }
+    select,
+    #inputStartDate,
+    #inputEndDate {
+      width: 25%;
+    }
+    label {
+      width: 30%;
+    }
+    .calendar {
+      width: 4%;
+    }
+    #previous-btn,
+    #next-btn {
+      width: 5%;
+    }
+    #navigation #nPages {
+      margin-top: 3%;
+      margin-left: 1%;
+    }
+  }
+
+  /* iPads */
+  @media only screen and (min-width: 851px) and (max-width: 1024px) {
+    table {
+      width: 100%;
+    }
+    label {
+      width: 20%;
+    }
+    select,
+    #inputStartDate,
+    #inputEndDate {
+      width: 20%;
+    }
+    .calendar {
+      width: 3%;
+    }
+    #previous-btn,
+    #next-btn {
+      height: 3%;
+      width: 3%;
+    }
+    #navigation #nPages {
+      margin-left: 1%;
+    }
   }
 `;
