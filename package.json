@@ -4,6 +4,7 @@
     "description": "Lit course",
     "main": "index.js",
     "scripts": {
+        "test-watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
         "test": "karma start --coverage",
         "dev": "node ./scripts/dev.js",
         "build": "node ./scripts/build.js",
