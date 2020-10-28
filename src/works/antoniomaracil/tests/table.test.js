@@ -70,6 +70,12 @@ describe('Order method', () => {
     el = await fixture(component);
     await el.updateComplete;
   });
+  it('Order method works properly', async () => {
+    const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
+    orderButton.click();
+    const newList = orderedList(empData, 'name');
+    expect(newList).to.eql(el.list);
+  });
   it('Call to a orderList() when 1 of 8 buttons are clicked', async () => {
     const eventSpy = sinon.spy(el, 'orderList');
 
@@ -81,16 +87,25 @@ describe('Order method', () => {
         count++;
       }
     });
-
     expect(count).equal(8);
   });
-  it('Order method works properly', async () => {
-    const newList = orderedList(empData, 'name');
+});
+describe('Order method', () => {
+  let el;
+
+  before(async () => {
+    const component = html` <admin-vacation-form .list="${empData}"></list-component> `;
+
+    el = await fixture(component);
+    await el.updateComplete;
+  });
+  it('Reverse order method works properly', async () => {
     const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
     orderButton.click();
-    const stringNewList = JSON.stringify(newList);
-    // const ellist = JSON.stringify(el.list);
-    expect(stringNewList).equal(stringNewList);
+    orderButton.click();
+    const newList = orderedList(empData, 'name');
+    const reverseList = orderedList(newList, 'name');
+    expect(reverseList).to.eql(el.list);
   });
 });
 
