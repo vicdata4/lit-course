@@ -38,6 +38,12 @@ export const viewStyles = css`
     cursor: pointer;
     background-color: #cccccc;
     border: #cccccc;
+    transition: transform 0.2s ease-in;
+    font-size: 20px;
+  }
+
+  .btnOrder.rotate {
+    transform: rotate(180deg);
   }
   .btnOrder:hover {
     background-color: #eeeeee;

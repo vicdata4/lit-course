@@ -1,5 +1,4 @@
 import { LitElement, html } from 'lit-element';
-import { getDate } from './utils/functions';
 import { viewStyles } from './utils/t-styles';
 import { responsiveTable } from './utils/table-responsive';
 export class TablaSolicitud extends LitElement {
@@ -78,20 +77,6 @@ export class TablaSolicitud extends LitElement {
     this.dispatchEvent(event);
   }
 
-  orderDate(col, order) {
-    const orderedList = this.miTabla.sort((a, b) => {
-      if (getDate(a[col], true).getTime() > getDate(b[col], true).getTime()) {
-        return 1;
-      } else if (getDate(a[col], true).getTime() < getDate(b[col], true).getTime()) {
-        return -1;
-      }
-      return 0;
-    });
-    this.miTabla = order === 'asc' ? [...orderedList] : [...orderedList.reverse()];
-    this.miTabla = [...orderedList];
-    this.showPage(0);
-  }
-
   renderStepper() {
     return html`
       <div class="stepper">
@@ -104,29 +89,56 @@ export class TablaSolicitud extends LitElement {
     `;
   }
 
+  orderDates(column) {
+    const myTable = [...this.miTabla];
+
+    const ordermiTable = myTable.sort((a, b) => {
+      if (a[column] < b[column]) return -1;
+      if (a[column] > b[column]) return 1;
+      return 0;
+    });
+    if (JSON.stringify(this.miTabla) === JSON.stringify(ordermiTable)) {
+      ordermiTable.reverse();
+    }
+
+    this.miTabla = [...ordermiTable];
+    this.showPage(0);
+  }
+
+  rotateButton(e) {
+    const btn = e.currentTarget;
+
+    if (!btn.classList.contains('rotate')) {
+      btn.classList.add('rotate');
+    } else {
+      btn.classList.remove('rotate');
+    }
+  }
+
+  orderAndRotate(e, column) {
+    this.rotateButton(e);
+    this.orderDates(column);
+  }
+
   render() {
     return html`
       <table id="tablaSoli">
         <tr id="rowTitle">
           <th class="ord">
-            Fecha de solicitud
+            Fecha solicitud
             <span>
-              <button class="btnOrder" @click="${() => this.orderDate('fHoy', 'asc')}">&#9652;</button>
-              <button class="btnOrder" @click="${() => this.orderDate('fHoy', 'desc')}">&#9662;</button>
+              <button class="btnOrder" @click="${(e) => this.orderAndRotate(e, 'fHoy')}">&#9662;</button>
             </span>
           </th>
           <th class="ord">
             Fecha Inicio
-            <span>
-              <button class="btnOrder" @click="${() => this.orderDate('infoFI', 'asc')}">&#9652;</button>
-              <button class="btnOrder" @click="${() => this.orderDate('infoFI', 'desc')}">&#9662;</button>
+              <button class="btnOrder" @click="${(e) => this.orderAndRotate(e, 'infoFI')}">&#9662;</button>
             </span>
           </th>
           <th class="ord">
             Fecha Fin
             <span>
-              <button class="btnOrder" @click="${() => this.orderDate('infoFF', 'asc')}">&#9652;</button>
-              <button class="btnOrder" @click="${() => this.orderDate('infoFF', 'desc')}">&#9662;</button>
+              <button class="btnOrder" @click="${(e) => this.orderAndRotate(e, 'infoFF')}">&#9662;</button>
             </span>
           </th>
           <th class="cell">Estado de la solicitud</th>
