@@ -14,7 +14,7 @@ exports.browserConfig = async (config = false) => {
   }
 
   if (!config || config.headless) {
-    builder = builder.setChromeOptions(new chrome.Options().headless());
+    builder = builder.setChromeOptions(new chrome.Options().headless().windowSize({ width: 900, height: 480 }));
   }
 
   const driver = await builder.build();
