@@ -2,12 +2,12 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import '../jhumekes/visualizacion-peticiones';
-import '../jhumekes/descripcion-peticiones';
+import './petitions-visualization';
+import '../jhumekes/petitions-description';
 
 const components = {
-  visualizacionPeticiones: () => html`<visualizacion-peticiones>Submit</visualizacion-peticiones>`,
-  descripcionPeticiones: () => html`<descripcion-peticiones></descripcion-peticiones>`,
+  petitionsVisualization: () => html`<petitions-visualization>Submit</petitions-visualization>`,
+  petitionsDescription: () => html`<petitions-description></petitions-description>`,
 };
 
 class JhumekesPage extends LitElement {
@@ -23,7 +23,7 @@ class JhumekesPage extends LitElement {
 
   constructor() {
     super();
-    this.current = 'visualizacionPeticiones';
+    this.current = 'petitionsVisualization';
   }
 
   setComponent(component) {

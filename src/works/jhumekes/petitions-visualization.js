@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
-import { peticiones } from './peticiones';
-import { listaPeticionesCSS } from './styles/peticionesCSS';
-import '../jhumekes/descripcion-peticiones';
+import { petitions } from './petitions';
+import { petitionsListCSS } from './styles/petitionsCSS';
+// import './descripcion-peticiones';
 
-export class VisualizacionPeticiones extends LitElement {
+export class PetitionsVisualization extends LitElement {
   static get styles() {
-    return [listaPeticionesCSS];
+    return [petitionsListCSS];
   }
 
   static get properties() {
@@ -16,7 +16,7 @@ export class VisualizacionPeticiones extends LitElement {
 
   constructor() {
     super();
-    this.data = peticiones;
+    this.data = petitions;
   }
 
   render() {
@@ -31,10 +31,10 @@ export class VisualizacionPeticiones extends LitElement {
             </tr>
           </thead>
           <tbody>
-            ${this.data.map((peticiones) => {
+            ${this.data.map((petitions) => {
               return html`<tr>
-                <td><label value="">${peticiones.Titulo}</label></td>
-                <td>${peticiones.FechaPublicacion}</td>
+                <td><label>${petitions.Title}</label></td>
+                <td>${petitions.PublishDate}</td>
               </tr>`;
             })}
           </tbody>
@@ -43,4 +43,4 @@ export class VisualizacionPeticiones extends LitElement {
     `;
   }
 }
-customElements.define('visualizacion-peticiones', VisualizacionPeticiones);
+customElements.define('petitions-visualization', PetitionsVisualization);

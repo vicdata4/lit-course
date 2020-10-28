@@ -1,6 +1,6 @@
 import { css } from 'lit-element';
 
-export const listaPeticionesCSS = css`
+export const petitionsListCSS = css`
   :host {
     font-family: 'Comic Sans', cursive;
   }
@@ -32,7 +32,7 @@ export const listaPeticionesCSS = css`
   }
 `;
 
-export const peticionesCSS = css`
+export const petitionsCSS = css`
   :host {
     font-family: 'Comic Sans', cursive;
   }
@@ -47,13 +47,13 @@ export const peticionesCSS = css`
   #divdesc section {
     width: 100%;
   }
-  #titulo {
+  #title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  #h2fecha {
+  #h2date {
     text-align: right;
   }
 

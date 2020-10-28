@@ -1,14 +1,14 @@
-export const peticiones = [
+export const petitions = [
   {
     id: 1,
-    Titulo: 'Tester Junior',
-    FechaPublicacion: '16/09/2020',
+    Title: 'Tester Junior',
+    PublishDate: '16/09/2020',
     Descripcion: ['Un año de experiencia mínimo.', 'Las Tablas.', ['Automatizacion de pruebas']],
   },
   {
     id: 2,
-    Titulo: 'Analista Programador Java',
-    FechaPublicacion: '18/08/2020',
+    Title: 'Analista Programador Java',
+    PublishDate: '18/08/2020',
     Descripcion: ['Un año de experiencia mínimo.', 'Las Tablas.', ['Definición, gestión y supervisión de proyectos']],
   },
 ];
