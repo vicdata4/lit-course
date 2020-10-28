@@ -27,36 +27,6 @@ export const checkDate = (start, end) => {
   }
 };
 
-/**
- * @desc Retorna un string con la fecha en formado dd/mm/yyyy
- * @param Object Date
- * @param Boolean si true retorna minutos ademas del dia
- * @return String
- */
-export const formatDate = (date, minutes = false) => {
-  if (minutes) {
-    return `
-      ${date.getDate()}/${date.getMonth() + 1}/${date.getUTCFullYear()} - ${date.getHours()}:${
-      date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
-    }`;
-  } else {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getUTCFullYear()}`;
-  }
-};
-
-export const maxDate = () => {
-  const date = new Date();
-  return `${date.getUTCFullYear() + 2}-${date.getMonth() + 1}-${
-    date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  }`;
-};
-export const minDate = () => {
-  const date = new Date();
-  return `${date.getUTCFullYear()}-${date.getMonth() + 1}-${
-    date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-  }`;
-};
-
 export const orderedList = (list, column) => {
   return list.sort((a, b) => {
     if (a[column] > b[column]) {
@@ -66,4 +36,19 @@ export const orderedList = (list, column) => {
     }
     return 0;
   });
+};
+
+export const dateFormatter = (date_) => {
+  const date = new Date(date_);
+
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return {
+    default: (day < 10 ? '0' + day : day) + '/' + (month < 10 ? '0' + month : month) + '/' + year,
+    hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
+  };
 };

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { documentListStyles } from '../../../utils/custom-styles';
-import { formatDate } from './../../../utils/functions';
+import { dateFormatter } from './../../../utils/functions';
 
 export class DocumentList extends LitElement {
   static get styles() {
@@ -41,11 +41,11 @@ export class DocumentList extends LitElement {
               (item, i) => html`
                 <div class="group">
                   <div class="info-container">
-                    <span class="light-grey italic">${formatDate(item.uploadDate)}</span>
+                    <span class="light-grey italic">${dateFormatter(item.uploadDate).default}</span>
                   </div>
                   <div class="row data">
                     <div class="title"><a href="${item.path}" download>${item.name}</a></div>
-                    <div class="date light-grey">${formatDate(item.uploadDate)}</div>
+                    <div class="date light-grey">${dateFormatter(item.uploadDate).default}</div>
                     <div class="info">
                       <button @click="${() => this.removeDocument(i)}">
                         <img src="assets/antoniomaracil/remove.png" alt="remove" />
