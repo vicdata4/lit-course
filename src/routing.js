@@ -2,8 +2,6 @@ import { Router } from '@vaadin/router';
 import { users } from './utils/constants';
 
 import './views/home-view';
-import './views/paris-view';
-import './views/dublin-view';
 import './views/form-example-view';
 import './views/not-found-view';
 import './views/data-binding';
@@ -29,8 +27,6 @@ export const routing = (outlet) => {
 
   var routes = [
     { path: '/', component: 'home-view' },
-    { path: '/paris-view', component: 'paris-view' },
-    { path: '/dublin-view', component: 'dublin-view' },
     { path: '/form-example-view', component: 'form-example-view' },
     { path: '/data-binding', component: 'data-binding' },
     { path: '/list-example', component: 'list-example-view' },
