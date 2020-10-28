@@ -125,7 +125,7 @@ export class TablaSolicitud extends LitElement {
       <table id="tablaSoli">
         <tr id="rowTitle">
           <th class="ord">
-            Fecha solicitud
+            Fecha de solicitud
             <span>
               <button class="btnOrder" @click="${(e) => this.orderAndRotate(e, 'fHoy')}">&#9662;</button>
             </span>

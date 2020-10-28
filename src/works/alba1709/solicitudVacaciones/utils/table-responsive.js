@@ -9,7 +9,7 @@ export const responsiveTable = css`
 
     #tablaSoli #rowTitle {
       display: flex;
-      padding: 1em 0em;
+      padding: 1em 0.5em;
       margin-bottom: 1em;
       background-color: #cccccc;
     }
