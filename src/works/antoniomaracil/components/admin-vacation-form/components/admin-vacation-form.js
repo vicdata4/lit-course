@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { adminVacationStyles } from '../../../utils/custom-styles';
-import { formatDate, orderedList } from '../../../utils/functions';
+import { dateFormatter, orderedList } from '../../../utils/functions';
 
 export class AdminVacationForm extends LitElement {
   static get styles() {
@@ -149,9 +149,9 @@ export class AdminVacationForm extends LitElement {
               (item) => html`
                 <tr>
                   <td data-label="Nombre">${item.name}</td>
-                  <td data-label="Fecha de solicitud">${formatDate(item.applicationDate)}</td>
-                  <td data-label="Fecha de inicio">${formatDate(item.startDate)}</td>
-                  <td data-label="Fecha de fin">${formatDate(item.endDate)}</td>
+                  <td data-label="Fecha de solicitud">${dateFormatter(item.applicationDate).default}</td>
+                  <td data-label="Fecha de inicio">${dateFormatter(item.startDate).default}</td>
+                  <td data-label="Fecha de fin">${dateFormatter(item.endDate).default}</td>
                   <td data-label="Estado">
                     <select id="sel-${item.id}" class="selectOptions">
                       <option value="0">Pendiente de aprobación</option>
@@ -159,7 +159,9 @@ export class AdminVacationForm extends LitElement {
                       <option value="2">No aprobado</option>
                     </select>
                   </td>
-                  <td data-label="Fecha de estado">${formatDate(item.statusDate)}</td>
+                  <td data-label="Fecha de estado">
+                    ${dateFormatter(item.statusDate).default + ' ' + dateFormatter(item.statusDate).hour}
+                  </td>
                 </tr>
               `,
             )}

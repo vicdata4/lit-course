@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { checkDate, formatDate, getDate } from '../utils/functions';
+import { checkDate, dateFormatter, getDate } from '../utils/functions';
 
 describe('Date functions', () => {
   const date = new Date();
@@ -17,11 +17,11 @@ describe('Date functions', () => {
   const secondDate = '2020/05/10';
 
   it('Returns hour format correctly', async () => {
-    expect(formatDate(date, true)).equal('3/12/2020 - 7:00');
+    expect(dateFormatter(date).default + ' ' + dateFormatter(date).hour).equal('03/12/2020 07:00');
   });
 
   it('Returns day format correctly', async () => {
-    expect(formatDate(date)).equal('3/12/2020');
+    expect(dateFormatter(date).default).equal('03/12/2020');
   });
 
   it('Pass the check with a correct date', async () => {

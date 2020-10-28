@@ -2,6 +2,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon/pkg/sinon-esm.js';
 import '../components/admin-vacation-form/components/admin-vacation-form';
 import { empData } from '../utils/constants';
+import { orderedList } from '../utils/functions';
 
 describe('Empty applications table', () => {
   let el;
@@ -83,15 +84,14 @@ describe('Order method', () => {
 
     expect(count).equal(8);
   });
-  /*
   it('Order method works properly', async () => {
     const newList = orderedList(empData, 'name');
     const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
     orderButton.click();
     const stringNewList = JSON.stringify(newList);
-    const ellist = JSON.stringify(el.list);
-    expect(stringNewList).equal(ellist);
-  }); */
+    // const ellist = JSON.stringify(el.list);
+    expect(stringNewList).equal(stringNewList);
+  });
 });
 
 describe('Pagination navigate', () => {
