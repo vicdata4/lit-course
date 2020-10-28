@@ -28,77 +28,76 @@ export const newStyles = css`
     label #select {
       font-size: 1.2em;
     }
-  }
+    #select {
+      border: 1px solid #ccc;
+      width: 50%;
+      border-radius: 3px;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
 
-  #select {
-    border: 1px solid #ccc;
-    width: 50%;
-    border-radius: 3px;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-  }
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
 
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
 
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
+    tr {
+      border: 1px solid #ccc;
+    }
 
-  tr {
-    border: 1px solid #ccc;
-  }
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
 
-  td {
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-  }
+    .i0 .i1 .i2 {
+      width: 120px;
+    }
 
-  .i0 .i1 .i2 {
-    width: 120px;
-  }
+    td:before {
+      position: absolute;
+      top: 20%;
+      left: 3%;
+      width: 50%;
+      text-aling: right;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
 
-  td:before {
-    position: absolute;
-    top: 20%;
-    left: 3%;
-    width: 50%;
-    text-aling: right;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-  }
-
-  td:nth-of-type(1):before {
-    content: 'Nombre Apellido:';
-  }
-  td:nth-of-type(2):before {
-    content: 'Fecha de Solicitud:';
-  }
-  td:nth-of-type(3):before {
-    content: 'Fecha de Inicio:';
-  }
-  td:nth-of-type(4):before {
-    content: 'Fecha Fin:';
-  }
-  td:nth-of-type(5):before {
-    content: 'Estado:';
-  }
-  td:nth-of-type(6):before {
-    content: 'Fecha de estado:';
+    td:nth-of-type(1):before {
+      content: 'Nombre Apellido:';
+    }
+    td:nth-of-type(2):before {
+      content: 'Fecha de Solicitud:';
+    }
+    td:nth-of-type(3):before {
+      content: 'Fecha de Inicio:';
+    }
+    td:nth-of-type(4):before {
+      content: 'Fecha Fin:';
+    }
+    td:nth-of-type(5):before {
+      content: 'Estado:';
+    }
+    td:nth-of-type(6):before {
+      content: 'Fecha de estado:';
+    }
   }
 `;
