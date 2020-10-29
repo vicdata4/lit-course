@@ -57,8 +57,8 @@ class VacationTable extends LitElement {
   }
 
   getValues(e) {
-    this.from = e.detail.values[0];
-    this.to = e.detail.values[1];
+    this.from = e.detail[0];
+    this.to = e.detail[1];
   }
 
   render() {
