@@ -47,13 +47,12 @@ class RequestsTable extends LitElement {
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
+    return this.requestsList;
   }
 
-  deleteDate(i) {
+  deleteDate(id) {
     const event = new CustomEvent('delete-date', {
-      detail: {
-        index: i,
-      },
+      detail: id,
     });
     this.dispatchEvent(event);
   }

@@ -9,11 +9,8 @@ import './components/document-list/components/document-list';
 
 const components = {
   adminVacationForm: () =>
-    html`<admin-vacation-form
-      .list="${empData}"
-      .nElements="${10}"
-      @update-array="${this.updateArray}"
-    ></admin-vacation-form>`,
+    html` <admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}">
+    </admin-vacation-form>`,
   documentList: () => html`<document-list .list="${empDocument}"></document-list>`,
 };
 
@@ -32,7 +29,7 @@ class AntoniomaracilPage extends LitElement {
   constructor() {
     super();
     this.list = [];
-    this.current = 'adminVacationForm';
+    this.current = 'documentList';
   }
 
   setComponent(component) {

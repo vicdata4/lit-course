@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
-import { employeeList } from '../utils/employees';
+// import { employeeList } from '../utils/employees';
 import './holidays-form';
 import './requests-table';
 import './stepper';
@@ -16,7 +16,6 @@ class VacationTable extends LitElement {
     return {
       vacationData: { type: Array },
       errorMessage: { type: String },
-      inArray: { type: Object },
       from: { type: Number },
       to: { type: Number },
       nEmployees: { type: Number },
@@ -25,19 +24,18 @@ class VacationTable extends LitElement {
 
   constructor() {
     super();
-    this.vacationData = [...employeeList];
+    this.vacationData = [];
     this.errorMessage = '';
-    this.inArray = new Date();
     this.from = 0;
     this.nEmployees = 4;
     this.to = this.nEmployees;
   }
 
   addVacation(e) {
-    const recived = e.detail.dates.startDate;
+    const recived = e.detail.startDate;
     const dateExist = this.vacationData.find((x) => x.startDate.getTime() === recived.getTime());
     if (!dateExist) {
-      this.vacationData = [e.detail.dates, ...this.vacationData];
+      this.vacationData = [e.detail, ...this.vacationData];
       this.errorMessage = '';
     } else {
       this.errorMessage = 'Date already exists';
@@ -46,7 +44,7 @@ class VacationTable extends LitElement {
 
   deleteDate(e) {
     const arr = this.vacationData;
-    const toRemove = this.vacationData.find((item) => item.id === e.detail.index);
+    const toRemove = this.vacationData.find((item) => item.id === e.detail);
     const index = this.vacationData.indexOf(toRemove);
     this.vacationData.splice(index, 1);
     this.vacationData = [...arr];
@@ -60,8 +58,8 @@ class VacationTable extends LitElement {
   }
 
   getValues(e) {
-    this.from = e.detail.values[0];
-    this.to = e.detail.values[1];
+    this.from = e.detail[0];
+    this.to = e.detail[1];
   }
 
   render() {
