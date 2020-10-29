@@ -1,4 +1,3 @@
-require('chromedriver');
 const { browserConfig } = require('../config.js');
 
 const NewsComponentPage = require('../pages/NewsComponentPage.js');
@@ -17,7 +16,7 @@ describe('News searcher', () => {
   });
 
   it('Page title is correct', async () => common.checkPageTitle());
-  it('Go to form example view', async () => common.selectListElement('News searcher'));
+  it('Go to form example view', async () => common.selectListElement('Searcher'));
   it('Default search "Polymer" return 20 results', async () => newsComponent.numberOfSearchResults(20));
   it('Search "React" term', async () => newsComponent.searchAnotherTerm('React'));
   it('Search result for "React" return 20 results', async () => newsComponent.numberOfSearchResults(20));

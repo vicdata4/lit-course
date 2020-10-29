@@ -23,13 +23,25 @@ export class InputsSolicitud extends LitElement {
         #lblI,
         #lblF {
           font-family: 'Open Sans', sans-serif;
+          margin-right: 15px;
         }
         #fechaIni {
           margin-right: 25px;
         }
+
+        #inputStart,
+        #inputEnd {
+          display: inline-flex;
+          margin-right: 15px;
+          margin-bottom: 15px;
+        }
+
         #fechaIni:hover,
         #fechaFin:hover {
           background-color: #e8e7e7;
+        }
+        #inputs {
+          display: inline;
         }
       `,
     ];
@@ -72,9 +84,11 @@ export class InputsSolicitud extends LitElement {
 
   render() {
     return html`
-      <label id="lblI">Fecha Inicio </label><input id="fechaIni" type="date" /> <label id="lblF">Fecha Fin </label
-      ><input id="fechaFin" type="date" />
-      <button id="btnAgregar" @click="${this.sendData}">Agregar</button>
+      <div id="inputs">
+        <div id="inputStart"><label id="lblI">Fecha Inicio </label><input id="fechaIni" type="date" /></div>
+        <div id="inputEnd"><label id="lblF">Fecha Fin </label><input id="fechaFin" type="date" /></div>
+        <button id="btnAgregar" @click="${this.sendData}">Agregar</button>
+      </div>
     `;
   }
 }
