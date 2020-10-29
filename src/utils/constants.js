@@ -26,3 +26,30 @@ export const users = [
   'XBeni',
   'vicdata4',
 ];
+
+export const navList = [
+  {
+    name: 'Works',
+    path: '/works',
+  },
+  {
+    name: 'Searcher',
+    path: '/news-searcher',
+  },
+  {
+    name: 'Pagination',
+    path: '/pagination',
+  },
+  {
+    name: 'Form',
+    path: '/form-example-view',
+  },
+  {
+    name: 'Data Binding',
+    path: '/data-binding',
+  },
+  {
+    name: 'List Example',
+    path: '/list-example',
+  },
+];

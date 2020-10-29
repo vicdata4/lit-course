@@ -11,6 +11,7 @@ class HolidaysForm extends LitElement {
   static get properties() {
     return {
       message: { type: String, attribute: false },
+      validated: { type: Boolean, attribute: false },
       id: { type: Number },
     };
   }
@@ -18,6 +19,7 @@ class HolidaysForm extends LitElement {
   constructor() {
     super();
     this.message = '';
+    this.validated = false;
     this.id = 0;
   }
 
@@ -47,9 +49,7 @@ class HolidaysForm extends LitElement {
     };
     this.id += 1;
     const event = new CustomEvent('send-dates', {
-      detail: {
-        dates: obj,
-      },
+      detail: obj,
     });
     this.dispatchEvent(event);
     startDate.value = '';
@@ -62,8 +62,10 @@ class HolidaysForm extends LitElement {
 
     if (!this.dateValidator(startDate.value, endDate.value)) {
       this.message = 'Enter a valid date';
+      this.validated = false;
       return false;
     } else {
+      this.validated = true;
       this.sendData(startDate, endDate);
     }
     this.message = '';
