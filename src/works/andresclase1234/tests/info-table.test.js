@@ -1,6 +1,7 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import './holidays-info/holidays-info';
 import { dates } from './utils/data';
+import { orderedList } from './utils/functions';
 
 describe('Table with data', () => {
   let el;
@@ -17,5 +18,12 @@ describe('Table with data', () => {
   it('Default array length', async () => {
     const table = el.shadowRoot.querySelectorAll('tr');
     expect(table.length).equal(4);
+  });
+
+  it('Order list ok', async () => {
+    const newList = orderedList(dates, 'holidayFrom');
+    const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
+    orderButton.click();
+    expect(newList).to.equal(el.list);
   });
 });
