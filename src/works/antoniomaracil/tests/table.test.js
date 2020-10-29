@@ -4,7 +4,7 @@ import '../components/admin-vacation-form/components/admin-vacation-form';
 import { empData } from '../utils/constants';
 import { orderedList } from '../utils/functions';
 
-describe('Admin vacation form test: \n', () => {
+describe('Admin vacation form tests:', () => {
   describe('Empty applications table', () => {
     let el;
 
@@ -135,6 +135,11 @@ describe('Admin vacation form test: \n', () => {
     it('Show the correct number of pages', async () => {
       const stepper = Math.ceil(empData.length / 10);
       expect(stepper).equal(el.stepper.length);
+    });
+    it('Go to a correct page when click on a number button', async () => {
+      const nextButton = el.shadowRoot.getElementById('_1');
+      nextButton.click();
+      expect(el.index).equal(1);
     });
   });
 });

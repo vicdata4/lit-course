@@ -3,7 +3,7 @@ import sinon from 'sinon/pkg/sinon-esm.js';
 import '../components/document-list/components/document-list';
 import { empDocument } from '../utils/constants';
 
-describe('Document list test: \n', () => {
+describe('Document list tests:', () => {
   describe('Empty document list', () => {
     let el;
 
@@ -49,6 +49,11 @@ describe('Document list test: \n', () => {
       await el.updateComplete;
       const rows = el.shadowRoot.querySelectorAll('.group');
       expect(rows.length).equal(el.list.length);
+    });
+    it('The download path is correct and working', async () => {
+      const pathInRow = el.shadowRoot.querySelectorAll('a')[0].href;
+      const pathInProp = el.list[0].path;
+      expect(pathInRow).to.contain(pathInProp);
     });
   });
 });
