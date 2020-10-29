@@ -15,10 +15,6 @@ export const dateFormatter = (date_) => {
     inputDate: year + '-' + monthNumber + '-' + monthDay,
   };
 };
-export const dateInputReverse = (value) => {
-  const aux = value.split('-').reverse().join('-');
-  return aux;
-};
 
 export const orderItems = (arr, order) => {
   arr.sort((a, b) => a[order] - b[order]);

@@ -129,23 +129,12 @@ export const anotherStyles = css`
     background-color: transparent;
     cursor: pointer;
   }
-  .detailsWrap {
-    border: 2px solid black;
-    padding: 10px;
-    margin-bottom: 5px;
-  }
-  details[open] {
-    border: none;
-  }
-  .detailsWrap > summary::-webkit-details-marker {
+  details summary::-webkit-details-marker {
     display: none;
   }
   .contents > div > span,
   .summaryWrap > span {
     font-weight: bold;
-  }
-  .detailsWrap[open] > summary::-webkit-details-marker {
-    display: initial;
   }
   @media (min-width: 768px) {
     .dataRows {
