@@ -184,6 +184,9 @@ export const tablePeticion = css`
   th.text-left {
     text-align: left;
   }
+  a:hover {
+    opacity: 0.5;
+  }
 `;
 
 export const modalPopup = css`

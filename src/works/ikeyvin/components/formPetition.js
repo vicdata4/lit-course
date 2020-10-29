@@ -40,20 +40,21 @@ class FormPetition extends LitElement {
       localStorage.setItem('list-peticion', JSON.stringify(storedPeticion));
       this.listaPeticion = [...[storedPeticion], ...this.listaPeticion];
 
-      this.shadowRoot.querySelector('#peticionTitulo').value = '';
-      this.shadowRoot.querySelector('#peticionDescripcion').value = '';
+      inputTitulo.value = '';
+      inputDescripcion.value = '';
     }
   }
 
   render() {
     return html`
-        <div class="form">
-          <p type="TITULO:"><input id="peticionTitulo" name="peticionTitulo" placeholder="Escribe el titulo.."></input></p>
-          <p type="DESCRIPCIÓN:"><textarea id="peticionDescripcion" name="peticionDescripcion" placeholder="Escribe la descripción.."></textarea></p>
+    <div class="form">
+     <p type="TITULO:"><input id="peticionTitulo" name="peticionTitulo" placeholder="Escribe el titulo.."></input></p>
+          <p type="DESCRIPCIÓN:"><textarea id="peticionDescripcion" name="peticionDescripcion" placeholder="Escribe la descripción..">
+          </textarea></p>
           <input id="peticionPublicar" type="checkbox">
           <label for="c1">PUBLICAR</label>
           <button @click="${() => this.addPeticion()}">ENVIAR</button>
-        </div>
+      </div>
       `;
   }
 }
