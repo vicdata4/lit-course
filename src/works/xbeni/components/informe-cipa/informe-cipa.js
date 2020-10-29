@@ -143,7 +143,9 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </div>
               </th>
-              <th>Semaforo</th>
+              <th>
+                <label>Semaforo</label>
+              </th>
             </tr>
 
             <!--  MAIN TABLA -->
@@ -232,7 +234,7 @@ export class BeniListaCipa extends LitElement {
         this.shadowRoot.getElementById('id_label_order_perfil').innerHTML = 'ASC';
         break;
       case 'en_plantilla':
-        this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'SI';
+        this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'NO';
         break;
       case 'fecha_ultima_actualizacion':
         this.shadowRoot.getElementById('id_label_order_fua').innerHTML = 'ASC';
@@ -286,7 +288,7 @@ export class BeniListaCipa extends LitElement {
           this.shadowRoot.getElementById('id_label_order_perfil').innerHTML = 'DES';
           break;
         case 'en_plantilla':
-          this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'NO';
+          this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'SI';
           break;
         case 'fecha_ultima_actualizacion':
           this.shadowRoot.getElementById('id_label_order_fua').innerHTML = 'DES';
@@ -298,7 +300,6 @@ export class BeniListaCipa extends LitElement {
     }
 
     this.datosCipa = [...orderedList];
-    this.showPage(0);
   }
 
   hiddenBodyCipa() {
