@@ -1,14 +1,14 @@
 import { LitElement, html } from 'lit-element';
 import { viewStyles } from './utils/t-styles';
 import { responsiveTable } from './utils/table-responsive';
-export class TablaSolicitud extends LitElement {
+export class TableRequests extends LitElement {
   static get styles() {
     return [viewStyles, responsiveTable];
   }
 
   static get properties() {
     return {
-      miTabla: { type: Array },
+      tableRequests: { type: Array },
       nElements: { type: Number },
       stepper: { type: Array, attribute: false },
       index: { type: Number, attribute: false },
@@ -19,7 +19,7 @@ export class TablaSolicitud extends LitElement {
 
   constructor() {
     super();
-    this.miTabla = [];
+    this.tableRequests = [];
     this.nElements = 10;
     this.stepper = [];
     this.from = 0;
@@ -32,7 +32,7 @@ export class TablaSolicitud extends LitElement {
   }
 
   async reloadTable() {
-    const nPages = Math.ceil(this.miTabla.length / this.nElements);
+    const nPages = Math.ceil(this.tableRequests.length / this.nElements);
     this.stepper = new Array(nPages).fill({});
     this.to = this.nElements;
     await this.updateComplete;
@@ -90,18 +90,18 @@ export class TablaSolicitud extends LitElement {
   }
 
   orderDates(column) {
-    const myTable = [...this.miTabla];
+    const myTable = [...this.tableRequests];
 
-    const ordermiTable = myTable.sort((a, b) => {
+    const orderTable = myTable.sort((a, b) => {
       if (a[column] < b[column]) return -1;
       if (a[column] > b[column]) return 1;
       return 0;
     });
-    if (JSON.stringify(this.miTabla) === JSON.stringify(ordermiTable)) {
-      ordermiTable.reverse();
+    if (JSON.stringify(this.tableRequests) === JSON.stringify(orderTable)) {
+      orderTable.reverse();
     }
 
-    this.miTabla = [...ordermiTable];
+    this.tableRequests = [...orderTable];
     this.showPage(0);
   }
 
@@ -146,8 +146,8 @@ export class TablaSolicitud extends LitElement {
           <th class="cell">Eliminar</th>
         </tr>
 
-        ${this.miTabla.slice(this.from, this.to).map(
-          (item) => html`
+        ${this.tableRequests.slice(this.from, this.to).map(
+          (item, i) => html`
               <tr id="rowInfo">
                 <td data-title="Fecha de solicitud: ">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
                 <td data-title="Fecha Inicio: ">${item.infoFI.split('-').reverse().join('-')}</td>
@@ -155,7 +155,7 @@ export class TablaSolicitud extends LitElement {
                 <td data-title="Estado de la solicitud: ">Pendiente de aprobación</td>
                 <td data-title="Fecha de estado: ">${item.fHoy.split('-').reverse().join('-')}</td>
                 <td data-title="Eliminar: "> <button id="btnPapelera" @click="${() =>
-                  this.deleteItem()}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
+                  this.deleteItem(i)}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
               </tr>`,
         )}
       </table>
@@ -163,4 +163,4 @@ export class TablaSolicitud extends LitElement {
     `;
   }
 }
-customElements.define('tabla-solicitud', TablaSolicitud);
+customElements.define('table-requests', TableRequests);

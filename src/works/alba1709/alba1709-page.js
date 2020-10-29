@@ -2,11 +2,11 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './solicitudVacaciones/solicitud-vacaciones-view';
+import './solicitudVacaciones/requests-holidays-view';
 import './adminHoliday/admin-holiday-view';
 
 const components = {
-  solicitudVacaciones: () => html`<solicitud-vacaciones-view>h</solicitud-vacaciones-view>`,
+  solicitudVacaciones: () => html`<requests-holidays-view></requests-holidays-view>`,
   adminHoliday: () => html`<admin-holiday-view></admin-holiday-view>`,
 };
 
