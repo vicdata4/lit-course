@@ -234,7 +234,7 @@ export const documentListStyles = css`
       margin-bottom: 0px;
     }
 
-    .row.data:hover {
+    .group:hover {
       background-color: #f5f6f7;
     }
   }
