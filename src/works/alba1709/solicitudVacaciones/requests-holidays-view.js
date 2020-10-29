@@ -1,10 +1,10 @@
 /* eslint-disable no-alert */
 import { LitElement, html, css } from 'lit-element';
 import { commonStyles } from '../../../utils/custom-styles';
-import './tabla-solicitud';
-import './inputs-solicitud';
+import './table-requests';
+import './inputs-requests';
 
-export class SolicitudVacaciones extends LitElement {
+export class RequestsHolidays extends LitElement {
   static get styles() {
     return [
       commonStyles,
@@ -21,13 +21,13 @@ export class SolicitudVacaciones extends LitElement {
    */
   static get properties() {
     return {
-      infoSolicitud: { type: Array },
+      infoRequests: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.infoSolicitud = [];
+    this.infoRequests = [];
   }
 
   async addSolicitud(e) {
@@ -54,9 +54,9 @@ export class SolicitudVacaciones extends LitElement {
       );
       return false;
     } else {
-      this.infoSolicitud = [...[e.detail], ...this.infoSolicitud];
+      this.infoRequests = [...[e.detail], ...this.infoRequests];
 
-      const tabla = this.shadowRoot.querySelector('tabla-solicitud');
+      const tabla = this.shadowRoot.querySelector('table-requests');
       await tabla.updateComplete;
       tabla.reloadTable();
     }
@@ -64,21 +64,21 @@ export class SolicitudVacaciones extends LitElement {
 
   // Eliminar solicitud
   deleteSolicitud(e) {
-    const array = this.infoSolicitud;
+    const array = this.infoRequests;
     array.splice(e.detail.index, 1);
-    this.infoSolicitud = [...array];
+    this.infoRequests = [...array];
   }
 
   render() {
     return html`
       <h2>Solicitud de vacaciones</h2>
-      <inputs-solicitud @my-event="${this.addSolicitud}"></inputs-solicitud>
-      <tabla-solicitud
-        .miTabla="${this.infoSolicitud}"
+      <inputs-requests @my-event="${this.addSolicitud}"></inputs-requests>
+      <table-requests
+        .tableRequests="${this.infoRequests}"
         .nElements="${10}"
         @delete-event="${this.deleteSolicitud}"
-      ></tabla-solicitud>
+      ></table-requests>
     `;
   }
 }
-customElements.define('solicitud-vacaciones-view', SolicitudVacaciones);
+customElements.define('requests-holidays-view', RequestsHolidays);
