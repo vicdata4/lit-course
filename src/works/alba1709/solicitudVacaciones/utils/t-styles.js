@@ -75,7 +75,47 @@ export const viewStyles = css`
     }
   .stepper, .step {
     user-select: none;
-    }
+  }
+
+  #btnAgregar {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 6px 10px 6px 10px;
+    color: black;
+    background-color: white;
+    margin-left: 15px;
+    box-shadow: 3px 3px black;
+    font-family: 'Open Sans', sans-serif;
+  }
+  #btnAgregar:hover {
+    background-color: #e8e7e7;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+  }
+  #lblI,
+  #lblF {
+    font-family: 'Open Sans', sans-serif;
+    margin-right: 15px;
+  }
+  #fechaIni {
+    margin-right: 25px;
+  }
+
+  #inputStart,
+  #inputEnd {
+    display: inline-flex;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+
+  #fechaIni:hover,
+  #fechaFin:hover {
+    background-color: #e8e7e7;
+  }
+  #inputs {
+    display: inline;
+  }
     }
 
   }

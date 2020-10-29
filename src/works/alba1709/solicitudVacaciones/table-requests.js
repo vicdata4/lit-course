@@ -147,7 +147,7 @@ export class TableRequests extends LitElement {
         </tr>
 
         ${this.tableRequests.slice(this.from, this.to).map(
-          (item) => html`
+          (item, i) => html`
               <tr id="rowInfo">
                 <td data-title="Fecha de solicitud: ">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
                 <td data-title="Fecha Inicio: ">${item.infoFI.split('-').reverse().join('-')}</td>
@@ -155,7 +155,7 @@ export class TableRequests extends LitElement {
                 <td data-title="Estado de la solicitud: ">Pendiente de aprobación</td>
                 <td data-title="Fecha de estado: ">${item.fHoy.split('-').reverse().join('-')}</td>
                 <td data-title="Eliminar: "> <button id="btnPapelera" @click="${() =>
-                  this.deleteItem()}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
+                  this.deleteItem(i)}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
               </tr>`,
         )}
       </table>
