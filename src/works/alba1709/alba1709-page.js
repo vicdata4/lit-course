@@ -2,11 +2,11 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './solicitudVacaciones/solicitud-vacaciones-view';
+import './solicitudVacaciones/requests-holidays-view';
 import './adminHoliday/admin-holiday-view';
 
 const components = {
-  solicitudVacaciones: () => html`<solicitud-vacaciones-view>h</solicitud-vacaciones-view>`,
+  solicitudVacaciones: () => html`<requests-holidays-view></requests-holidays-view>`,
   adminHoliday: () => html`<admin-holiday-view></admin-holiday-view>`,
 };
 
@@ -32,6 +32,7 @@ class Alba1709Page extends LitElement {
 
   render() {
     return html`
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <common-header></common-header>
       <section class="container">
         <work-header>alba1709</work-header>

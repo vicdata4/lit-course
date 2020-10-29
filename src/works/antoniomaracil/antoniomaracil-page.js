@@ -9,11 +9,8 @@ import './components/document-list/components/document-list';
 
 const components = {
   adminVacationForm: () =>
-    html`<admin-vacation-form
-      .list="${empData}"
-      .nElements="${10}"
-      @update-array="${this.updateArray}"
-    ></admin-vacation-form>`,
+    html` <admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}">
+    </admin-vacation-form>`,
   documentList: () => html`<document-list .list="${empDocument}"></document-list>`,
 };
 

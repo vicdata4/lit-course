@@ -51,3 +51,106 @@ export const mediaQueriesStyles = css`
     }
   }
 `;
+
+// css permissions-report-detailed //
+export const tableFormat = css`
+  .permissions-report-ctr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  div label {
+    font-weight: bold;
+  }
+
+  label,
+  select,
+  input {
+    width: 10%;
+  }
+
+  .calendar {
+    width: 1.5%;
+    margin-left: 1%;
+    cursor: pointer;
+  }
+
+  .arrow-str {
+    width: 10px;
+    float: right;
+    cursor: pointer;
+  }
+
+  div select:focus {
+    outline: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    font-size: 0.75em;
+    text-align: left;
+    width: 50%;
+  }
+
+  table thead tr:first-child {
+    background-color: #ccc;
+  }
+
+  table tbody tr:nth-child(odd) {
+    background: #eee;
+  }
+
+  table td {
+    border-right: 1px solid black;
+    padding: 10px 10px 10px 5px;
+    font-weight: 600;
+  }
+
+  table th {
+    border-right: 1px solid black;
+    padding: 4px 10px 4px 5px;
+    width: 10%;
+  }
+
+  th:first-child,
+  th:last-child {
+    width: 5%;
+  }
+
+  #generateReport {
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border: solid black;
+    border-radius: 5px;
+    padding: 5px 20px;
+    cursor: pointer;
+  }
+
+  #previous-btn,
+  #next-btn {
+    width: 2%;
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 1%;
+  }
+
+  #navigation #nPages {
+    margin-top: 1.5%;
+    margin-left: 0.5%;
+  }
+
+  .no-visible {
+    visibility: hidden;
+  }
+`;
