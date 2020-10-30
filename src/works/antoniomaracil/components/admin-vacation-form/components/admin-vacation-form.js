@@ -107,12 +107,10 @@ export class AdminVacationForm extends LitElement {
         ${this.renderStepper()}
 
         <div class="order-box">
-          <button class="order" @click="${() => this.orderList('name')}">Nombre <span>&#9662;</span></button>
-          <button class="order" @click="${() => this.orderList('applicationDate')}">
-            Solicitud <span>&#9662;</span>
-          </button>
-          <button class="order" @click="${() => this.orderList('startDate')}">Inicio <span>&#9662;</span></button>
-          <button class="order" @click="${() => this.orderList('endDate')}">Fin <span>&#9662;</span></button>
+          <a class="order" @click="${() => this.orderList('name')}">Nombre <span>&#9662;</span></a>
+          <a class="order" @click="${() => this.orderList('applicationDate')}"> Solicitud <span>&#9662;</span> </a>
+          <a class="order" @click="${() => this.orderList('startDate')}">Inicio <span>&#9662;</span></a>
+          <a class="order" @click="${() => this.orderList('endDate')}">Fin <span>&#9662;</span></a>
         </div>
 
         <div class="table-box">
