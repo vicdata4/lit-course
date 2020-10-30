@@ -30,7 +30,7 @@ class FormPetition extends LitElement {
     if (inputTitulo.value.length > 0 && inputDescripcion.value.length > 0) {
       storedPeticion.push({
         id: new Date().valueOf(),
-        titulo: inputTitulo.value,
+        titulo: inputTitulo.value.toUpperCase(),
         descripcion: inputDescripcion.value,
         fecha:
           fechaPublicacion.getDate() + '/' + (fechaPublicacion.getMonth() + 1) + '/' + fechaPublicacion.getFullYear(),
@@ -47,15 +47,16 @@ class FormPetition extends LitElement {
 
   render() {
     return html`
-    <div class="form">
-     <p type="TITULO:"><input id="peticionTitulo" name="peticionTitulo" placeholder="Escribe el titulo.."></input></p>
-          <p type="DESCRIPCIÓN:"><textarea id="peticionDescripcion" name="peticionDescripcion" placeholder="Escribe la descripción..">
-          </textarea></p>
-          <input id="peticionPublicar" type="checkbox">
-          <label for="c1">PUBLICAR</label>
-          <button @click="${() => this.addPeticion()}">ENVIAR</button>
+      <div class="form">
+        <p type="TITULO:"><input id="peticionTitulo" name="peticionTitulo" placeholder="Escribe el titulo.." /></p>
+        <p type="DESCRIPCIÓN:">
+          <textarea id="peticionDescripcion" name="peticionDescripcion" placeholder="Escribe..."></textarea>
+        </p>
+        <input id="peticionPublicar" type="checkbox" />
+        <label for="c1">PUBLICAR</label>
+        <button @click="${() => this.addPeticion()}">ENVIAR</button>
       </div>
-      `;
+    `;
   }
 }
 

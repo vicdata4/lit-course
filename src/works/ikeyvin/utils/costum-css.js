@@ -97,95 +97,59 @@ export const formPeticion = css`
 `;
 
 export const tablePeticion = css`
-  div.container-table {
-    width: 100%;
-    background: #e6e6e6;
-    border-radius: 8px;
-    padding: 20px;
-    max-width: calc(100vw - 40px);
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    position: relative;
-    margin-bottom: 30px;
-  }
-
-  div.table-title {
-    display: block;
-    margin: auto;
-    max-width: 80%;
-    width: 100%;
-  }
-
-  .table-title h2 {
-    margin: 10px 0;
-    color: #78788c;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    text-transform: uppercase;
-  }
-
-  .table-fill {
-    background: white;
-    border-radius: 3px;
-    border-collapse: collapse;
-    height: 150px;
-    margin: auto;
-    max-width: 600px;
-    padding: 5px;
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  th {
-    color: #d5dde5;
-    background: #1b1e24;
-    border-right: 1px solid #343a45;
-    font-size: 14px;
-    font-style: normal;
-    padding: 20px;
+  .table-container th h1 {
+    font-family: 'Raleway';
+    font-variant: petite-caps;
+    font-weight: bold;
+    font-size: 1.1em;
     text-align: left;
-    vertical-align: middle;
+    color: grey;
   }
 
-  th:first-child {
-    border-top-left-radius: 3px;
-  }
-
-  th:last-child {
-    border-top-right-radius: 3px;
-    border-right: none;
-  }
-
-  tr {
-    border-top: 1px solid #c1c3d1;
-    border-bottom: 1px solid #c1c3d1;
-    color: #666b85;
-    font-size: 16px;
+  .table-container td {
+    font-family: 'Raleway';
     font-weight: normal;
+    font-size: 1em;
   }
 
-  tr:first-child {
-    border-top: none;
-  }
-
-  td {
-    background: #ffffff;
-    padding: 20px;
+  .table-container {
     text-align: left;
-    vertical-align: middle;
-    font-size: 14px;
-    border-right: 1px solid #c1c3d1;
+    overflow: hidden;
+    width: 40%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
   }
 
-  td:last-child {
-    border-right: 0px;
+  .table-container td,
+  .table-container th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 2%;
   }
 
-  th.text-left {
-    text-align: left;
+  .table-container tr:nth-of-type(odd) {
+    background: #eee;
   }
-  a:hover {
-    opacity: 0.5;
+
+  .table-container th {
+    background-color: #1c2b2d;
+  }
+
+  .table-container td:first-child {
+    color: #403e10;
+  }
+
+  .table-container a:hover {
+    color: #51adcf;
+    font-weight: bold;
+  }
+
+  @media (max-width: 300px) {
+    .table-container td:nth-child(2),
+    .table-container th:nth-child(2) {
+      display: none;
+    }
   }
 `;
 
@@ -209,17 +173,7 @@ export const modalPopup = css`
   }
 
   .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #78788c;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
+    box-sizing: border-box;
   }
 
   .modal-title {
@@ -245,6 +199,7 @@ export const modalPopup = css`
 
   textarea {
     width: 100%;
+    height: 200px;
   }
 
   .clearBoth {
@@ -264,4 +219,66 @@ export const modalPopup = css`
     text-decoration: none;
     cursor: pointer;
   }
+
+  * {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+
 `;

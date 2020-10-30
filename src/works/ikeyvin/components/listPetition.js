@@ -43,45 +43,59 @@ class ListPetition extends LitElement {
     if (this.listaPeticiones !== null) {
       return html`
         <section class="listaPeticiones">
-          <div class="container-table">
-            <div class="table-title">
-              <table class="table-fill">
-                <thead>
-                  <tr>
-                    <th class="text-left">TITULO</th>
-                    <th class="text-left">FECHA</th>
-                  </tr>
-                </thead>
-                <tbody class="table-hover">
-                  ${this.listaPeticiones.map(
-                    (peticion) =>
-                      html` ${peticion.publicar
-                        ? html`
-                            <tr>
-                              <td class="text-left">
-                                <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a>
-                              </td>
-                              <td class="text-left">${peticion.fecha}</td>
-                            </tr>
-                          `
-                        : nothing}`,
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <table class="table-container">
+            <thead>
+              <tr>
+                <th><h1>TITULO</h1></th>
+                <th><h1>FECHA</h1></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${this.listaPeticiones.map(
+                (peticion) =>
+                  html` ${peticion.publicar
+                    ? html`
+                        <tr>
+                          <td>
+                            <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a>
+                          </td>
+                          <td>${peticion.fecha}</td>
+                        </tr>
+                      `
+                    : nothing}`,
+              )}
+            </tbody>
+          </table>
         </section>
 
         <div id="myModal" class="modal ${this.popupOpen ? 'active' : ''}">
           <div class="modal-content">
-            <div class="modal-items">
+            <div class="container">
               <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
-              <br />
-              <div class="modal-title">Título: ${this.popupPetTitulo}</div>
-              <div class="modal-date">Fecha: ${this.popupPetFecha}</div>
-              <br class="clearBoth" />
-              <p>Descripcion:</p>
-              <textarea readonly>${this.popupPetDescripcion}</textarea>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Título</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" name="titulo" value="${this.popupPetTitulo}" readonly />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="lname">Fecha</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" name="fecha" value="${this.popupPetFecha}" readonly />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="subject">Descipción</label>
+                </div>
+                <div class="col-75">
+                  <textarea name="descripcion" style="height:200px" readonly>${this.popupPetDescripcion}</textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>
