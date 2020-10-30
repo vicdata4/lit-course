@@ -11,6 +11,10 @@ class HolidaysInfo extends LitElement {
         width: 90%;
       }
 
+      th {
+        text-align: left;
+      }
+
       .order {
         padding: 0;
         background-color: transparent;
