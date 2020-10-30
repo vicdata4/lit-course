@@ -32,6 +32,10 @@ export const hours = [
               },
             ],
           },
+          {
+            year: 2022,
+            months: [],
+          },
         ],
       },
       {

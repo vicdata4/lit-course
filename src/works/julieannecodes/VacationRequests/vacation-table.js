@@ -15,7 +15,6 @@ class VacationTable extends LitElement {
     return {
       vacationData: { type: Array },
       errorMessage: { type: String },
-      inArray: { type: Object },
       from: { type: Number },
       to: { type: Number },
       nEmployees: { type: Number },
@@ -26,17 +25,16 @@ class VacationTable extends LitElement {
     super();
     this.vacationData = [];
     this.errorMessage = '';
-    this.inArray = new Date();
     this.from = 0;
-    this.nEmployees = 2;
+    this.nEmployees = 4;
     this.to = this.nEmployees;
   }
 
   addVacation(e) {
-    const recived = e.detail.dates.startDate;
+    const recived = e.detail.startDate;
     const dateExist = this.vacationData.find((x) => x.startDate.getTime() === recived.getTime());
     if (!dateExist) {
-      this.vacationData = [e.detail.dates, ...this.vacationData];
+      this.vacationData = [e.detail, ...this.vacationData];
       this.errorMessage = '';
     } else {
       this.errorMessage = 'Date already exists';
@@ -45,7 +43,7 @@ class VacationTable extends LitElement {
 
   deleteDate(e) {
     const arr = this.vacationData;
-    const toRemove = this.vacationData.find((item) => item.id === e.detail.index);
+    const toRemove = this.vacationData.find((item) => item.id === e.detail);
     const index = this.vacationData.indexOf(toRemove);
     this.vacationData.splice(index, 1);
     this.vacationData = [...arr];
@@ -59,8 +57,8 @@ class VacationTable extends LitElement {
   }
 
   getValues(e) {
-    this.from = e.detail.values[0];
-    this.to = e.detail.values[1];
+    this.from = e.detail[0];
+    this.to = e.detail[1];
   }
 
   render() {
