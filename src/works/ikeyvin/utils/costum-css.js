@@ -214,7 +214,8 @@ export const modalPopup = css`
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    margin: 20%;
+    margin-right: 20%;
+    margin-left: 20%;
   }
 
   .col-25 {
