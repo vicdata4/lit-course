@@ -154,7 +154,11 @@ export const tablePeticion = css`
 `;
 
 export const modalPopup = css`
+  * {
+    box-sizing: border-box;
+  }
   .modal {
+    font-family: 'Raleway';
     display: none;
     position: fixed;
     z-index: 1;
@@ -190,10 +194,6 @@ export const modalPopup = css`
     cursor: pointer;
   }
 
-  .modal {
-    box-sizing: border-box;
-  }
-
   input[type='text'],
   select,
   textarea {
@@ -202,25 +202,12 @@ export const modalPopup = css`
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    font-family: 'Raleway';
   }
 
   label {
     padding: 12px 12px 12px 0;
     display: inline-block;
-  }
-
-  input[type='submit'] {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-
-  input[type='submit']:hover {
-    background-color: #45a049;
   }
 
   .container {
@@ -232,13 +219,13 @@ export const modalPopup = css`
 
   .col-25 {
     float: left;
-    width: 20%;
+    width: 25%;
     margin-top: 6px;
   }
 
   .col-75 {
     float: left;
-    width: 70%;
+    width: 60%;
     margin-top: 6px;
   }
 
