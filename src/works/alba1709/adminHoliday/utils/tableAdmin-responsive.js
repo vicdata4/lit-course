@@ -1,57 +1,52 @@
 import { css } from 'lit-element';
 
 export const responsiveTable = css`
-  @media (max-width: 760px) {
+  @media (min-width: 760px) {
     #tableAdmin {
-      border: none;
-      font-size: 0.7em;
+      border: 1px solid black;
+      text-align: left;
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.8em;
     }
 
-    #tableAdmin #rowTitle {
-      display: flex;
-      padding: 1em 0.5em;
-      margin-bottom: 1em;
+    th {
       background-color: #cccccc;
     }
 
-    tr .cell {
-      display: none;
-    }
-
-    tr .ord {
-      border: none;
-    }
-
-    td {
-      border: none;
-      padding: 1em;
-      border: 1px solid grey;
-    }
-
-    #rowInfo {
-      border: 1px solid grey;
-      align-content: center;
-      margin-bottom: 1em;
-    }
-
-    table td[data-title] {
-      display: flex;
+    select {
+      width: 90%;
     }
 
     table td[data-title]::before {
-      content: attr(data-title);
-      width: 130px;
-      font-weight: bold;
+      content: attr(none);
+      width: 0px;
     }
 
-    #inputStart,
-    #inputEnd {
-      margin-bottom: 15px;
+    table td[data-title] {
+      display: table-cell;
     }
 
-    #papelera {
-      width: 22px;
-      height: 22px;
+    #tableAdmin #rowTitle {
+      display: table-row;
+    }
+
+    tr .cell {
+      display: block;
+    }
+
+    tr .cell {
+      display: revert;
+    }
+
+    td,
+    th {
+      border: 0px;
+    }
+
+    #rowInfo {
+      border: 0px;
     }
   }
 `;

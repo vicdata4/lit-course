@@ -1,17 +1,17 @@
 import { css } from 'lit-element';
 
 export const viewHoliday = css`
+  /* Mobile First */
   #tableAdmin {
-    border: 3px solid black;
-    text-align: left;
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.8em;
+    border: none;
+    font-size: 0.7em;
   }
 
-  #idTable {
-    overflow-x: scroll;
+  #tableAdmin #rowTitle {
+    display: flex;
+    padding: 1em 0.5em;
+    margin-bottom: 1em;
+    background-color: #cccccc;
   }
 
   #tableAdmin tr:nth-child(odd) {
@@ -26,17 +26,50 @@ export const viewHoliday = css`
     text-align: left;
     padding: 8px;
   }
-  th {
-    background-color: #cccccc;
+
+  tr .cell {
+    display: none;
+  }
+
+  tr .ord {
+    border: none;
+  }
+
+  td {
+    border: none;
+    padding: 1em;
+    border: 1px solid grey;
+  }
+
+  #rowInfo {
+    border: 1px solid grey;
+    align-content: center;
+    margin-bottom: 1em;
+  }
+
+  table td[data-title] {
+    display: flex;
+  }
+
+  table td[data-title]::before {
+    content: attr(data-title);
+    width: 130px;
+    font-weight: bold;
+  }
+
+  #inputStart,
+  #inputEnd {
+    margin-bottom: 15px;
+  }
+
+  #papelera {
+    width: 22px;
+    height: 22px;
   }
 
   h2,
   select {
     font-family: 'Open Sans', sans-serif;
-  }
-
-  select {
-    width: 90%;
   }
 
   .btnOrder {
@@ -82,14 +115,5 @@ export const viewHoliday = css`
   .stepper,
   .step {
     user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    #tableAdmin {
-      width: 90%;
-    }
-    select {
-      width: 100%;
-    }
   }
 `;
