@@ -260,7 +260,7 @@ const navigatorStyles = css`
   }
 
   .opened {
-    height: var(--main-height);
+    height: calc(100% - var(--header-nav-height));
   }
 
   .closed {
