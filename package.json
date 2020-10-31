@@ -40,6 +40,7 @@
     "prettier": "^2.1.2",
     "pwa-helpers": "^0.9.1",
     "rollup": "^1.12.4",
+    "@rollup/plugin-json": "^4.1.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-copy": "^2.0.1",
     "rollup-plugin-delete": "^1.0.0",

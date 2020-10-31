@@ -1,5 +1,5 @@
 import { Router } from '@vaadin/router';
-import { users } from './utils/constants';
+import * as users from './works/users';
 
 import './views/home-view';
 import './views/form-example-view';
@@ -36,7 +36,7 @@ export const routing = (outlet) => {
     { path: '(.*)', component: 'not-found-view' },
   ];
 
-  users.forEach((user) => {
+  users.list.forEach((user) => {
     routes.unshift({ path: `/${user.toLowerCase()}`, component: `${user.toLowerCase()}-page` });
   });
 

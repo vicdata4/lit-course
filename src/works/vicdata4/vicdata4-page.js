@@ -35,6 +35,7 @@ class Vicdata4Page extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>vicdata4</work-header>
+        <img src="assets/vicdata4/test_img.png" />
         <div class="common-list">
           ${Object.keys(components).map(
             (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
