@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { navList } from '../../utils/constants';
+import { disableScrolling, enableScrolling } from '../../utils/functions';
 import { navigationStyles } from './styles';
 import { material } from '../../utils/fonts';
 
@@ -17,10 +18,12 @@ class NavigationWc extends LitElement {
     menuButton.disabled = true;
 
     if (isClosed) {
+      disableScrolling();
       menu.add(`opened${type.fixed}`);
       icon.remove('no-transition');
       icon.add('rotate');
     } else {
+      enableScrolling();
       if (!type.fixed) menu.remove('opened');
       menu.add('closed');
       icon.add('rclose');

@@ -20,7 +20,20 @@ export const dateFormatter = (date_) => {
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
 };
+
 export const emailValidator = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
+};
+
+export const disableScrolling = () => {
+  var x = window.scrollX;
+  var y = window.scrollY;
+  window.onscroll = () => {
+    window.scrollTo(x, y);
+  };
+};
+
+export const enableScrolling = () => {
+  window.onscroll = () => {};
 };
