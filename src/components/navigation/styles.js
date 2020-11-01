@@ -113,7 +113,7 @@ export const navigationStyles = css`
   }
 
   .scroll-menu > img {
-    width: 40px;
+    width: 100px;
     margin-left: 20px;
   }
 

@@ -47,7 +47,7 @@ class NavigationWc extends LitElement {
           ${navList.map((info) => html`<li><a href="${info.path}" class="nav-link">${info.name}</a></li>`)}
         </ul>
         <div class="scroll-menu">
-          <img class="logo" src="assets/images/polymer.png" alt="logo" />
+          <img class="logo" src="assets/images/logo.png" alt="logo" />
           <ul class="nav-list">
             ${navList.map(
               (info) => html`<li><a href="${info.path}" class="nav-link fixed" tabindex="-1">${info.name}</a></li>`,

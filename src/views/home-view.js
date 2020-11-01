@@ -196,7 +196,7 @@ class HomeView extends LitElement {
   render() {
     return html`
       <header>
-        <img class="logo" src="assets/images/logo_.png" alt="logo" />
+        <img class="logo" src="assets/images/logo.png" alt="logo" />
       </header>
       <navigation-wc></navigation-wc>
       <main>
