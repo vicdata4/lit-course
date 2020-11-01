@@ -21,7 +21,7 @@ export const navList = [
   },
   {
     name: 'Searcher',
-    path: '/news-searcher',
+    path: '/searcher',
   },
   {
     name: 'Pagination',
