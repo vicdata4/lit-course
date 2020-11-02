@@ -98,7 +98,8 @@ class NavigationWc extends LitElement {
       <nav>
         <ul class="nav-list">
           ${navList.map(
-            (info) => html`<li><a @click="${() => this.goTo(info.path)}" class="nav-link">${info.name}</a></li>`,
+            (info) =>
+              html`<li><a @click="${() => this.goTo(info.path)}" class="nav-link" tabindex="0">${info.name}</a></li>`,
           )}
         </ul>
         <div class="scroll-menu">
