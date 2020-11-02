@@ -29,6 +29,20 @@ class NavigationWc extends LitElement {
     });
   }
 
+  disableEnableScrolling(isClosed, scroll, isFixed) {
+    if (isClosed) {
+      if (!scroll) {
+        scrollMode('fixed', '0px');
+      } else {
+        this.scroll = window.scrollY;
+        scrollMode('fixed', `-${window.scrollY}px`);
+      }
+    } else {
+      scrollMode('unset', 'unset');
+      if (isFixed) window.scrollTo(0, this.scroll);
+    }
+  }
+
   mobileMenuSwitch(scroll_ = null) {
     const type = scroll_ ? { scroll: 'scroll-', fixed: '-fixed' } : { scroll: '', fixed: '' };
     const icon = this.shadowRoot.querySelector(`.${type.scroll}menu-icon`).classList;
@@ -38,22 +52,14 @@ class NavigationWc extends LitElement {
 
     menuButton.disabled = true;
 
-    if (isClosed) {
-      if (!scroll_) {
-        scrollMode('fixed', '0px');
-      } else {
-        this.scroll = window.scrollY;
-        scrollMode('fixed', `-${window.scrollY}px`);
-      }
+    this.disableEnableScrolling(isClosed, scroll_, type.fixed);
 
+    if (isClosed) {
       menu.add(`opened${type.fixed}`);
       icon.remove('no-transition');
       icon.add('rotate');
     } else {
-      scrollMode('unset', 'unset');
-      if (type.fixed) window.scrollTo(0, this.scroll);
       if (!type.fixed) menu.remove('opened');
-
       menu.add('closed');
       icon.add('rclose');
     }
