@@ -36,6 +36,17 @@ Run application
 ```bash
 npm run dev
 ```
+
+Conventional commits
+
+[More info](https://www.conventionalcommits.org/en/v1.0.0/)
+
+```bash
+fix: some message
+```
+```bash
+fix(scope): some message
+```
 \
 [Unit Tests](https://github.com/vicdata4/lit-course/tree/master/tests)
 
