@@ -74,6 +74,7 @@ class NavigationWc extends LitElement {
 
   goTo(url) {
     scrollMode('unset', '0px');
+    window.scrollTo(0, this.scroll);
     location.href = url;
   }
 
