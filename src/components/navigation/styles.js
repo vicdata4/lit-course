@@ -73,7 +73,7 @@ export const navigationStyles = css`
   .opened-fixed {
     position: fixed;
     top: var(--header-scroll-height);
-    height: calc(100vh - var(--header-scroll-height));
+    height: calc(100% - var(--header-scroll-height));
   }
 
   .closed {
@@ -130,6 +130,23 @@ export const navigationStyles = css`
 
   .scroll-menu-btn > i {
     color: white;
+  }
+
+  .scrolltop-arrow {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    width: 50px;
+    height: 50px;
+    margin: 20px;
+    border: none;
+    border-radius: 100%;
+    color: white;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.6s;
+    cursor: pointer;
   }
 
   @media (min-width: 850px) {

@@ -9,26 +9,6 @@ class HomeView extends LitElement {
     return [material, styles];
   }
 
-  constructor() {
-    super();
-
-    window.addEventListener('scroll', () => {
-      const arrowBtn = this.shadowRoot.querySelector('.scrolltop-arrow');
-      const navigator = this.shadowRoot.querySelector('navigation-wc');
-      const scrollMenu = navigator.shadowRoot.querySelector('.scroll-menu');
-
-      arrowBtn.style.opacity = window.scrollY > window.innerHeight ? '1' : '0';
-      scrollMenu.style.top = window.scrollY > 170 ? '0' : '-70px';
-    });
-  }
-
-  scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
-
   renderMainSection() {
     return html`
       <section aria-label="Web design best practices" tabindex="0">
@@ -202,9 +182,6 @@ class HomeView extends LitElement {
       <main>
         ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()}
         ${this.renderFooter()}
-        <button aria-label="Scroll to top" class="scrolltop-arrow" @click="${this.scrollToTop}">
-          <i class="material-icons">arrow_upward</i>
-        </button>
       </main>
     `;
   }

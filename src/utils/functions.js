@@ -26,14 +26,7 @@ export const emailValidator = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const disableScrolling = () => {
-  var x = window.scrollX;
-  var y = window.scrollY;
-  window.onscroll = () => {
-    window.scrollTo(x, y);
-  };
-};
-
-export const enableScrolling = () => {
-  window.onscroll = () => {};
+export const scrollMode = (type, pixel) => {
+  document.body.style.position = type;
+  document.body.style.top = pixel;
 };

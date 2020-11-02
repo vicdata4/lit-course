@@ -439,23 +439,6 @@ export const styles = css`
     border-bottom-width: 2px;
   }
 
-  .scrolltop-arrow {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-
-    width: 50px;
-    height: 50px;
-    margin: 20px;
-    border: none;
-    border-radius: 100%;
-    color: white;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: opacity 0.6s;
-    cursor: pointer;
-  }
-
   @media (min-width: 540px) {
     .section-title {
       line-height: unset;
