@@ -1,4 +1,6 @@
-import { css } from 'lit-element';
+import { css, unsafeCSS } from 'lit-element';
+
+export const mediaQuery = 850;
 
 export const navigationStyles = css`
   nav {
@@ -92,6 +94,7 @@ export const navigationStyles = css`
   .nav-link {
     text-decoration: none;
     color: #fff;
+    cursor: pointer;
   }
 
   .scroll-menu {
@@ -149,7 +152,7 @@ export const navigationStyles = css`
     cursor: pointer;
   }
 
-  @media (min-width: 850px) {
+  @media (min-width: ${unsafeCSS(`${mediaQuery}px`)}) {
     .nav-list {
       all: unset;
       display: flex;

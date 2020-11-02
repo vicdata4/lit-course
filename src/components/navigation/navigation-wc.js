@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { navList } from '../../utils/constants';
 import { scrollMode } from '../../utils/functions';
-import { navigationStyles } from './styles';
+import { navigationStyles, mediaQuery } from './styles';
 import { material } from '../../utils/fonts';
 
 class NavigationWc extends LitElement {
@@ -79,8 +79,10 @@ class NavigationWc extends LitElement {
   }
 
   goTo(url) {
+    const clientWidth = document.querySelector('body').clientWidth;
+
     scrollMode('unset', '0px');
-    window.scrollTo(0, this.scroll);
+    if (clientWidth < mediaQuery) window.scrollTo(0, this.scroll);
     location.href = url;
   }
 
