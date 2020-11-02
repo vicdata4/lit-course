@@ -1,6 +1,7 @@
 import { css, unsafeCSS } from 'lit-element';
 
 export const mediaQuery = 850;
+export const transition = 1000;
 
 export const navigationStyles = css`
   nav {
@@ -29,7 +30,7 @@ export const navigationStyles = css`
   .scroll-menu-icon {
     font-size: 40px !important;
     color: #716a6f;
-    transition: transform 1s;
+    transition: transform ${unsafeCSS(`${transition}ms`)};
   }
 
   .menu-icon.no-transition,
@@ -84,7 +85,7 @@ export const navigationStyles = css`
   .nav-list.opened,
   .nav-list.opened-fixed,
   .nav-list.closed {
-    transition: height 1s;
+    transition: height ${unsafeCSS(`${transition}ms`)};
   }
 
   .nav-list > li {

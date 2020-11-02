@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { navList } from '../../utils/constants';
 import { scrollMode } from '../../utils/functions';
-import { navigationStyles, mediaQuery } from './styles';
+import { navigationStyles, mediaQuery, transition } from './styles';
 import { material } from '../../utils/fonts';
 
 class NavigationWc extends LitElement {
@@ -75,7 +75,7 @@ class NavigationWc extends LitElement {
 
         if (type.fixed) menu.remove('opened-fixed');
       }
-    }, 1000);
+    }, transition);
   }
 
   goTo(url) {
