@@ -1,24 +1,18 @@
 import { LitElement, html, css } from 'lit-element';
 
-export class HolidaysInfo extends LitElement {
+class HolidaysInfo extends LitElement {
   static get styles() {
     return css`
       table {
         border: 1px solid #e4e4e4;
         padding: 10px;
-        width: 90%;
         margin-left: 5%;
         margin-right: 5%;
+        width: 90%;
       }
 
-      tr {
+      th {
         text-align: left;
-      }
-
-      td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
 
       .order {
@@ -27,6 +21,7 @@ export class HolidaysInfo extends LitElement {
         border: none;
         margin-bottom: 10px;
         cursor: pointer;
+        text-align: left;
       }
 
       .stepper {
@@ -145,11 +140,11 @@ export class HolidaysInfo extends LitElement {
   renderStepper() {
     return html`
       <div class="stepper">
-        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        <div class="step left prev" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
           (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
         )}
-        <div class="step" @click="${this.next}">&#x25B7;</div>
+        <div class="step next" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
   }
@@ -174,7 +169,7 @@ export class HolidaysInfo extends LitElement {
                 Dia de fin de vacaciones <span>&#9662;</span>
               </button>
             </th>
-            <th>Dias tomados</th>
+            <td>Dias tomados</td>
           </tr>
           ${this.list.slice(this.from, this.to).map(
             (item) => html`
