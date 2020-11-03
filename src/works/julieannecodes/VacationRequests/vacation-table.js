@@ -2,7 +2,6 @@ import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
-// import { employeeList } from '../utils/employees';
 import './holidays-form';
 import './requests-table';
 import './stepper';
