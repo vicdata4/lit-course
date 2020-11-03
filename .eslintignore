@@ -6,3 +6,4 @@
 package.json
 package-lock.json
 index.html
+/src/works/**/assets/**
