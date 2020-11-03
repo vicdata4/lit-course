@@ -34,27 +34,32 @@ export const tableFormat = css`
     flex-direction: column;
   }
 
-  div {
+  .permissions-report-ctr div {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
     margin-bottom: 10px;
   }
 
-  div label {
-    font-weight: bold;
+  .date {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
   }
 
-  label,
   select,
   input {
-    width: 10%;
+    width: 50%;
+  }
+
+  label {
+    font-weight: bold;
+    width: 50%;
+    margin-right: 50px;
   }
 
   .calendar {
-    width: 1.5%;
-    margin-left: 1%;
+    width: 25px;
     cursor: pointer;
+    margin-left: 3%;
   }
 
   .arrow-str {
@@ -63,16 +68,11 @@ export const tableFormat = css`
     cursor: pointer;
   }
 
-  div select:focus {
-    outline: none;
-  }
-
   table {
     border-collapse: collapse;
     border: 1px solid black;
     font-size: 0.75em;
     text-align: left;
-    width: 50%;
   }
 
   table thead tr:first-child {
@@ -113,16 +113,20 @@ export const tableFormat = css`
 
   #previous-btn,
   #next-btn {
-    width: 2%;
+    width: 10%;
     display: block;
-    padding: 5px;
     cursor: pointer;
     margin-top: 1%;
   }
 
   #navigation #nPages {
-    margin-top: 1.5%;
+    margin-top: 3%;
     margin-left: 0.5%;
+  }
+
+  #navigation {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
   }
 
   .no-visible {
@@ -131,86 +135,63 @@ export const tableFormat = css`
 `;
 
 export const mediaQueriesPerReport = css`
-  /* Smartphones (portrait) */
-  @media only screen and (min-width: 280px) and (max-width: 480px) {
-    table {
-      width: 100%;
-    }
-    select,
-    #inputStartDate,
-    #inputEndDate {
-      margin-left: -50%;
-      margin-top: 8%;
-      width: 50%;
-    }
-    .calendar {
-      visibility: hidden;
+  /* iPads */
+  @media screen and (min-device-width: 580px) and (max-device-width: 1024px) {
+    .permissions-report-ctr div {
+      flex-direction: row;
     }
     label {
-      width: 50%;
-    }
-    #previous-btn,
-    #next-btn {
-      width: 10%;
-    }
-    #navigation #nPages {
-      margin-top: 3.5%;
-      margin-left: 1%;
-    }
-    .no-visible {
-      visibility: hidden;
-    }
-  }
-
-  /* Smartphones (landscape) */
-  @media only screen and (min-width: 481px) and (max-width: 850px) {
-    table {
-      width: 100%;
-    }
-    select,
-    #inputStartDate,
-    #inputEndDate {
       width: 25%;
     }
-    label {
+    select {
+      width: 30%;
+      margin-bottom: 1%;
+    }
+    .date {
+      width: 60%;
+    }
+    #generateReport {
       width: 30%;
     }
     .calendar {
-      width: 4%;
+      margin-left: 1%;
     }
     #previous-btn,
     #next-btn {
-      width: 5%;
-    }
-    #navigation #nPages {
-      margin-top: 3%;
-      margin-left: 1%;
+      width: 4%;
     }
   }
-
-  /* iPads */
-  @media only screen and (min-width: 851px) and (max-width: 1024px) {
+  /* Desktop */
+  @media (min-device-width: 1025px) {
     table {
       width: 100%;
     }
-    label {
+    .permissions-report-ctr div {
+      flex-direction: row;
+    }
+    select {
+      width: 10%;
+      margin-bottom: 0.5%;
+    }
+    .date {
       width: 20%;
     }
-    select,
-    #inputStartDate,
-    #inputEndDate {
-      width: 20%;
+    label {
+      width: 8%;
+    }
+    #generateReport {
+      width: 200px;
     }
     .calendar {
-      width: 3%;
+      margin-left: 1%;
     }
     #previous-btn,
     #next-btn {
-      height: 3%;
-      width: 3%;
+      width: 2%;
     }
     #navigation #nPages {
-      margin-left: 1%;
+      margin-top: 1.5%;
+      margin-left: 0.5%;
     }
   }
 `;

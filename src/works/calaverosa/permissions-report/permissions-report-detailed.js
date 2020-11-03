@@ -153,24 +153,28 @@ class PermissionsReportDetailed extends LitElement {
 
         <div>
           <label>Fecha de inicio:</label>
-          <input id="inputStartDate" type="date" />
-          <img
-            src="/assets/calaverosa/icons/calendar.png"
-            class="calendar"
-            alt="imagen calendario"
-            @click="${this.showCalendarStart}"
-          />
+          <div class="date">
+            <input id="inputStartDate" type="date" />
+            <img
+              src="/assets/calaverosa/icons/calendar.png"
+              class="calendar"
+              alt="imagen calendario"
+              @click="${this.showCalendarStart}"
+            />
+          </div>
         </div>
 
         <div>
           <label>Fecha de fin:</label>
-          <input id="inputEndDate" type="date" />
-          <img
-            src="/assets/calaverosa/icons/calendar.png"
-            class="calendar"
-            alt="imagen calendario"
-            @click="${this.showCalendarEnd}"
-          />
+          <div class="date">
+            <input id="inputEndDate" type="date" />
+            <img
+              src="/assets/calaverosa/icons/calendar.png"
+              class="calendar"
+              alt="imagen calendario"
+              @click="${this.showCalendarEnd}"
+            />
+          </div>
         </div>
 
         <div>
