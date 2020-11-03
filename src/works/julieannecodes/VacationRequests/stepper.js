@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit-element';
 import { stepperStyles, mediaQueries } from '../utils/custom-styles';
-
+import { material } from '../../../utils/fonts';
 class Stepper extends LitElement {
   static get styles() {
-    return [stepperStyles, mediaQueries];
+    return [stepperStyles, mediaQueries, material];
   }
 
   static get properties() {
@@ -73,11 +73,11 @@ class Stepper extends LitElement {
     this.steps = new Array(nPages).fill({});
     return html`
       <div class="stepper">
-        <button class="left" id="leftB" @click="${this.prevOrNext}">&#x25C0;</button>
+        <button class="left material-icons" id="leftB" @click="${this.prevOrNext}">keyboard_arrow_left</button>
         ${this.steps.map(
           (step, i) => html`<button id="${i}" class="bSteps" @click="${() => this.showPartOf(i)}">${i + 1}</button>`,
         )}
-        <button class="right" id="rightB" @click="${this.prevOrNext}">&#x25BA;</button>
+        <button class="right material-icons" id="rightB" @click="${this.prevOrNext}">keyboard_arrow_right</button>
       </div>
     `;
   }

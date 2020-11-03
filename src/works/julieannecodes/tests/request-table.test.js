@@ -113,7 +113,7 @@ describe('Order func', () => {
     );
     await element.updateComplete;
 
-    orderButton = element.shadowRoot.querySelectorAll('.icon');
+    orderButton = element.shadowRoot.querySelectorAll('.order');
   });
 
   it('Ascending order by endDate', async () => {
