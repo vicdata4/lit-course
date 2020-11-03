@@ -140,11 +140,11 @@ class HolidaysInfo extends LitElement {
   renderStepper() {
     return html`
       <div class="stepper">
-        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        <div class="step left prev" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
           (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
         )}
-        <div class="step" @click="${this.next}">&#x25B7;</div>
+        <div class="step next" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
   }
