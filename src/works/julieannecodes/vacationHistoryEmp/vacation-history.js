@@ -10,8 +10,7 @@ class VacationHistory extends LitElement {
   static get properties() {
     return {
       vacationDates: { type: Array },
-      vacationDays: { type: Array }
-
+      vacationDays: { type: Array },
     };
   }
 
@@ -22,24 +21,26 @@ class VacationHistory extends LitElement {
 
   render() {
     return html`
-            <h2>Detalle de vacaciones</h2>
-            <div class="tableDiv">
-              <table>
-                <tr>
-                  <th>Día Inicio de Vacaciones</th>
-                  <th>Día Fin de Vacaciones</th>
-                  <th>Días Tomados</th>
-                </tr>
-                ${this.vacationDates.map(dates => html`
-                <tr>
-                  <td>${dateFormatter(dates.startDate).slashDate}</td>
-                  <td>${dateFormatter(dates.endDate).slashDate}</td>
-                  <td>${vacationDays(dates)}</td>
-                </tr>
-                `)}
-              </table>
-            </div>
-        `;
+      <h2>Detalle de vacaciones</h2>
+      <div class="tableDiv">
+        <table>
+          <tr>
+            <th>Día Inicio de Vacaciones</th>
+            <th>Día Fin de Vacaciones</th>
+            <th>Días Tomados</th>
+          </tr>
+          ${this.vacationDates.map(
+            (dates) => html`
+              <tr>
+                <td>${dateFormatter(dates.startDate).slashDate}</td>
+                <td>${dateFormatter(dates.endDate).slashDate}</td>
+                <td>${vacationDays(dates)}</td>
+              </tr>
+            `,
+          )}
+        </table>
+      </div>
+    `;
   }
 }
 window.customElements.define('vacation-history', VacationHistory);
