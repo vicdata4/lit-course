@@ -6,7 +6,7 @@ import '../../components/common-header';
 import '../../components/work-header';
 
 const components = {
-  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${4}"></holidays-info>`,
+  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${5}"></holidays-info>`,
 };
 
 class Andresclase1234Page extends LitElement {
