@@ -1,4 +1,4 @@
-![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo.png?v=4&s=100)
+![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo_.png?v=4&s=100)
 
 https://www.selenium.dev/documentation/en/
 
@@ -40,7 +40,6 @@ driver = await browserConfig({
 e2e/tests/form-example.test.js
 
 ```js
-require('chromedriver');
 const { browserConfig } = require('../config.js');
 const CommonActions = require('../pages/CommonActions.js');
 
@@ -62,7 +61,7 @@ describe('Form-example happy path', function () {
 e2e/pages/CommonActions.js
 
 ```js
-const { By } = require('selenium-webdriver/lib/by');
+const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 class CommonActions {
@@ -85,7 +84,7 @@ If you are using web-components, you can import `findElement` and `findElements`
 
 Example
 ```js
-const { By } = require('selenium-webdriver/lib/by');
+const { By } = require('selenium-webdriver');
 const { findElement, findElements } = require('../utils/shadow-dom.js');
 
 class FormExamplePage {
