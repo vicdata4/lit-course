@@ -1,5 +1,5 @@
 module.exports = {
-  'extends': ['standard', 'prettier'],
+  'extends': ['standard', 'prettier', 'plugin:json/recommended'],
   'env': {
     'browser': true,
     'commonjs': true,
