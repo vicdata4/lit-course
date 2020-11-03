@@ -107,10 +107,10 @@ export class AdminVacationForm extends LitElement {
         ${this.renderStepper()}
 
         <div class="order-box">
-          <a class="order" @click="${() => this.orderList('name')}">Nombre <span>&#9662;</span></a>
-          <a class="order" @click="${() => this.orderList('applicationDate')}"> Solicitud <span>&#9662;</span> </a>
-          <a class="order" @click="${() => this.orderList('startDate')}">Inicio <span>&#9662;</span></a>
-          <a class="order" @click="${() => this.orderList('endDate')}">Fin <span>&#9662;</span></a>
+          <a class="order" @click="${() => this.orderList('name')}">Nombre <span>&#x25B2;</span></a>
+          <a class="order" @click="${() => this.orderList('applicationDate')}"> Solicitud <span>&#x25B2;</span> </a>
+          <a class="order" @click="${() => this.orderList('startDate')}">Inicio <span>&#x25B2;</span></a>
+          <a class="order" @click="${() => this.orderList('endDate')}">Fin <span>&#x25B2;</span></a>
         </div>
 
         <div class="table-box">
@@ -120,25 +120,25 @@ export class AdminVacationForm extends LitElement {
                 <th data-label="Nombre">
                   <a class="order" @click="${() => this.orderList('name')}">
                     Nombre del empleado
-                    <span>&#9662;</span>
+                    <span>&#x25B2;</span>
                   </a>
                 </th>
                 <th data-label="Fecha de solicitud">
                   <a class="order" @click="${() => this.orderList('applicationDate')}">
                     Fecha de solicitud
-                    <span>&#9662;</span>
+                    <span>&#x25B2;</span>
                   </a>
                 </th>
                 <th data-label="Fecha de inicio">
                   <a class="order" @click="${() => this.orderList('startDate')}">
                     Fecha de inicio
-                    <span>&#9662;</span>
+                    <span>&#x25B2;</span>
                   </a>
                 </th>
                 <th data-label="Fecha de fin">
                   <a class="order" @click="${() => this.orderList('endDate')}">
                     Fecha de fin
-                    <span>&#9662;</span>
+                    <span>&#x25B2;</span>
                   </a>
                 </th>
                 <th data-label="Estado">Estado de solicitud</th>

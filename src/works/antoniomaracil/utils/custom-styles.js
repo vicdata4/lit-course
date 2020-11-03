@@ -110,6 +110,17 @@ export const adminVacationStyles = css`
     table.vacations td:before {
       content: none;
     }
+    a span {
+      visibility: hidden;
+      width: 10px;
+      height: 4px;
+      margin-top: 8px;
+      margin-left: 7px;
+      color: #0a0202;
+    }
+    a:hover span {
+      visibility: visible;
+    }
   }
 `;
 export const commonStyles = css`
