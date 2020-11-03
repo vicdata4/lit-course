@@ -64,23 +64,21 @@ class VacationTable extends LitElement {
 
   render() {
     return html`
-      <div class="container">
-        <h1>Solicitud de vacaciones</h1>
-        <holidays-form @send-dates="${this.addVacation}"></holidays-form>
-        ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        ${this.vacationData.length >= this.nEmployees
-          ? html`<stepper-component
-              .listLength="${this.vacationData.length}"
-              @interval-values="${this.getValues}"
-            ></stepper-component>`
-          : nothing}
-        <requests-table
-          .requestsList="${this.vacationData}"
-          .fromT="${this.from}"
-          .toT="${this.to}"
-          @delete-date="${this.deleteDate}"
-        ></requests-table>
-      </div>
+      <h1>Solicitud de vacaciones</h1>
+      <holidays-form @send-dates="${this.addVacation}"></holidays-form>
+      ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
+      ${this.vacationData.length >= this.nEmployees
+        ? html`<stepper-component
+            .listLength="${this.vacationData.length}"
+            @interval-values="${this.getValues}"
+          ></stepper-component>`
+        : nothing}
+      <requests-table
+        .requestsList="${this.vacationData}"
+        .fromT="${this.from}"
+        .toT="${this.to}"
+        @delete-date="${this.deleteDate}"
+      ></requests-table>
     `;
   }
 }
