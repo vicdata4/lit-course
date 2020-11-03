@@ -1,9 +1,11 @@
 import { css } from 'lit-element';
 
 export const hoursStyles = css`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap');
+
   * {
     box-sizing: border-box;
-    font-family: Muli, sans-serif;
+    font-family: Roboto, 'Open Sans';
   }
 
   #container {
@@ -25,6 +27,7 @@ export const hoursStyles = css`
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5px;
+    color: #555;
   }
 
   #container .filters label {
@@ -35,6 +38,7 @@ export const hoursStyles = css`
   #container .filters select {
     width: 60%;
     font-size: 0.8rem;
+    color: #555;
   }
 
   #container #generateReport {
@@ -44,6 +48,7 @@ export const hoursStyles = css`
   #container #generateReport button {
     padding: 5px 10px 5px 10px;
     font-size: 0.8rem;
+    color: #555;
   }
 
   #container section table {
@@ -51,23 +56,21 @@ export const hoursStyles = css`
     border-collapse: collapse;
   }
 
-  table thead tr {
-    background: #ccc;
+  td,
+  th {
+    color: #555;
   }
 
   table tbody tr:nth-child(odd) {
-    background: #eee;
+    background: #f1f1f1;
   }
 
-  table tbody tr:nth-child(odd) td {
-    border-bottom: 1px solid #ccc;
-  }
-  table tbody tr:nth-child(even) td {
+  table tbody tr td {
     border-bottom: 1px solid #ccc;
   }
 
   table tbody tr td:last-child {
-    border: none;
+    border-bottom: 0;
   }
 
   table,
@@ -161,7 +164,14 @@ export const hoursStyles = css`
       font-size: 0.8rem;
     }
 
-    thead,
+    table {
+      display: table;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
     tbody {
       display: table-row-group;
     }
@@ -178,25 +188,30 @@ export const hoursStyles = css`
     thead tr th {
       display: table-cell;
       text-align: left;
-      padding: 5px 15px 5px 5px;
       font-size: 0.8rem;
+      font-weight: normal;
+    }
+
+    table tbody tr:nth-child(odd) td {
+      border-bottom: 1px solid #fff;
+    }
+    table tbody tr:nth-child(even) td {
+      border-bottom: 1px solid #fff;
+    }
+
+    table tbody tr:last-child td {
+      border-bottom: 1px solid #ccc;
     }
 
     tbody tr td {
       display: table-cell;
       text-align: left;
-      padding: 10px 15px 10px 5px;
       font-size: 0.8rem;
     }
 
-    tr {
-      margin-bottom: 0;
-      padding: 5px;
-    }
-
-    td {
-      padding-left: 0;
-      height: 30px;
+    td,
+    th {
+      padding: 8px 10px;
     }
 
     td:before {
