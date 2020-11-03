@@ -104,28 +104,28 @@ export class AdminVacationForm extends LitElement {
     return html`
       <tr>
         <th data-label="Nombre">
-          <a class="order" @click="${() => this.orderList('name')}">
-            Nombre del empleado
+          <div class="order">
+            <a @click="${() => this.orderList('name')}"> Nombre </a>
             <span>&#x25B2;</span>
-          </a>
+          </div>
         </th>
         <th data-label="Fecha de solicitud">
-          <a class="order" @click="${() => this.orderList('applicationDate')}">
-            Fecha de solicitud
+          <div class="order">
+            <a @click="${() => this.orderList('applicationDate')}"> Fecha solicitud </a>
             <span>&#x25B2;</span>
-          </a>
+          </div>
         </th>
         <th data-label="Fecha de inicio">
-          <a class="order" @click="${() => this.orderList('startDate')}">
-            Fecha de inicio
+          <div class="order">
+            <a @click="${() => this.orderList('startDate')}"> Fecha inicio </a>
             <span>&#x25B2;</span>
-          </a>
+          </div>
         </th>
         <th data-label="Fecha de fin">
-          <a class="order" @click="${() => this.orderList('endDate')}">
-            Fecha de fin
+          <div class="order">
+            <a @click="${() => this.orderList('endDate')}"> Fecha fin </a>
             <span>&#x25B2;</span>
-          </a>
+          </div>
         </th>
         <th data-label="Estado">Estado de solicitud</th>
         <th data-label="Fecha de estado">Fecha de estado</th>
