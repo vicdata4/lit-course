@@ -1,5 +1,5 @@
 module.exports = {
-  'extends': 'standard',
+  'extends': ['standard', 'prettier', 'plugin:json/recommended'],
   'env': {
     'browser': true,
     'commonjs': true,
@@ -7,8 +7,8 @@ module.exports = {
     'es6': true,
     'mocha': true
   },
+  'plugins': ['prettier'],
   'rules': {
-    'indent': ['error', 2, { 'SwitchCase': 1 }],
     'max-len': 'off',
     'no-console': 'error',
     'no-alert': 'error',
@@ -16,8 +16,9 @@ module.exports = {
     'object-curly-spacing': [1, 'always'],
     'lines-between-class-members': ['error', 'always'],
     'semi': [2, 'always'],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': 0,
     'quote-props': ['error', 'as-needed'],
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    'prettier/prettier': ['error']
   },
 };

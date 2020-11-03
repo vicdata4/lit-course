@@ -2,13 +2,32 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/item002_lista-cipa/item002_lista-cipa';
+import './components/reporte-pe/reporte-pe';
+import './components/informe-cipa/informe-cipa';
+
+const components = {
+  InformeCandidatosInformacionDesactualizada: () => html`<informe-cipa></informe-cipa>`,
+  reportePermisosEmpleado: () => html`<reporte-pe></reporte-pe>`,
+};
 
 class XbeniPage extends LitElement {
   static get styles() {
-    return [
-      commonStyles
-    ];
+    return [commonStyles];
+  }
+
+  static get properties() {
+    return {
+      current: { type: String, attribute: false },
+    };
+  }
+
+  constructor() {
+    super();
+    this.current = 'InformeCandidatosInformacionDesactualizada';
+  }
+
+  setComponent(component) {
+    this.current = component;
   }
 
   render() {
@@ -16,7 +35,12 @@ class XbeniPage extends LitElement {
       <common-header></common-header>
       <section class="container">
         <work-header>XBeni</work-header>
-        <item002_lista-cipa></item002_lista-cipa>
+        <div class="common-list">
+          ${Object.keys(components).map(
+            (item) => html`<button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>`,
+          )}
+        </div>
+        ${components[this.current]()}
       </section>
     `;
   }

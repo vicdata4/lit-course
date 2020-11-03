@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { navigatorStyles } from '../utils/custom-styles';
-import { users } from '../utils/constants';
+import * as users from '../works/users.json';
 import { github } from '../utils/svg-icons';
 import '../components/common-header';
 
@@ -25,7 +25,7 @@ class WorksView extends LitElement {
             fill: white;
           }
         }
-      `
+      `,
     ];
   }
 
@@ -34,9 +34,9 @@ class WorksView extends LitElement {
       <common-header></common-header>
       <nav>
         <ul class="menu-list">
-            ${users.map(user => html`
-              <li>${github}<a href="/${user.toLowerCase()}" class="user-link">${user}</a></li>
-            `)}
+          ${users.list.map(
+            (user) => html` <li>${github}<a href="/${user.toLowerCase()}" class="user-link">${user}</a></li> `,
+          )}
         </ul>
       </nav>
     `;

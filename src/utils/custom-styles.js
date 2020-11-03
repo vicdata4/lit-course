@@ -20,11 +20,6 @@ export const navigatorStyles = css`
     cursor: pointer;
   }
 
-  .menu-list li a:hover {
-    background-color: #3e5c7b;
-    color: white;
-  }
-
   .menu-list li a {
     display: block;
     text-decoration: none;
@@ -53,11 +48,33 @@ export const navigatorStyles = css`
       height: 150px;
       width: 150px;
     }
+
+    .menu-list li a:hover {
+      background-color: #3e5c7b;
+      color: white;
+    }
   }
 `;
 
 export const commonStyles = css`
   .container {
     padding: 20px;
+  }
+
+  .common-list {
+    margin: 40px 0px;
+  }
+
+  .common-btn {
+    background-color: transparent;
+    border: 1px solid grey;
+    padding: 10px;
+    margin: 5px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .common-btn:hover {
+    background-color: #f1f1f1;
   }
 `;
