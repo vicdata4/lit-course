@@ -1,4 +1,4 @@
-![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo.png?v=4&s=100)
+![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo_.png?v=4&s=100)
 
 https://www.selenium.dev/documentation/en/
 

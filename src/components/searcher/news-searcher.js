@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit-element';
 import { spinner } from '../../utils/svg-icons';
 import { nothing } from 'lit-html';
 import '../input-component';
-import './news-list';
+import './searcher-list';
 
 const url = 'https://hn.algolia.com/api/v1/search?query=';
 
@@ -100,7 +100,7 @@ class NewsSearcher extends LitElement {
   }
 
   setLoader(state, reset = null) {
-    const listComponent = this.shadowRoot.querySelector('news-list');
+    const listComponent = this.shadowRoot.querySelector('searcher-list');
     listComponent.style.display = reset ? 'none' : 'block';
 
     this.showSpinner = state;
@@ -119,7 +119,7 @@ class NewsSearcher extends LitElement {
           </div>`
         : nothing}
 
-      <news-list .list="${this.list}" @show-more="${this.searchNews}"></news-list>
+      <searcher-list .list="${this.list}" @show-more="${this.searchNews}"></searcher-list>
       ${this.showSpinner ? html`<div class="centered spinner">${spinner}</div>` : nothing}
     `;
   }
