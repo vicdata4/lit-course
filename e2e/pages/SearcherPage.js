@@ -3,11 +3,11 @@ const { findElement, findElements } = require('../utils/shadow-dom.js');
 const CommonActions = require('./CommonActions.js');
 const assert = require('assert');
 
-class NewsComponentPage extends CommonActions {
+class SearcherPage extends CommonActions {
   constructor(driver) {
     super(driver);
     this.driver = driver;
-    this.wcList = 'news-list';
+    this.wcList = 'searcher-list';
     this.wcInput = 'input-component';
   }
 
@@ -31,4 +31,4 @@ class NewsComponentPage extends CommonActions {
   }
 }
 
-module.exports = NewsComponentPage;
+module.exports = SearcherPage;

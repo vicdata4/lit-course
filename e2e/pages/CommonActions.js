@@ -13,7 +13,7 @@ class CommonActions {
   }
 
   async selectListElement(buttonText) {
-    const listButton = await findElement('home-view', By.linkText(buttonText));
+    const listButton = await findElement('navigation-wc', By.linkText(buttonText));
     await listButton.click();
   }
 

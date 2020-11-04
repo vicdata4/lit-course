@@ -2,13 +2,13 @@ import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
 import { dateFormatter } from '../../utils/functions';
 import { info } from '../../utils/svg-icons';
-import { newListStyles } from './news-list-style';
+import { newListStyles } from './searcher-list-style';
 
 const domain = 'https://news.ycombinator.com/';
 const urlUserProfile = `${domain}user?id=`;
 const urlPost = `${domain}item?id=`;
 
-class NewsList extends LitElement {
+class SearcherList extends LitElement {
   static get styles() {
     return [newListStyles];
   }
@@ -73,4 +73,4 @@ class NewsList extends LitElement {
   }
 }
 
-window.customElements.define('news-list', NewsList);
+window.customElements.define('searcher-list', SearcherList);
