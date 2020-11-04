@@ -25,10 +25,10 @@ export const newStyles = css`
   }
 
   @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-    label #select {
+    label .select {
       font-size: 1.2em;
     }
-    #select {
+    .select {
       border: 1px solid #ccc;
       width: 50%;
       border-radius: 3px;
