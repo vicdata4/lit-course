@@ -109,7 +109,7 @@ export const hoursStyles = css`
   }
 
   tr {
-    border: 1px solid #ccc;
+    border: 1px solid #ccd0d4;
     margin-bottom: 10px;
     padding: 5px;
     font-size: 0.8em;
