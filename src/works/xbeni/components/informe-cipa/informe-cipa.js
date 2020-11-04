@@ -2,7 +2,6 @@
 import { LitElement, html } from 'lit-element';
 import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
 import {
-  svgX,
   svgOrderString,
   svgOrderOther,
   svgOrderInt,
@@ -15,14 +14,12 @@ export class BeniListaCipa extends LitElement {
   constructor() {
     super();
     this.datosCipa = cargarInformacionCandidatosCipa;
-    this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
     this.cargarFechaVencimiento();
   }
 
   static get properties() {
     return {
       datosCipa: { type: Array },
-      tituloFormulario: { type: String },
     };
   }
 
@@ -32,32 +29,7 @@ export class BeniListaCipa extends LitElement {
 
   render() {
     return html`
-      <div class="div_slot_top">
-        <slot name="top"> </slot>
-      </div>
-
-      <div class="div_slot_defaul">
-        <slot> </slot>
-      </div>
-
-      <div id="id_body_open_cipa" class="div_body_abrir_cipa">
-        <div class="div_button_abrir_cipa">
-          <button @click="${this.hiddenBodyAbrirCipa}" class="button_abrir_cipa">
-            Abrir lista de candidatos con información pendiente a actualizar
-          </button>
-        </div>
-      </div>
-
       <div id="id_body_cipa" class="div_body_cipa">
-        <div class="div_header_cipa">
-          <div class="div_titulo_cipa">
-            <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
-            <label class="titulo_header_cipa">${this.tituloFormulario}</label>
-          </div>
-          <div class="div_header_controles_cipa">
-            <div @click="${this.hiddenBodyCipa}" class="div_x_header_cipa">${svgX}</div>
-          </div>
-        </div>
         <div class="div_main_cipa">
           <table class="tabla_cipa">
             <!--  HEADER TABLA -->
@@ -300,16 +272,6 @@ export class BeniListaCipa extends LitElement {
     }
 
     this.datosCipa = [...orderedList];
-  }
-
-  hiddenBodyCipa() {
-    this.shadowRoot.getElementById('id_body_cipa').style.display = 'none';
-    this.shadowRoot.getElementById('id_body_open_cipa').style.display = 'block';
-  }
-
-  hiddenBodyAbrirCipa() {
-    this.shadowRoot.getElementById('id_body_cipa').style.display = 'block';
-    this.shadowRoot.getElementById('id_body_open_cipa').style.display = 'none';
   }
 
   dirigirUrlEditarCandidato(idCandidatoEditar) {
