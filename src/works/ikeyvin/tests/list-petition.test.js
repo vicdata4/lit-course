@@ -51,7 +51,7 @@ describe('Empty list petition: ', () => {
 });
 
 describe('List petition with data: ', () => {
-  let el, showPopupPetition;
+  let el, showPopupPetition, closePopupPetition;
 
   before(async () => {
     const component = html`<list-petition .listaPeticiones="${data}"></list-petition>`;
@@ -91,5 +91,14 @@ describe('List petition with data: ', () => {
     expect(date).not.to.be.null;
     expect(date).not.to.be.NaN;
     expect(description).not.to.be.null;
+  });
+
+  it('Close button modal windows working', async () => {
+    showPopupPetition.click();
+    await el.updateComplete;
+
+    closePopupPetition = el.shadowRoot.querySelector('span');
+    closePopupPetition.click();
+    await el.updateComplete;
   });
 });
