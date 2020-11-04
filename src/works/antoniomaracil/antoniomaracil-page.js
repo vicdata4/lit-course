@@ -29,7 +29,7 @@ class AntoniomaracilPage extends LitElement {
   constructor() {
     super();
     this.list = [];
-    this.current = 'adminVacationForm';
+    this.current = 'documentList';
   }
 
   setComponent(component) {
