@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit-element';
-import { tableFormat } from '../utils/styles.js';
+import { tableFormat, mediaQueriesPerReport } from '../utils/styles.js';
 import { permissions } from '../utils/employees.js';
 
 class PermissionsReportDetailed extends LitElement {
   static get styles() {
-    return [tableFormat];
+    return [tableFormat, mediaQueriesPerReport];
   }
 
   static get properties() {
@@ -63,8 +63,15 @@ class PermissionsReportDetailed extends LitElement {
     }
   }
 
-  formatDate(str) {
-    return str.split('/').reverse().join('/');
+  formatDate(date) {
+    const formattedDate =
+      (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) +
+      '/' +
+      (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) +
+      '/' +
+      date.getFullYear();
+
+    return formattedDate;
   }
 
   showCalendarStart() {
@@ -82,8 +89,8 @@ class PermissionsReportDetailed extends LitElement {
 
     if (inputStartDate.toString() !== 'Invalid Date' && inputEndDate.toString() !== 'Invalid Date') {
       for (let i = 0; i < this.listPermissions.length; i++) {
-        const formatStartDate = new Date(this.listPermissions[i].startDate);
-        const formatEndDate = new Date(this.listPermissions[i].endDate);
+        const formatStartDate = this.listPermissions[i].startDate;
+        const formatEndDate = this.listPermissions[i].endDate;
 
         if (formatStartDate >= inputStartDate && formatEndDate <= inputEndDate) {
           this.newList.push(this.listPermissions[i]);
@@ -91,7 +98,7 @@ class PermissionsReportDetailed extends LitElement {
       }
     } else if (inputStartDate.toString() !== 'Invalid Date' && inputEndDate.toString() === 'Invalid Date') {
       for (let i = 0; i < this.listPermissions.length; i++) {
-        const formatStartDate = new Date(this.listPermissions[i].startDate);
+        const formatStartDate = this.listPermissions[i].startDate;
 
         if (formatStartDate >= inputStartDate) {
           this.newList.push(this.listPermissions[i]);
@@ -99,7 +106,7 @@ class PermissionsReportDetailed extends LitElement {
       }
     } else if (inputStartDate.toString() === 'Invalid Date' && inputEndDate.toString() !== 'Invalid Date') {
       for (let i = 0; i < this.listPermissions.length; i++) {
-        const formatEndDate = new Date(this.listPermissions[i].endDate);
+        const formatEndDate = this.listPermissions[i].endDate;
 
         if (formatEndDate <= inputEndDate) {
           this.newList.push(this.listPermissions[i]);
@@ -109,7 +116,7 @@ class PermissionsReportDetailed extends LitElement {
       this.newList = [...this.listPermissions.slice(position, position + 10)];
     }
 
-    if (this.listPermissions.length > 9) {
+    if (this.listPermissions.length > 10) {
       this.shadowRoot.getElementById('navigation').classList.remove('no-visible');
     }
 
@@ -153,24 +160,28 @@ class PermissionsReportDetailed extends LitElement {
 
         <div>
           <label>Fecha de inicio:</label>
-          <input id="inputStartDate" type="date" />
-          <img
-            src="/assets/calaverosa/icons/calendar.png"
-            class="calendar"
-            alt="imagen calendario"
-            @click="${this.showCalendarStart}"
-          />
+          <div class="date">
+            <input id="inputStartDate" type="date" />
+            <img
+              src="/assets/calaverosa/icons/calendar.png"
+              class="calendar"
+              alt="imagen calendario"
+              @click="${this.showCalendarStart}"
+            />
+          </div>
         </div>
 
         <div>
           <label>Fecha de fin:</label>
-          <input id="inputEndDate" type="date" />
-          <img
-            src="/assets/calaverosa/icons/calendar.png"
-            class="calendar"
-            alt="imagen calendario"
-            @click="${this.showCalendarEnd}"
-          />
+          <div class="date">
+            <input id="inputEndDate" type="date" />
+            <img
+              src="/assets/calaverosa/icons/calendar.png"
+              class="calendar"
+              alt="imagen calendario"
+              @click="${this.showCalendarEnd}"
+            />
+          </div>
         </div>
 
         <div>
@@ -196,7 +207,7 @@ class PermissionsReportDetailed extends LitElement {
               .filter((obj) => obj.type !== 'Vacaciones')
               .map((permit) => {
                 return html` <tr>
-                  <td>${this.formatDate(permit.startDate)}</td>
+                  <td>${this.formatDate(new Date(permit.startDate))}</td>
                   <td>${permit.type}</td>
                   <td>${permit.hours}</td>
                 </tr>`;
