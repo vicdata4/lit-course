@@ -7,6 +7,7 @@ export const requestsStyles = css`
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     font-family: Roboto, 'Open Sans';
+    font-size: 12px !important;
   }
 
   .container {
@@ -18,19 +19,18 @@ export const requestsStyles = css`
   table {
     margin-top: 15px;
     border-collapse: collapse;
-    border: 1px solid #ccd0d4;
     width: 100%;
     table-layout: fixed;
   }
 
   table caption {
-    font-size: 1.3rem;
+    font-size: 1.5rem !important;
     text-align: left;
     margin-bottom: 15px;
   }
 
   table tbody tr:nth-child(odd) {
-    background: #f1f1f1;
+    background: #f6f6f6;
   }
 
   table thead {
@@ -44,13 +44,15 @@ export const requestsStyles = css`
 
   table tr {
     display: block;
+    border: 1px solid #ccd0d4;
+    margin-bottom: 5px;
   }
 
   table td {
     display: block;
     padding: 8px 10px;
     text-align: right;
-    font-size: 14px;
+    color: #555;
   }
 
   table td::before {
@@ -63,7 +65,11 @@ export const requestsStyles = css`
     width: 70%;
   }
 
-  @media all and (min-width: 400px) {
+  @media all and (min-width: 570px) {
+    * {
+      font-size: 14px !important;
+    }
+
     table tr {
       display: table-row;
     }
