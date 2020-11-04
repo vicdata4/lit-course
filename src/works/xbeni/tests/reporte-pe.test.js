@@ -19,10 +19,30 @@ describe('Reporte-pe tests with data', () => {
   ];
 
   before(async () => {
-    const component = html` <reporte-pe .datosReporteRpe="${data}" .empleadosRpe="${dataEmployees}"></reporte-pe> `;
+    const component = html` <reporte-pe .empleadosRpe="${dataEmployees}"></reporte-pe> `;
 
     el = await fixture(component);
     await el.updateComplete;
+  });
+
+  it('Table without data not rendered ', async () => {
+    el.datosReporteRpe = [];
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '2020-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '2020-10-15';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length === 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
   });
 
   it('Component renderred correctly', async () => {
@@ -32,7 +52,9 @@ describe('Reporte-pe tests with data', () => {
   it('Table with reporte renderred correctly', async () => {
     const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
     const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
-    selectEmployees.querySelectorAll('option')[1].selected;
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.datosReporteRpe = data;
+
     buttonForm.click();
     await el.updateComplete;
 
@@ -120,5 +142,212 @@ describe('Reporte-pe tests with data', () => {
     }
 
     expect(false).equal(controlErrors);
+  });
+
+  it('Function order show correctly types of order selected', async () => {
+    let controlErrors = false;
+    const buttonOrderDia = el.shadowRoot.querySelectorAll('.campoOrdenar')[0];
+    const buttonOrderTipoPermiso = el.shadowRoot.querySelectorAll('.campoOrdenar')[1];
+    const contentLabelOrderDia = el.shadowRoot.querySelectorAll('.textoCampoOrdenar')[0];
+    const contentLabelOrderTipoPermiso = el.shadowRoot.querySelectorAll('.textoCampoOrdenar')[1];
+    buttonOrderDia.click();
+    await el.updateComplete;
+    if (contentLabelOrderDia.textContent !== 'ASC') {
+      controlErrors = true;
+    }
+    buttonOrderDia.click();
+    await el.updateComplete;
+    if (contentLabelOrderDia.textContent !== 'DES') {
+      controlErrors = true;
+    }
+    buttonOrderTipoPermiso.click();
+    await el.updateComplete;
+    if (contentLabelOrderTipoPermiso.textContent !== 'ASC') {
+      controlErrors = true;
+    }
+    buttonOrderTipoPermiso.click();
+    await el.updateComplete;
+    if (contentLabelOrderTipoPermiso.textContent !== 'DES') {
+      controlErrors = true;
+    }
+    expect(controlErrors).equal(false);
+  });
+
+  it('Tests steper reporte pe', async () => {
+    let controlErrors = false;
+    el.datosReporteRpe = [
+      { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
+      { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
+      { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
+      { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
+      { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+      { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
+    ];
+    await el.updateComplete;
+
+    if (el.datosReporteRpe.length !== 24) {
+      controlErrors = true;
+    }
+
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '2017-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '2020-01-22';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    const bodyStepper = el.shadowRoot.querySelectorAll('.divBodyStepper')[0];
+    if (bodyStepper.querySelectorAll('button').length !== 5) {
+      controlErrors = true;
+    }
+
+    if (parseInt(el.shadowRoot.querySelectorAll('#_0')[0].textContent) !== 1) {
+      controlErrors = true;
+    }
+
+    if (parseInt(el.shadowRoot.querySelectorAll('#_2')[0].textContent) !== 3) {
+      controlErrors = true;
+    }
+
+    const buttonSteper2 = el.shadowRoot.getElementById('_1');
+    buttonSteper2.click();
+    await el.updateComplete;
+    if (buttonSteper2.classList.contains('active') !== true) {
+      controlErrors = true;
+    }
+
+    const buttonSteper3 = el.shadowRoot.getElementById('_2');
+    const buttonNext = el.shadowRoot.getElementById('step_next');
+    buttonNext.click();
+    await el.updateComplete;
+    if (buttonSteper3.classList.contains('active') !== true) {
+      controlErrors = true;
+    }
+    const buttonSteper1 = el.shadowRoot.getElementById('_0');
+    const buttonPrev = el.shadowRoot.getElementById('step_prev');
+    buttonPrev.click();
+    await el.updateComplete;
+    buttonPrev.click();
+    await el.updateComplete;
+    if (buttonSteper1.classList.contains('active') !== true) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
+  });
+
+  it('Control errors reporte form succes', async () => {
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '2017-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '2020-01-22';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length !== 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
+  });
+
+  it('Control errors reporte form fail', async () => {
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[0].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '20172-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '20202-01-22';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length === 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
+  });
+
+  it('Control errors dataInit > dataEnd form fail', async () => {
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '2030-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '2018-01-22';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length === 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
+  });
+
+  it('Control errors dataInit = dataEnd form fail', async () => {
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '2020-10-15';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '2020-10-15';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length === 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
+  });
+
+  it('Control errors dataInit and dataEnd = null form succes', async () => {
+    let controlErrors = false;
+    const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
+    const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
+    const contentDivErrors = el.shadowRoot.getElementById('id_final_errors_rpe');
+    selectEmployees.querySelectorAll('option')[1].selected = true;
+    el.shadowRoot.getElementById('id_start_date_rpe').value = '';
+    el.shadowRoot.getElementById('id_end_date_rpe').value = '';
+
+    buttonForm.click();
+    await el.updateComplete;
+
+    if (contentDivErrors.textContent.length !== 0) {
+      controlErrors = true;
+    }
+
+    expect(controlErrors).equal(false);
   });
 });

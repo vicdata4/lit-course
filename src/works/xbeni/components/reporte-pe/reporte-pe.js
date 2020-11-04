@@ -178,7 +178,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
   renderStepper() {
     return html`
-      <button class="step" @click="${this.prev}">${svgRpeIconLeft}</button>
+      <button class="step" id="step_prev" @click="${this.prev}">${svgRpeIconLeft}</button>
       ${this.stepper.map(
         (x, i) => html`
           ${i === 0
@@ -186,7 +186,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
             : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`}
         `,
       )}
-      <button class="step" @click="${this.next}">${svgRpeIconRight}</button>
+      <button class="step" id="step_next" @click="${this.next}">${svgRpeIconRight}</button>
     `;
   }
 
