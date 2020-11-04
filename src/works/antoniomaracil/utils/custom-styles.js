@@ -114,13 +114,13 @@ export const adminVacationStyles = css`
       font-size: 14px;
       line-height: 1.4em;
       font-weight: 400;
+      padding: 10px 10px 10px 10px;
     }
     table.vacations a {
       display: block;
       overflow: hidden;
       text-decoration: none;
       color: #0a0202;
-      padding: 8px;
     }
     table.vacations {
       border-collapse: collapse;
@@ -136,7 +136,7 @@ export const adminVacationStyles = css`
     table.vacations td {
       display: table-cell;
       text-align: left;
-      padding: 10px 10px 25px 10px;
+      padding: 10px 10px 20px 10px;
     }
     table.vacations td:before {
       content: none;
@@ -144,21 +144,28 @@ export const adminVacationStyles = css`
     .name {
       font-weight: bold;
     }
-    a span {
+    .order {
+      display: flex;
+      align-items: center;
+    }
+    .order span {
       visibility: hidden;
-      speak: none;
-      display: inline-block;
-      padding: 0px;
-      line-height: 0.5;
-      top: -2px;
-      position: relative;
-      vertical-align: middle;
-      -webkit-font-smoothing: antialiased;
       color: rgb(68, 68, 68);
       text-decoration: none !important;
+      position: relative;
+      left: 3px;
+      top: -1px;
     }
-    a:hover span {
+    .order:hover span {
       visibility: visible;
+    }
+    .order a {
+      width: 60%;
+    }
+    @media (min-width: 992px) {
+      .order a {
+        width: auto;
+      }
     }
   }
 `;
