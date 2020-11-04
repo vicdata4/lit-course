@@ -27,18 +27,27 @@ export const hoursStyles = css`
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5px;
-    color: #555;
   }
 
   #container .filters label {
     width: 40%;
     font-size: 0.8rem;
+    font-weight: bold;
   }
 
   #container .filters select {
     width: 60%;
     font-size: 0.8rem;
-    color: #555;
+    color: #32373c;
+    border-color: #7e8993;
+    outline-color: #007cba;
+    border-radius: 5px;
+  }
+
+  #container .filters select:focus {
+    border-color: #007cba;
+    color: #016087;
+    box-shadow: 0 0 0 1px #007cba;
   }
 
   #container #generateReport {
@@ -47,8 +56,19 @@ export const hoursStyles = css`
 
   #container #generateReport button {
     padding: 5px 10px 5px 10px;
-    font-size: 0.8rem;
-    color: #555;
+    font-size: 0.7rem;
+    background-color: #0a0202;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 18px;
+  }
+
+  #container #generateReport button:hover {
+    -webkit-box-shadow: box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
   #container section table {
@@ -161,7 +181,7 @@ export const hoursStyles = css`
 
     #container .filters select {
       width: 300px;
-      font-size: 0.8rem;
+      font-size: 14px;
     }
 
     table {
@@ -178,6 +198,8 @@ export const hoursStyles = css`
 
     thead tr {
       position: relative;
+      top: 1px;
+      left: 1px;
       display: table-row;
     }
 
