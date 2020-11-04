@@ -1,12 +1,12 @@
 import { LitElement, html } from 'lit-element';
-import { anotherStyles, mediaQueries } from '../utils/custom-styles';
+import { requestTableS, mediaQueries } from '../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { material } from '../../../utils/fonts';
 import { dateFormatter, orderItems } from '../utils/functions';
 
 class RequestsTable extends LitElement {
   static get styles() {
-    return [anotherStyles, mediaQueries, material];
+    return [requestTableS, mediaQueries, material];
   }
 
   static get properties() {
@@ -112,42 +112,44 @@ class RequestsTable extends LitElement {
                     <span class="material-icons">delete_outline</span>
                   </button>
                 </div>
-                <!-- -->
               </details>
             </div>
           `,
         )}
       </div>
-      <div class="desktopTable">
-        <table>
-          <tr>
-            ${this.tableTitles.map(
-              (items, i) => html`<th>
-                ${items}
-                ${items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
-                  ? html` <button class="order" id="${this.orderType[i]}" value="asc" @click="${this.order}">
-                      &#x25B2;
-                    </button>`
-                  : nothing}
-              </th>`,
-            )}
-          </tr>
-          ${this.requestsList.slice(this.fromT, this.toT).map(
-            (item, i) => html`<tr>
-              <td>${dateFormatter(item.applicationD).requestDate}</td>
-              <td>${dateFormatter(item.startDate).tableDate}</td>
-              <td>${dateFormatter(item.endDate).tableDate}</td>
-              <td>${item.status}</td>
-              <td>${dateFormatter(item.statusDate).tableDate}</td>
-              <td>
-                <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}">
-                  <span class="material-icons">delete_outline</span>
-                </button>
-              </td>
-            </tr>`,
+      <table class="desktopTable">
+        <tr>
+          ${this.tableTitles.map(
+            (items, i) => html`<th>
+              ${items}
+              ${items === 'Fecha de solicitud' || items === 'Fecha Inicio' || items === 'Fecha Fin'
+                ? html` <button
+                    class="icon material-icons"
+                    id="${this.orderType[i]}"
+                    value="asc"
+                    @click="${this.order}"
+                  >
+                    keyboard_arrow_up
+                  </button>`
+                : nothing}
+            </th>`,
           )}
-        </table>
-      </div>
+        </tr>
+        ${this.requestsList.slice(this.fromT, this.toT).map(
+          (item, i) => html`<tr>
+            <td>${dateFormatter(item.applicationD).requestDate}</td>
+            <td>${dateFormatter(item.startDate).tableDate}</td>
+            <td>${dateFormatter(item.endDate).tableDate}</td>
+            <td>${item.status}</td>
+            <td>${dateFormatter(item.statusDate).tableDate}</td>
+            <td>
+              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}">
+                <span class="material-icons">delete_outline</span>
+              </button>
+            </td>
+          </tr>`,
+        )}
+      </table>
     `;
   }
 
