@@ -37,9 +37,9 @@ describe('Admin vacation form tests:', () => {
       expect(el.shadowRoot).not.to.be.null;
     });
 
-    it('Show many rows as pagination + 1 (header)', async () => {
+    it('Show many rows as pagination + 2 (header & footer)', async () => {
       const rows = el.shadowRoot.querySelectorAll('tr');
-      expect(rows.length).equal(el.nElements + 1);
+      expect(rows.length).equal(el.nElements + 2);
     });
   });
 
@@ -57,9 +57,9 @@ describe('Admin vacation form tests:', () => {
       expect(el.shadowRoot).not.to.be.null;
     });
 
-    it('Show many rows as array elements + 1 (header)', async () => {
+    it('Show many rows as array elements + 2 (header & footer)', async () => {
       const rows = el.shadowRoot.querySelectorAll('tr');
-      expect(rows.length).equal(el.list.length + 1);
+      expect(rows.length).equal(el.list.length + 2);
     });
   });
   describe('Order method', () => {
@@ -88,7 +88,7 @@ describe('Admin vacation form tests:', () => {
           count++;
         }
       });
-      expect(count).equal(8);
+      expect(count).equal(deleteButttons.length);
     });
   });
   describe('Order method', () => {
