@@ -1,10 +1,33 @@
-import { LitElement, html } from 'lit-element';
-import { material } from '../utils/fonts';
-import { styles } from '../utils/admin-styles';
+import { LitElement, html, css } from 'lit-element';
 
 export class AdminDocs extends LitElement {
   static get styles() {
-    return [material, styles];
+    return css`
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+      }
+
+      table {
+        border: 1px solid #e4e4e4;
+        padding: 10px;
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+      }
+
+      th {
+        text-align: left;
+      }
+
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    `;
   }
 
   static get properties() {
