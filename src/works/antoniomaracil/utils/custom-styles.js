@@ -8,6 +8,11 @@ export const adminVacationStyles = css`
     display: flex;
     justify-content: space-around;
   }
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
   .order {
     cursor: pointer;
   }
@@ -61,8 +66,7 @@ export const adminVacationStyles = css`
   table.vacations td:before {
     content: attr(data-label);
     float: left;
-    color: #273b47;
-    font-weight: bold;
+    color: rgb(10, 2, 2);
     font-size: 1em;
     padding: 1px 5px;
     vertical-align: middle;
