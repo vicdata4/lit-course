@@ -2,7 +2,7 @@ import { css } from 'lit-element';
 
 export const mediaQueriesStyles = css`
   /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media only screen and (min-device-width: 280px) and (max-device-width: 760px) {
     table {
       width: 100%;
     }
@@ -12,31 +12,6 @@ export const mediaQueriesStyles = css`
     }
     input {
       width: 50%;
-    }
-  }
-
-  /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 340px) and (max-device-width: 760px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
-    }
-    input {
-      width: 50%;
-    }
-  }
-
-  /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 411px) and (max-device-width: 731px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
     }
   }
 
@@ -59,27 +34,32 @@ export const tableFormat = css`
     flex-direction: column;
   }
 
-  div {
+  .permissions-report-ctr div {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
     margin-bottom: 10px;
   }
 
-  div label {
-    font-weight: bold;
+  .date {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
   }
 
-  label,
   select,
   input {
-    width: 10%;
+    width: 50%;
+  }
+
+  label {
+    font-weight: bold;
+    width: 50%;
+    margin-right: 50px;
   }
 
   .calendar {
-    width: 1.5%;
-    margin-left: 1%;
+    width: 25px;
     cursor: pointer;
+    margin-left: 3%;
   }
 
   .arrow-str {
@@ -88,16 +68,11 @@ export const tableFormat = css`
     cursor: pointer;
   }
 
-  div select:focus {
-    outline: none;
-  }
-
   table {
     border-collapse: collapse;
     border: 1px solid black;
     font-size: 0.75em;
     text-align: left;
-    width: 50%;
   }
 
   table thead tr:first-child {
@@ -138,19 +113,85 @@ export const tableFormat = css`
 
   #previous-btn,
   #next-btn {
-    width: 2%;
+    width: 10%;
     display: block;
-    padding: 5px;
     cursor: pointer;
     margin-top: 1%;
   }
 
   #navigation #nPages {
-    margin-top: 1.5%;
+    margin-top: 3%;
     margin-left: 0.5%;
+  }
+
+  #navigation {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
   }
 
   .no-visible {
     visibility: hidden;
+  }
+`;
+
+export const mediaQueriesPerReport = css`
+  /* iPads */
+  @media screen and (min-device-width: 580px) and (max-device-width: 1024px) {
+    .permissions-report-ctr div {
+      flex-direction: row;
+    }
+    label {
+      width: 25%;
+    }
+    select {
+      width: 30%;
+      margin-bottom: 1%;
+    }
+    .date {
+      width: 60%;
+    }
+    #generateReport {
+      width: 30%;
+    }
+    .calendar {
+      margin-left: 1%;
+    }
+    #previous-btn,
+    #next-btn {
+      width: 4%;
+    }
+  }
+  /* Desktop */
+  @media (min-device-width: 1025px) {
+    table {
+      width: 100%;
+    }
+    .permissions-report-ctr div {
+      flex-direction: row;
+    }
+    select {
+      width: 10%;
+      margin-bottom: 0.5%;
+    }
+    .date {
+      width: 20%;
+    }
+    label {
+      width: 8%;
+    }
+    #generateReport {
+      width: 200px;
+    }
+    .calendar {
+      margin-left: 1%;
+    }
+    #previous-btn,
+    #next-btn {
+      width: 2%;
+    }
+    #navigation #nPages {
+      margin-top: 1.5%;
+      margin-left: 0.5%;
+    }
   }
 `;

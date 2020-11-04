@@ -8,22 +8,19 @@ class RequestComponent extends LitElement {
 
   static get properties() {
     return {
-      requestsList: { type: Array },
+      data: { type: Array },
       showRequests: { type: Array },
-      dates: { type: Array },
     };
   }
 
   constructor() {
     super();
-    this.requestsList = [];
     this.showRequests = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.requestsList = this.data;
-    this.requestsList.forEach((obj) => {
+    this.data.forEach((obj) => {
       obj.display ? this.showRequests.push(obj) : false;
     });
   }
