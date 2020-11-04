@@ -2,9 +2,34 @@ import { expect, fixture, html } from '@open-wc/testing';
 import '../components/list-petition.js';
 
 const data = [
-  { id: new Date().valueOf(), titulo: 'Titulo 1', descripcion: 'Descripcion 1', fecha: '13/10/2020', publicar: true },
-  { id: new Date().valueOf(), titulo: 'Titulo 2', descripcion: 'Descripcion 2', fecha: '14/11/2020', publicar: true },
-  { id: new Date().valueOf(), titulo: 'Titulo 3', descripcion: 'Descripcion 3', fecha: '24/11/2020', publicar: false },
+  {
+    id: new Date().valueOf(),
+    titulo: 'Titulo 1',
+    descripcion: 'Descripcion 1',
+    fecha: new Date(),
+    publicar: true,
+  },
+  {
+    id: new Date().valueOf(),
+    titulo: 'Titulo 2',
+    descripcion: 'Descripcion 2',
+    fecha: new Date(),
+    publicar: true,
+  },
+  {
+    id: new Date().valueOf(),
+    titulo: 'Titulo 3',
+    descripcion: 'Descripcion 3',
+    fecha: new Date(),
+    publicar: false,
+  },
+  {
+    id: new Date().valueOf(),
+    titulo: 'Titulo 4',
+    descripcion: 'Descripcion 4',
+    fecha: new Date(),
+    publicar: true,
+  },
 ];
 
 describe('Empty list petition: ', () => {
@@ -20,22 +45,51 @@ describe('Empty list petition: ', () => {
   });
 
   it('Default array length', async () => {
-    const list = el.shadowRoot.querySelectorAll('li');
+    const list = el.shadowRoot.querySelectorAll('tr');
     expect(list.length).equal(0);
   });
 });
 
 describe('List petition with data: ', () => {
-  let el;
+  let el, showPopupPetition;
 
   before(async () => {
     const component = html`<list-petition .listaPeticiones="${data}"></list-petition>`;
 
     el = await fixture(component);
     await el.updateComplete;
+
+    showPopupPetition = el.shadowRoot.querySelector('a');
   });
 
   it('List is rendered correctly', async () => {
     expect(el.shadowRoot).not.to.be.null;
+  });
+
+  it('When click title, popup windows appears', async () => {
+    showPopupPetition.click();
+    await el.updateComplete;
+
+    const modalWindow = el.shadowRoot.querySelector('.modal');
+
+    expect(modalWindow).not.to.be.null;
+  });
+
+  it('Correct values on modal window', async () => {
+    showPopupPetition.click();
+    await el.updateComplete;
+
+    const modalWindow = el.shadowRoot.querySelector('.modal');
+
+    expect(modalWindow).not.to.be.null;
+
+    const title = el.shadowRoot.querySelector('#modalTitulo');
+    const date = el.shadowRoot.querySelector('#modalFecha');
+    const description = el.shadowRoot.querySelector('#modalDescripcion');
+
+    expect(title).not.to.be.null;
+    expect(date).not.to.be.null;
+    expect(date).not.to.be.NaN;
+    expect(description).not.to.be.null;
   });
 });
