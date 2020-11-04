@@ -57,7 +57,7 @@ describe('Informe-cipa tests', () => {
         telefono: '645632111',
         perfil: 'arquitecto devop',
         en_plantilla: false,
-        fecha_ultima_actualizacion: '11/06/2020',
+        fecha_ultima_actualizacion: new Date(2020, 5, 11),
         fechaVencimiento: null,
       },
       {
@@ -66,7 +66,7 @@ describe('Informe-cipa tests', () => {
         telefono: '652488965',
         perfil: 'programador',
         en_plantilla: true,
-        fecha_ultima_actualizacion: '11/03/2030',
+        fecha_ultima_actualizacion: new Date(2030, 2, 11),
         fechaVencimiento: null,
       },
     ];
@@ -112,7 +112,7 @@ describe('Informe-cipa tests', () => {
         telefono: '1111111111',
         perfil: 'X programador',
         en_plantilla: false,
-        fecha_ultima_actualizacion: '25/04/2030',
+        fecha_ultima_actualizacion: new Date(2030, 3, 25),
         fechaVencimiento: null,
       },
       {
@@ -121,7 +121,7 @@ describe('Informe-cipa tests', () => {
         telefono: '3333333333',
         perfil: 'Z programador',
         en_plantilla: true,
-        fecha_ultima_actualizacion: '05/06/2035',
+        fecha_ultima_actualizacion: new Date(2035, 5, 5),
         fechaVencimiento: null,
       },
       {
@@ -130,7 +130,7 @@ describe('Informe-cipa tests', () => {
         telefono: '645632111',
         perfil: 'E arquitecto devop',
         en_plantilla: false,
-        fecha_ultima_actualizacion: '11/06/2010',
+        fecha_ultima_actualizacion: new Date(2010, 5, 11),
         fechaVencimiento: null,
       },
       {
@@ -139,7 +139,7 @@ describe('Informe-cipa tests', () => {
         telefono: '652488965',
         perfil: 'I programador',
         en_plantilla: true,
-        fecha_ultima_actualizacion: '11/03/2015',
+        fecha_ultima_actualizacion: new Date(2015, 2, 11),
         fechaVencimiento: null,
       },
     ];
@@ -256,6 +256,6 @@ describe('Informe-cipa tests', () => {
   });
 
   it('Function CalcularFechaVencimiento return corectly date', async () => {
-    expect(el.calcularFechaVencimiento('25/04/2019')).equal('25/11/2020');
+    expect(el.formatRequiredDate(new Date(2019, 3, 25))).equal('25/04/2019');
   });
 });

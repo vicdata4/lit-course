@@ -151,20 +151,20 @@ export class BeniListaCipa extends LitElement {
                     </div>
                   </td>
                   <td>
-                    <label> ${item.fecha_ultima_actualizacion} </label>
+                    <label> ${this.formatRequiredDate(item.fecha_ultima_actualizacion)} </label>
                   </td>
                   <td>
-                    <label> ${item.fechaVencimiento} </label>
+                    <label> ${this.formatRequiredDate(item.fechaVencimiento)} </label>
                   </td>
                   <td>
                     <div class="div_semaforo">
                       ${this.calcularDiferenciaFechaSemaforo(
-                        this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
+                        this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
                       ) === 'rojo'
                         ? html`${svgOrderCircleRed}`
                         : html`
                             ${this.calcularDiferenciaFechaSemaforo(
-                              this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
+                              this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
                             ) === 'amarillo'
                               ? html`${svgCircleYellow}`
                               : html``}
@@ -186,7 +186,9 @@ export class BeniListaCipa extends LitElement {
 
   cargarFechaVencimiento() {
     for (let i = 0; i < this.datosCipa.length; i++) {
-      this.datosCipa[i].fechaVencimiento = this.calcularFechaVencimiento(this.datosCipa[i].fecha_ultima_actualizacion);
+      this.datosCipa[i].fechaVencimiento = this.generateDateEndToAddComponent(
+        this.datosCipa[i].fecha_ultima_actualizacion,
+      );
     }
   }
 
@@ -235,14 +237,8 @@ export class BeniListaCipa extends LitElement {
     // ORDENA FECHAS - FORMATO DATOS A RECIBIR DD/MM/YYYY
     if (column === 'fecha_ultima_actualizacion' || column === 'fechaVencimiento') {
       orderedList = myList.sort((a, b) => {
-        let arrayDateA = a[column].split('/');
-        let dateA = new Date(arrayDateA[2], parseInt(arrayDateA[1]) + parseInt('-1'), arrayDateA[0]);
-
-        let arrayDateB = b[column].split('/');
-        let dateB = new Date(arrayDateB[2], parseInt(arrayDateB[1]) + parseInt('-1'), arrayDateB[0]);
-
-        if (dateA.getTime() < dateB.getTime()) return -1;
-        if (dateA.getTime() > dateB.getTime()) return 1;
+        if (a[column].getTime() < b[column].getTime()) return -1;
+        if (a[column].getTime() > b[column].getTime()) return 1;
         return 0;
       });
     }
@@ -317,26 +313,13 @@ export class BeniListaCipa extends LitElement {
   calcularDiferenciaFechaSemaforo(fechaVencimiento) {
     let date = new Date();
 
-    let arrayDatosFecha = fechaVencimiento.split('/');
-    let fechaVenciminetoFormato = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
-    let fechaVencimiento3Meses = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
+    let fechaVenciminetoFormato = new Date(fechaVencimiento);
+    let fechaVencimiento3Meses = new Date(fechaVencimiento);
     fechaVencimiento3Meses.setMonth(fechaVenciminetoFormato.getMonth() - 3);
     let diff3Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento3Meses.getTime();
     let diasDif3Meses = Math.floor(diff3Milis / (1000 * 60 * 60 * 24));
 
-    let fechaVencimiento1Meses = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
+    let fechaVencimiento1Meses = new Date(fechaVencimiento);
     fechaVencimiento1Meses.setMonth(fechaVenciminetoFormato.getMonth() - 1);
     let diff1Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento1Meses.getTime();
     let diasDif1Meses = Math.floor(diff1Milis / (1000 * 60 * 60 * 24));
@@ -361,16 +344,19 @@ export class BeniListaCipa extends LitElement {
     return valorFinalEnviar;
   }
 
-  calcularFechaVencimiento(fechaUltimaActualizacion) {
-    let arrayDatosFecha = fechaUltimaActualizacion.split('/');
-    let date = new Date(arrayDatosFecha[2], parseInt(arrayDatosFecha[1]) + parseInt('1'), arrayDatosFecha[0]);
-    date.setMonth(date.getMonth() + 18);
-
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
+  formatRequiredDate(date) {
+    let date1 = new Date(date);
+    let day = date1.getDate();
+    let month = parseInt(date1.getMonth()) + 1;
+    let year = date1.getFullYear();
 
     return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
+  }
+
+  generateDateEndToAddComponent(fechaUltimaActualizacion) {
+    const date = new Date(fechaUltimaActualizacion);
+    date.setMonth(date.getMonth() + 18);
+    return date;
   }
 }
 
