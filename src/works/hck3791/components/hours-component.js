@@ -10,6 +10,9 @@ class HoursComponent extends LitElement {
     return {
       names: { type: Array },
       projectMonths: { type: Array },
+      months: { type: Array },
+      projects: { type: Array },
+      years: { type: Array },
     };
   }
 
