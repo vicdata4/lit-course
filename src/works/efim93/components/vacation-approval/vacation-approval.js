@@ -167,7 +167,7 @@ class VacationApproval extends LitElement {
                 <td>
                   <select
                     name="selectEstado"
-                    id="select"
+                    class="select"
                     title="selectestado"
                     @change="${(e) => this.onSelectChange(e, item, i)}"
                   >
