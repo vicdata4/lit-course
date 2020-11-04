@@ -18,7 +18,7 @@ export const requestsStyles = css`
   table {
     margin-top: 15px;
     border-collapse: collapse;
-    border: 1px solid #ccc;
+    border: 1px solid #ccd0d4;
     width: 100%;
     table-layout: fixed;
   }
