@@ -158,7 +158,7 @@ export class AdminVacationForm extends LitElement {
                   </td>
                   <td class="black-date" data-label="Fecha de inicio">${dateFormatter(item.startDate).default}</td>
                   <td class="black-date" data-label="Fecha de fin">${dateFormatter(item.endDate).default}</td>
-                  <td data-label="Estado">
+                  <td>
                     <select id="sel-${item.id}" class="selectOptions">
                       <option value="0">Pendiente de aprobación</option>
                       <option value="1">Aprobado</option>

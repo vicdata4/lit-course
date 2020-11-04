@@ -12,6 +12,7 @@ export const adminVacationStyles = css`
   select,
   textarea {
     font-size: 16px;
+    width: 100%;
   }
   .order {
     cursor: pointer;
@@ -23,7 +24,6 @@ export const adminVacationStyles = css`
     color: #555;
   }
   select {
-    font-size: 14px;
     line-height: 2;
     color: #32373c;
     border-color: #7e8993;
