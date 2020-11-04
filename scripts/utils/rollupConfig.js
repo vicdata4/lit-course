@@ -2,9 +2,11 @@ const { resolve: resolvePath, join: joinPath } = require('path');
 
 const copy = require('rollup-plugin-copy');
 // const commonJS = require('rollup-plugin-commonJS');
+const json = require('@rollup/plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
 const progress = require('rollup-plugin-progress');
 const del = require('rollup-plugin-delete');
+const users = require('../../src/works/users.json');
 
 const folders = {
   build: resolvePath('.', 'build'),
@@ -21,6 +23,17 @@ const files = {
   build_index: joinPath(folders.build, 'index.html'),
   build_manifest: joinPath(folders.build, 'manifest.json'),
   build_sw: joinPath(folders.build, 'sw.js'),
+};
+
+const userAssetsList = () => {
+  const obj = {};
+
+  users.list.forEach(user_ => {
+    const user = user_.toLowerCase();
+    obj[`${folders.src}/works/${user}/assets`] = [`${folders.build_assets}/${user}`];
+  });
+
+  return obj;
 };
 
 const rollupConfig = ({
@@ -48,9 +61,11 @@ const rollupConfig = ({
         [folders.src_assets]: [folders.build_assets],
         [files.src_index]: [files.build_index],
         [files.src_manifest]: [files.build_manifest],
-        [files.src_sw]: [files.build_sw]
+        [files.src_sw]: [files.build_sw],
+        ...userAssetsList(),
       }
     }),
+    json(),
     ...plugins
   ],
   context: 'window',

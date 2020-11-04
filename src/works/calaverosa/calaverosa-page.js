@@ -3,6 +3,12 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './resumen-etapas/item-011.js';
+import './permissions-report/permissions-report-detailed.js';
+
+const components = {
+  summaryStagesComponent: () => html`<item-011></item-011>`,
+  permissionsReportComponent: () => html`<permissions-report-detailed></permissions-report-detailed>`,
+};
 
 class CalaverosaPage extends LitElement {
   static get styles() {
@@ -17,12 +23,32 @@ class CalaverosaPage extends LitElement {
     ];
   }
 
+  static get properties() {
+    return {
+      current: { type: String, attribute: false },
+    };
+  }
+
+  constructor() {
+    super();
+    this.current = 'summaryStagesComponent';
+  }
+
+  setComponent(component) {
+    this.current = component;
+  }
+
   render() {
     return html`
       <common-header></common-header>
       <section class="container">
         <work-header>Calaverosa</work-header>
-        <item-011></item-011>
+        <div class="common-list">
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
+        </div>
+        ${components[this.current]()}
       </section>
     `;
   }

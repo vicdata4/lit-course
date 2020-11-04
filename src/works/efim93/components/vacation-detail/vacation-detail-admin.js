@@ -123,39 +123,36 @@ class VacationDetailAdmin extends LitElement {
 
   render() {
     return html`
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <section class="container">
-      <h1>Detalle de vacaciones</h1>
-          <table id="tabla" class="table table-striped">
-            <thead>
-            <tr>  
-              <th>
-                <label for="FechadeSolicitud">Dia de inicio de vacaciones</label>
-                <button @click="${() => this.orderList('fecha_inicio')}" class="order">${svgArrowsSort}</button></th>
-              </th>
-              <th>
-                <label for="FechadeInicio">Día Fin de Vacaciones</label>
-                <button @click="${() => this.orderList('fecha_final')}" class="order">${svgArrowsSort}</button></th>
-              </th>
-              <th>
-                <label for="fechafinal">Días</label>
-              </th>
-            </thead>
-            <tbody>   
-              ${this.listaDatos.slice(this.from, this.to).map(
-                (item, i) => html`
-                  <tr>
-                    <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
-                    <td><label for="${item.fecha_fin}">${item.fecha_fin}</label></td>
-                    <td><label for="dias">${this.calculaDias(item.fecha_inicio, item.fecha_fin)}</label></td>
-                  </tr>
-                `,
-              )}
-            </tbody>       
-          </table>
-          <div id="paginator">${this.renderStepper()}</div>
-        </div>
-      </section>`;
+      <table id="tabla">
+        <thead>
+          <tr>
+            <th>
+              <label for="FechadeSolicitud">Dia de inicio de vacaciones</label>
+              <button @click="${() => this.orderList('fecha_inicio')}" class="order">${svgArrowsSort}</button>
+            </th>
+            <th>
+              <label for="FechadeInicio">Día Fin de Vacaciones</label>
+              <button @click="${() => this.orderList('fecha_final')}" class="order">${svgArrowsSort}</button>
+            </th>
+            <th>
+              <label for="fechafinal">Días</label>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          ${this.listaDatos.slice(this.from, this.to).map(
+            (item, i) => html`
+              <tr class="${i % 2 === 0 ? 'fila_par' : 'fila_impar'}">
+                <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
+                <td><label for="${item.fecha_fin}">${item.fecha_fin}</label></td>
+                <td><label for="dias">${this.calculaDias(item.fecha_inicio, item.fecha_fin)}</label></td>
+              </tr>
+            `,
+          )}
+        </tbody>
+      </table>
+      <div id="paginator">${this.renderStepper()}</div>
+    `;
   }
 }
 

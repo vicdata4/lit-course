@@ -21,7 +21,7 @@ class Stepper extends LitElement {
   constructor() {
     super();
     this.steps = [];
-    this.nEmployees = 2;
+    this.nEmployees = 4;
     this.from = 0;
     this.index = 0;
     this.to = this.nEmployees;
@@ -37,6 +37,8 @@ class Stepper extends LitElement {
         cButton.classList.remove('selected');
       }
     });
+
+    return index;
   }
 
   showPartOf(index) {
@@ -46,9 +48,7 @@ class Stepper extends LitElement {
 
     this.setActiveStep(index);
     const event = new CustomEvent('interval-values', {
-      detail: {
-        values: [this.from, this.to],
-      },
+      detail: [this.from, this.to],
     });
     this.dispatchEvent(event);
   }

@@ -49,13 +49,12 @@ class RequestsTable extends LitElement {
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
+    return this.requestsList;
   }
 
-  deleteDate(i) {
+  deleteDate(id) {
     const event = new CustomEvent('delete-date', {
-      detail: {
-        index: i,
-      },
+      detail: id,
     });
     this.dispatchEvent(event);
   }
@@ -78,7 +77,7 @@ class RequestsTable extends LitElement {
           </tr>
           ${this.requestsList.slice(this.fromT, this.toT).map(
             (item) => html`<tr>
-              <td>${dateFormatter(item.currentDate).solicitudDate}</td>
+              <td>${dateFormatter(item.currentDate).requestDate}</td>
               <td>${dateFormatter(item.startDate).tableDate}</td>
               <td>${dateFormatter(item.endDate).tableDate}</td>
               <td>${item.status}</td>
