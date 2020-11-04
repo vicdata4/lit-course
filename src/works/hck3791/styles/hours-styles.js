@@ -6,6 +6,7 @@ export const hoursStyles = css`
   * {
     box-sizing: border-box;
     font-family: Roboto, 'Open Sans';
+    font-size: 12px !important;
   }
 
   #container {
@@ -30,13 +31,13 @@ export const hoursStyles = css`
   }
 
   #container .filters label {
-    width: 40%;
+    width: 50%;
     font-size: 0.8rem;
     font-weight: bold;
   }
 
   #container .filters select {
-    width: 60%;
+    width: 50%;
     font-size: 0.8rem;
     color: #32373c;
     border-color: #7e8993;
@@ -47,7 +48,6 @@ export const hoursStyles = css`
   #container .filters select:focus {
     border-color: #007cba;
     color: #016087;
-    box-shadow: 0 0 0 1px #007cba;
   }
 
   #container #generateReport {
@@ -55,20 +55,12 @@ export const hoursStyles = css`
   }
 
   #container #generateReport button {
-    padding: 5px 10px 5px 10px;
-    font-size: 0.7rem;
+    padding: 8px 10px;
     background-color: #0a0202;
     border: none;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 10px 18px;
-  }
-
-  #container #generateReport button:hover {
-    -webkit-box-shadow: box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    -moz-box-shadow: box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
 
   #container section table {
@@ -82,11 +74,11 @@ export const hoursStyles = css`
   }
 
   table tbody tr:nth-child(odd) {
-    background: #f1f1f1;
+    background: #f6f6f6;
   }
 
   table tbody tr td {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccd0d4;
   }
 
   table tbody tr td:last-child {
@@ -111,14 +103,14 @@ export const hoursStyles = css`
   tr {
     border: 1px solid #ccd0d4;
     margin-bottom: 10px;
-    padding: 5px;
-    font-size: 0.8em;
+    padding: 0 5px 5px 5px;
   }
 
   td {
     position: relative;
     padding-left: 75%;
-    padding-top: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     height: 30px;
   }
 
@@ -150,26 +142,11 @@ export const hoursStyles = css`
     content: 'Jornadas de vacaciones';
   }
 
-  @media all and (max-width: 350px) {
-    :host {
-      font-size: 0.8rem;
+  @media all and (min-width: 685px) {
+    * {
+      font-size: 14px !important;
     }
 
-    #container .filters select {
-      width: 50%;
-      font-size: 0.8rem;
-    }
-
-    #container #generateReport button {
-      font-size: 0.85em;
-    }
-
-    td {
-      padding-top: 8px;
-    }
-  }
-
-  @media all and (min-width: 670px) {
     #container .filters {
       justify-content: flex-start;
     }
@@ -181,7 +158,6 @@ export const hoursStyles = css`
 
     #container .filters select {
       width: 300px;
-      font-size: 14px;
     }
 
     table {
