@@ -4,7 +4,7 @@ import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
 import './holidays-form';
 import './requests-table';
-import './stepper';
+import '../components/stepper';
 
 class VacationTable extends LitElement {
   static get styles() {
