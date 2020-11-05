@@ -74,6 +74,15 @@ export const requestsStyles = css`
       display: table-row;
     }
 
+    table tbody tr {
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    table tbody tr:last-child {
+      border-bottom: 1px solid #ccd0d4;
+    }
+
     table tr th,
     table tr td {
       display: table-cell;
