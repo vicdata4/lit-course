@@ -1,9 +1,12 @@
 import { css } from 'lit-element';
 
 export const hoursStyles = css`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap');
+
   * {
     box-sizing: border-box;
-    font-family: Muli, sans-serif;
+    font-family: Roboto, 'Open Sans';
+    font-size: 12px !important;
   }
 
   #container {
@@ -28,13 +31,23 @@ export const hoursStyles = css`
   }
 
   #container .filters label {
-    width: 40%;
+    width: 50%;
     font-size: 0.8rem;
+    font-weight: bold;
   }
 
   #container .filters select {
-    width: 60%;
+    width: 50%;
     font-size: 0.8rem;
+    color: #32373c;
+    border-color: #7e8993;
+    outline-color: #007cba;
+    border-radius: 5px;
+  }
+
+  #container .filters select:focus {
+    border-color: #007cba;
+    color: #016087;
   }
 
   #container #generateReport {
@@ -42,8 +55,12 @@ export const hoursStyles = css`
   }
 
   #container #generateReport button {
-    padding: 5px 10px 5px 10px;
-    font-size: 0.8rem;
+    padding: 8px 10px;
+    background-color: #0a0202;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
   #container section table {
@@ -51,23 +68,21 @@ export const hoursStyles = css`
     border-collapse: collapse;
   }
 
-  table thead tr {
-    background: #ccc;
+  td,
+  th {
+    color: #555;
   }
 
   table tbody tr:nth-child(odd) {
-    background: #eee;
+    background: #f6f6f6;
   }
 
-  table tbody tr:nth-child(odd) td {
-    border-bottom: 1px solid #ccc;
-  }
-  table tbody tr:nth-child(even) td {
-    border-bottom: 1px solid #ccc;
+  table tbody tr td {
+    border-bottom: 1px solid #ccd0d4;
   }
 
   table tbody tr td:last-child {
-    border: none;
+    border-bottom: 0;
   }
 
   table,
@@ -86,16 +101,16 @@ export const hoursStyles = css`
   }
 
   tr {
-    border: 1px solid #ccc;
+    border: 1px solid #ccd0d4;
     margin-bottom: 10px;
-    padding: 5px;
-    font-size: 0.8em;
+    padding: 0 5px 5px 5px;
   }
 
   td {
     position: relative;
     padding-left: 75%;
-    padding-top: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     height: 30px;
   }
 
@@ -127,26 +142,11 @@ export const hoursStyles = css`
     content: 'Jornadas de vacaciones';
   }
 
-  @media all and (max-width: 350px) {
-    :host {
-      font-size: 0.8rem;
+  @media all and (min-width: 685px) {
+    * {
+      font-size: 14px !important;
     }
 
-    #container .filters select {
-      width: 50%;
-      font-size: 0.8rem;
-    }
-
-    #container #generateReport button {
-      font-size: 0.85em;
-    }
-
-    td {
-      padding-top: 8px;
-    }
-  }
-
-  @media all and (min-width: 670px) {
     #container .filters {
       justify-content: flex-start;
     }
@@ -158,16 +158,24 @@ export const hoursStyles = css`
 
     #container .filters select {
       width: 300px;
-      font-size: 0.8rem;
     }
 
-    thead,
+    table {
+      display: table;
+    }
+
+    thead {
+      display: table-header-group;
+    }
+
     tbody {
       display: table-row-group;
     }
 
     thead tr {
       position: relative;
+      top: 1px;
+      left: 1px;
       display: table-row;
     }
 
@@ -178,25 +186,30 @@ export const hoursStyles = css`
     thead tr th {
       display: table-cell;
       text-align: left;
-      padding: 5px 15px 5px 5px;
       font-size: 0.8rem;
+      font-weight: normal;
+    }
+
+    table tbody tr:nth-child(odd) td {
+      border-bottom: 1px solid #fff;
+    }
+    table tbody tr:nth-child(even) td {
+      border-bottom: 1px solid #fff;
+    }
+
+    table tbody tr:last-child td {
+      border-bottom: 1px solid #ccc;
     }
 
     tbody tr td {
       display: table-cell;
       text-align: left;
-      padding: 10px 15px 10px 5px;
       font-size: 0.8rem;
     }
 
-    tr {
-      margin-bottom: 0;
-      padding: 5px;
-    }
-
-    td {
-      padding-left: 0;
-      height: 30px;
+    td,
+    th {
+      padding: 8px 10px;
     }
 
     td:before {
