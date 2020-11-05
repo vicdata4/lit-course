@@ -31,30 +31,33 @@ export class DocumentList extends LitElement {
     return html`
       <div class="container">
         <div class="doc-box">
-          <div class="container">
-            <div class="row header">
-              <div class="title">Nombre de archivo</div>
-              <div class="date">Fecha de subida</div>
-              <div class="info">Eliminar</div>
-            </div>
-            ${this.list.map(
-              (item, i) => html`
-                <div class="group">
-                  <div class="info-container">
-                    <span class="light-grey italic">${dateFormatter(item.uploadDate).default}</span>
-                  </div>
-                  <div class="row data">
-                    <div class="title"><a href="${item.path}" download>${item.name}</a></div>
-                    <div class="date light-grey">${dateFormatter(item.uploadDate).default}</div>
-                    <div class="info">
-                      <button @click="${() => this.removeDocument(i)}">
-                        <img src="assets/antoniomaracil/remove.png" alt="remove" />
-                      </button>
-                    </div>
+          <div class="row header">
+            <div class="title">Nombre de archivo</div>
+            <div class="date">Fecha de subida</div>
+            <div class="info">Eliminar</div>
+          </div>
+          ${this.list.map(
+            (item, i) => html`
+              <div class="group">
+                <div class="info-container">
+                  <span class="light-grey italic">${dateFormatter(item.uploadDate).default}</span>
+                </div>
+                <div class="row data">
+                  <div class="title"><a href="${item.path}" download>${item.name}</a></div>
+                  <div class="date light-grey">${dateFormatter(item.uploadDate).default}</div>
+                  <div class="info">
+                    <button @click="${() => this.removeDocument(i)}">
+                      <img src="assets/antoniomaracil/remove.png" alt="remove" />
+                    </button>
                   </div>
                 </div>
-              `,
-            )}
+              </div>
+            `,
+          )}
+          <div class="row header">
+            <div class="title">Nombre de archivo</div>
+            <div class="date">Fecha de subida</div>
+            <div class="info">Eliminar</div>
           </div>
         </div>
       </div>
