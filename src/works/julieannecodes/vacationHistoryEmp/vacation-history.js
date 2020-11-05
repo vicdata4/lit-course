@@ -1,5 +1,4 @@
 import { LitElement, html } from 'lit-element';
-import { nothing } from 'lit-html';
 import { vacationDates } from '../utils/vacation-dates';
 import { dateFormatter, vacationDays } from '../utils/functions';
 import { mediaQueries } from '../utils/custom-styles';
@@ -23,8 +22,8 @@ class VacationHistory extends LitElement {
     super();
     this.vacationDates = [...vacationDates];
     this.from = 0;
-    this.nEmployees = 4;
-    this.to = this.nEmployees;
+    this.nDates = 4;
+    this.to = this.nDates;
   }
 
   getValues(e) {
@@ -32,15 +31,15 @@ class VacationHistory extends LitElement {
     this.to = e.detail[1];
   }
 
-  render() {
+  table() {
+    const stepper = html`<stepper-component
+      .listLength="${this.vacationDates.length}"
+      @interval-values="${this.getValues}"
+    ></stepper-component>`;
+
     return html`
       <h2>Detalle de vacaciones</h2>
-      ${this.vacationDates.length >= this.nEmployees
-        ? html`<stepper-component
-            .listLength="${this.vacationDates.length}"
-            @interval-values="${this.getValues}"
-          ></stepper-component>`
-        : nothing}
+      ${this.vacationDates.length >= this.nDates ? stepper : null}
       <div class="tableDiv">
         <table>
           <tr>
@@ -60,6 +59,10 @@ class VacationHistory extends LitElement {
         </table>
       </div>
     `;
+  }
+
+  render() {
+    return html`${this.vacationDates.length === 0 ? html`<h1>No hay historial de vacaciones aún</h1>` : this.table()}`;
   }
 }
 window.customElements.define('vacation-history', VacationHistory);
