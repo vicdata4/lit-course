@@ -13,7 +13,7 @@ class VacationApproval extends LitElement {
 
   static get properties() {
     return {
-      listaDatos: { type: Object },
+      listaDatos: { type: Array },
       nElements: { type: Number },
       options: { type: Object },
       stepper: { type: Array, attribute: false },
@@ -25,18 +25,11 @@ class VacationApproval extends LitElement {
 
   constructor() {
     super();
-    for (const i in dataRequest) {
-      const arr = dataRequest[i];
-      Array.prototype.fill(formatDate(arr.fecha_solicitud).default, 1, 2);
-      Array.prototype.fill(formatDate(arr.fecha_inicio).default, 2, 3);
-      Array.prototype.fill(formatDate(arr.fecha_fin).default, 3, 4);
-      Array.prototype.fill(formatDate(arr.fecha_estado).default, 5);
-    }
     this.listaDatos = dataRequest;
     this.options = [
-      { value: '0', text: 'Pendiente de Aprobación' },
-      { value: '1', text: 'Aprobado' },
-      { value: '2', text: 'No Aprobado' },
+      { value: 0, text: 'Pendiente de Aprobación' },
+      { value: 1, text: 'Aprobado' },
+      { value: 2, text: 'No Aprobado' },
     ];
     this.nElements = 10;
     this.stepper = [];
@@ -46,7 +39,6 @@ class VacationApproval extends LitElement {
   }
 
   onSelectChange(event, item, i) {
-    const today = new Date();
     if (item.estado !== event.target.value) {
       if (this.listaDatos[i].nombre_apellido.includes(item.nombre_apellido)) {
         this.listaDatos[i] = {
@@ -55,7 +47,7 @@ class VacationApproval extends LitElement {
           fecha_inicio: this.listaDatos[i].fecha_inicio,
           fecha_fin: this.listaDatos[i].fecha_fin,
           estado: event.target.value,
-          fecha_estado: formatDate(today).default,
+          fecha_estado: new Date(),
         };
         this.listaDatos = [...this.listaDatos];
       }
@@ -159,13 +151,23 @@ class VacationApproval extends LitElement {
             (item, i) => html`
               <tr class="${i % 2 === 0 ? 'fila_par' : 'fila_impar'}">
                 <td><label for="${item.nombre_apellido}">${item.nombre_apellido}</label></td>
-                <td><label for="${item.fecha_solicitud}">${item.fecha_solicitud}</label></td>
-                <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
-                <td><label for="${item.fecha_fin}">${item.fecha_fin}</label></td>
+                <td>
+                  <label for="${formatDate(item.fecha_solicitud).default}">
+                    ${formatDate(item.fecha_solicitud).default}
+                  </label>
+                </td>
+                <td>
+                  <label for="${formatDate(item.fecha_inicio).default}">
+                    ${formatDate(item.fecha_inicio).default}
+                  </label>
+                </td>
+                <td>
+                  <label for="${formatDate(item.fecha_fin).default}"> ${formatDate(item.fecha_fin).default} </label>
+                </td>
                 <td>
                   <select
                     name="selectEstado"
-                    id="select"
+                    class="select"
                     title="selectestado"
                     @change="${(e) => this.onSelectChange(e, item, i)}"
                   >
@@ -182,7 +184,11 @@ class VacationApproval extends LitElement {
                     )}
                   </select>
                 </td>
-                <td><label for="${item.fecha_estado}">${item.fecha_estado}</label></td>
+                <td>
+                  <label for="${formatDate(item.fecha_estado).completo}">
+                    ${formatDate(item.fecha_estado).completo}
+                  </label>
+                </td>
               </tr>
             `,
           )}
