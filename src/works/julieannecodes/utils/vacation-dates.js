@@ -19,4 +19,8 @@ export const vacationDates = [
     startDate: new Date('2018-07-10'),
     endDate: new Date('2018-07-16'),
   },
+  {
+    startDate: new Date('2018-07-10'),
+    endDate: new Date('2018-07-16'),
+  },
 ];
