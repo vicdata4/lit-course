@@ -251,6 +251,9 @@ export const documentListStyles = css`
     width: 20px;
     cursor: pointer;
   }
+  a {
+    color: #007cba;
+  }
   button {
     border: none;
     background-color: transparent;
