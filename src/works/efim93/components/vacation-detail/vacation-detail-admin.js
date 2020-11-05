@@ -3,6 +3,7 @@ import { svgArrowsSort } from '../../comun_files/svg-icons';
 import { dataDetail } from '../../utils/vacation-detail';
 import { newStyles } from '../../comun_files/table-responsive-styles';
 import { commonStyles } from '../../utils/common-styles';
+import { formatDate } from '../../utils/functions';
 
 class VacationDetailAdmin extends LitElement {
   static get styles() {
@@ -11,7 +12,7 @@ class VacationDetailAdmin extends LitElement {
 
   static get properties() {
     return {
-      listaDatos: { type: Object },
+      listaDatos: { type: Array },
       mensaje: { type: String },
       nElements: { type: Number },
       stepper: { type: Array, attribute: false },
@@ -143,8 +144,12 @@ class VacationDetailAdmin extends LitElement {
           ${this.listaDatos.slice(this.from, this.to).map(
             (item, i) => html`
               <tr class="${i % 2 === 0 ? 'fila_par' : 'fila_impar'}">
-                <td><label for="${item.fecha_inicio}">${item.fecha_inicio}</label></td>
-                <td><label for="${item.fecha_fin}">${item.fecha_fin}</label></td>
+                <td>
+                  <label for="${formatDate(item.fecha_inicio).default}">${formatDate(item.fecha_inicio).default}</label>
+                </td>
+                <td>
+                  <label for="${formatDate(item.fecha_fin).default}">${formatDate(item.fecha_fin).default}</label>
+                </td>
                 <td><label for="dias">${this.calculaDias(item.fecha_inicio, item.fecha_fin)}</label></td>
               </tr>
             `,
