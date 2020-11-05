@@ -254,6 +254,7 @@ export const documentListStyles = css`
   button {
     border: none;
     background-color: transparent;
+    vertical-align: middle;
   }
 
   @media (min-width: 768px) {
@@ -270,11 +271,7 @@ export const documentListStyles = css`
     }
 
     .row.data {
-      padding: 10px;
-    }
-
-    .group:hover {
-      background-color: #f5f6f7;
+      padding: 10px 10px 10px 0px;
     }
   }
 `;
