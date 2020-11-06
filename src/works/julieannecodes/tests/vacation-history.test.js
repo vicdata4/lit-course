@@ -42,8 +42,8 @@ describe('Vacation history stepper', async () => {
     expect(el.shadowRoot.querySelector('stepper-component')).to.be.null;
   });
 
-  it('Render when length >=4', async () => {
-    el.vacationDates = [{}, {}, {}, {}];
+  it('Render when length >=6', async () => {
+    el.vacationDates = [{}, {}, {}, {}, {}, {}];
     await el.updateComplete;
 
     expect(el.shadowRoot.querySelector('stepper-component')).not.to.be.null;
