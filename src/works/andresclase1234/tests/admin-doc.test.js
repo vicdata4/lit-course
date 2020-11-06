@@ -25,7 +25,7 @@ describe('Admin-doc view', () => {
     deleteButtton.click();
     expect(eventSpy).calledOnce;
   });
-  it('List update when delete event', async () => {
+  it('List updated when delete event', async () => {
     const deleteButtton = el.shadowRoot.querySelectorAll('button')[0];
     deleteButtton.click();
     await el.updateComplete;
@@ -34,7 +34,7 @@ describe('Admin-doc view', () => {
   });
   it('Download path ok', async () => {
     const downloadPath = el.shadowRoot.querySelectorAll('a')[0].href;
-    const pathInProp = el.list[0].path;
-    expect(downloadPath).to.contain(pathInProp);
+    const filePath = el.list[0].path;
+    expect(downloadPath).to.contain(filePath);
   });
 });
