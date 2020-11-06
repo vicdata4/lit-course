@@ -3,15 +3,6 @@ import '../components/admin-docs/admin-docs';
 import { documents } from '../utils/data';
 import sinon from 'sinon/pkg/sinon-esm.js';
 
-describe('Admin-doc empty render ok', () => {
-  let el;
-
-  before(async () => {
-    el = await fixture(html`<admin-docs></admin-docs>`);
-    await el.updateComplete;
-  });
-});
-
 describe('Admin-doc view', () => {
   let el;
 
