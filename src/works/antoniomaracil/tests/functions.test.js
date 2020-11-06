@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { checkDate, dateFormatter, getDate } from '../utils/functions';
+import { dateFormatter, getDate, checkDate } from '../utils/functions';
 
 describe('Date functions', () => {
   const date = new Date();

@@ -7,6 +7,7 @@
     "test-watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
     "test": "karma start --coverage",
     "test:e2e": "mocha --recursive --timeout 10000 ./e2e/tests/*.js",
+    "test:google": "mocha --recursive --timeout 10000 ./e2e/tests/google-example/*.js",
     "dev": "node ./scripts/dev.js",
     "build": "node ./scripts/build.js",
     "lint": "eslint ./src/**",
@@ -17,19 +18,25 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run test",
-      "pre-push": "npm run lint && npm run test"
+      "pre-push": "npm run lint && npm run test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@open-wc/demoing-storybook": "^0.2.5",
     "@open-wc/testing": "^2.3.4",
     "@open-wc/testing-karma": "^3.1.33",
-    "eslint": "^6.0.1",
+    "@rollup/plugin-json": "^4.1.0",
+    "chromedriver": "^86.0.0",
+    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
@@ -48,7 +55,6 @@
     "rollup-plugin-progress": "^1.1.1",
     "rollup-plugin-serve": "^1.0.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "chromedriver": "^86.0.0",
     "sinon": "^9.2.0",
     "webpack-merge": "^4.1.5"
   },

@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import '../components/common-header';
-import '../components/news-component/news-searcher';
+import '../components/searcher/news-searcher';
 
-class NewsView extends LitElement {
+class SearcherView extends LitElement {
   static get styles() {
     return [commonStyles];
   }
@@ -18,4 +18,4 @@ class NewsView extends LitElement {
   }
 }
 
-window.customElements.define('news-view', NewsView);
+window.customElements.define('searcher-view', SearcherView);

@@ -37,9 +37,9 @@ describe('Admin vacation form tests:', () => {
       expect(el.shadowRoot).not.to.be.null;
     });
 
-    it('Show many rows as pagination + 1 (header)', async () => {
+    it('Show many rows as pagination + 2 (header & footer)', async () => {
       const rows = el.shadowRoot.querySelectorAll('tr');
-      expect(rows.length).equal(el.nElements + 1);
+      expect(rows.length).equal(el.nElements + 2);
     });
   });
 
@@ -57,9 +57,9 @@ describe('Admin vacation form tests:', () => {
       expect(el.shadowRoot).not.to.be.null;
     });
 
-    it('Show many rows as array elements + 1 (header)', async () => {
+    it('Show many rows as array elements + 2 (header & footer)', async () => {
       const rows = el.shadowRoot.querySelectorAll('tr');
-      expect(rows.length).equal(el.list.length + 1);
+      expect(rows.length).equal(el.list.length + 2);
     });
   });
   describe('Order method', () => {
@@ -72,7 +72,7 @@ describe('Admin vacation form tests:', () => {
       await el.updateComplete;
     });
     it('Order method works properly', async () => {
-      const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
+      const orderButton = el.shadowRoot.querySelectorAll('a')[0];
       orderButton.click();
       const newList = orderedList(empData, 'name');
       expect(newList).to.eql(el.list);
@@ -80,7 +80,7 @@ describe('Admin vacation form tests:', () => {
     it('Call to a orderList() when 1 of 8 buttons are clicked', async () => {
       const eventSpy = sinon.spy(el, 'orderList');
 
-      const deleteButttons = el.shadowRoot.querySelectorAll('button.order');
+      const deleteButttons = el.shadowRoot.querySelectorAll('a');
       let count = 0;
       deleteButttons.forEach((item) => {
         item.click();
@@ -88,7 +88,7 @@ describe('Admin vacation form tests:', () => {
           count++;
         }
       });
-      expect(count).equal(8);
+      expect(count).equal(deleteButttons.length);
     });
   });
   describe('Order method', () => {
@@ -101,7 +101,7 @@ describe('Admin vacation form tests:', () => {
       await el.updateComplete;
     });
     it('Reverse order method works properly', async () => {
-      const orderButton = el.shadowRoot.querySelectorAll('button.order')[0];
+      const orderButton = el.shadowRoot.querySelectorAll('a')[0];
       orderButton.click();
       orderButton.click();
       const newList = orderedList(empData, 'name');

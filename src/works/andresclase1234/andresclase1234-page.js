@@ -1,12 +1,14 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
-import { dates } from './utils/data';
-import './holidays-info/holidays-info';
+import { dates, documents } from './utils/data';
+import './components/holidays-info/holidays-info';
+import './components/admin-docs/admin-docs';
 import '../../components/common-header';
 import '../../components/work-header';
 
 const components = {
-  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${4}"></holidays-info>`,
+  infoVacaciones: () => html`<holidays-info .list="${dates}" .nElements="${5}"></holidays-info>`,
+  adminDocs: () => html`<admin-docs .list="${documents}"></admin-docs>`,
 };
 
 class Andresclase1234Page extends LitElement {
@@ -23,6 +25,7 @@ class Andresclase1234Page extends LitElement {
   constructor() {
     super();
     this.current = 'infoVacaciones';
+    this.current = 'adminDocs';
   }
 
   setComponent(component) {

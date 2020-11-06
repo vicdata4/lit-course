@@ -1,25 +1,56 @@
 import { css } from 'lit-element';
 
 export const adminVacationStyles = css`
-  .component-box {
-    margin: 1rem;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+  .container {
+    font-family: Roboto, 'Open Sans';
+  }
+  .order-box {
+    display: flex;
+    justify-content: space-around;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+    width: 100%;
   }
   .order {
-    background-color: transparent;
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-    border: none;
     cursor: pointer;
   }
-
+  .black-date {
+    color: #0a0202;
+  }
+  .grey-date {
+    color: #555;
+  }
+  select {
+    line-height: 2;
+    color: #32373c;
+    border-color: #7e8993;
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0 24px 0 8px;
+    min-height: 30px;
+    max-width: 25rem;
+    -webkit-appearance: none;
+    background: #fff
+      url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E)
+      no-repeat right 5px top 55%;
+    background-size: 16px 16px;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  select:focus {
+    border-color: #007cba;
+    outline: 2px solid transparent;
+    color: #016087;
+    box-shadow: 0 0 0 1px #007cba;
+  }
   table.vacations {
     width: 100%;
     border-collapse: collapse;
   }
-  table.vacations thead,
-  th {
+  table.vacations th {
     display: none;
   }
   table.vacations td {
@@ -35,16 +66,10 @@ export const adminVacationStyles = css`
   table.vacations td:before {
     content: attr(data-label);
     float: left;
-    color: #273b47;
-    font-weight: bold;
+    color: rgb(10, 2, 2);
     font-size: 1em;
     padding: 1px 5px;
     vertical-align: middle;
-  }
-
-  .order-box {
-    display: flex;
-    justify-content: space-around;
   }
   .stepper {
     display: flex;
@@ -76,49 +101,75 @@ export const adminVacationStyles = css`
   }
 
   @media (min-width: 768px) {
-    .order {
-      background-color: transparent;
-      font-family: 'Muli', sans-serif;
-      font-weight: bold;
-      font-size: 0.7rem;
-      border: none;
-      cursor: pointer;
+    .order-box {
+      display: none;
     }
     .table-box {
-      border-top: solid 2px black;
-      border-bottom: solid 2px black;
+      border: 1px solid #ccd0d4;
       margin-top: 1.5rem;
+    }
+    thead {
+      border-bottom: 1px solid #d0d0d0;
+    }
+    table.vacations th {
+      padding: 0;
+      display: table-cell;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.4em;
+      font-weight: 400;
+      padding: 10px 10px 10px 10px;
+    }
+    table.vacations a {
+      display: block;
+      overflow: hidden;
+      text-decoration: none;
+      color: #0a0202;
     }
     table.vacations {
       border-collapse: collapse;
       font-size: 0.8rem;
       empty-cells: hide;
     }
-    table th {
-      display: table-cell;
-      border-left: solid 2px black;
-      border-right: solid 2px black;
-      background-color: #cccccc;
-      font-size: 0.7rem;
-      text-align: center;
-    }
     table.vacations tr {
       border-bottom: none;
     }
     tr:nth-child(even) {
-      background-color: #eeeeee;
+      background-color: #f6f6f6;
     }
     table.vacations td {
       display: table-cell;
-      border-right: solid 2px black;
-      border-left: solid 2px black;
       text-align: left;
+      padding: 10px 10px 20px 10px;
     }
     table.vacations td:before {
       content: none;
     }
-    .order-box {
-      display: none;
+    .name {
+      font-weight: bold;
+    }
+    .order {
+      display: flex;
+      align-items: center;
+    }
+    .order span {
+      visibility: hidden;
+      color: rgb(68, 68, 68);
+      text-decoration: none !important;
+      position: relative;
+      left: 3px;
+      top: -1px;
+    }
+    .order:hover span {
+      visibility: visible;
+    }
+    .order a {
+      width: 60%;
+    }
+    @media (min-width: 992px) {
+      .order a {
+        width: auto;
+      }
     }
   }
 `;
@@ -131,10 +182,18 @@ export const commonStyles = css`
 export const documentListStyles = css`
   .container {
     width: 100%;
-    font-family: 'Open Sans', sans-serif, Arial;
-    letter-spacing: 0.4px;
+    font-family: Roboto, 'Open Sans';
   }
-
+  .doc-box {
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  }
+  .row.header:first-of-type {
+    border-bottom: 1px solid #ccd0d4;
+  }
+  .row.header:last-of-type {
+    border-top: 1px solid #ccd0d4;
+  }
   .row > * {
     text-align: left;
     padding-right: 10px;
@@ -144,37 +203,25 @@ export const documentListStyles = css`
   }
 
   .group:nth-child(even) {
-    background-color: #eeeeee;
-  }
-  .group {
-    padding: 10px 10px 0px 10px;
+    background-color: #f6f6f6;
   }
 
   .row > *,
   .info-container {
     white-space: nowrap;
     overflow: hidden;
-  }
-
-  .row.header {
-    margin-bottom: 20px;
+    padding: 5px;
   }
 
   .row.header > * {
-    letter-spacing: 1.2px;
-    color: #959595;
+    color: #0a0202;
   }
 
   .row {
     display: flex;
     flex-flow: row nowrap;
-    border-bottom: 1px solid #ebebeb;
-    padding: 10px 0px;
   }
 
-  .row:first-child {
-    border: none;
-  }
   .title {
     width: 70%;
     color: #285659;
@@ -182,11 +229,11 @@ export const documentListStyles = css`
 
   .date {
     display: none;
-    width: 20%;
+    width: 30%;
   }
 
   .light-grey {
-    color: #747474;
+    color: #555;
   }
 
   .info {
@@ -204,9 +251,13 @@ export const documentListStyles = css`
     width: 20px;
     cursor: pointer;
   }
+  a {
+    color: #007cba;
+  }
   button {
     border: none;
     background-color: transparent;
+    vertical-align: middle;
   }
 
   @media (min-width: 768px) {
@@ -222,20 +273,8 @@ export const documentListStyles = css`
       display: none;
     }
 
-    .row {
-      padding: 20px 0px;
-    }
-
-    .row.header {
-      margin-bottom: 0px;
-    }
-
     .row.data {
-      margin-bottom: 0px;
-    }
-
-    .group:hover {
-      background-color: #f5f6f7;
+      padding: 10px 10px 10px 0px;
     }
   }
 `;

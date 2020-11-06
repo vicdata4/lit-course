@@ -1,14 +1,18 @@
-![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo.png?v=4&s=100)
+![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo_.png?v=4&s=100)
 
 ## Dependencies
 - [Rollup.js](https://rollupjs.org) Module bundler
 - [LitElement](https://lit-element.polymer-project.org) Web Components
 - [LitHtml](https://lit-html.polymer-project.org) HTML templating library
-- [Karma](https://karma-runner.github.io/) Unit tests
+- [Karma](https://karma-runner.github.io/) Test runner
+- [Mocha](https://mochajs.org/) Test framework
+- [Chai](https://www.chaijs.com/) Assertion library
 - [Selenium](https://www.selenium.dev/documentation/en/) E2E testing
 - [Vaadin](https://www.npmjs.com/package/@vaadin/router) Routing
 - [ESLint](https://eslint.org) Linter tool
 - [Prettier](https://prettier.io/) Code formatter
+- [Husky](https://www.npmjs.com/package/husky) Pre commit/push Hooks
+- [CommitLint](https://commitlint.js.org/) Commit convention
 - [Storybook](https://storybook.js.org/) UI components tool
 
 
@@ -31,6 +35,17 @@ Run application
 
 ```bash
 npm run dev
+```
+
+Conventional commits
+
+[More info](https://www.conventionalcommits.org/en/v1.0.0/)
+
+```bash
+fix: some message
+```
+```bash
+fix(scope): some message
 ```
 \
 [Unit Tests](https://github.com/vicdata4/lit-course/tree/master/tests)

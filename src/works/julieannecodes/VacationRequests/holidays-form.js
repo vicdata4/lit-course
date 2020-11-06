@@ -41,7 +41,7 @@ class HolidaysForm extends LitElement {
     const currentDate = new Date();
     const obj = {
       id: this.id,
-      currentDate: currentDate,
+      applicationD: currentDate,
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',
@@ -77,13 +77,13 @@ class HolidaysForm extends LitElement {
         <div class="formWrap">
           <div class="startWrap">
             <label for="start" class="startLabel">Fecha inicio</label>
-            <input type="date" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}" />
+            <input type="date" class="input" id="start" min="${dateFormatter(this.minDateInput(7)).inputDate}" />
           </div>
           <div class="endWrap">
             <label for="end" class="endLabel">Fecha fin</label>
-            <input type="date" id="end" min="${dateFormatter(this.minDateInput(8)).inputDate}" />
+            <input type="date" id="end" class="input" min="${dateFormatter(this.minDateInput(8)).inputDate}" />
           </div>
-          <button type="submit" @click="${this.onSubmit}">Agregar</button>
+          <button type="submit" class="submitButton" @click="${this.onSubmit}">Agregar</button>
         </div>
       </form>
       ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}

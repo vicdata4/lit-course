@@ -15,9 +15,9 @@ async function findShadowDomElement(parent, findBy, list = false) {
   );
 }
 
-const findWebComponent = async (parent, tag) => {
+const findWebComponent = async (parent, tag, root = false) => {
   try {
-    const list = await findShadowDomElement(parent, By.css('*'), true);
+    const list = root ? parent : await findShadowDomElement(parent, By.css('*'), true);
 
     for (const file of list) {
       const contents = await file.getTagName();
@@ -33,8 +33,8 @@ const findWebComponent = async (parent, tag) => {
 };
 
 const rootNode = async (element) => {
-  const app = await driver.findElement(By.css('app-shell'));
-  await findWebComponent(app, element);
+  const app = await driver.findElements(By.css('*'));
+  await findWebComponent(app, element, true);
 };
 
 exports.findElement = async (element, findBy) => {
