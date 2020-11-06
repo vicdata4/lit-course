@@ -25,15 +25,13 @@ class FormPetition extends LitElement {
     const inputTitulo = this.shadowRoot.querySelector('#peticionTitulo');
     const inputDescripcion = this.shadowRoot.querySelector('#peticionDescripcion');
     const inputPublicar = this.shadowRoot.querySelector('#peticionPublicar');
-    const fechaPublicacion = new Date();
 
     if (inputTitulo.value.length > 0 && inputDescripcion.value.length > 0) {
       storedPeticion.push({
         id: new Date().valueOf(),
         titulo: inputTitulo.value.toUpperCase(),
         descripcion: inputDescripcion.value,
-        fecha:
-          fechaPublicacion.getDate() + '/' + (fechaPublicacion.getMonth() + 1) + '/' + fechaPublicacion.getFullYear(),
+        fecha: new Date(),
         publicar: inputPublicar.checked,
       });
 
@@ -42,6 +40,7 @@ class FormPetition extends LitElement {
 
       inputTitulo.value = '';
       inputDescripcion.value = '';
+      inputPublicar.checked = false;
     }
   }
 
