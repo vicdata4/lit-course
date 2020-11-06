@@ -1,5 +1,21 @@
 import { svg } from 'lit-element';
 
+export const svgUpArrow = svg`
+<svg version="1.1" class="svg_order_up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="auto" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+	<g>
+		<polygon points="0,191.25 127.5,63.75 255,191.25"/>
+  </g>
+</svg>
+`;
+
+export const svgDownArrow = svg`
+<svg version="1.1" class="svg_order_down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="10px" height="auto" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+	<g>
+		<polygon points="0,63.75 127.5,191.25 255,63.75"/>
+	</g>
+</svg>
+`;
+
 export const svgOrderString = svg`
   <svg version="1.1" class="svg_cipa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="511.626px" height="511.627px" viewBox="0 0 511.626 511.627" style="enable-background:new 0 0 511.626 511.627;" xml:space="preserve">
     <g>

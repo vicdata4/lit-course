@@ -84,7 +84,8 @@ export const informeCipaStyles = css`
   }
 
   .campo_ordenar {
-    margin-left: auto;
+    margin-left: 7px;
+    /*margin-left: auto;*/
     float: right;
     display: flex;
     justify-content: center;
@@ -94,6 +95,18 @@ export const informeCipaStyles = css`
 
   .div_flex_th_cipa {
     display: flex;
+  }
+
+  .active_hover label {
+    cursor: pointer;
+  }
+
+  .tabla_cipa .active_hover {
+    cursor: pointer;
+  }
+
+  .svg_order_up {
+    visibility: hidden;
   }
 
   .div_texto_campo_ordenar {
@@ -111,6 +124,10 @@ export const informeCipaStyles = css`
 
   .svg_cipa:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .svg_order_down {
+    display: none;
   }
 
   .label_nombre_candidato_cipa {
