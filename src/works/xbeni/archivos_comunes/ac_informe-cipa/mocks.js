@@ -5,7 +5,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '465464654',
     perfil: 'programador',
     en_plantilla: false,
-    fecha_ultima_actualizacion: '25/04/2019',
+    fecha_ultima_actualizacion: new Date(2019, 3, 25),
     fechaVencimiento: null,
   },
   {
@@ -14,7 +14,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '658464132',
     perfil: 'programador',
     en_plantilla: true,
-    fecha_ultima_actualizacion: '05/06/2019',
+    fecha_ultima_actualizacion: new Date(2019, 5, 5),
     fechaVencimiento: null,
   },
   {
@@ -23,7 +23,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '645632111',
     perfil: 'arquitecto devop',
     en_plantilla: false,
-    fecha_ultima_actualizacion: '11/06/2019',
+    fecha_ultima_actualizacion: new Date(2019, 5, 11),
     fechaVencimiento: null,
   },
   {
@@ -32,7 +32,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '652488965',
     perfil: 'programador',
     en_plantilla: true,
-    fecha_ultima_actualizacion: '11/03/2019',
+    fecha_ultima_actualizacion: new Date(2019, 2, 11),
     fechaVencimiento: null,
   },
   {
@@ -41,7 +41,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '645632111',
     perfil: 'arquitecto devop',
     en_plantilla: false,
-    fecha_ultima_actualizacion: '11/06/2019',
+    fecha_ultima_actualizacion: new Date(2019, 5, 11),
     fechaVencimiento: null,
   },
   {
@@ -50,7 +50,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '645632111',
     perfil: 'arquitecto devop',
     en_plantilla: false,
-    fecha_ultima_actualizacion: '11/08/2020',
+    fecha_ultima_actualizacion: new Date(2020, 7, 11),
     fechaVencimiento: null,
   },
 ];

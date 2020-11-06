@@ -94,7 +94,7 @@ class BeniReportePermisosEmpleado extends LitElement {
 
                 <div>
                   <button @click="${() =>
-                    this.controlErroresRpe()}" id="" class="buttonGenerarReporte">GENERAR REPORTE</button>
+                    this.controlErroresRpe()}" id="button_subit_pe" class="buttonGenerarReporte">GENERAR REPORTE</button>
                 </div>
 
                 <div class="divExitoRpe" id='id_succes_rpe'></div>
