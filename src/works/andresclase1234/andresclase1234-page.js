@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import { dates, documents } from './utils/data';
-import './holidays-info/holidays-info';
-import './admin-docs/admin-docs';
+import './components/holidays-info/holidays-info';
+import './components/admin-docs/admin-docs';
 import '../../components/common-header';
 import '../../components/work-header';
 
