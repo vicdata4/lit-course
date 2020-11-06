@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit-element';
 import { vacationDates } from '../utils/vacation-dates';
 import { dateFormatter, vacationDays } from '../utils/functions';
-import { mediaQueries } from '../utils/custom-styles';
+import { historyStyles } from '../utils/history-styles';
 import '../components/stepper';
 class VacationHistory extends LitElement {
   static get styles() {
-    return [mediaQueries];
+    return [historyStyles];
   }
 
   static get properties() {
@@ -22,7 +22,7 @@ class VacationHistory extends LitElement {
     super();
     this.vacationDates = [...vacationDates];
     this.from = 0;
-    this.nDates = 4;
+    this.nDates = 6;
     this.to = this.nDates;
   }
 
@@ -33,6 +33,7 @@ class VacationHistory extends LitElement {
 
   table() {
     const stepper = html`<stepper-component
+      .nEmployees="${this.nDates}"
       .listLength="${this.vacationDates.length}"
       @interval-values="${this.getValues}"
     ></stepper-component>`;
@@ -40,8 +41,8 @@ class VacationHistory extends LitElement {
     return html`
       <h2>Detalle de vacaciones</h2>
       ${this.vacationDates.length >= this.nDates ? stepper : null}
-      <div class="tableDiv">
-        <table>
+      <div class="tableContainer">
+        <table class="historyTable">
           <tr>
             <th>Día Inicio de Vacaciones</th>
             <th>Día Fin de Vacaciones</th>
