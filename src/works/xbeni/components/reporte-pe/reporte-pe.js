@@ -2,8 +2,8 @@ import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
 import {
-  svgXRpeOrderString,
-  svgRpeOrdenarInt,
+  svgUpArrow,
+  svgDownArrow,
   svgRpeIconRight,
   svgRpeIconLeft,
 } from '../../archivos_comunes/ac_reportePe/svg_icons';
@@ -19,6 +19,8 @@ class BeniReportePermisosEmpleado extends LitElement {
     this.from = 0;
     this.nElements = 10;
     this.stepper = [];
+    this.showDia = false;
+    this.showPermiso = false;
   }
 
   static get properties() {
@@ -31,6 +33,8 @@ class BeniReportePermisosEmpleado extends LitElement {
       from: { type: Number, attribute: false },
       nElements: { type: Number },
       stepper: { type: Array, attribute: false },
+      showDia: { type: Boolean, attribute: false },
+      showPermiso: { type: Boolean, attribute: false },
     };
   }
 
@@ -115,14 +119,19 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     return html`
       <table class="tableRpe">
         <tr>
-          <th name="dia">
+          <th name="dia"
+            @click="${() => this.orderList('dia')}"
+            @mouseover="${() => this.showButtonOrder('dia')}"
+            @mouseout="${() => this.hiddenButtonOrder('dia')}"
+            class="active_hover"
+          >
             <div class="divFlexThRpe">
               <div>
                 <label>Día</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('dia')} class="campoOrdenar">
-                  ${svgRpeOrdenarInt}
+                <div class="campoOrdenar">
+                  ${svgUpArrow}${svgDownArrow}
                   <div class="divTextoCampoOrdenar">
                     <label id='id_order_day_rpe' class="textoCampoOrdenar"></label>
                   </div>
@@ -131,14 +140,19 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
             </div>
           </th>
 
-          <th name="tipoPermiso">
+          <th name="tipoPermiso"
+            @click="${() => this.orderList('tipoPermiso')}"
+            @mouseover="${() => this.showButtonOrder('tipoPermiso')}"
+            @mouseout="${() => this.hiddenButtonOrder('tipoPermiso')}"
+            class="active_hover"
+          >
             <div class="divFlexThRpe">
               <div>
                 <label>Tipo de permiso</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
-                  ${svgXRpeOrderString}
+                <div class="campoOrdenar">
+                ${svgUpArrow}${svgDownArrow}
                   <div class="divTextoCampoOrdenar">
                     <label id='id_order_tipo_permiso_rpe' class="textoCampoOrdenar"></label>
                   </div>
@@ -220,17 +234,34 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   }
 
   orderList(column) {
-    if (column === 'dia') {
-      this.clearCamposOrdenar();
-      this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'ASC';
-    }
-    if (column === 'tipoPermiso') {
-      this.clearCamposOrdenar();
-      this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'ASC';
+    this.clearControlsShowOrder();
+    this.clearOrderCamp();
+    const orderDiaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const orderDiaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgDiaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgDiaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const orderPermisoUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const orderPermisoDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    const svgPermisoUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgPermisoDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    switch (column) {
+      case 'dia':
+        orderDiaUp.style.display = 'block';
+        orderDiaDown.style.display = 'none';
+        svgDiaUp.style.visibility = 'visible';
+        svgDiaDown.style.visibility = 'visible';
+        this.showDia = true;
+        break;
+      case 'tipoPermiso':
+        orderPermisoUp.style.display = 'block';
+        orderPermisoDown.style.display = 'none';
+        svgPermisoUp.style.visibility = 'visible';
+        svgPermisoDown.style.visibility = 'visible';
+        this.showPermiso = true;
+        break;
     }
 
     const myList = [...this.datosReporteRpe];
-
     let orderedList;
     if (column !== 'dia') {
       orderedList = myList.sort((a, b) => {
@@ -248,13 +279,21 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
     if (JSON.stringify(this.datosReporteRpe) === JSON.stringify(orderedList)) {
       orderedList.reverse();
-      if (column === 'dia') {
-        this.clearCamposOrdenar();
-        this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'DES';
-      }
-      if (column === 'tipoPermiso') {
-        this.clearCamposOrdenar();
-        this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'DES';
+      switch (column) {
+        case 'dia':
+          orderDiaUp.style.display = 'none';
+          orderDiaDown.style.display = 'block';
+          svgDiaUp.style.visibility = 'visible';
+          svgDiaDown.style.visibility = 'visible';
+          this.showDia = true;
+          break;
+        case 'tipoPermiso':
+          orderPermisoUp.style.display = 'none';
+          orderPermisoDown.style.display = 'block';
+          svgPermisoUp.style.visibility = 'visible';
+          svgPermisoDown.style.visibility = 'visible';
+          this.showPermiso = true;
+          break;
       }
     }
 
@@ -265,11 +304,6 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   cambiarFormatoTipoPermiso(dato) {
     const resultado = dato[0].toUpperCase() + dato.slice(1);
     return resultado;
-  }
-
-  clearCamposOrdenar() {
-    this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = '';
-    this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = '';
   }
 
   controlErroresRpe() {
@@ -333,6 +367,58 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       this.stepper = new Array(nPages).fill({});
       this.to = this.nElements;
     }
+  }
+
+  showButtonOrder(column) {
+    const svgDiaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgDiaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgPermisoUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgPermisoDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    switch (column) {
+      case 'dia':
+        svgDiaUp.style.visibility = 'visible';
+        svgDiaDown.style.visibility = 'visible';
+        break;
+      case 'tipoPermiso':
+        svgPermisoUp.style.visibility = 'visible';
+        svgPermisoDown.style.visibility = 'visible';
+        break;
+    }
+  }
+
+  hiddenButtonOrder() {
+    const svgDiaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgDiaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgPermisoUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgPermisoDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    if (this.showDia === false) {
+      svgDiaUp.style.visibility = 'hidden';
+      svgDiaDown.style.visibility = 'hidden';
+    } else {
+      svgDiaUp.style.visibility = 'visible';
+      svgDiaDown.style.visibility = 'visible';
+    }
+    if (this.showPermiso === false) {
+      svgPermisoUp.style.visibility = 'hidden';
+      svgPermisoDown.style.visibility = 'hidden';
+    } else {
+      svgPermisoUp.style.visibility = 'visible';
+      svgPermisoDown.style.visibility = 'visible';
+    }
+  }
+
+  clearOrderCamp() {
+    this.shadowRoot.querySelectorAll('.svg_order_up')[0].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[0].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[1].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[1].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[0].style.visibility = 'hidden';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[1].style.visibility = 'hidden';
+  }
+
+  clearControlsShowOrder() {
+    this.showDia = false;
+    this.showPermiso = false;
   }
 }
 

@@ -104,6 +104,22 @@ export const RpeStyles = css`
     overflow: auto;
   }
 
+  .active_hover label {
+    cursor: pointer;
+  }
+
+  .tableRpe .active_hover {
+    cursor: pointer;
+  }
+
+  .svg_order_up {
+    visibility: hidden;
+  }
+
+  .svg_order_down {
+    display: none;
+  }
+
   .tableRpe tr:nth-child(even) {
     background-color: #f2f2f2;
   }
@@ -173,7 +189,8 @@ export const RpeStyles = css`
   }
 
   .campoOrdenar {
-    margin-left: auto;
+    margin-left: 7px;
+    /*margin-left: auto;*/
     float: right;
     display: flex;
     justify-content: center;

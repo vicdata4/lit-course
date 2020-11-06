@@ -89,7 +89,6 @@ describe('Informe-cipa tests', () => {
     let controlErrors = false;
 
     const buttonOrderByName = el.shadowRoot.querySelectorAll('th')[0];
-    // const thOrderByName = el.shadowRoot.querySelectorAll('th')[0];
     const buttonOrderByEmail = el.shadowRoot.querySelectorAll('th')[1];
     const buttonOrderByPerfil = el.shadowRoot.querySelectorAll('th')[3];
     const buttonOrderByPlantilla = el.shadowRoot.querySelectorAll('th')[4];

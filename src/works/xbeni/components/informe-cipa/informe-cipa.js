@@ -342,7 +342,7 @@ export class BeniListaCipa extends LitElement {
 
   orderList(column) {
     this.clearControlsShowOrder();
-    this.vaciarCamposOrdena();
+    this.clearOrderCamp();
     const myList = [...this.datosCipa];
     let orderedList = [];
     const orderNameUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
@@ -522,19 +522,31 @@ export class BeniListaCipa extends LitElement {
     return resultado;
   }
 
-  vaciarCamposOrdena() {
-    this.shadowRoot.querySelectorAll('.svg_order_up')[0].style.display = 'block';
+  clearOrderCamp() {
+    const svgOrderUpNombre = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgOrderUpEmail = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgOrderUpPerfil = this.shadowRoot.querySelectorAll('.svg_order_up')[2];
+    const svgOrderUpPlantilla = this.shadowRoot.querySelectorAll('.svg_order_up')[3];
+    const svgOrderUpFua = this.shadowRoot.querySelectorAll('.svg_order_up')[4];
+    const svgOrderUpFv = this.shadowRoot.querySelectorAll('.svg_order_up')[5];
+    svgOrderUpNombre.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[0].style.display = 'none';
-    this.shadowRoot.querySelectorAll('.svg_order_up')[1].style.display = 'block';
+    svgOrderUpEmail.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[1].style.display = 'none';
-    this.shadowRoot.querySelectorAll('.svg_order_up')[2].style.display = 'block';
+    svgOrderUpPerfil.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[2].style.display = 'none';
-    this.shadowRoot.querySelectorAll('.svg_order_up')[3].style.display = 'block';
+    svgOrderUpPlantilla.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[3].style.display = 'none';
-    this.shadowRoot.querySelectorAll('.svg_order_up')[4].style.display = 'block';
+    svgOrderUpFua.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[4].style.display = 'none';
-    this.shadowRoot.querySelectorAll('.svg_order_up')[5].style.display = 'block';
+    svgOrderUpFv.style.display = 'block';
     this.shadowRoot.querySelectorAll('.svg_order_down')[5].style.display = 'none';
+    svgOrderUpNombre.style.visibility = 'hidden';
+    svgOrderUpEmail.style.visibility = 'hidden';
+    svgOrderUpPerfil.style.visibility = 'hidden';
+    svgOrderUpPlantilla.style.visibility = 'hidden';
+    svgOrderUpFua.style.visibility = 'hidden';
+    svgOrderUpFv.style.visibility = 'hidden';
   }
 
   calcularDiferenciaFechaSemaforo(fechaVencimiento) {

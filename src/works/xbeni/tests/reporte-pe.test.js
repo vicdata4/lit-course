@@ -3,14 +3,32 @@ import '../components/reporte-pe/reporte-pe';
 
 describe('Reporte-pe tests with data', () => {
   let el;
-
   const data = [
-    { dia: new Date(2030, 0, 20), tipoPermiso: 'A formación', horas: '4' },
-    { dia: new Date(1990, 11, 25), tipoPermiso: 'X baja medica', horas: '8' },
-    { dia: new Date(2021, 9, 2), tipoPermiso: 'B formación', horas: '10' },
-    { dia: new Date(1990, 10, 25), tipoPermiso: 'I baja medica', horas: '8' },
+    { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
+    { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
+    { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
+    { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
+    { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
+    { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
   ];
-
   const dataEmployees = [
     { nombre: 'Natanael Beniamin Cioarba', id_empleado: 'EMP_301' },
     { nombre: 'Rosario Gamonal', id_empleado: 'EMP_302' },
@@ -25,8 +43,13 @@ describe('Reporte-pe tests with data', () => {
     await el.updateComplete;
   });
 
-  it('Table without data not rendered ', async () => {
+  it('Component renderred correctly', async () => {
     el.datosReporteRpe = [];
+    await el.updateComplete;
+    expect(el.shadowRoot).not.to.be.null;
+  });
+
+  it('Table without data not rendered ', async () => {
     let controlErrors = false;
     const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
     const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
@@ -43,10 +66,6 @@ describe('Reporte-pe tests with data', () => {
     }
 
     expect(controlErrors).equal(false);
-  });
-
-  it('Component renderred correctly', async () => {
-    expect(el.shadowRoot).not.to.be.null;
   });
 
   it('Table with reporte renderred correctly', async () => {
@@ -85,89 +104,39 @@ describe('Reporte-pe tests with data', () => {
     if (selectEmployees.querySelectorAll('option').length !== 5) {
       errorsSelectEmploye = true;
     }
-    expect(false).equal(errorsSelectEmploye);
+    expect(errorsSelectEmploye).equal(false);
   });
 
   it('Functions table order (Día, Tipo de Permiso) ascendent and descendent correctly', async () => {
     let controlErrors = false;
-    const buttonOrder = el.shadowRoot.querySelectorAll('.campoOrdenar')[0];
-    const buttonOrderTipoPermiso = el.shadowRoot.querySelectorAll('.campoOrdenar')[1];
-    buttonOrder.click();
-    await el.updateComplete;
+    const buttonOrderByDia = el.shadowRoot.querySelectorAll('th')[0];
+    const buttonOrderByTipoPermiso = el.shadowRoot.querySelectorAll('th')[1];
 
-    const dataOrderedAscendentDia = [
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'I baja medica', horas: '8' },
-      { dia: new Date(1990, 11, 25), tipoPermiso: 'X baja medica', horas: '8' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'B formación', horas: '10' },
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'A formación', horas: '4' },
-    ];
-    if (JSON.stringify(el.datosReporteRpe) !== JSON.stringify(dataOrderedAscendentDia)) {
+    let previousData = el.datosReporteRpe;
+    buttonOrderByDia.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosReporteRpe)) {
       controlErrors = true;
     }
 
-    buttonOrder.click();
+    previousData = el.datosReporteRpe;
+    buttonOrderByDia.click();
     await el.updateComplete;
-    const dataOrderedDescendentDia = [
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'A formación', horas: '4' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'B formación', horas: '10' },
-      { dia: new Date(1990, 11, 25), tipoPermiso: 'X baja medica', horas: '8' },
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'I baja medica', horas: '8' },
-    ];
-    if (JSON.stringify(el.datosReporteRpe) !== JSON.stringify(dataOrderedDescendentDia)) {
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosReporteRpe)) {
       controlErrors = true;
     }
 
-    buttonOrderTipoPermiso.click();
+    previousData = el.datosReporteRpe;
+    buttonOrderByTipoPermiso.click();
     await el.updateComplete;
-    const dataOrderedAscendentTipoPermiso = [
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'A formación', horas: '4' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'B formación', horas: '10' },
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'I baja medica', horas: '8' },
-      { dia: new Date(1990, 11, 25), tipoPermiso: 'X baja medica', horas: '8' },
-    ];
-    if (JSON.stringify(el.datosReporteRpe) !== JSON.stringify(dataOrderedAscendentTipoPermiso)) {
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosReporteRpe)) {
       controlErrors = true;
     }
 
-    buttonOrderTipoPermiso.click();
+    previousData = el.datosReporteRpe;
+    buttonOrderByTipoPermiso.click();
     await el.updateComplete;
-    const dataOrderedDescendentTipoPermiso = [
-      { dia: new Date(1990, 11, 25), tipoPermiso: 'X baja medica', horas: '8' },
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'I baja medica', horas: '8' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'B formación', horas: '10' },
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'A formación', horas: '4' },
-    ];
-    if (JSON.stringify(el.datosReporteRpe) !== JSON.stringify(dataOrderedDescendentTipoPermiso)) {
-      controlErrors = true;
-    }
-
-    expect(false).equal(controlErrors);
-  });
-
-  it('Function order show correctly types of order selected', async () => {
-    let controlErrors = false;
-    const buttonOrderDia = el.shadowRoot.querySelectorAll('.campoOrdenar')[0];
-    const buttonOrderTipoPermiso = el.shadowRoot.querySelectorAll('.campoOrdenar')[1];
-    const contentLabelOrderDia = el.shadowRoot.querySelectorAll('.textoCampoOrdenar')[0];
-    const contentLabelOrderTipoPermiso = el.shadowRoot.querySelectorAll('.textoCampoOrdenar')[1];
-    buttonOrderDia.click();
-    await el.updateComplete;
-    if (contentLabelOrderDia.textContent !== 'ASC') {
-      controlErrors = true;
-    }
-    buttonOrderDia.click();
-    await el.updateComplete;
-    if (contentLabelOrderDia.textContent !== 'DES') {
-      controlErrors = true;
-    }
-    buttonOrderTipoPermiso.click();
-    await el.updateComplete;
-    if (contentLabelOrderTipoPermiso.textContent !== 'ASC') {
-      controlErrors = true;
-    }
-    buttonOrderTipoPermiso.click();
-    await el.updateComplete;
-    if (contentLabelOrderTipoPermiso.textContent !== 'DES') {
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosReporteRpe)) {
       controlErrors = true;
     }
     expect(controlErrors).equal(false);
@@ -175,34 +144,6 @@ describe('Reporte-pe tests with data', () => {
 
   it('Tests steper reporte pe', async () => {
     let controlErrors = false;
-    el.datosReporteRpe = [
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2030, 0, 20), tipoPermiso: 'c formación', horas: '4' },
-      { dia: new Date(1990, 10, 25), tipoPermiso: 'd baja medica', horas: '8' },
-      { dia: new Date(2021, 9, 2), tipoPermiso: 'e formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2019, 8, 1), tipoPermiso: 'a formación', horas: '10' },
-      { dia: new Date(2020, 11, 24), tipoPermiso: 'a formación', horas: '10' },
-    ];
-    await el.updateComplete;
-
     if (el.datosReporteRpe.length !== 24) {
       controlErrors = true;
     }
@@ -220,15 +161,12 @@ describe('Reporte-pe tests with data', () => {
     if (bodyStepper.querySelectorAll('button').length !== 5) {
       controlErrors = true;
     }
-
     if (parseInt(el.shadowRoot.querySelectorAll('#_0')[0].textContent) !== 1) {
       controlErrors = true;
     }
-
     if (parseInt(el.shadowRoot.querySelectorAll('#_2')[0].textContent) !== 3) {
       controlErrors = true;
     }
-
     const buttonSteper2 = el.shadowRoot.getElementById('_1');
     buttonSteper2.click();
     await el.updateComplete;
