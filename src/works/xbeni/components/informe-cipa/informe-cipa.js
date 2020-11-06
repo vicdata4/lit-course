@@ -576,7 +576,6 @@ export class BeniListaCipa extends LitElement {
     let day = date1.getDate();
     let month = parseInt(date1.getMonth()) + 1;
     let year = date1.getFullYear();
-
     return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
   }
 

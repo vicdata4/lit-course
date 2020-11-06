@@ -88,13 +88,29 @@ describe('Informe-cipa tests', () => {
   it('Function order all columns by selected option corectly', async () => {
     let controlErrors = false;
 
-    const buttonOrderByName = el.shadowRoot.querySelectorAll('.campo_ordenar')[0];
-    const buttonOrderByEmail = el.shadowRoot.querySelectorAll('.campo_ordenar')[1];
-    const buttonOrderByPerfil = el.shadowRoot.querySelectorAll('.campo_ordenar')[2];
-    const buttonOrderByFua = el.shadowRoot.querySelectorAll('.campo_ordenar')[4];
+    const buttonOrderByName = el.shadowRoot.querySelectorAll('th')[0];
+    // const thOrderByName = el.shadowRoot.querySelectorAll('th')[0];
+    const buttonOrderByEmail = el.shadowRoot.querySelectorAll('th')[1];
+    const buttonOrderByPerfil = el.shadowRoot.querySelectorAll('th')[3];
+    const buttonOrderByPlantilla = el.shadowRoot.querySelectorAll('th')[4];
+    const buttonOrderByFua = el.shadowRoot.querySelectorAll('th')[5];
 
     let previousData = el.datosCipa;
     buttonOrderByName.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
+    buttonOrderByName.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
+    buttonOrderByEmail.click();
     await el.updateComplete;
     if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
       controlErrors = true;
@@ -115,6 +131,34 @@ describe('Informe-cipa tests', () => {
     }
 
     previousData = el.datosCipa;
+    buttonOrderByPerfil.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
+    buttonOrderByPlantilla.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
+    buttonOrderByPlantilla.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
+    buttonOrderByFua.click();
+    await el.updateComplete;
+    if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
+      controlErrors = true;
+    }
+
+    previousData = el.datosCipa;
     buttonOrderByFua.click();
     await el.updateComplete;
     if (JSON.stringify(previousData) === JSON.stringify(el.datosCipa)) {
@@ -122,6 +166,12 @@ describe('Informe-cipa tests', () => {
     }
 
     expect(controlErrors).equal(false);
+  });
+
+  it('Function show correctly order selected', async () => {
+    el.showButtonOrder('nombre');
+    el.hiddenButtonOrder('nombre');
+    expect(el.showName).equal(false);
   });
 
   it('Function CalcularFechaVencimiento return corectly date', async () => {
