@@ -36,11 +36,17 @@ describe('Vacation history stepper', async () => {
   });
 
   it('Not rendered stepper when length < 4', async () => {
-    const stepper = html`<stepper-component></stepper-component>`;
     el.vacationDates = [{}, {}, {}];
     await el.updateComplete;
 
-    expect(el.shadowRoot).to.not.include(stepper);
+    expect(el.shadowRoot.querySelector('stepper-component')).to.be.null;
+  });
+
+  it('Render when length >=4', async () => {
+    el.vacationDates = [{}, {}, {}, {}];
+    await el.updateComplete;
+
+    expect(el.shadowRoot.querySelector('stepper-component')).not.to.be.null;
   });
 
   it('Get from and to values', async () => {

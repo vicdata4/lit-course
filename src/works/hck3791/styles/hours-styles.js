@@ -51,16 +51,25 @@ export const hoursStyles = css`
   }
 
   #container #generateReport {
-    margin-bottom: 5px;
+    margin: 15px 0;
   }
 
   #container #generateReport button {
-    padding: 8px 10px;
+    padding: 10px 20px;
     background-color: #0a0202;
     border: none;
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
+    font-size: 10px !important;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  #container #generateReport button:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.3);
   }
 
   #container section table {
@@ -158,6 +167,10 @@ export const hoursStyles = css`
 
     #container .filters select {
       width: 300px;
+    }
+
+    #container #generateReport button {
+      font-size: 13px !important;
     }
 
     table {
