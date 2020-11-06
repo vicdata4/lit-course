@@ -62,7 +62,7 @@ export class AdminDocs extends LitElement {
           </tr>
           ${this.list.map(
             (item, i) => html`
-              <tr>
+              <tr class="documents">
                 <td><a href="${item.path}" download>${item.name}</a></td>
                 <td>${this.getFormattedDate(item.uploadDate)}</td>
                 <td>
