@@ -17,8 +17,8 @@ describe('Default vacation history properties and render', async () => {
   it('Default properties', async () => {
     expect(el.vacationDates).to.eql(vacationDates);
     expect(el.from).equal(0);
-    expect(el.nDates).equal(4);
-    expect(el.to).equal(4);
+    expect(el.nDates).equal(6);
+    expect(el.to).equal(6);
   });
 
   it('Render component if empty array', async () => {
