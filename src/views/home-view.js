@@ -17,9 +17,8 @@ class HomeView extends LitElement {
             <h1 class="main-title">WEB DESIGN<br />BEST PRACTICES</h1>
             <hr class="separator separator-main" />
             <div class="main-icons-container">
-              <i class="material-icons main-icon">sentiment_satisfied_alt</i>
-              <i class="material-icons main-icon">touch_app</i>
-              <i class="material-icons main-icon">favorite_border</i>
+              <span class="material-icons main-icon">touch_app</span>
+              <span class="material-icons main-icon">favorite_border</span>
             </div>
           </div>
           <div class="column"></div>
