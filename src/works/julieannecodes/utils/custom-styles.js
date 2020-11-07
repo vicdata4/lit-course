@@ -60,6 +60,9 @@ export const stepperStyles = css`
     color: white;
     border: none;
   }
+  .selected:focus {
+    outline: none;
+  }
   .stepper {
     margin-top: 20px;
   }
@@ -185,6 +188,7 @@ export const requestTableS = css`
   .add-icon {
     position: absolute;
     right: 10px;
+    bottom: 7px;
   }
   .dataRows:nth-of-type(odd) details summary {
     background-color: #f6f6f6;
@@ -208,7 +212,8 @@ export const requestTableS = css`
   }
   details summary {
     border: 1px solid #ccd0d4;
-    padding: 5px 0px 5px 5px;
+    padding: 10px 0px 10px 10px;
+    position: relative;
   }
   details summary:after {
     transform-origin: center;

@@ -1,12 +1,11 @@
 import { LitElement, html } from 'lit-element';
-import { nothing } from 'lit-html';
 import { vacationDates } from '../utils/vacation-dates';
 import { dateFormatter, vacationDays } from '../utils/functions';
-import { mediaQueries } from '../utils/custom-styles';
+import { historyStyles } from '../utils/history-styles';
 import '../components/stepper';
 class VacationHistory extends LitElement {
   static get styles() {
-    return [mediaQueries];
+    return [historyStyles];
   }
 
   static get properties() {
@@ -23,8 +22,8 @@ class VacationHistory extends LitElement {
     super();
     this.vacationDates = [...vacationDates];
     this.from = 0;
-    this.nEmployees = 4;
-    this.to = this.nEmployees;
+    this.nDates = 6;
+    this.to = this.nDates;
   }
 
   getValues(e) {
@@ -32,17 +31,18 @@ class VacationHistory extends LitElement {
     this.to = e.detail[1];
   }
 
-  render() {
+  table() {
+    const stepper = html`<stepper-component
+      .nEmployees="${this.nDates}"
+      .listLength="${this.vacationDates.length}"
+      @interval-values="${this.getValues}"
+    ></stepper-component>`;
+
     return html`
       <h2>Detalle de vacaciones</h2>
-      ${this.vacationDates.length >= this.nEmployees
-        ? html`<stepper-component
-            .listLength="${this.vacationDates.length}"
-            @interval-values="${this.getValues}"
-          ></stepper-component>`
-        : nothing}
-      <div class="tableDiv">
-        <table>
+      ${this.vacationDates.length >= this.nDates ? stepper : null}
+      <div class="tableContainer">
+        <table class="historyTable">
           <tr>
             <th>Día Inicio de Vacaciones</th>
             <th>Día Fin de Vacaciones</th>
@@ -60,6 +60,10 @@ class VacationHistory extends LitElement {
         </table>
       </div>
     `;
+  }
+
+  render() {
+    return html`${this.vacationDates.length === 0 ? html`<h1>No hay historial de vacaciones aún</h1>` : this.table()}`;
   }
 }
 window.customElements.define('vacation-history', VacationHistory);
