@@ -20,6 +20,10 @@ export const navList = [
     path: '/works',
   },
   {
+    name: 'Cities',
+    path: '/cities',
+  },
+  {
     name: 'Searcher',
     path: '/searcher',
   },
@@ -35,8 +39,8 @@ export const navList = [
     name: 'Data Binding',
     path: '/data-binding',
   },
-  {
+  /* {
     name: 'List Example',
     path: '/list-example',
-  },
+  }, */
 ];
