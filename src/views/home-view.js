@@ -18,12 +18,9 @@ class HomeView extends LitElement {
             <hr class="separator separator-main" />
             <div class="main-icons-container">
               <span class="material-icons main-icon">touch_app</span>
-              <span class="material-icons main-icon">favorite_border</span>
+              <span class="material-icons main-icon">star_border</span>
             </div>
           </div>
-          <div class="column"></div>
-          <div class="column right"></div>
-          <div class="column-bottom"></div>
         </div>
       </section>
     `;
