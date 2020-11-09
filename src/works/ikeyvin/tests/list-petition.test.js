@@ -46,7 +46,7 @@ describe('Empty list petition: ', () => {
 
   it('Default array length', async () => {
     const list = el.shadowRoot.querySelectorAll('tr');
-    expect(list.length).equal(0);
+    expect(list.length).equal(3);
   });
 });
 
