@@ -20,8 +20,8 @@ export const navList = [
     path: '/works',
   },
   {
-    name: 'Cities',
-    path: '/cities',
+    name: 'Calendar',
+    path: '/calendar',
   },
   {
     name: 'Searcher',
