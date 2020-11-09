@@ -9,8 +9,7 @@ class ItemForm extends LitElement {
   }
 
   addItem() {
-    const text = this.shadowRoot.querySelector('input[type=text]');
-    const date = this.shadowRoot.querySelector('input[type=date]');
+    const { text, date } = this.getQuerySelectors();
 
     if (text.value && date.value) {
       const event = new CustomEvent('add-item', {
@@ -21,15 +20,31 @@ class ItemForm extends LitElement {
       });
 
       this.dispatchEvent(event);
+
+      text.value = '';
+      date.value = '';
+      this.setSubmit();
     }
+  }
+
+  getQuerySelectors() {
+    return {
+      text: this.shadowRoot.querySelector('input[type=text]'),
+      date: this.shadowRoot.querySelector('input[type=date]'),
+    };
+  }
+
+  setSubmit() {
+    const { text, date } = this.getQuerySelectors();
+    this.shadowRoot.querySelector('input[type=submit]').disabled = !(text.value && date.value);
   }
 
   render() {
     return html`
       <form onsubmit="return false">
-        <input type="text" />
-        <input type="date" />
-        <input type="submit" @click="${this.addItem}" value="add" />
+        <input type="text" @keyup="${() => this.setSubmit()}" />
+        <input type="date" @change="${() => this.setSubmit()}" />
+        <input type="submit" @click="${this.addItem}" value="Add item" disabled />
       </form>
     `;
   }

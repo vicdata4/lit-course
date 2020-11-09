@@ -36,18 +36,12 @@ class CalendarView extends LitElement {
 
   async addItem(e) {
     const request = await addItem(e.detail);
-
-    if (!request.error) {
-      await this.getList();
-    }
+    if (!request.error) await this.getList();
   }
 
   async deleteItem(e) {
     const request = await deleteItem(e.detail);
-
-    if (!request.error) {
-      await this.getList();
-    }
+    if (!request.error) await this.getList();
   }
 
   async updateItem(e) {
