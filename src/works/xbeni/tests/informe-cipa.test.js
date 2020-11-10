@@ -167,12 +167,6 @@ describe('Informe-cipa tests', () => {
     expect(controlErrors).equal(false);
   });
 
-  it('Function show correctly order selected', async () => {
-    el.showButtonOrder('nombre');
-    el.hiddenButtonOrder('nombre');
-    expect(el.showName).equal(false);
-  });
-
   it('Function CalcularFechaVencimiento return corectly date', async () => {
     expect(el.formatRequiredDate(new Date(2019, 3, 25))).equal('25/04/2019');
   });

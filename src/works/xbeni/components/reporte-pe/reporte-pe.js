@@ -14,8 +14,6 @@ class BeniReportePermisosEmpleado extends LitElement {
     this.from = 0;
     this.nElements = 10;
     this.stepper = [];
-    this.showDia = false;
-    this.showPermiso = false;
   }
 
   static get properties() {
@@ -28,8 +26,6 @@ class BeniReportePermisosEmpleado extends LitElement {
       from: { type: Number, attribute: false },
       nElements: { type: Number },
       stepper: { type: Array, attribute: false },
-      showDia: { type: Boolean, attribute: false },
-      showPermiso: { type: Boolean, attribute: false },
     };
   }
 
@@ -229,15 +225,6 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
   orderList(column) {
     this.selectColumn(column);
-    this.clearControlsShowOrder();
-    switch (column) {
-      case 'dia':
-        this.showDia = true;
-        break;
-      case 'tipoPermiso':
-        this.showPermiso = true;
-        break;
-    }
 
     const myList = [...this.datosReporteRpe];
     let orderedList;
@@ -257,16 +244,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
     if (JSON.stringify(this.datosReporteRpe) === JSON.stringify(orderedList)) {
       orderedList.reverse();
-      switch (column) {
-        case 'dia':
-          this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
-          this.showDia = true;
-          break;
-        case 'tipoPermiso':
-          this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
-          this.showPermiso = true;
-          break;
-      }
+      this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
     }
 
     this.datosReporteRpe = [...orderedList];
@@ -339,11 +317,6 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       this.stepper = new Array(nPages).fill({});
       this.to = this.nElements;
     }
-  }
-
-  clearControlsShowOrder() {
-    this.showDia = false;
-    this.showPermiso = false;
   }
 }
 
