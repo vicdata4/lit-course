@@ -45,8 +45,10 @@ describe('Empty list petition: ', () => {
   });
 
   it('Default array length', async () => {
+    el.listaPeticiones = [];
+    await el.updateComplete;
     const list = el.shadowRoot.querySelectorAll('tr');
-    expect(list.length).equal(3);
+    expect(list.length).equal(1);
   });
 });
 
