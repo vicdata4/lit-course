@@ -199,14 +199,10 @@ export class BeniListaCipa extends LitElement {
                   </td>
                   <td>
                     <div class="div_semaforo">
-                      ${this.calcularDiferenciaFechaSemaforo(
-                        this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
-                      ) === 'rojo'
+                      ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'rojo'
                         ? html`${svgOrderCircleRed}`
                         : html`
-                            ${this.calcularDiferenciaFechaSemaforo(
-                              this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
-                            ) === 'amarillo'
+                            ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'amarillo'
                               ? html`${svgCircleYellow}`
                               : html``}
                           `}
@@ -569,17 +565,12 @@ export class BeniListaCipa extends LitElement {
     let diferenciaFechasActualVencimiento = Math.floor(diff / (1000 * 60 * 60 * 24));
 
     let valorFinalEnviar = null;
-    if (
-      parseInt(diferenciaFechasActualVencimiento) <= parseInt(diasDif3Meses) &&
-      parseInt(diferenciaFechasActualVencimiento) >= diasDif1Meses
-    ) {
-      valorFinalEnviar = 'amarillo';
-    }
-
     if (diferenciaFechasActualVencimiento <= diasDif1Meses) {
       valorFinalEnviar = 'rojo';
     }
-
+    if (diferenciaFechasActualVencimiento <= diasDif3Meses && diferenciaFechasActualVencimiento >= diasDif1Meses) {
+      valorFinalEnviar = 'amarillo';
+    }
     return valorFinalEnviar;
   }
 
