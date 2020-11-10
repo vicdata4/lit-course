@@ -44,11 +44,11 @@ describe('Empty list petition: ', () => {
     expect(el.shadowRoot).not.to.be.null;
   });
 
-  it('Default array length', async () => {
+  it('Default array length on table', async () => {
     el.listaPeticiones = [];
     await el.updateComplete;
     const list = el.shadowRoot.querySelectorAll('tr');
-    expect(list.length).equal(1);
+    expect(list).to.have.lengthOf(1);
   });
 });
 
@@ -64,8 +64,10 @@ describe('List petition with data: ', () => {
     showPopupPetition = el.shadowRoot.querySelector('a');
   });
 
-  it('List is rendered correctly', async () => {
+  it('List is rendered correctly on table', async () => {
     expect(el.shadowRoot).not.to.be.null;
+    const list = el.shadowRoot.querySelectorAll('tr');
+    expect(list).to.have.lengthOf(4);
   });
 
   it('When click title, popup windows appears', async () => {
