@@ -19,6 +19,8 @@ export class InputsRequests extends LitElement {
         infoFF: inputFechaFin.value,
         fHoy: fechaHoy,
         hActual: hora,
+        status: 'Pendiente de aprobación',
+        statusDate: fechaHoy,
       },
     });
     this.dispatchEvent(event);
