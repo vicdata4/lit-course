@@ -44,7 +44,7 @@ describe('Empty list petition: ', () => {
     expect(el.shadowRoot).not.to.be.null;
   });
 
-  it('Default array length on table', async () => {
+  it('Default array length on table when list is empty', async () => {
     el.listaPeticiones = [];
     await el.updateComplete;
     const list = el.shadowRoot.querySelectorAll('tr');
