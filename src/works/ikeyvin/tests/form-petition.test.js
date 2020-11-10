@@ -66,5 +66,15 @@ describe('Petition form test: ', () => {
 
     expect(el.listaPeticion).to.have.lengthOf(2);
     expect(el.message).to.equal('');
+
+    title.value = '';
+    description.value = '';
+    postPetition.checked = true;
+
+    submitBtn.click();
+    await el.updateComplete;
+
+    expect(el.listaPeticion).to.have.lengthOf(2);
+    expect(el.message).to.equal('TITULO y DESCRIPCIÓN no debe estar vacío!');
   });
 });
