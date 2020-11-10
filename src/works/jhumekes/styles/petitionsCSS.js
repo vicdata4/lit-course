@@ -71,7 +71,7 @@ export const petitionsCSS = css`
   }
 
   p {
-    font-family: 'Comic Sans', cursive;
+    font-family: 'Comic Sans';
     color: grey;
   }
   h2 {
