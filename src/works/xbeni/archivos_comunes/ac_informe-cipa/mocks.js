@@ -5,7 +5,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '465464654',
     perfil: 'programador',
     en_plantilla: false,
-    fecha_ultima_actualizacion: new Date(2019, 3, 25),
+    fecha_ultima_actualizacion: new Date(2019, 1, 25),
     fechaVencimiento: null,
   },
   {
