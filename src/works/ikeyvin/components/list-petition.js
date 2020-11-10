@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import './formPetition';
+import { dateFormatter } from '../utils/functions';
+import './form-petition';
 import { tablePeticion, modalPopup } from '../utils/costum-css';
 
 class ListPetition extends LitElement {
@@ -29,7 +30,7 @@ class ListPetition extends LitElement {
       if (peticion.id === id) {
         this.popupPetTitulo = peticion.titulo;
         this.popupPetDescripcion = peticion.descripcion;
-        this.popupPetFecha = peticion.fecha;
+        this.popupPetFecha = dateFormatter(peticion.fecha).default;
         this.popupOpen = true;
       }
     });
@@ -59,7 +60,7 @@ class ListPetition extends LitElement {
                           <td>
                             <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a>
                           </td>
-                          <td>${peticion.fecha}</td>
+                          <td>${dateFormatter(peticion.fecha).default}</td>
                         </tr>
                       `
                     : nothing}`,
@@ -77,7 +78,7 @@ class ListPetition extends LitElement {
                   <label for="titulo">TÍTULO</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" name="titulo" value="${this.popupPetTitulo}" readonly />
+                  <input type="text" id="modalTitulo" name="titulo" value="${this.popupPetTitulo}" readonly />
                 </div>
               </div>
               <div class="row">
@@ -85,7 +86,7 @@ class ListPetition extends LitElement {
                   <label for="fecha">FECHA DE PUBLICACIÓN</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" name="fecha" value="${this.popupPetFecha}" readonly />
+                  <input type="text" id="modalFecha" name="fecha" value="${this.popupPetFecha}" readonly />
                 </div>
               </div>
               <div class="row">
@@ -93,7 +94,10 @@ class ListPetition extends LitElement {
                   <label for="descripcion">DESCRIPCIÓN</label>
                 </div>
                 <div class="col-75">
-                  <textarea name="descripcion" style="height:200px" readonly>${this.popupPetDescripcion}</textarea>
+                  <textarea id="modalDescripcion" name="descripcion" style="height:200px" readonly>
+${this.popupPetDescripcion}
+                  </textarea
+                  >
                 </div>
               </div>
             </div>

@@ -316,21 +316,25 @@ const mainStyles = css`
     height: 100%;
   }
 
-  .column-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    border-top: 1px solid #8d9c9b;
-    background-color: rgba(255, 255, 255, 0.02);
+  @media (min-width: 900px) {
+    .main-title {
+      font-size: 50px;
+    }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1240px) {
+    .separator-main {
+      margin: 30px 15px;
+    }
+
     .main-title {
       font-size: 60px;
     }
 
     .main-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 20%;
       border-left: 1px solid white;
       border-right: 1px solid white;
       padding: 0 120px;
@@ -338,28 +342,6 @@ const mainStyles = css`
 
     .main-icon {
       font-size: 70px;
-    }
-  }
-
-  @media (min-width: 1136px) {
-    .column {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 150px;
-      height: 100%;
-      background-color: var(--nav-background);
-    }
-
-    .right {
-      left: unset;
-      right: 0;
-    }
-  }
-
-  @media (min-width: 1800px) {
-    .column-bottom {
-      height: 200px;
     }
   }
 `;

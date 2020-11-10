@@ -1,14 +1,20 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
 import './holidays-form';
 import './requests-table';
-import './stepper';
+import '../components/stepper';
 
 class VacationTable extends LitElement {
   static get styles() {
-    return [mediaQueries];
+    return [
+      mediaQueries,
+      css`
+        h1 {
+          font-weight: 400;
+        },`,
+    ];
   }
 
   static get properties() {
@@ -63,23 +69,21 @@ class VacationTable extends LitElement {
 
   render() {
     return html`
-      <div class="container">
-        <h1>Solicitud de vacaciones</h1>
-        <holidays-form @send-dates="${this.addVacation}"></holidays-form>
-        ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
-        ${this.vacationData.length >= this.nEmployees
-          ? html`<stepper-component
-              .listLength="${this.vacationData.length}"
-              @interval-values="${this.getValues}"
-            ></stepper-component>`
-          : nothing}
-        <requests-table
-          .requestsList="${this.vacationData}"
-          .fromT="${this.from}"
-          .toT="${this.to}"
-          @delete-date="${this.deleteDate}"
-        ></requests-table>
-      </div>
+      <h1>Solicitud de vacaciones</h1>
+      <holidays-form @send-dates="${this.addVacation}"></holidays-form>
+      ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
+      ${this.vacationData.length >= this.nEmployees
+        ? html`<stepper-component
+            .listLength="${this.vacationData.length}"
+            @interval-values="${this.getValues}"
+          ></stepper-component>`
+        : nothing}
+      <requests-table
+        .requestsList="${this.vacationData}"
+        .fromT="${this.from}"
+        .toT="${this.to}"
+        @delete-date="${this.deleteDate}"
+      ></requests-table>
     `;
   }
 }

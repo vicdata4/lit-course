@@ -1,6 +1,7 @@
 import { expect } from '@open-wc/testing';
-import { dateFormatter, orderItems } from '../utils/functions';
+import { dateFormatter, orderItems, vacationDays } from '../utils/functions';
 import { employeeList } from '../utils/employees';
+import { vacationDates } from '../utils/vacation-dates';
 
 describe('Formatted dates', async () => {
   const date = new Date();
@@ -28,5 +29,15 @@ describe('Order items function', async () => {
 
   it('Returns array correctly sorted asc', async () => {
     expect(orderItems(array, order).id).to.eql(idSortedBy.id);
+  });
+});
+
+describe('VacationDays function', async () => {
+  it('Returns vacation days without weekend days', async () => {
+    expect(vacationDays(vacationDates[2])).equal(5);
+  });
+
+  it('Returns vacation days in weekdays', async () => {
+    expect(vacationDays(vacationDates[0])).equal(5);
   });
 });
