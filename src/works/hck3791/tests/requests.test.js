@@ -8,8 +8,8 @@ describe('Requests test', () => {
   before(async () => {
     const component = html`<requests-component .data=${requests}></requests-component>`;
     el = await fixture(component);
-    rows = el.shadowRoot.querySelectorAll('TR');
-    cells = rows[1].querySelectorAll('TD');
+    rows = el.shadowRoot.querySelectorAll('tr');
+    cells = rows[1].querySelectorAll('td');
   });
 
   it('Number of rows/cells', async () => {

@@ -1,18 +1,3 @@
-/**
- * @desc Retorna un objeto Date de un input
- * @param string formato de input date dd-mm-yyyy
- * @param Boolean cambiar sentido fecha true = yyyy-mm-dd
- * @return object Date
- */
-export const getDate = (date, reverse = false) => {
-  const fecha = date.split(/\D/);
-  if (reverse === false) {
-    return new Date(fecha[0], --fecha[1], fecha[2]);
-  } else {
-    return new Date(fecha[2], --fecha[1], fecha[0]);
-  }
-};
-
 export const dateToday = (d) => {
   const date = new Date(d);
 
@@ -38,4 +23,15 @@ export const dateToday = (d) => {
     defaultDate: day + '-' + month + '-' + year,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
+};
+
+export const orderList = (list, column) => {
+  return list.sort((a, b) => {
+    if (a[column] > b[column]) {
+      return 1;
+    } else if (a[column] < b[column]) {
+      return -1;
+    }
+    return 0;
+  });
 };

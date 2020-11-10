@@ -2,10 +2,8 @@
 import { LitElement, html } from 'lit-element';
 import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
 import {
-  svgX,
-  svgOrderString,
-  svgOrderOther,
-  svgOrderInt,
+  svgUpArrow,
+  svgDownArrow,
   svgOrderCircleRed,
   svgCircleYellow,
 } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
@@ -15,14 +13,24 @@ export class BeniListaCipa extends LitElement {
   constructor() {
     super();
     this.datosCipa = cargarInformacionCandidatosCipa;
-    this.tituloFormulario = 'Lista de candidatos con información pendiente a actualizar';
     this.cargarFechaVencimiento();
+    this.showName = false;
+    this.showEmail = false;
+    this.showPerfil = false;
+    this.showPlantilla = false;
+    this.showFua = false;
+    this.showFv = false;
   }
 
   static get properties() {
     return {
       datosCipa: { type: Array },
-      tituloFormulario: { type: String },
+      showName: { type: Boolean, attribute: false },
+      showEmail: { type: Boolean, attribute: false },
+      showPerfil: { type: Boolean, attribute: false },
+      showPlantilla: { type: Boolean, attribute: false },
+      showFua: { type: Boolean, attribute: false },
+      showFv: { type: Boolean, attribute: false },
     };
   }
 
@@ -32,56 +40,41 @@ export class BeniListaCipa extends LitElement {
 
   render() {
     return html`
-      <div class="div_slot_top">
-        <slot name="top"> </slot>
-      </div>
-
-      <div class="div_slot_defaul">
-        <slot> </slot>
-      </div>
-
-      <div id="id_body_open_cipa" class="div_body_abrir_cipa">
-        <div class="div_button_abrir_cipa">
-          <button @click="${this.hiddenBodyAbrirCipa}" class="button_abrir_cipa">
-            Abrir lista de candidatos con información pendiente a actualizar
-          </button>
-        </div>
-      </div>
-
       <div id="id_body_cipa" class="div_body_cipa">
-        <div class="div_header_cipa">
-          <div class="div_titulo_cipa">
-            <!-- EL TITULO FORMULARIO SE PUEDE MODIFICAR SEGUN SE DESEE -->
-            <label class="titulo_header_cipa">${this.tituloFormulario}</label>
-          </div>
-          <div class="div_header_controles_cipa">
-            <div @click="${this.hiddenBodyCipa}" class="div_x_header_cipa">${svgX}</div>
-          </div>
-        </div>
         <div class="div_main_cipa">
           <table class="tabla_cipa">
             <!--  HEADER TABLA -->
             <tr>
-              <th>
+              <th
+                @click="${() => this.orderList('nombre')}"
+                @mouseover="${() => this.showButtonOrder('nombre')}"
+                @mouseout="${() => this.hiddenButtonOrder('nombre')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Nombre</label>
                   </div>
-                  <div @click="${() => this.orderList('nombre')}" class="campo_ordenar">
-                    ${svgOrderString}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_name" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
               </th>
-              <th>
+              <th
+                @click="${() => this.orderList('email')}"
+                @mouseover="${() => this.showButtonOrder('email')}"
+                @mouseout="${() => this.hiddenButtonOrder('email')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Correo electronico</label>
                   </div>
-                  <div @click="${() => this.orderList('email')}" class="campo_ordenar">
-                    ${svgOrderString}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_email" class="texto_campo_ordenar"></label>
                     </div>
@@ -91,59 +84,81 @@ export class BeniListaCipa extends LitElement {
               <th>
                 <label>Telefono</label>
               </th>
-              <th>
+              <th
+                @click="${() => this.orderList('perfil')}"
+                @mouseover="${() => this.showButtonOrder('perfil')}"
+                @mouseout="${() => this.hiddenButtonOrder('perfil')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Perfil</label>
                   </div>
-                  <div @click="${() => this.orderList('perfil')}" class="campo_ordenar">
-                    ${svgOrderString}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_perfil" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
               </th>
-              <th>
+              <th
+                @click="${() => this.orderList('en_plantilla')}"
+                @mouseover="${() => this.showButtonOrder('en_plantilla')}"
+                @mouseout="${() => this.hiddenButtonOrder('en_plantilla')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>En plantilla</label>
                   </div>
-                  <div @click="${() => this.orderList('en_plantilla')}" class="campo_ordenar">
-                    ${svgOrderOther}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_plantilla" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
               </th>
-              <th>
+              <th
+                @click="${() => this.orderList('fecha_ultima_actualizacion')}"
+                @mouseover="${() => this.showButtonOrder('fecha_ultima_actualizacion')}"
+                @mouseout="${() => this.hiddenButtonOrder('fecha_ultima_actualizacion')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Fecha de ultima actualizacion de datos</label>
                   </div>
-                  <div @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="campo_ordenar">
-                    ${svgOrderInt}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_fua" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
               </th>
-              <th>
+              <th
+                @click="${() => this.orderList('fechaVencimiento')}"
+                @mouseover="${() => this.showButtonOrder('fechaVencimiento')}"
+                @mouseout="${() => this.hiddenButtonOrder('fechaVencimiento')}"
+                class="active_hover"
+              >
                 <div class="div_flex_th_cipa">
                   <div>
                     <label>Fecha de vencimiento</label>
                   </div>
-                  <div @click="${() => this.orderList('fechaVencimiento')}" class="campo_ordenar">
-                    ${svgOrderInt}
+                  <div class="campo_ordenar">
+                    ${svgDownArrow}${svgUpArrow}
                     <div class="div_texto_campo_ordenar">
                       <label id="id_label_order_fv" class="texto_campo_ordenar"></label>
                     </div>
                   </div>
                 </div>
               </th>
-              <th>Semaforo</th>
+              <th>
+                <label>Semaforo</label>
+              </th>
             </tr>
 
             <!--  MAIN TABLA -->
@@ -177,20 +192,20 @@ export class BeniListaCipa extends LitElement {
                     </div>
                   </td>
                   <td>
-                    <label> ${item.fecha_ultima_actualizacion} </label>
+                    <label> ${this.formatRequiredDate(item.fecha_ultima_actualizacion)} </label>
                   </td>
                   <td>
-                    <label> ${item.fechaVencimiento} </label>
+                    <label> ${this.formatRequiredDate(item.fechaVencimiento)} </label>
                   </td>
                   <td>
                     <div class="div_semaforo">
                       ${this.calcularDiferenciaFechaSemaforo(
-                        this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
+                        this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
                       ) === 'rojo'
                         ? html`${svgOrderCircleRed}`
                         : html`
                             ${this.calcularDiferenciaFechaSemaforo(
-                              this.calcularFechaVencimiento(item.fecha_ultima_actualizacion),
+                              this.generateDateEndToAddComponent(item.fecha_ultima_actualizacion),
                             ) === 'amarillo'
                               ? html`${svgCircleYellow}`
                               : html``}
@@ -212,33 +227,191 @@ export class BeniListaCipa extends LitElement {
 
   cargarFechaVencimiento() {
     for (let i = 0; i < this.datosCipa.length; i++) {
-      this.datosCipa[i].fechaVencimiento = this.calcularFechaVencimiento(this.datosCipa[i].fecha_ultima_actualizacion);
+      this.datosCipa[i].fechaVencimiento = this.generateDateEndToAddComponent(
+        this.datosCipa[i].fecha_ultima_actualizacion,
+      );
     }
   }
 
+  showButtonOrder(column) {
+    const svgNameUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgNameDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgEmailUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgEmailDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    const svgPerfilUp = this.shadowRoot.querySelectorAll('.svg_order_up')[2];
+    const svgPerfilDown = this.shadowRoot.querySelectorAll('.svg_order_down')[2];
+    const svgPlantillaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[3];
+    const svgPlantillaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[3];
+    const svgFuaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[4];
+    const svgFuaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[4];
+    const svgFvUp = this.shadowRoot.querySelectorAll('.svg_order_up')[5];
+    const svgFvDown = this.shadowRoot.querySelectorAll('.svg_order_down')[5];
+    switch (column) {
+      case 'nombre':
+        svgNameUp.style.visibility = 'visible';
+        svgNameDown.style.visibility = 'visible';
+        break;
+      case 'email':
+        svgEmailUp.style.visibility = 'visible';
+        svgEmailDown.style.visibility = 'visible';
+        break;
+      case 'perfil':
+        svgPerfilUp.style.visibility = 'visible';
+        svgPerfilDown.style.visibility = 'visible';
+        break;
+      case 'en_plantilla':
+        svgPlantillaUp.style.visibility = 'visible';
+        svgPlantillaDown.style.visibility = 'visible';
+        break;
+      case 'fecha_ultima_actualizacion':
+        svgFuaUp.style.visibility = 'visible';
+        svgFuaDown.style.visibility = 'visible';
+        break;
+      case 'fechaVencimiento':
+        svgFvUp.style.visibility = 'visible';
+        svgFvDown.style.visibility = 'visible';
+        break;
+    }
+  }
+
+  hiddenButtonOrder(column) {
+    const svgNameUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgNameDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgEmailUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgEmailDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    const svgPerfilUp = this.shadowRoot.querySelectorAll('.svg_order_up')[2];
+    const svgPerfilDown = this.shadowRoot.querySelectorAll('.svg_order_down')[2];
+    const svgPlantillaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[3];
+    const svgPlantillaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[3];
+    const svgFuaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[4];
+    const svgFuaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[4];
+    const svgFvUp = this.shadowRoot.querySelectorAll('.svg_order_up')[5];
+    const svgFvDown = this.shadowRoot.querySelectorAll('.svg_order_down')[5];
+    if (this.showName === false) {
+      svgNameUp.style.visibility = 'hidden';
+      svgNameDown.style.visibility = 'hidden';
+    } else {
+      svgNameUp.style.visibility = 'visible';
+      svgNameDown.style.visibility = 'visible';
+    }
+    if (this.showEmail === false) {
+      svgEmailUp.style.visibility = 'hidden';
+      svgEmailDown.style.visibility = 'hidden';
+    } else {
+      svgEmailUp.style.visibility = 'visible';
+      svgEmailDown.style.visibility = 'visible';
+    }
+    if (this.showPerfil === false) {
+      svgPerfilUp.style.visibility = 'hidden';
+      svgPerfilDown.style.visibility = 'hidden';
+    } else {
+      svgPerfilUp.style.visibility = 'visible';
+      svgPerfilDown.style.visibility = 'visible';
+    }
+    if (this.showPlantilla === false) {
+      svgPlantillaUp.style.visibility = 'hidden';
+      svgPlantillaDown.style.visibility = 'hidden';
+    } else {
+      svgPlantillaUp.style.visibility = 'visible';
+      svgPlantillaDown.style.visibility = 'visible';
+    }
+    if (this.showFua === false) {
+      svgFuaUp.style.visibility = 'hidden';
+      svgFuaDown.style.visibility = 'hidden';
+    } else {
+      svgFuaUp.style.visibility = 'visible';
+      svgFuaDown.style.visibility = 'visible';
+    }
+    if (this.showFv === false) {
+      svgFvUp.style.visibility = 'hidden';
+      svgFvDown.style.visibility = 'hidden';
+    } else {
+      svgFvUp.style.visibility = 'visible';
+      svgFvDown.style.visibility = 'visible';
+    }
+  }
+
+  clearControlsShowOrder() {
+    this.showName = false;
+    this.showEmail = false;
+    this.showPerfil = false;
+    this.showPlantilla = false;
+    this.showFua = false;
+    this.showFv = false;
+  }
+
   orderList(column) {
+    this.clearControlsShowOrder();
     this.vaciarCamposOrdena();
     const myList = [...this.datosCipa];
     let orderedList = [];
+    const orderNameUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const orderNameDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const svgNameUp = this.shadowRoot.querySelectorAll('.svg_order_up')[0];
+    const svgNameDown = this.shadowRoot.querySelectorAll('.svg_order_down')[0];
+    const orderEmailUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const orderEmailDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    const svgEmailUp = this.shadowRoot.querySelectorAll('.svg_order_up')[1];
+    const svgEmailDown = this.shadowRoot.querySelectorAll('.svg_order_down')[1];
+    const orderPerfilUp = this.shadowRoot.querySelectorAll('.svg_order_up')[2];
+    const orderPerfilDown = this.shadowRoot.querySelectorAll('.svg_order_down')[2];
+    const svgPerfilUp = this.shadowRoot.querySelectorAll('.svg_order_up')[2];
+    const svgPerfilDown = this.shadowRoot.querySelectorAll('.svg_order_down')[2];
+    const orderPlantillaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[3];
+    const orderPlantillaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[3];
+    const svgPlantillaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[3];
+    const svgPlantillaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[3];
+    const orderFuaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[4];
+    const orderFuaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[4];
+    const svgFuaUp = this.shadowRoot.querySelectorAll('.svg_order_up')[4];
+    const svgFuaDown = this.shadowRoot.querySelectorAll('.svg_order_down')[4];
+    const orderFvUp = this.shadowRoot.querySelectorAll('.svg_order_up')[5];
+    const orderFvDown = this.shadowRoot.querySelectorAll('.svg_order_down')[5];
+    const svgFvUp = this.shadowRoot.querySelectorAll('.svg_order_up')[5];
+    const svgFvDown = this.shadowRoot.querySelectorAll('.svg_order_down')[5];
 
     switch (column) {
       case 'nombre':
-        this.shadowRoot.getElementById('id_label_order_name').innerHTML = 'ASC';
+        orderNameUp.style.display = 'block';
+        orderNameDown.style.display = 'none';
+        svgNameUp.style.visibility = 'visible';
+        svgNameDown.style.visibility = 'visible';
+        this.showName = true;
         break;
       case 'email':
-        this.shadowRoot.getElementById('id_label_order_email').innerHTML = 'ASC';
+        orderEmailUp.style.display = 'block';
+        orderEmailDown.style.display = 'none';
+        svgEmailUp.style.visibility = 'visible';
+        svgEmailDown.style.visibility = 'visible';
+        this.showEmail = true;
         break;
       case 'perfil':
-        this.shadowRoot.getElementById('id_label_order_perfil').innerHTML = 'ASC';
+        orderPerfilUp.style.display = 'block';
+        orderPerfilDown.style.display = 'none';
+        svgPerfilUp.style.visibility = 'visible';
+        svgPerfilDown.style.visibility = 'visible';
+        this.showPerfil = true;
         break;
       case 'en_plantilla':
-        this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'SI';
+        orderPlantillaUp.style.display = 'block';
+        orderPlantillaDown.style.display = 'none';
+        svgPlantillaUp.style.visibility = 'visible';
+        svgPlantillaDown.style.visibility = 'visible';
+        this.showPlantilla = true;
         break;
       case 'fecha_ultima_actualizacion':
-        this.shadowRoot.getElementById('id_label_order_fua').innerHTML = 'ASC';
+        orderFuaUp.style.display = 'block';
+        orderFuaDown.style.display = 'none';
+        svgFuaUp.style.visibility = 'visible';
+        svgFuaDown.style.visibility = 'visible';
+        this.showFua = true;
         break;
       case 'fechaVencimiento':
-        this.shadowRoot.getElementById('id_label_order_fv').innerHTML = 'ASC';
+        orderFvUp.style.display = 'block';
+        orderFvDown.style.display = 'none';
+        svgFvUp.style.visibility = 'visible';
+        svgFvDown.style.visibility = 'visible';
+        this.showFv = true;
         break;
     }
 
@@ -261,14 +434,8 @@ export class BeniListaCipa extends LitElement {
     // ORDENA FECHAS - FORMATO DATOS A RECIBIR DD/MM/YYYY
     if (column === 'fecha_ultima_actualizacion' || column === 'fechaVencimiento') {
       orderedList = myList.sort((a, b) => {
-        let arrayDateA = a[column].split('/');
-        let dateA = new Date(arrayDateA[2], parseInt(arrayDateA[1]) + parseInt('-1'), arrayDateA[0]);
-
-        let arrayDateB = b[column].split('/');
-        let dateB = new Date(arrayDateB[2], parseInt(arrayDateB[1]) + parseInt('-1'), arrayDateB[0]);
-
-        if (dateA.getTime() < dateB.getTime()) return -1;
-        if (dateA.getTime() > dateB.getTime()) return 1;
+        if (a[column].getTime() < b[column].getTime()) return -1;
+        if (a[column].getTime() > b[column].getTime()) return 1;
         return 0;
       });
     }
@@ -277,38 +444,51 @@ export class BeniListaCipa extends LitElement {
       orderedList.reverse();
       switch (column) {
         case 'nombre':
-          this.shadowRoot.getElementById('id_label_order_name').innerHTML = 'DES';
+          orderNameUp.style.display = 'none';
+          orderNameDown.style.display = 'block';
+          svgNameUp.style.visibility = 'visible';
+          svgNameDown.style.visibility = 'visible';
+          this.showName = true;
           break;
         case 'email':
-          this.shadowRoot.getElementById('id_label_order_email').innerHTML = 'DES';
+          orderEmailUp.style.display = 'none';
+          orderEmailDown.style.display = 'block';
+          svgEmailUp.style.visibility = 'visible';
+          svgEmailDown.style.visibility = 'visible';
+          this.showEmail = true;
           break;
         case 'perfil':
-          this.shadowRoot.getElementById('id_label_order_perfil').innerHTML = 'DES';
+          orderPerfilUp.style.display = 'none';
+          orderPerfilDown.style.display = 'block';
+          svgPerfilUp.style.visibility = 'visible';
+          svgPerfilDown.style.visibility = 'visible';
+          this.showPerfil = true;
           break;
         case 'en_plantilla':
-          this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = 'NO';
+          orderPlantillaUp.style.display = 'none';
+          orderPlantillaDown.style.display = 'block';
+          svgPlantillaUp.style.visibility = 'visible';
+          svgPlantillaDown.style.visibility = 'visible';
+          this.showPlantilla = true;
           break;
         case 'fecha_ultima_actualizacion':
-          this.shadowRoot.getElementById('id_label_order_fua').innerHTML = 'DES';
+          orderFuaUp.style.display = 'none';
+          orderFuaDown.style.display = 'block';
+          svgFuaUp.style.visibility = 'visible';
+          svgFuaDown.style.visibility = 'visible';
+          this.showFua = true;
           break;
         case 'fechaVencimiento':
-          this.shadowRoot.getElementById('id_label_order_fv').innerHTML = 'DES';
+          orderFvUp.style.display = 'none';
+          orderFvDown.style.display = 'block';
+          svgFvUp.style.visibility = 'visible';
+          svgFvDown.style.visibility = 'visible';
+          this.showFv = true;
           break;
       }
     }
 
     this.datosCipa = [...orderedList];
-    this.showPage(0);
-  }
-
-  hiddenBodyCipa() {
-    this.shadowRoot.getElementById('id_body_cipa').style.display = 'none';
-    this.shadowRoot.getElementById('id_body_open_cipa').style.display = 'block';
-  }
-
-  hiddenBodyAbrirCipa() {
-    this.shadowRoot.getElementById('id_body_cipa').style.display = 'block';
-    this.shadowRoot.getElementById('id_body_open_cipa').style.display = 'none';
   }
 
   dirigirUrlEditarCandidato(idCandidatoEditar) {
@@ -343,37 +523,30 @@ export class BeniListaCipa extends LitElement {
   }
 
   vaciarCamposOrdena() {
-    this.shadowRoot.getElementById('id_label_order_name').innerHTML = '';
-    this.shadowRoot.getElementById('id_label_order_email').innerHTML = '';
-    this.shadowRoot.getElementById('id_label_order_perfil').innerHTML = '';
-    this.shadowRoot.getElementById('id_label_order_plantilla').innerHTML = '';
-    this.shadowRoot.getElementById('id_label_order_fua').innerHTML = '';
-    this.shadowRoot.getElementById('id_label_order_fv').innerHTML = '';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[0].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[0].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[1].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[1].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[2].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[2].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[3].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[3].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[4].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[4].style.display = 'none';
+    this.shadowRoot.querySelectorAll('.svg_order_up')[5].style.display = 'block';
+    this.shadowRoot.querySelectorAll('.svg_order_down')[5].style.display = 'none';
   }
 
   calcularDiferenciaFechaSemaforo(fechaVencimiento) {
     let date = new Date();
 
-    let arrayDatosFecha = fechaVencimiento.split('/');
-    let fechaVenciminetoFormato = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
-    let fechaVencimiento3Meses = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
+    let fechaVenciminetoFormato = new Date(fechaVencimiento);
+    let fechaVencimiento3Meses = new Date(fechaVencimiento);
     fechaVencimiento3Meses.setMonth(fechaVenciminetoFormato.getMonth() - 3);
     let diff3Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento3Meses.getTime();
     let diasDif3Meses = Math.floor(diff3Milis / (1000 * 60 * 60 * 24));
 
-    let fechaVencimiento1Meses = new Date(
-      arrayDatosFecha[2],
-      parseInt(arrayDatosFecha[1]) - parseInt('1'),
-      arrayDatosFecha[0],
-    );
+    let fechaVencimiento1Meses = new Date(fechaVencimiento);
     fechaVencimiento1Meses.setMonth(fechaVenciminetoFormato.getMonth() - 1);
     let diff1Milis = fechaVenciminetoFormato.getTime() - fechaVencimiento1Meses.getTime();
     let diasDif1Meses = Math.floor(diff1Milis / (1000 * 60 * 60 * 24));
@@ -398,16 +571,18 @@ export class BeniListaCipa extends LitElement {
     return valorFinalEnviar;
   }
 
-  calcularFechaVencimiento(fechaUltimaActualizacion) {
-    let arrayDatosFecha = fechaUltimaActualizacion.split('/');
-    let date = new Date(arrayDatosFecha[2], parseInt(arrayDatosFecha[1]) + parseInt('1'), arrayDatosFecha[0]);
-    date.setMonth(date.getMonth() + 18);
-
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
-
+  formatRequiredDate(date) {
+    let date1 = new Date(date);
+    let day = date1.getDate();
+    let month = parseInt(date1.getMonth()) + 1;
+    let year = date1.getFullYear();
     return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
+  }
+
+  generateDateEndToAddComponent(fechaUltimaActualizacion) {
+    const date = new Date(fechaUltimaActualizacion);
+    date.setMonth(date.getMonth() + 18);
+    return date;
   }
 }
 
