@@ -104,20 +104,38 @@ export const RpeStyles = css`
     overflow: auto;
   }
 
-  .active_hover label {
-    cursor: pointer;
-  }
-
-  .tableRpe .active_hover {
+  .col label {
     cursor: pointer;
   }
 
   .svg_order_up {
-    visibility: hidden;
+    display: none;
   }
 
-  .svg_order_down {
-    display: none;
+  .col:hover .svg_order_up {
+    display: block;
+  }
+
+  .col.selected:hover .svg_order_up {
+    display: block;
+    transform: rotate(180deg);
+  }
+
+  .col.selected.orderDown:hover .svg_order_up {
+    display: block;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col.selected .svg_order_up {
+    display: block;
+  }
+
+  .tableRpe .col {
+    cursor: pointer;
   }
 
   .tableRpe tr:nth-child(even) {
