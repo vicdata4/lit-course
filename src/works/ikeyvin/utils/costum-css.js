@@ -94,6 +94,11 @@ export const formPeticion = css`
   span {
     margin: 0 5px 0 15px;
   }
+
+  .alertMessage {
+    color: red;
+    font-size: 12px;
+  }
 `;
 
 export const tablePeticion = css`
