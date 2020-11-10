@@ -4,14 +4,14 @@ export const responsiveTable = css`
   @media (max-width: 760px) {
     #tablaSoli {
       border: none;
-      font-size: 0.7em;
+      text-align: left;
     }
 
     #tablaSoli #rowTitle {
       display: flex;
       padding: 1em 0.5em;
       margin-bottom: 1em;
-      background-color: #cccccc;
+      border: 1px solid rgb(221, 221, 221);
     }
 
     tr .cell {
@@ -24,12 +24,11 @@ export const responsiveTable = css`
 
     td {
       border: none;
-      padding: 1em;
-      border: 1px solid grey;
+      padding: 15px;
+      border-bottom: 1px solid rgb(221, 221, 221);
     }
 
     #rowInfo {
-      border: 1px solid grey;
       align-content: center;
       margin-bottom: 1em;
     }
