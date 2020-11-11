@@ -104,6 +104,23 @@ ${this.popupPetDescripcion}
           </div>
         </div>
       `;
+    } else {
+      return html`<section class="listaPeticiones">
+        <table class="table-container">
+          <thead>
+            <tr>
+              <th><h1>TITULO</h1></th>
+              <th><h1>FECHA</h1></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Empty</td>
+              <td>Empty</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>`;
     }
   }
 }
