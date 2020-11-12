@@ -1,10 +1,20 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { tableFormat, mediaQueriesPerReport } from '../utils/styles.js';
 import { permissions } from '../utils/employees.js';
+import './header-permissions.js';
 
 class PermissionsReportDetailed extends LitElement {
   static get styles() {
-    return [tableFormat, mediaQueriesPerReport];
+    return [
+      tableFormat,
+      mediaQueriesPerReport,
+      css`
+        header-permissions {
+          display: block;
+          margin-bottom: 40px;
+        }
+      `,
+    ];
   }
 
   static get properties() {
@@ -29,8 +39,9 @@ class PermissionsReportDetailed extends LitElement {
     const column = e.target.id;
     const order = [...this.listPermissions];
     const orderedList = order.sort((a, b) => {
-      var orderColumn = a[column] > b[column] ? 1 : b[column] > a[column] ? -1 : 0;
-      return orderColumn;
+      if (a[column] > b[column]) return 1;
+      if (b[column] > a[column]) return -1;
+      return 0;
     });
 
     if (JSON.stringify(this.listPermissions) === JSON.stringify(orderedList)) {
@@ -72,14 +83,6 @@ class PermissionsReportDetailed extends LitElement {
       date.getFullYear();
 
     return formattedDate;
-  }
-
-  showCalendarStart() {
-    this.shadowRoot.getElementById('inputStartDate').focus();
-  }
-
-  showCalendarEnd() {
-    this.shadowRoot.getElementById('inputEndDate').focus();
   }
 
   showTable(position) {
@@ -145,9 +148,8 @@ class PermissionsReportDetailed extends LitElement {
 
   render() {
     return html`
+      <header-permissions></header-permissions>
       <div class="permissions-report-ctr">
-        <h3>Reporte de Permisos Detallado</h3>
-
         <div>
           <label>Empleado:</label>
           <select name="employees" id="employees" @change="${this.selected}">
@@ -162,12 +164,7 @@ class PermissionsReportDetailed extends LitElement {
           <label>Fecha de inicio:</label>
           <div class="date">
             <input id="inputStartDate" type="date" />
-            <img
-              src="/assets/calaverosa/icons/calendar.png"
-              class="calendar"
-              alt="imagen calendario"
-              @click="${this.showCalendarStart}"
-            />
+            <img src="/assets/calaverosa/icons/calendar.png" class="calendar" alt="imagen calendario" />
           </div>
         </div>
 
@@ -175,17 +172,12 @@ class PermissionsReportDetailed extends LitElement {
           <label>Fecha de fin:</label>
           <div class="date">
             <input id="inputEndDate" type="date" />
-            <img
-              src="/assets/calaverosa/icons/calendar.png"
-              class="calendar"
-              alt="imagen calendario"
-              @click="${this.showCalendarEnd}"
-            />
+            <img src="/assets/calaverosa/icons/calendar.png" class="calendar" alt="imagen calendario" />
           </div>
         </div>
 
         <div>
-          <button @click="${this.generateReport}" id="generateReport">Generar reporte</button>
+          <button @click="${this.generateReport}" id="generateReport">GENERAR REPORTE</button>
         </div>
 
         <table>
@@ -216,8 +208,8 @@ class PermissionsReportDetailed extends LitElement {
         </table>
 
         <div id="navigation" class="no-visible">
-          <input type="button" id="previous-btn" value="«" @click="${this.navigation}" />
-          <input type="button" id="next-btn" value="»" @click="${this.navigation}" />
+          <input type="button" id="previous-btn" value=" «" @click="${this.navigation}" />
+          <input type="button" id="next-btn" value=" »" @click="${this.navigation}" />
           <div id="nPages">${this.currentPage + 1}/${this.numberOfPages}</div>
         </div>
       </div>
