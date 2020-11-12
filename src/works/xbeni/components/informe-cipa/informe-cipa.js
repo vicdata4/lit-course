@@ -27,92 +27,97 @@ export class BeniListaCipa extends LitElement {
         <div class="div_main_cipa">
           <table class="tabla_cipa">
             <!--  HEADER TABLA -->
-            <tr>
-              <th @click="${() => this.orderList('nombre')}" class="col nombre">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Nombre</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_name" class="texto_campo_ordenar"></label>
+            <thead>
+              <tr>
+                <th @click="${() => this.orderList('nombre')}" class="col nombre">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Nombre</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_name" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('email')}" class="col email">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Correo electronico</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_email" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('email')}" class="col email">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Correo electronico</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_email" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th>
-                <label>Telefono</label>
-              </th>
-              <th @click="${() => this.orderList('perfil')}" class="col perfil">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Perfil</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_perfil" class="texto_campo_ordenar"></label>
+                </th>
+                <th>
+                  <label>Telefono</label>
+                </th>
+                <th @click="${() => this.orderList('perfil')}" class="col perfil">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Perfil</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_perfil" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('en_plantilla')}" class="col en_plantilla">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>En plantilla</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_plantilla" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('en_plantilla')}" class="col en_plantilla">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>En plantilla</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_plantilla" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="col fecha_ultima_actualizacion">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Fecha de ultima actualizacion de datos</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_fua" class="texto_campo_ordenar"></label>
+                </th>
+                <th
+                  @click="${() => this.orderList('fecha_ultima_actualizacion')}"
+                  class="col fecha_ultima_actualizacion"
+                >
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Fecha ultima actualizacion datos</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_fua" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('fechaVencimiento')}" class="col fechaVencimiento">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Fecha de vencimiento</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_fv" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('fechaVencimiento')}" class="col fechaVencimiento">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Fecha de vencimiento</label>
+                    </div>
+                    <div class="campo_ordenar">
+                      ${svgUpArrow}
+                      <div class="div_texto_campo_ordenar">
+                        <label id="id_label_order_fv" class="texto_campo_ordenar"></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </th>
-              <th>
-                <label>Semaforo</label>
-              </th>
-            </tr>
+                </th>
+                <th>
+                  <label>Semaforo</label>
+                </th>
+              </tr>
+            </thead>
 
             <!--  MAIN TABLA -->
             ${this.datosCipa.map(
@@ -138,10 +143,14 @@ export class BeniListaCipa extends LitElement {
                   <td>
                     <div class="checkbox">
                       ${item.en_plantilla
-                        ? html`<input checked disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                            <label for="checkbox1_${item}"></label>`
-                        : html`<input disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                            <label for="checkbox1_${item}"></label> `}
+                        ? html`
+                            <ul>
+                              <li>
+                                <input type="checkbox" checked disabled />
+                              </li>
+                            </ul>
+                          `
+                        : nothing}
                     </div>
                   </td>
                   <td>
