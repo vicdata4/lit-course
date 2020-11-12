@@ -1,12 +1,14 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import '../components/vacation-detail/vacation-detail-admin';
 
+let el;
+const component = html`<vacation-detail-admin></vacation-detail-admin>`;
+
 describe('vacation approval function validation', () => {
-  let el, array;
+  let array;
   const idSortedBy = [1, 2, 7, 6, 3, 5, 4, 0, 9, 8];
 
   before(async () => {
-    const component = html`<vacation-detail-admin></vacation-detail-admin>`;
     el = await fixture(component);
     await el.updateComplete;
     array = [...el.listaDatos];
@@ -23,10 +25,7 @@ describe('vacation approval function validation', () => {
 });
 
 describe('Order method', () => {
-  let el;
-
   before(async () => {
-    const component = html`<vacation-detail-admin></vacation-detail-admin>`;
     el = await fixture(component);
     await el.updateComplete;
   });
@@ -57,9 +56,7 @@ describe('Order method', () => {
   });
 
   describe('calculaDias method', () => {
-    let el;
     before(async () => {
-      const component = html`<vacation-detail-admin></vacation-detail-admin>`;
       el = await fixture(component);
       await el.updateComplete;
     });
