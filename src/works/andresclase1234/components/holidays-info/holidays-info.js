@@ -5,13 +5,37 @@ class HolidaysInfo extends LitElement {
     return css`
       table {
         border: 1px solid #e4e4e4;
+        border-collapse: collapse;
         padding: 10px;
         margin-left: 5%;
         margin-right: 5%;
         width: 90%;
       }
 
+      tr:first-of-type {
+        border: 1px solid #ccd0d4;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f6f6f6;
+      }
+
       th {
+        text-align: left;
+      }
+
+      td {
+        font-weight: 500;
+        font-size: 13px;
+        text-size-adjust: 100%;
+        line-height: 20px;
+      }
+
+      .Tableheader {
+        font-size: 14px;
+        text-size-adjust: 100%;
+        padding: 8px;
+        padding-left: 2px;
         text-align: left;
       }
 
@@ -19,7 +43,6 @@ class HolidaysInfo extends LitElement {
         padding: 0;
         background-color: transparent;
         border: none;
-        margin-bottom: 10px;
         cursor: pointer;
         text-align: left;
       }
@@ -159,17 +182,17 @@ class HolidaysInfo extends LitElement {
         ${this.renderStepper()}
         <table>
           <tr>
-            <th>
+            <th class="Tableheader">
               <button class="order" @click="${() => this.orderList('holidayFrom')}">
                 Dia de inicio de vacaciones <span>&#9662;</span>
               </button>
             </th>
-            <th>
+            <th class="header">
               <button class="order" @click="${() => this.orderList('holidayTo')}">
                 Dia de fin de vacaciones <span>&#9662;</span>
               </button>
             </th>
-            <td>Dias tomados</td>
+            <td class="header">Dias tomados</td>
           </tr>
           ${this.list.slice(this.from, this.to).map(
             (item) => html`
