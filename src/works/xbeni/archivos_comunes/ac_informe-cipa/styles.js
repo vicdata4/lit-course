@@ -97,16 +97,38 @@ export const informeCipaStyles = css`
     display: flex;
   }
 
-  .active_hover label {
-    cursor: pointer;
-  }
-
-  .tabla_cipa .active_hover {
-    cursor: pointer;
-  }
-
   .svg_order_up {
-    visibility: hidden;
+    display: none;
+  }
+
+  .col label {
+    cursor: pointer;
+  }
+
+  .tabla_cipa .col {
+    cursor: pointer;
+  }
+
+  .col:hover .svg_order_up {
+    display: block;
+  }
+
+  .col.selected:hover .svg_order_up {
+    display: block;
+    transform: rotate(180deg);
+  }
+
+  .col.selected.orderDown:hover .svg_order_up {
+    display: block;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col.selected .svg_order_up {
+    display: block;
   }
 
   .div_texto_campo_ordenar {
