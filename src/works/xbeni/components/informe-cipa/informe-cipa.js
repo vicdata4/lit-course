@@ -123,24 +123,26 @@ export class BeniListaCipa extends LitElement {
             ${this.datosCipa.map(
               (item) => html`
                 <tr>
-                  <td>
-                    <label
-                      class="label_nombre_candidato_cipa"
-                      @click=${() => this.dirigirUrlEditarCandidato(item.nombre)}
-                    >
-                      ${this.cambiarFormatoNombre(item.nombre)}
-                    </label>
+                  <td data-label="Nombre">
+                    <strong>
+                      <label
+                        class="label_nombre_candidato_cipa"
+                        @click=${() => this.dirigirUrlEditarCandidato(item.nombre)}
+                      >
+                        ${this.cambiarFormatoNombre(item.nombre)}
+                      </label>
+                    </strong>
                   </td>
-                  <td>
+                  <td data-label="Correo electronico">
                     <label> ${this.cambiarFormatoCorreo(item.email)} </label>
                   </td>
-                  <td>
+                  <td data-label="Telefono">
                     <label> ${item.telefono} </label>
                   </td>
-                  <td>
+                  <td data-label="Perfil">
                     <label> ${this.cambiarFormatoPerfil(item.perfil)} </label>
                   </td>
-                  <td>
+                  <td data-label="En plantilla">
                     <div class="checkbox">
                       ${item.en_plantilla
                         ? html`
@@ -150,16 +152,22 @@ export class BeniListaCipa extends LitElement {
                               </li>
                             </ul>
                           `
-                        : nothing}
+                        : html`
+                            <ul>
+                              <li>
+                                <input type="checkbox" disabled />
+                              </li>
+                            </ul>
+                          `}
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Fecha ultima actualizacion datos">
                     <label> ${this.formatRequiredDate(item.fecha_ultima_actualizacion)} </label>
                   </td>
-                  <td>
+                  <td data-label="Fecha vencimiento">
                     <label> ${this.formatRequiredDate(item.fechaVencimiento)} </label>
                   </td>
-                  <td>
+                  <td data-label="Semaforo">
                     <div class="div_semaforo">
                       ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'rojo'
                         ? html`${svgOrderCircleRed}`

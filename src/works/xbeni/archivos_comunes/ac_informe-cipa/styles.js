@@ -88,13 +88,14 @@ export const informeCipaStyles = css`
   }
 
   .tabla_cipa th {
-    font-size: 13px;
+    font-size: 14px;
     background-color: transparent;
     text-align: left;
     padding: 10px 9px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-weight: 400;
   }
 
   .campo_ordenar {
@@ -271,29 +272,12 @@ export const informeCipaStyles = css`
       --ab: var(--active-inner);
       --x: 17px;
     }
-
-    input[type='radio'] {
-      border-radius: 50%;
-    }
-    input[type='radio']:after {
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      background: var(--active-inner);
-      opacity: 0;
-      -webkit-transform: scale(var(--s, 0.7));
-      transform: scale(var(--s, 0.7));
-    }
-    input[type='radio']:checked {
-      --s: 0.5;
-    }
   }
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
     width: 100%;
-    max-width: 320px;
   }
   /* FIN CSS CHECKBOX EN PLANTILLA */
 
@@ -312,29 +296,51 @@ export const informeCipaStyles = css`
     text-align: center;
   }
 
-  /* BOTON ABRIR FORMULARIO */
-  .div_button_abrir_cipa {
-    margin-top: 7px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-  }
+  @media only screen and (max-width: 1050px) {
+    table {
+      border: 0;
+    }
 
-  .button_abrir_cipa {
-    background-color: #063146;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration-line: underline;
-    cursor: pointer;
-    color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-size: 15px;
-    padding-top: 3px;
-    padding-bottom: 7px;
-  }
+    table caption {
+      font-size: 1.3em;
+    }
 
-  .button_abrir_cipa:hover {
-    opacity: 0.8;
-    text-decoration-color: red;
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+
+    .div_semaforo {
+      text-align: right;
+    }
+
+    table td:last-child {
+      border-bottom: 0;
+    }
   }
 `;
