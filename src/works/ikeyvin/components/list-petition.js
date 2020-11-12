@@ -75,7 +75,7 @@ class ListPetition extends LitElement {
               <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
               <div class="row">
                 <div class="col-25">
-                  <label for="titulo">TÍTULO</label>
+                  <label for="titulo">Título</label>
                 </div>
                 <div class="col-75">
                   <input type="text" id="modalTitulo" name="titulo" value="${this.popupPetTitulo}" readonly />
@@ -83,7 +83,7 @@ class ListPetition extends LitElement {
               </div>
               <div class="row">
                 <div class="col-25">
-                  <label for="fecha">FECHA DE PUBLICACIÓN</label>
+                  <label for="fecha">Fecha de publicación</label>
                 </div>
                 <div class="col-75">
                   <input type="text" id="modalFecha" name="fecha" value="${this.popupPetFecha}" readonly />
@@ -91,7 +91,7 @@ class ListPetition extends LitElement {
               </div>
               <div class="row">
                 <div class="col-25">
-                  <label for="descripcion">DESCRIPCIÓN</label>
+                  <label for="descripcion">Descripción</label>
                 </div>
                 <div class="col-75">
                   <textarea id="modalDescripcion" name="descripcion" style="height:200px" readonly>

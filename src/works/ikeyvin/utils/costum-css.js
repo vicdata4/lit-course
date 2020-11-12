@@ -158,7 +158,7 @@ export const modalPopup = css`
     box-sizing: border-box;
   }
   .modal {
-    font-family: 'Raleway';
+    font-family: Roboto, 'Open Sans';
     display: none;
     position: fixed;
     z-index: 1;
@@ -170,6 +170,22 @@ export const modalPopup = css`
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .modal input {
+    font-size: 13px;
+  }
+
+  input:focus {
+    outline-color: #007cba;
+    color: #016087;
+  }
+
+  textarea:focus {
+    outline-color: #007cba;
+    color: #016087;
   }
 
   .modal.active {
@@ -200,22 +216,20 @@ export const modalPopup = css`
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
     resize: vertical;
-    font-family: 'Raleway';
+    font-family: Roboto, 'Open Sans';
   }
 
   label {
-    padding: 12px 12px 12px 0;
+    padding: 20px 10px 20px 0;
     display: inline-block;
   }
 
   .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     padding: 20px;
-    margin-right: 20%;
-    margin-left: 20%;
+    margin-right: 2%;
+    margin-left: 2%;
   }
 
   .col-25 {
