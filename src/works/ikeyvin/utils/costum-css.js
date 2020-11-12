@@ -102,52 +102,47 @@ export const formPeticion = css`
 `;
 
 export const tablePeticion = css`
-  .table-container th h1 {
-    font-family: 'Raleway';
-    font-variant: petite-caps;
-    font-weight: bold;
-    font-size: 1.1em;
-    text-align: left;
-    color: grey;
-  }
-
-  .table-container td {
-    font-family: 'Raleway';
-    font-weight: normal;
-    font-size: 1em;
-  }
-
   .table-container {
     text-align: left;
     overflow: hidden;
-    width: 40%;
-    margin: 0 auto;
+    width: 100%;
     display: table;
-    padding: 0 0 8em 0;
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
+    border-collapse: collapse;
   }
 
   .table-container td,
   .table-container th {
-    padding-bottom: 2%;
-    padding-top: 2%;
-    padding-left: 2%;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .table-container th {
+    border-bottom-color: rgb(204, 208, 212);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    background: #fff;
+    font-weight: 400;
+    color: rgb(10, 2, 2);
+  }
+  .table-container td {
+    font-weight: 600;
+    font-size: 13px;
+    color: rgb(10, 2, 2);
+  }
+
+  .table-container .date {
+    font-weight: 400;
+    color: rgb(10, 2, 2);
   }
 
   .table-container tr:nth-of-type(odd) {
     background: #eee;
-  }
-
-  .table-container th {
-    background-color: #1c2b2d;
-  }
-
-  .table-container td:first-child {
-    color: #403e10;
-  }
-
-  .table-container a:hover {
-    color: #51adcf;
-    font-weight: bold;
   }
 
   @media (max-width: 300px) {

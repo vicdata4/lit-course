@@ -7,7 +7,9 @@ import './components/list-petition.js';
 
 const components = {
   formPetition: () => html`<form-petition></form-petition>`,
-  listPetition: () => html`<list-petition></list-petition>`,
+  listPetition: () =>
+    html`<h1>Lista de peticiones</h1>
+      <list-petition></list-petition>`,
 };
 
 class IkeyvinPage extends LitElement {

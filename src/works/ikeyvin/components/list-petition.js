@@ -47,8 +47,8 @@ class ListPetition extends LitElement {
           <table class="table-container">
             <thead>
               <tr>
-                <th><h1>TITULO</h1></th>
-                <th><h1>FECHA</h1></th>
+                <th>Titulo</th>
+                <th>Fecha</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@ class ListPetition extends LitElement {
                           <td>
                             <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a>
                           </td>
-                          <td>${dateFormatter(peticion.fecha).default}</td>
+                          <td class="date">${dateFormatter(peticion.fecha).default}</td>
                         </tr>
                       `
                     : nothing}`,
@@ -109,8 +109,8 @@ ${this.popupPetDescripcion}
         <table class="table-container">
           <thead>
             <tr>
-              <th><h1>TITULO</h1></th>
-              <th><h1>FECHA</h1></th>
+              <th>TITULO</th>
+              <th>FECHA</th>
             </tr>
           </thead>
           <tbody>
