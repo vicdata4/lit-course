@@ -1,12 +1,10 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import '../components/vacation-approval/vacation-approval';
-import { formatDate } from '../utils/functions';
-
-let el;
-const component = html`<vacation-approval></vacation-approval>`;
 
 describe('vacation approval validation', () => {
+  let el;
   before(async () => {
+    const component = html`<vacation-approval></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
   });
@@ -21,7 +19,9 @@ describe('vacation approval validation', () => {
 });
 
 describe('Show part of array fnc & click on index buttons', async () => {
+  let el;
   before(async () => {
+    const component = html`<vacation-approval></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
   });
@@ -52,21 +52,21 @@ describe('Show part of array fnc & click on index buttons', async () => {
     expect(el.to).equal(20);
   });
   it('Dispatch "change" event after change option', async () => {
-    await el.firstUpdate;
-    const original = el.listaDatos;
+    const original = [...el.listaDatos];
     const select = el.shadowRoot.querySelectorAll('select')[0];
-    await el.updateComplete;
     select.value = 2;
     const e = new Event('change');
     select.dispatchEvent(e);
     const newarray = el.listaDatos;
-    expect(original[0].fecha_estado).to.not.equal(formatDate(newarray[0].fecha_estado).completo);
+    expect(newarray[0].estado).to.equal(2);
+    expect(original[0].fecha_estado).to.not.equal(newarray[0].fecha_estado);
   });
 });
 
 describe('On clck on the buttons show part of array', async () => {
-  let leftButton, rightButton;
+  let el, leftButton, rightButton;
   before(async () => {
+    const component = html`<vacation-approval></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
 

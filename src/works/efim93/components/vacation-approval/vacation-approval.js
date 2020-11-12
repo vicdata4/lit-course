@@ -40,17 +40,15 @@ class VacationApproval extends LitElement {
 
   onSelectChange(event, item, i) {
     if (item.estado !== parseInt(event.target.value)) {
-      if (this.listaDatos[i].nombre_apellido.includes(item.nombre_apellido)) {
-        this.listaDatos[i] = {
-          nombre_apellido: this.listaDatos[i].nombre_apellido,
-          fecha_solicitud: this.listaDatos[i].fecha_solicitud,
-          fecha_inicio: this.listaDatos[i].fecha_inicio,
-          fecha_fin: this.listaDatos[i].fecha_fin,
-          estado: parseInt(event.target.value),
-          fecha_estado: new Date(),
-        };
-        this.listaDatos = [...this.listaDatos];
-      }
+      this.listaDatos[i] = {
+        nombre_apellido: this.listaDatos[i].nombre_apellido,
+        fecha_solicitud: this.listaDatos[i].fecha_solicitud,
+        fecha_inicio: this.listaDatos[i].fecha_inicio,
+        fecha_fin: this.listaDatos[i].fecha_fin,
+        estado: parseInt(event.target.value),
+        fecha_estado: new Date(),
+      };
+      this.listaDatos = [...this.listaDatos];
     }
   }
 
