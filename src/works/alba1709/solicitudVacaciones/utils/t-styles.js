@@ -33,7 +33,7 @@ export const viewStyles = css`
   th {
     font-family: Roboto, 'Open Sans';
     white-space: nowrap;
-    padding: 8px 10px;
+    padding: 8px 0px 8px 8px;
   }
 
   .btnOrder {
@@ -42,7 +42,7 @@ export const viewStyles = css`
     background-color: transparent;
     border: transparent;
     transition: transform 0.2s ease-in;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .btnOrder.rotate {
@@ -130,11 +130,11 @@ export const viewStyles = css`
   }
 
   #btnAgregar {
-    background-color: #0a0202;
+    background-color: #0a0202 !important;
     color: #fff;
     text-align: center;
     letter-spacing: 0.5px;
-    transition: 0.2s ease-out;
+    transition: .2s ease-out;
     padding: 0 2rem;
     text-decoration: none;
     border: none;
@@ -142,10 +142,12 @@ export const viewStyles = css`
     border-radius: 2px;
     cursor: pointer;
     font-family: Roboto, 'Open Sans';
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 11px 0px, rgba(0, 0, 0, 0.15) 0px 4px 15px 0px;
+    font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
   }
 
   #btnAgregar:hover {
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 11px 0px, rgba(0, 0, 0, 0.3) 0px 4px 15px 0px;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
   }
 `;

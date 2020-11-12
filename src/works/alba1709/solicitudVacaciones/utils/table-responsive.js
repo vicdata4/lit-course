@@ -5,6 +5,7 @@ export const responsiveTable = css`
     #tablaSoli {
       border: none;
       text-align: left;
+      font-size: 0.7em;
     }
 
     #tablaSoli #rowTitle {
