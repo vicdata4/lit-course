@@ -3,7 +3,7 @@ import { css } from 'lit-element';
 export const responsiveTable = css`
   @media (min-width: 760px) {
     #tableAdmin {
-      border: 1px solid black;
+      border: 1px solid #ccd0d4;
       text-align: left;
       margin-top: 20px;
       border-collapse: collapse;

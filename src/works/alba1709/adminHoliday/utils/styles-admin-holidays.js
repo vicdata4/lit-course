@@ -11,18 +11,16 @@ export const viewHoliday = css`
     display: flex;
     padding: 1em 0.5em;
     margin-bottom: 1em;
-    background-color: #cccccc;
+    border: 1px solid #ccd0d4;
   }
 
-  #tableAdmin tr:nth-child(odd) {
-    background-color: #eeeeee;
+  #tableAdmin tr:nth-child(even) {
+    background-color: #f6f6f6;
   }
 
   td,
   th {
-    border-right: solid 3px black;
-    border-left: solid 3px black;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Roboto, 'Open Sans';
     text-align: left;
     padding: 8px;
   }
@@ -37,8 +35,8 @@ export const viewHoliday = css`
 
   td {
     border: none;
-    padding: 1em;
-    border: 1px solid grey;
+    padding: 15px;
+    border-bottom: 1px solid rgb(221, 221, 221);
   }
 
   #rowInfo {
@@ -69,7 +67,7 @@ export const viewHoliday = css`
 
   h2,
   select {
-    font-family: 'Open Sans', sans-serif;
+    font-family: Roboto, 'Open Sans';
   }
 
   .btnOrder {
@@ -87,6 +85,7 @@ export const viewHoliday = css`
 
   .stepper {
     margin: 10px 0;
+    text-align: center;
   }
 
   .stepper .step:hover {
@@ -96,8 +95,8 @@ export const viewHoliday = css`
   .step {
     display: inline-block;
     padding: 5px;
-    border: 1px solid #d8d7d7;
-    width: 20px;
+    border: 1px solid rgb(216, 215, 215);
+    width: 30px;
     height: auto;
     text-align: center;
     cursor: pointer;
