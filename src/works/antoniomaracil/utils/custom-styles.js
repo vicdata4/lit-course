@@ -182,10 +182,18 @@ export const commonStyles = css`
 export const documentListStyles = css`
   .container {
     width: 100%;
-    font-family: 'Open Sans', sans-serif, Arial;
-    letter-spacing: 0.4px;
+    font-family: Roboto, 'Open Sans';
   }
-
+  .doc-box {
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  }
+  .row.header:first-of-type {
+    border-bottom: 1px solid #ccd0d4;
+  }
+  .row.header:last-of-type {
+    border-top: 1px solid #ccd0d4;
+  }
   .row > * {
     text-align: left;
     padding-right: 10px;
@@ -195,37 +203,25 @@ export const documentListStyles = css`
   }
 
   .group:nth-child(even) {
-    background-color: #eeeeee;
-  }
-  .group {
-    padding: 10px 10px 0px 10px;
+    background-color: #f6f6f6;
   }
 
   .row > *,
   .info-container {
     white-space: nowrap;
     overflow: hidden;
-  }
-
-  .row.header {
-    margin-bottom: 20px;
+    padding: 5px;
   }
 
   .row.header > * {
-    letter-spacing: 1.2px;
-    color: #959595;
+    color: #0a0202;
   }
 
   .row {
     display: flex;
     flex-flow: row nowrap;
-    border-bottom: 1px solid #ebebeb;
-    padding: 10px 0px;
   }
 
-  .row:first-child {
-    border: none;
-  }
   .title {
     width: 70%;
     color: #285659;
@@ -233,11 +229,11 @@ export const documentListStyles = css`
 
   .date {
     display: none;
-    width: 20%;
+    width: 30%;
   }
 
   .light-grey {
-    color: #747474;
+    color: #555;
   }
 
   .info {
@@ -255,9 +251,13 @@ export const documentListStyles = css`
     width: 20px;
     cursor: pointer;
   }
+  a {
+    color: #007cba;
+  }
   button {
     border: none;
     background-color: transparent;
+    vertical-align: middle;
   }
 
   @media (min-width: 768px) {
@@ -273,20 +273,8 @@ export const documentListStyles = css`
       display: none;
     }
 
-    .row {
-      padding: 20px 0px;
-    }
-
-    .row.header {
-      margin-bottom: 0px;
-    }
-
     .row.data {
-      margin-bottom: 0px;
-    }
-
-    .group:hover {
-      background-color: #f5f6f7;
+      padding: 10px 10px 10px 0px;
     }
   }
 `;

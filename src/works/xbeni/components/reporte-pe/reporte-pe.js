@@ -1,12 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
-import {
-  svgXRpeOrderString,
-  svgRpeOrdenarInt,
-  svgRpeIconRight,
-  svgRpeIconLeft,
-} from '../../archivos_comunes/ac_reportePe/svg_icons';
+import { svgUpArrow, svgRpeIconRight, svgRpeIconLeft } from '../../archivos_comunes/ac_reportePe/svg_icons';
 import { nothing } from 'lit-html';
 
 class BeniReportePermisosEmpleado extends LitElement {
@@ -94,7 +89,7 @@ class BeniReportePermisosEmpleado extends LitElement {
 
                 <div>
                   <button @click="${() =>
-                    this.controlErroresRpe()}" id="" class="buttonGenerarReporte">GENERAR REPORTE</button>
+                    this.controlErroresRpe()}" id="button_subit_pe" class="buttonGenerarReporte">GENERAR REPORTE</button>
                 </div>
 
                 <div class="divExitoRpe" id='id_succes_rpe'></div>
@@ -115,14 +110,14 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     return html`
       <table class="tableRpe">
         <tr>
-          <th name="dia">
+          <th name="dia" @click="${() => this.orderList('dia')}" class="col dia">
             <div class="divFlexThRpe">
               <div>
                 <label>Día</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('dia')} class="campoOrdenar">
-                  ${svgRpeOrdenarInt}
+                <div class="campoOrdenar">
+                  ${svgUpArrow}
                   <div class="divTextoCampoOrdenar">
                     <label id='id_order_day_rpe' class="textoCampoOrdenar"></label>
                   </div>
@@ -131,14 +126,15 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
             </div>
           </th>
 
-          <th name="tipoPermiso">
+          <th name="tipoPermiso"
+            @click="${() => this.orderList('tipoPermiso')}" class="col tipoPermiso">
             <div class="divFlexThRpe">
               <div>
                 <label>Tipo de permiso</label>
               </div>
               <button class="order"></button>
-                <div @click=${() => this.orderList('tipoPermiso')} class="campoOrdenar">
-                  ${svgXRpeOrderString}
+                <div class="campoOrdenar">
+                ${svgUpArrow}
                   <div class="divTextoCampoOrdenar">
                     <label id='id_order_tipo_permiso_rpe' class="textoCampoOrdenar"></label>
                   </div>
@@ -178,7 +174,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
   renderStepper() {
     return html`
-      <button class="step" @click="${this.prev}">${svgRpeIconLeft}</button>
+      <button class="step" id="step_prev" @click="${this.prev}">${svgRpeIconLeft}</button>
       ${this.stepper.map(
         (x, i) => html`
           ${i === 0
@@ -186,7 +182,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
             : html`<button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button>`}
         `,
       )}
-      <button class="step" @click="${this.next}">${svgRpeIconRight}</button>
+      <button class="step" id="step_next" @click="${this.next}">${svgRpeIconRight}</button>
     `;
   }
 
@@ -219,18 +215,18 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     }
   }
 
+  selectColumn(column) {
+    this.shadowRoot.querySelectorAll('.col').forEach((col) => {
+      col.classList.remove('selected');
+      col.classList.remove('orderDown');
+    });
+    this.shadowRoot.querySelector(`.${column}`).classList.add('selected');
+  }
+
   orderList(column) {
-    if (column === 'dia') {
-      this.clearCamposOrdenar();
-      this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'ASC';
-    }
-    if (column === 'tipoPermiso') {
-      this.clearCamposOrdenar();
-      this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'ASC';
-    }
+    this.selectColumn(column);
 
     const myList = [...this.datosReporteRpe];
-
     let orderedList;
     if (column !== 'dia') {
       orderedList = myList.sort((a, b) => {
@@ -248,14 +244,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
     if (JSON.stringify(this.datosReporteRpe) === JSON.stringify(orderedList)) {
       orderedList.reverse();
-      if (column === 'dia') {
-        this.clearCamposOrdenar();
-        this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = 'DES';
-      }
-      if (column === 'tipoPermiso') {
-        this.clearCamposOrdenar();
-        this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = 'DES';
-      }
+      this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
     }
 
     this.datosReporteRpe = [...orderedList];
@@ -265,11 +254,6 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
   cambiarFormatoTipoPermiso(dato) {
     const resultado = dato[0].toUpperCase() + dato.slice(1);
     return resultado;
-  }
-
-  clearCamposOrdenar() {
-    this.shadowRoot.getElementById('id_order_day_rpe').innerHTML = '';
-    this.shadowRoot.getElementById('id_order_tipo_permiso_rpe').innerHTML = '';
   }
 
   controlErroresRpe() {

@@ -1,9 +1,11 @@
 import { LitElement, html } from 'lit-element';
 import { viewStyles } from './utils/t-styles';
 import { responsiveTable } from './utils/table-responsive';
+import { dateToday } from './utils/functions';
+import { material } from './utils/fonts';
 export class TableRequests extends LitElement {
   static get styles() {
-    return [viewStyles, responsiveTable];
+    return [material, viewStyles, responsiveTable];
   }
 
   static get properties() {
@@ -80,11 +82,11 @@ export class TableRequests extends LitElement {
   renderStepper() {
     return html`
       <div class="stepper">
-        <button class="step left" @click="${this.prev}">&#x25B7;</button>
+        <button class="step left prev" @click="${this.prev}">&#x25B7;</button>
         ${this.stepper.map(
           (x, i) => html` <button id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</button> `,
         )}
-        <button class="step" @click="${this.next}">&#x25B7;</button>
+        <button class="step next" @click="${this.next}">&#x25B7;</button>
       </div>
     `;
   }
@@ -122,6 +124,7 @@ export class TableRequests extends LitElement {
 
   render() {
     return html`
+    ${this.renderStepper()}
       <table id="tablaSoli">
         <tr id="rowTitle">
           <th class="ord">
@@ -147,16 +150,18 @@ export class TableRequests extends LitElement {
         </tr>
 
         ${this.tableRequests.slice(this.from, this.to).map(
-          (item, i) => html`
-              <tr id="rowInfo">
-                <td data-title="Fecha de solicitud: ">${item.fHoy.split('-').reverse().join('-')} ${item.hActual}</td>
-                <td data-title="Fecha Inicio: ">${item.infoFI.split('-').reverse().join('-')}</td>
-                <td data-title="Fecha Fin: ">${item.infoFF.split('-').reverse().join('-')}</td>
-                <td data-title="Estado de la solicitud: ">Pendiente de aprobación</td>
-                <td data-title="Fecha de estado: ">${item.fHoy.split('-').reverse().join('-')}</td>
-                <td data-title="Eliminar: "> <button id="btnPapelera" @click="${() =>
-                  this.deleteItem(i)}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
-              </tr>`,
+          (item, i) => html` <tr id="rowInfo">
+            <td data-title="Fecha de solicitud: ">${dateToday(item.fHoy).defaultDate} ${item.hActual}</td>
+            <td data-title="Fecha Inicio: ">${dateToday(item.infoFI).defaultDate}</td>
+            <td data-title="Fecha Fin: ">${dateToday(item.infoFF).defaultDate}</td>
+            <td data-title="Estado de la solicitud: ">${item.status}</td>
+            <td data-title="Fecha de estado: ">${dateToday(item.statusDate).defaultDate}</td>
+            <td data-title="Eliminar: ">
+              <button id="btnPapelera" @click="${() => this.deleteItem(i)}">
+                <span id="papelera" class="material-icons">delete</span>
+              </button>
+            </td>
+          </tr>`,
         )}
       </table>
       ${this.renderStepper()}

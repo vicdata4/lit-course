@@ -84,7 +84,8 @@ export const informeCipaStyles = css`
   }
 
   .campo_ordenar {
-    margin-left: auto;
+    margin-left: 7px;
+    /*margin-left: auto;*/
     float: right;
     display: flex;
     justify-content: center;
@@ -94,6 +95,40 @@ export const informeCipaStyles = css`
 
   .div_flex_th_cipa {
     display: flex;
+  }
+
+  .svg_order_up {
+    display: none;
+  }
+
+  .col label {
+    cursor: pointer;
+  }
+
+  .tabla_cipa .col {
+    cursor: pointer;
+  }
+
+  .col:hover .svg_order_up {
+    display: block;
+  }
+
+  .col.selected:hover .svg_order_up {
+    display: block;
+    transform: rotate(180deg);
+  }
+
+  .col.selected.orderDown:hover .svg_order_up {
+    display: block;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col.selected .svg_order_up {
+    display: block;
   }
 
   .div_texto_campo_ordenar {
@@ -111,6 +146,10 @@ export const informeCipaStyles = css`
 
   .svg_cipa:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .svg_order_down {
+    display: none;
   }
 
   .label_nombre_candidato_cipa {

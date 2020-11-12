@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../VacationRequests/stepper.js';
+import '../components/stepper.js';
 const component = html`<stepper-component .listLength="${9}"></stepper-component>`;
 
 describe('Show part of array fnc & click on index buttons', async () => {

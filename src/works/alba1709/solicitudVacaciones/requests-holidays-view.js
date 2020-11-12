@@ -59,6 +59,7 @@ export class RequestsHolidays extends LitElement {
       const tabla = this.shadowRoot.querySelector('table-requests');
       await tabla.updateComplete;
       tabla.reloadTable();
+      return true;
     }
   }
 

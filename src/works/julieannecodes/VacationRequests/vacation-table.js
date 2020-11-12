@@ -1,14 +1,20 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 import '../../../components/common-header';
 import { mediaQueries } from '../utils/custom-styles';
 import './holidays-form';
 import './requests-table';
-import './stepper';
+import '../components/stepper';
 
 class VacationTable extends LitElement {
   static get styles() {
-    return [mediaQueries];
+    return [
+      mediaQueries,
+      css`
+        h1 {
+          font-weight: 400;
+        },`,
+    ];
   }
 
   static get properties() {

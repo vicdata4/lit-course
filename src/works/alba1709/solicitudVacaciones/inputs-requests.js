@@ -19,6 +19,8 @@ export class InputsRequests extends LitElement {
         infoFF: inputFechaFin.value,
         fHoy: fechaHoy,
         hActual: hora,
+        status: 'Pendiente de aprobación',
+        statusDate: fechaHoy,
       },
     });
     this.dispatchEvent(event);
@@ -34,7 +36,7 @@ export class InputsRequests extends LitElement {
           <input id="fechaIni" type="date" min="${dateToday(new Date()).dTomorrow}" />
         </div>
         <div id="inputEnd"><label id="lblF">Fecha Fin </label><input id="fechaFin" type="date" /></div>
-        <button id="btnAgregar" @click="${this.sendData}">Agregar</button>
+        <button id="btnAgregar" @click="${this.sendData}">AGREGAR</button>
       </div>
     `;
   }

@@ -9,13 +9,14 @@ class FormPetition extends LitElement {
   static get properties() {
     return {
       listaPeticion: { type: Array },
+      message: { type: String, attribute: false },
     };
   }
 
   constructor() {
     super();
     this.listaPeticion = [];
-    this.addPeticion = this.addPeticion.bind(this);
+    this.message = '';
   }
 
   addPeticion() {
@@ -25,15 +26,13 @@ class FormPetition extends LitElement {
     const inputTitulo = this.shadowRoot.querySelector('#peticionTitulo');
     const inputDescripcion = this.shadowRoot.querySelector('#peticionDescripcion');
     const inputPublicar = this.shadowRoot.querySelector('#peticionPublicar');
-    const fechaPublicacion = new Date();
 
     if (inputTitulo.value.length > 0 && inputDescripcion.value.length > 0) {
       storedPeticion.push({
         id: new Date().valueOf(),
         titulo: inputTitulo.value.toUpperCase(),
         descripcion: inputDescripcion.value,
-        fecha:
-          fechaPublicacion.getDate() + '/' + (fechaPublicacion.getMonth() + 1) + '/' + fechaPublicacion.getFullYear(),
+        fecha: new Date(),
         publicar: inputPublicar.checked,
       });
 
@@ -42,6 +41,10 @@ class FormPetition extends LitElement {
 
       inputTitulo.value = '';
       inputDescripcion.value = '';
+      inputPublicar.checked = false;
+      this.message = '';
+    } else {
+      this.message = 'TITULO y DESCRIPCIÓN no debe estar vacío!';
     }
   }
 
@@ -55,6 +58,9 @@ class FormPetition extends LitElement {
         <input id="peticionPublicar" type="checkbox" />
         <label for="c1">PUBLICAR</label>
         <button @click="${() => this.addPeticion()}">ENVIAR</button>
+        <br />
+        <br />
+        <p class="alertMessage">${this.message}</p>
       </div>
     `;
   }

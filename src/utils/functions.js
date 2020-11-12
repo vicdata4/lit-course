@@ -18,6 +18,9 @@ export const dateFormatter = (date_) => {
     short: monthName.slice(0, 3) + ' ' + monthDay,
     day: weekDayName,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
+    input: `${date.getFullYear()}-${date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+    }`,
   };
 };
 

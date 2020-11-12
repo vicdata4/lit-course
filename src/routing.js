@@ -9,6 +9,7 @@ import './views/list-example-view';
 import './views/works-view';
 import './views/pagination-view';
 import './views/searcher-view';
+import './views/calendar-view';
 import './works';
 
 export const routing = (outlet) => {
@@ -22,6 +23,7 @@ export const routing = (outlet) => {
     { path: '/works', component: 'works-view' },
     { path: '/pagination', component: 'pagination-view' },
     { path: '/searcher', component: 'searcher-view' },
+    { path: '/calendar', component: 'calendar-view' },
     { path: '(.*)', component: 'not-found-view' },
   ];
 

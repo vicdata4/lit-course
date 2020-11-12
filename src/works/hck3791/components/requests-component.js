@@ -25,6 +25,16 @@ class RequestComponent extends LitElement {
     });
   }
 
+  formatDate(d) {
+    let day = '';
+    let month = '';
+
+    d.getDate() < 10 ? (day += '0' + d.getDate()) : (day += d.getDate());
+    d.getMonth() + 1 < 10 ? (month += '0' + (d.getMonth() + 1)) : (month += d.getMonth() + 1);
+
+    return day + '/' + month + '/' + d.getFullYear();
+  }
+
   render() {
     return html`
       <div class="container">
@@ -43,7 +53,7 @@ class RequestComponent extends LitElement {
               return html`
                 <tr>
                   <td data-label="Título"><a href="#">${obj.title}</a></td>
-                  <td data-label="Publicación">${obj.publicationDate}</td>
+                  <td data-label="Publicación">${this.formatDate(obj.publicationDate)}</td>
                 </tr>
               `;
             })}
