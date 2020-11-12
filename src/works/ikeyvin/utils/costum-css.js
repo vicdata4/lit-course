@@ -172,6 +172,7 @@ export const modalPopup = css`
     background-color: rgba(0, 0, 0, 0.4);
     font-size: 14px;
     font-weight: bold;
+    box-shadow: 10px 10px;
   }
 
   .modal input {
