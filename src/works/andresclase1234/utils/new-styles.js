@@ -54,9 +54,9 @@ export const holidaysStyle = css`
   }
   .stepper {
     margin: 10px 0;
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
   }
   .stepper .step:hover {
     background-color: #f1f1f1;
