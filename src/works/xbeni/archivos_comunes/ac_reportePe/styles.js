@@ -104,6 +104,40 @@ export const RpeStyles = css`
     overflow: auto;
   }
 
+  .col label {
+    cursor: pointer;
+  }
+
+  .svg_order_up {
+    display: none;
+  }
+
+  .col:hover .svg_order_up {
+    display: block;
+  }
+
+  .col.selected:hover .svg_order_up {
+    display: block;
+    transform: rotate(180deg);
+  }
+
+  .col.selected.orderDown:hover .svg_order_up {
+    display: block;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col.selected .svg_order_up {
+    display: block;
+  }
+
+  .tableRpe .col {
+    cursor: pointer;
+  }
+
   .tableRpe tr:nth-child(even) {
     background-color: #f2f2f2;
   }
@@ -173,7 +207,8 @@ export const RpeStyles = css`
   }
 
   .campoOrdenar {
-    margin-left: auto;
+    margin-left: 7px;
+    /*margin-left: auto;*/
     float: right;
     display: flex;
     justify-content: center;

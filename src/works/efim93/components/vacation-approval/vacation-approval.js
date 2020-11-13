@@ -39,18 +39,16 @@ class VacationApproval extends LitElement {
   }
 
   onSelectChange(event, item, i) {
-    if (item.estado !== event.target.value) {
-      if (this.listaDatos[i].nombre_apellido.includes(item.nombre_apellido)) {
-        this.listaDatos[i] = {
-          nombre_apellido: this.listaDatos[i].nombre_apellido,
-          fecha_solicitud: this.listaDatos[i].fecha_solicitud,
-          fecha_inicio: this.listaDatos[i].fecha_inicio,
-          fecha_fin: this.listaDatos[i].fecha_fin,
-          estado: event.target.value,
-          fecha_estado: new Date(),
-        };
-        this.listaDatos = [...this.listaDatos];
-      }
+    if (item.estado !== parseInt(event.target.value)) {
+      this.listaDatos[i] = {
+        nombre_apellido: this.listaDatos[i].nombre_apellido,
+        fecha_solicitud: this.listaDatos[i].fecha_solicitud,
+        fecha_inicio: this.listaDatos[i].fecha_inicio,
+        fecha_fin: this.listaDatos[i].fecha_fin,
+        estado: parseInt(event.target.value),
+        fecha_estado: new Date(),
+      };
+      this.listaDatos = [...this.listaDatos];
     }
   }
 
@@ -112,11 +110,11 @@ class VacationApproval extends LitElement {
   renderStepper() {
     return html`
       <div class="stepper">
-        <div class="step left" @click="${this.prev}">&#x25B7;</div>
+        <div class="step left" id="stepLeft" @click="${this.prev}">&#x25B7;</div>
         ${this.stepper.map(
           (x, i) => html` <div id="${`_${i}`}" class="step" @click="${() => this.showPage(i)}">${i + 1}</div> `,
         )}
-        <div class="step" @click="${this.next}">&#x25B7;</div>
+        <div class="step" id="stepRight" @click="${this.next}">&#x25B7;</div>
       </div>
     `;
   }

@@ -9,13 +9,14 @@ class FormPetition extends LitElement {
   static get properties() {
     return {
       listaPeticion: { type: Array },
+      message: { type: String, attribute: false },
     };
   }
 
   constructor() {
     super();
     this.listaPeticion = [];
-    this.addPeticion = this.addPeticion.bind(this);
+    this.message = '';
   }
 
   addPeticion() {
@@ -41,6 +42,9 @@ class FormPetition extends LitElement {
       inputTitulo.value = '';
       inputDescripcion.value = '';
       inputPublicar.checked = false;
+      this.message = '';
+    } else {
+      this.message = 'TITULO y DESCRIPCIÓN no debe estar vacío!';
     }
   }
 
@@ -54,6 +58,9 @@ class FormPetition extends LitElement {
         <input id="peticionPublicar" type="checkbox" />
         <label for="c1">PUBLICAR</label>
         <button @click="${() => this.addPeticion()}">ENVIAR</button>
+        <br />
+        <br />
+        <p class="alertMessage">${this.message}</p>
       </div>
     `;
   }
