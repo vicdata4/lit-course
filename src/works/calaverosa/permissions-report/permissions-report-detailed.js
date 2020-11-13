@@ -39,9 +39,8 @@ class PermissionsReportDetailed extends LitElement {
     const column = e.target.id;
     const order = [...this.listPermissions];
     const orderedList = order.sort((a, b) => {
-      if (a[column] > b[column]) return 1;
-      if (b[column] > a[column]) return -1;
-      return 0;
+      var orderColumn = a[column] > b[column] ? 1 : b[column] > a[column] ? -1 : 0;
+      return orderColumn;
     });
 
     if (JSON.stringify(this.listPermissions) === JSON.stringify(orderedList)) {
@@ -52,26 +51,18 @@ class PermissionsReportDetailed extends LitElement {
     this.showTable(0);
   }
 
-  navigation(e) {
-    const step = e.target.id;
-    switch (step) {
-      case 'next-btn':
-        if (this.currentPage === this.numberOfPages - 1) {
-          this.currentPage = this.numberOfPages - 1;
-        } else {
-          this.currentPage++;
-        }
-        this.showTable(this.currentPage * 10);
-        break;
-      case 'previous-btn':
-        if (this.currentPage > 0) {
-          this.currentPage--;
-        } else {
-          this.currentPage = 0;
-        }
-        this.showTable(this.currentPage * 10);
-        break;
+  next() {
+    if (this.currentPage !== this.numberOfPages - 1) {
+      this.currentPage++;
     }
+    this.showTable(this.currentPage * 10);
+  }
+
+  prev() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+    }
+    this.showTable(this.currentPage * 10);
   }
 
   formatDate(date) {
@@ -208,8 +199,8 @@ class PermissionsReportDetailed extends LitElement {
         </table>
 
         <div id="navigation" class="no-visible">
-          <input type="button" id="previous-btn" value=" «" @click="${this.navigation}" />
-          <input type="button" id="next-btn" value=" »" @click="${this.navigation}" />
+          <input type="button" id="previous-btn" value=" «" @click="${this.prev}" />
+          <input type="button" id="next-btn" value=" »" @click="${this.next}" />
           <div id="nPages">${this.currentPage + 1}/${this.numberOfPages}</div>
         </div>
       </div>
