@@ -1,87 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { holidaysStyle } from '../../utils/new-styles';
 
 class HolidaysInfo extends LitElement {
   static get styles() {
-    return css`
-      table {
-        border: 1px solid #e4e4e4;
-        border-collapse: collapse;
-        padding: 10px;
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 90%;
-      }
-
-      tr:first-of-type {
-        border: 1px solid #ccd0d4;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f6f6f6;
-      }
-
-      th {
-        text-align: left;
-      }
-
-      td {
-        font-weight: 500;
-        font-size: 13px;
-        text-size-adjust: 100%;
-        line-height: 20px;
-      }
-
-      .Tableheader {
-        font-size: 14px;
-        text-size-adjust: 100%;
-        padding: 8px;
-        padding-left: 2px;
-        text-align: left;
-      }
-
-      .order {
-        padding: 0;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        text-align: left;
-      }
-
-      .stepper {
-        margin: 10px 0;
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-      }
-
-      .stepper .step:hover {
-        background-color: #f1f1f1;
-      }
-
-      .step {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #d8d7d7;
-        width: 20px;
-        height: auto;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      .step.active {
-        background-color: #535353 !important;
-        color: white;
-      }
-
-      .step.left {
-        transform: rotate(180deg);
-      }
-
-      .stepper,
-      .step {
-        user-select: none;
-      }
-    `;
+    return [holidaysStyle];
   }
 
   static get properties() {
