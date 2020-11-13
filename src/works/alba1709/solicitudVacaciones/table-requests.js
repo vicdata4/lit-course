@@ -2,9 +2,10 @@ import { LitElement, html } from 'lit-element';
 import { viewStyles } from './utils/t-styles';
 import { responsiveTable } from './utils/table-responsive';
 import { dateToday } from './utils/functions';
+import { material } from './utils/fonts';
 export class TableRequests extends LitElement {
   static get styles() {
-    return [viewStyles, responsiveTable];
+    return [material, viewStyles, responsiveTable];
   }
 
   static get properties() {
@@ -123,6 +124,7 @@ export class TableRequests extends LitElement {
 
   render() {
     return html`
+    ${this.renderStepper()}
       <table id="tablaSoli">
         <tr id="rowTitle">
           <th class="ord">
@@ -148,16 +150,18 @@ export class TableRequests extends LitElement {
         </tr>
 
         ${this.tableRequests.slice(this.from, this.to).map(
-          (item, i) => html`
-              <tr id="rowInfo">
-                <td data-title="Fecha de solicitud: ">${dateToday(item.fHoy).defaultDate} ${item.hActual}</td>
-                <td data-title="Fecha Inicio: ">${dateToday(item.infoFI).defaultDate}</td>
-                <td data-title="Fecha Fin: ">${dateToday(item.infoFF).defaultDate}</td>
-                <td data-title="Estado de la solicitud: ">${item.status}</td>
-                <td data-title="Fecha de estado: ">${dateToday(item.statusDate).defaultDate}</td>
-                <td data-title="Eliminar: "> <button id="btnPapelera" @click="${() =>
-                  this.deleteItem(i)}"><img id = "papelera" src="/assets/alba1709/papelera.png"></img></button></td>
-              </tr>`,
+          (item, i) => html` <tr id="rowInfo">
+            <td data-title="Fecha de solicitud: ">${dateToday(item.fHoy).defaultDate} ${item.hActual}</td>
+            <td data-title="Fecha Inicio: ">${dateToday(item.infoFI).defaultDate}</td>
+            <td data-title="Fecha Fin: ">${dateToday(item.infoFF).defaultDate}</td>
+            <td data-title="Estado de la solicitud: ">${item.status}</td>
+            <td data-title="Fecha de estado: ">${dateToday(item.statusDate).defaultDate}</td>
+            <td data-title="Eliminar: ">
+              <button id="btnPapelera" @click="${() => this.deleteItem(i)}">
+                <span id="papelera" class="material-icons">delete</span>
+              </button>
+            </td>
+          </tr>`,
         )}
       </table>
       ${this.renderStepper()}
