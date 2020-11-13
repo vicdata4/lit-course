@@ -1,10 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
+import { dataRequest } from './utils/constants';
 import '../components/vacation-approval/vacation-approval';
 
 describe('vacation approval validation', () => {
   let el;
   before(async () => {
-    const component = html`<vacation-approval></vacation-approval>`;
+    const component = html`<vacation-approval .listaDatos="${dataRequest}"></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
   });
@@ -21,7 +22,7 @@ describe('vacation approval validation', () => {
 describe('Show part of array fnc & click on index buttons', async () => {
   let el;
   before(async () => {
-    const component = html`<vacation-approval></vacation-approval>`;
+    const component = html`<vacation-approval .listaDatos="${dataRequest}"></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
   });
@@ -66,7 +67,7 @@ describe('Show part of array fnc & click on index buttons', async () => {
 describe('On clck on the buttons show part of array', async () => {
   let el, leftButton, rightButton;
   before(async () => {
-    const component = html`<vacation-approval></vacation-approval>`;
+    const component = html`<vacation-approval .listaDatos="${dataRequest}"></vacation-approval>`;
     el = await fixture(component);
     await el.updateComplete;
 
