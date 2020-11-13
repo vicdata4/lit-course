@@ -5,6 +5,18 @@ const json = require('@rollup/plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
 const progress = require('rollup-plugin-progress');
 const del = require('rollup-plugin-delete');
+const users = require('../../src/works/users.json');
+
+const userAssetsList = () => {
+  const obj = {};
+
+  users.list.forEach(user_ => {
+    const user = user_.toLowerCase();
+    obj[`${folders.src}/works/${user}/assets`] = [`${folders.build_assets}/${user}`];
+  });
+
+  return obj;
+};
 
 const folders = {
   build: resolvePath('.', 'build'),
@@ -47,7 +59,8 @@ const rollupConfig = ({
         [folders.src_assets]: [folders.build_assets],
         [files.src_index]: [files.build_index],
         [files.src_manifest]: [files.build_manifest],
-        [files.src_sw]: [files.build_sw]
+        [files.src_sw]: [files.build_sw],
+        ...userAssetsList(),
       }
     }),
     json(),
