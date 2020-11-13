@@ -32,7 +32,6 @@ export const viewStyles = css`
   td,
   th {
     font-family: Roboto, 'Open Sans';
-    white-space: nowrap;
     padding: 8px 0px 8px 8px;
   }
 
