@@ -1,7 +1,13 @@
 import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
 import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
-import { svgUpArrow, svgRpeIconRight, svgRpeIconLeft } from '../../archivos_comunes/ac_reportePe/svg_icons';
+import {
+  svgUpArrow,
+  svgRpeIconRight,
+  svgRpeIconLeft,
+  svgRpeOrdenarInt,
+  svgXRpeOrderString,
+} from '../../archivos_comunes/ac_reportePe/svg_icons';
 import { nothing } from 'lit-html';
 
 class BeniReportePermisosEmpleado extends LitElement {
@@ -89,7 +95,7 @@ class BeniReportePermisosEmpleado extends LitElement {
 
                 <div>
                   <button @click="${() =>
-                    this.controlErroresRpe()}" id="button_subit_pe" class="buttonGenerarReporte">GENERAR REPORTE</button>
+                    this.controlErroresRpe()}" id="button_subit_pe" class="buttonGenerarReporte">Generar reporte</button>
                 </div>
 
                 <div class="divExitoRpe" id='id_succes_rpe'></div>
@@ -108,56 +114,83 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
   generarReporteRpe() {
     return html`
+      <div class="div_body_order_responsive">
+        <div class="header_order_text">
+          <span>Campos de ordenacion</span>
+        </div>
+        <div class="div_flex_100">
+          <button @click="${() => this.orderList('dia')}" class="col_order_responsive col_dia">
+            <div class="div_flex_order">
+              <div>
+                <span>Dia</span>
+              </div>
+              <div class="col_svg">${svgRpeOrdenarInt}</div>
+              <div class="col_show_order">${svgUpArrow}</div>
+            </div>
+          </button>
+          <button @click="${() => this.orderList('tipoPermiso')}" class="col_order_responsive col_tipoPermiso">
+            <div class="div_flex_order">
+              <div>
+                <span>Tipo de permiso</span>
+              </div>
+              <div class="col_svg">${svgXRpeOrderString}</div>
+              <div class="col_show_order">${svgUpArrow}</div>
+            </div>
+          </button>
+        </div>
+      </div>
       <table class="tableRpe">
-        <tr>
-          <th name="dia" @click="${() => this.orderList('dia')}" class="col dia">
-            <div class="divFlexThRpe">
-              <div>
-                <label>Día</label>
+        <thead>
+          <tr>
+            <th name="dia" @click="${() => this.orderList('dia')}" class="col dia">
+              <div class="divFlexThRpe">
+                <div>
+                  <label>Día</label>
+                </div>
+                <button class="order"></button>
+                  <div class="campoOrdenar">
+                    ${svgUpArrow}
+                    <div class="divTextoCampoOrdenar">
+                      <label id='id_order_day_rpe' class="textoCampoOrdenar"></label>
+                    </div>
+                  </div>
+                </button>
               </div>
-              <button class="order"></button>
-                <div class="campoOrdenar">
+            </th>
+
+            <th name="tipoPermiso"
+              @click="${() => this.orderList('tipoPermiso')}" class="col tipoPermiso">
+              <div class="divFlexThRpe">
+                <div>
+                  <label>Tipo de permiso</label>
+                </div>
+                <button class="order"></button>
+                  <div class="campoOrdenar">
                   ${svgUpArrow}
-                  <div class="divTextoCampoOrdenar">
-                    <label id='id_order_day_rpe' class="textoCampoOrdenar"></label>
+                    <div class="divTextoCampoOrdenar">
+                      <label id='id_order_tipo_permiso_rpe' class="textoCampoOrdenar"></label>
+                    </div>
                   </div>
-                </div>
-              </button>
-            </div>
-          </th>
-
-          <th name="tipoPermiso"
-            @click="${() => this.orderList('tipoPermiso')}" class="col tipoPermiso">
-            <div class="divFlexThRpe">
-              <div>
-                <label>Tipo de permiso</label>
+                </button>
               </div>
-              <button class="order"></button>
-                <div class="campoOrdenar">
-                ${svgUpArrow}
-                  <div class="divTextoCampoOrdenar">
-                    <label id='id_order_tipo_permiso_rpe' class="textoCampoOrdenar"></label>
-                  </div>
-                </div>
-              </button>
-            </div>
-          </th>
+            </th>
 
-          <th>Horas</th>
-        </tr>
+            <th>Horas</th>
+          </tr>
+        </thead>
 
         ${this.datosReporteRpe.slice(this.from, this.to).map(
           (item) => html`
             <tr>
-              <td>
+              <td data-label="Día">
                 <label>
                   ${this.dateToFormatRequired(item.dia.getFullYear(), item.dia.getMonth(), item.dia.getDate())}
                 </label>
               </td>
-              <td>
+              <td data-label="Tipo de permiso">
                 <label> ${this.cambiarFormatoTipoPermiso(item.tipoPermiso)} </label>
               </td>
-              <td>
+              <td data-label="Horas">
                 <label> ${item.horas} </label>
               </td>
             </tr>
@@ -220,6 +253,12 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       col.classList.remove('selected');
       col.classList.remove('orderDown');
     });
+    this.shadowRoot.querySelectorAll('.col_order_responsive').forEach((col) => {
+      col.classList.remove('selected');
+      col.classList.remove('orderDown');
+    });
+
+    this.shadowRoot.querySelector(`.col_${column}`).classList.add('selected');
     this.shadowRoot.querySelector(`.${column}`).classList.add('selected');
   }
 
@@ -245,6 +284,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
     if (JSON.stringify(this.datosReporteRpe) === JSON.stringify(orderedList)) {
       orderedList.reverse();
       this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
+      this.shadowRoot.querySelector(`.col_${column}`).classList.add('orderDown');
     }
 
     this.datosReporteRpe = [...orderedList];
