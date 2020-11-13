@@ -348,7 +348,7 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       errorContainerContent.innerHTML = '';
 
       // SHOW INFO REPORTE TO GENERATE
-      const informeDatosExitoGenerarRpe = `<b>Reorte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
+      const informeDatosExitoGenerarRpe = `<b>Reporte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
       succesContainer.innerHTML = informeDatosExitoGenerarRpe;
       succesContainer.style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE

@@ -206,10 +206,11 @@ export const informeCipaStyles = css`
   }
 
   .label_nombre_candidato_cipa {
-    color: #0a0202;
+    color: #2296f3;
     font-weight: 500;
     cursor: pointer;
-    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 15px;
   }
 
   /* CSS CHECKBOX EN PLANTILLA */

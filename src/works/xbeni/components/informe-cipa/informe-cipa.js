@@ -34,7 +34,7 @@ export class BeniListaCipa extends LitElement {
         <div class="div_main_cipa">
           <div class="div_body_order_responsive">
             <div class="header_order_text">
-              <span>Campos de ordenacion</span>
+              <span>Campos de ordenación</span>
             </div>
             <div class="div_flex_100">
               <button @click="${() => this.orderList('nombre')}" class="col_order_responsive col_nombre">
@@ -49,7 +49,7 @@ export class BeniListaCipa extends LitElement {
               <button @click="${() => this.orderList('email')}" class="col_order_responsive col_email">
                 <div class="div_flex_order">
                   <div>
-                    <span>Correo electronico</span>
+                    <span>Correo electrónico</span>
                   </div>
                   <div class="col_svg">${svgOrderString}</div>
                   <div class="col_show_order">${svgUpArrow}</div>
@@ -79,7 +79,7 @@ export class BeniListaCipa extends LitElement {
               >
                 <div class="div_flex_order">
                   <div>
-                    <span>Fecha ultima actualizacion datos</span>
+                    <span>Fecha última actualización datos</span>
                   </div>
                   <div class="col_svg">${svgOrderInt}</div>
                   <div class="col_show_order">${svgUpArrow}</div>
@@ -115,13 +115,13 @@ export class BeniListaCipa extends LitElement {
                 <th @click="${() => this.orderList('email')}" class="col email">
                   <div class="div_flex_th_cipa">
                     <div>
-                      <label>Correo electronico</label>
+                      <label>Correo electrónico</label>
                     </div>
                     <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
                 </th>
                 <th>
-                  <label>Telefono</label>
+                  <label>Teléfono</label>
                 </th>
                 <th @click="${() => this.orderList('perfil')}" class="col perfil">
                   <div class="div_flex_th_cipa">
@@ -159,7 +159,7 @@ export class BeniListaCipa extends LitElement {
                   </div>
                 </th>
                 <th>
-                  <label>Semaforo</label>
+                  <label>Semáforo</label>
                 </th>
               </tr>
             </thead>
@@ -178,10 +178,10 @@ export class BeniListaCipa extends LitElement {
                       </label>
                     </strong>
                   </td>
-                  <td data-label="Correo electronico">
+                  <td data-label="Correo electrónico">
                     <label> ${this.cambiarFormatoCorreo(item.email)} </label>
                   </td>
-                  <td data-label="Telefono">
+                  <td data-label="Teléfono">
                     <label> ${item.telefono} </label>
                   </td>
                   <td data-label="Perfil">
@@ -206,13 +206,13 @@ export class BeniListaCipa extends LitElement {
                           `}
                     </div>
                   </td>
-                  <td data-label="Fecha ultima actualizacion datos">
+                  <td data-label="Fecha última actualización datos">
                     <label> ${this.formatRequiredDate(item.fecha_ultima_actualizacion)} </label>
                   </td>
                   <td data-label="Fecha vencimiento">
                     <label> ${this.formatRequiredDate(item.fechaVencimiento)} </label>
                   </td>
-                  <td data-label="Semaforo">
+                  <td data-label="Semáforo">
                     <div class="div_semaforo">
                       ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'rojo'
                         ? html`${svgOrderCircleRed}`
