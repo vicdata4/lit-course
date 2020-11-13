@@ -16,9 +16,6 @@ export const holidaysStyle = css`
   tr:nth-child(even) {
     background-color: #f6f6f6;
   }
-  th {
-    text-align: left;
-  }
   td {
     font-weight: 500;
     font-size: 13px;
@@ -26,7 +23,7 @@ export const holidaysStyle = css`
     line-height: 19.5px;
     color: rgb(85, 85, 85);
   }
-  .Tableheader {
+  .tableHeader {
     font-family: Roboto, 'Open Sans';
     font-size: 14px;
     color: rgb(10, 2, 2);
@@ -34,11 +31,6 @@ export const holidaysStyle = css`
     line-height: 35px;
     text-size-adjust: 100%;
     text-align: left;
-  }
-  .header {
-    color: rgb(10, 2, 2);
-    font-size: 14px;
-    font-weight: 400px;
   }
   .order {
     height: 100%;
