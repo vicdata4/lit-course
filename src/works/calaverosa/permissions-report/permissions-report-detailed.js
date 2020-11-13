@@ -183,13 +183,13 @@ class PermissionsReportDetailed extends LitElement {
         <table>
           <thead>
             <tr>
-              <th>
+              <th id="startDate" @click="${this.sort}">
                 Día
-                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" id="startDate" @click="${this.sort}" />
+                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" />
               </th>
-              <th>
+              <th id="type" @click="${this.sort}">
                 Tipo de permiso
-                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" id="type" @click="${this.sort}" />
+                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" />
               </th>
               <th>Horas</th>
             </tr>

@@ -89,7 +89,7 @@ export const tableFormat = css`
 
   .arrow-str {
     display: block;
-    width: 10px;
+    width: 14px;
     float: right;
     cursor: pointer;
     visibility: hidden;
@@ -128,7 +128,7 @@ export const tableFormat = css`
 
   th:first-child,
   th:last-child {
-    width: 5%;
+    width: 3%;
   }
 
   #generateReport {
@@ -196,6 +196,16 @@ export const mediaQueriesPerReport = css`
     #next-btn {
       width: 4%;
     }
+    .arrow-str {
+      display: block;
+      width: 14px;
+      float: right;
+      cursor: pointer;
+      visibility: hidden;
+    }
+    th:hover .arrow-str {
+      visibility: visible;
+    }
   }
   /* Desktop */
   @media (min-width: 1025px) {
@@ -228,6 +238,16 @@ export const mediaQueriesPerReport = css`
     #navigation #nPages {
       margin-top: 1.5%;
       margin-left: 0.5%;
+    }
+    .arrow-str {
+      display: block;
+      width: 14px;
+      float: right;
+      cursor: pointer;
+      visibility: hidden;
+    }
+    th:hover .arrow-str {
+      visibility: visible;
     }
   }
 `;
