@@ -124,6 +124,48 @@ export const informeCipaStyles = css`
     cursor: pointer;
   }
 
+  /* ORDER RESPONSIVE TABLE */
+  .col_svg {
+    margin-left: 7px;
+    /*margin-left: auto;*/
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .div_flex_order {
+    display: flex;
+  }
+
+  .col_order_responsive span {
+    cursor: pointer;
+  }
+
+  .col_order_responsive:hover .svg_order_up {
+    visibility: visible;
+  }
+
+  .col_order_responsive.selected:hover .svg_order_up {
+    visibility: visible;
+    transform: rotate(180deg);
+  }
+
+  .col_order_responsive.selected.orderDown:hover .svg_order_up {
+    visibility: visible;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col_order_responsive.selected .svg_order_up {
+    visibility: visible;
+  }
+
+  /* ORDER DESKTOP TABLE */
   .col:hover .svg_order_up {
     visibility: visible;
   }
@@ -148,10 +190,6 @@ export const informeCipaStyles = css`
 
   .div_texto_campo_ordenar {
     margin-top: -10px;
-  }
-
-  .texto_campo_ordenar {
-    font-size: 9px;
   }
 
   .svg_cipa {
@@ -296,7 +334,79 @@ export const informeCipaStyles = css`
     text-align: center;
   }
 
+  /* ORDER CAMP RESPONSIVE */
+  .div_body_order_responsive {
+    display: none;
+  }
+
+  .div_flex_100 {
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
+    border-collapse: collapse;
+    word-wrap: break-word;
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    font-size: 14px;
+  }
+
+  .header_order_text {
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  .col_order_responsive {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    padding-right: 4px;
+    background: transparent;
+  }
+
+  .col_nombre {
+    min-width: max-content;
+  }
+
+  .col_email {
+    min-width: max-content;
+  }
+
+  .col_perfil {
+    min-width: max-content;
+  }
+
+  .col_en_plantilla {
+    min-width: max-content;
+  }
+
+  .col_fecha_ultima_actualizacion {
+    min-width: max-content;
+  }
+
+  .col_fechaVencimiento {
+    min-width: max-content;
+  }
+
+  .col_show_order {
+    margin-left: 3px;
+    /*margin-left: auto;*/
+    cursor: pointer;
+    text-align: start;
+    margin-top: -5px;
+  }
+
+  /* END ORDER CAMP RESPONSIVE */
+
   @media only screen and (max-width: 1050px) {
+    .div_body_order_responsive {
+      display: block;
+    }
+
     table {
       border: 0;
     }
