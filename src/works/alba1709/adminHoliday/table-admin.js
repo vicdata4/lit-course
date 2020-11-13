@@ -2,7 +2,6 @@ import { LitElement, html } from 'lit-element';
 import { viewHoliday } from './utils/styles-admin-holidays';
 import { getFormatterDate } from './utils/functions';
 import { responsiveTable } from './utils/tableAdmin-responsive';
-import { nothing } from 'lit-html';
 
 export class TableAdmin extends LitElement {
   static get styles() {
@@ -84,15 +83,6 @@ export class TableAdmin extends LitElement {
     `;
   }
 
-  sendStat(e) {
-    const id = parseInt(e.target.id);
-    const status = e.target.value;
-    const empFound = this.adminTable.find((item) => item.id === id);
-    empFound.status = status;
-    empFound.dStatus = this.currentDate;
-    this.adminTable = [...this.adminTable];
-  }
-
   orderEmployees(column) {
     const myTable = [...this.adminTable];
 
@@ -155,14 +145,10 @@ export class TableAdmin extends LitElement {
               <td data-title="Fecha Inicio">${getFormatterDate(item.dStart).defaultDate}</td>
               <td data-title="Fecha Fin">${getFormatterDate(item.dEnd).defaultDate}</td>
               <td data-title="Estado de la solicitud">
-                <select id="${item.id}" @change="${this.sendStat}">
-                  <option value="${item.status}">${item.status}</option>
-                  ${this.status.map(
-                    (st) =>
-                      html` ${item.status.toUpperCase() !== st.toUpperCase()
-                        ? html`<option value="${st}">${st}</option>`
-                        : nothing}`,
-                  )}
+                <select id="${item.id}">
+                  <option value="0">Pendiente de aprobación</option>
+                  <option value="1">Aprobado</option>
+                  <option value="2">No aprobado</option>
                 </select>
               </td>
               <td data-title="Fecha de estado">${getFormatterDate(item.dStatus).defaultDate}</td>
