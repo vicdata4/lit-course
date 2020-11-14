@@ -6,6 +6,8 @@
   "scripts": {
     "test": "karma start --coverage",
     "test:watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
+    "test:mock": "mockserver -p 8080 -m tests/mock",
+    "mock:kill": "kill -9 $(lsof -t -i:3000 -sTCP:LISTEN)",
     "test:e2e": "mocha --recursive --timeout 10000 ./e2e/tests/*.js",
     "test:google": "mocha --recursive --timeout 10000 ./e2e/tests/google-example/*.js",
     "dev": "node ./scripts/dev.js",
@@ -43,6 +45,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^4.3.0",
     "mocha": "^5.2.0",
+    "mockserver": "^3.1.1",
     "prettier": "^2.1.2",
     "pwa-helpers": "^0.9.1",
     "rollup": "^1.12.4",
