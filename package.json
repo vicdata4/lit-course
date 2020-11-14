@@ -4,8 +4,8 @@
   "description": "Lit course",
   "main": "index.js",
   "scripts": {
-    "test-watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
     "test": "karma start --coverage",
+    "test:watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
     "test:e2e": "mocha --recursive --timeout 10000 ./e2e/tests/*.js",
     "test:google": "mocha --recursive --timeout 10000 ./e2e/tests/google-example/*.js",
     "dev": "node ./scripts/dev.js",
