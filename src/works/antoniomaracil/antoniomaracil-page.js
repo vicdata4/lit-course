@@ -1,16 +1,14 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
-import { empData, empDocument } from './utils/constants';
+import { empDocument } from './utils/constants';
 import '../../components/common-header';
 import '../../components/work-header';
-import './components/admin-vacation-form/components/admin-vacation-form';
+import './components/admin-vacation-form/views/admin-vacation-view';
 import './components/document-list/components/document-list';
 
 const components = {
-  adminVacationForm: () =>
-    html` <admin-vacation-form .list="${empData}" .nElements="${10}" @update-array="${this.updateArray}">
-    </admin-vacation-form>`,
+  adminVacationForm: () => html` <admin-vacation-view> </admin-vacation-view>`,
   documentList: () => html`<document-list .list="${empDocument}"></document-list>`,
 };
 
