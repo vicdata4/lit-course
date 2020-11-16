@@ -3,6 +3,7 @@ export const dateToday = (d) => {
 
   let day = date.getDate();
   let dayTomorrow = date.getDate() + 1;
+  let dayInTwoDays = date.getDate() + 2;
   let month = date.getMonth() + 1;
   const year = date.getFullYear();
   if (day < 10) {
@@ -11,6 +12,11 @@ export const dateToday = (d) => {
   if (dayTomorrow < 10) {
     dayTomorrow = '0' + dayTomorrow;
   }
+
+  if (dayInTwoDays < 10) {
+    dayInTwoDays = '0' + dayInTwoDays;
+  }
+
   if (month < 10) {
     month = '0' + month;
   }
@@ -20,6 +26,7 @@ export const dateToday = (d) => {
   return {
     dToday: year + '-' + month + '-' + day,
     dTomorrow: year + '-' + month + '-' + dayTomorrow,
+    dayInTwoDays: year + '-' + month + '-' + dayInTwoDays,
     defaultDate: day + '-' + month + '-' + year,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
   };
