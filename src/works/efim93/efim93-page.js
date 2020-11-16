@@ -1,13 +1,14 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
+import { dataDetail, dataRequest } from './utils/constants';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-approval/vacation-approval';
 import './components/vacation-detail/vacation-detail-admin';
 
 const components = {
-  vacationApproval: () => html`<vacation-approval></vacation-approval>`,
-  vacationDetail: () => html`<vacation-detail-admin></vacation-detail-admin>`,
+  vacationApproval: () => html`<vacation-approval .listaDatos="${dataRequest}"></vacation-approval>`,
+  vacationDetail: () => html`<vacation-detail-admin .listaDatos="${dataDetail}"></vacation-detail-admin>`,
 };
 
 class Efim93Page extends LitElement {
