@@ -50,11 +50,12 @@ export const tableFormat = css`
 
   select,
   input {
-    width: 50%;
+    width: 200px;
     font-size: 14px;
     line-height: 2;
     color: #32373c;
     border: 1px solid #7e8993;
+    outline-color: #007cba;
     box-shadow: none;
     border-radius: 3px;
     min-height: 30px;
@@ -180,14 +181,7 @@ export const mediaQueriesPerReport = css`
       flex-direction: row;
     }
     label {
-      width: 25%;
-    }
-    select {
-      width: 30%;
-      margin-bottom: 1%;
-    }
-    .date {
-      width: 60%;
+      width: 20%;
     }
     .calendar {
       margin-left: 1%;
@@ -215,15 +209,8 @@ export const mediaQueriesPerReport = css`
     .permissions-report-ctr div {
       flex-direction: row;
     }
-    select {
-      width: 10%;
-      margin-bottom: 0.5%;
-    }
-    .date {
-      width: 20%;
-    }
     label {
-      width: 8%;
+      width: 10%;
     }
     #generateReport {
       width: 200px;
