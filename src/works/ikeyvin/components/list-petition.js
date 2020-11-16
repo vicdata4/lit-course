@@ -47,7 +47,7 @@ class ListPetition extends LitElement {
           <table class="table-container">
             <thead>
               <tr>
-                <th>Titulo</th>
+                <th>Título</th>
                 <th>Fecha</th>
               </tr>
             </thead>
@@ -72,7 +72,9 @@ class ListPetition extends LitElement {
         <div id="myModal" class="modal ${this.popupOpen ? 'active' : ''}">
           <div class="modal-content">
             <div class="container">
-              <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
+              <div>
+                <span class="close" @click="${() => this.closePopupPetition()}">&times;</span>
+              </div>
               <div class="row">
                 <div class="col-25">
                   <label for="titulo">Título</label>
