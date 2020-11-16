@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit-element';
 import { svgArrowsSort } from '../../comun_files/svg-icons';
-import { dataDetail } from '../../utils/vacation-detail';
 import { newStyles } from '../../comun_files/table-responsive-styles';
 import { commonStyles } from '../../utils/common-styles';
 import { formatDate } from '../../utils/functions';
@@ -24,7 +23,7 @@ class VacationDetailAdmin extends LitElement {
 
   constructor() {
     super();
-    this.listaDatos = dataDetail;
+    this.listaDatos = [];
     this.mensaje = '';
     this.nElements = 10;
     this.stepper = [];
