@@ -126,6 +126,7 @@ export class TableAdmin extends LitElement {
 
   render() {
     return html`
+      ${this.renderStepper()}
       <div id="idTable">
         <table id="tableAdmin">
           <tr id="rowTitle">

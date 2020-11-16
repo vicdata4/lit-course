@@ -21,7 +21,7 @@ describe('Form functions', () => {
 
   it('Enter a valid date', async () => {
     const result = await el.addSolicitud({
-      detail: { fHoy: dateToday(new Date()).dToday, infoFI: '2020-11-16', infoFF: '2020-11-20' },
+      detail: { fHoy: dateToday(new Date()).dToday, infoFI: '2020-12-03', infoFF: '2020-12-06' },
     });
     expect(result).equal(true);
   });
