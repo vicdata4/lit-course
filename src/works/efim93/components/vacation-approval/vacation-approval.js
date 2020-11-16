@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/common-styles';
-import { dataRequest } from '../../utils/request';
 import { svgArrowsSort } from '../../comun_files/svg-icons';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import { formatDate } from '../../utils/functions';
@@ -25,7 +24,7 @@ class VacationApproval extends LitElement {
 
   constructor() {
     super();
-    this.listaDatos = dataRequest;
+    this.listaDatos = [];
     this.options = [
       { value: 0, text: 'Pendiente de Aprobación' },
       { value: 1, text: 'Aprobado' },

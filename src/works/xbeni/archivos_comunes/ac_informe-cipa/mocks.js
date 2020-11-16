@@ -14,7 +14,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '658464132',
     perfil: 'programador',
     en_plantilla: true,
-    fecha_ultima_actualizacion: new Date(2019, 5, 5),
+    fecha_ultima_actualizacion: new Date(2019, 6, 5),
     fechaVencimiento: null,
   },
   {
@@ -23,7 +23,7 @@ export const cargarInformacionCandidatosCipa = [
     telefono: '645632111',
     perfil: 'arquitecto devop',
     en_plantilla: false,
-    fecha_ultima_actualizacion: new Date(2019, 5, 11),
+    fecha_ultima_actualizacion: new Date(2019, 6, 11),
     fechaVencimiento: null,
   },
   {
