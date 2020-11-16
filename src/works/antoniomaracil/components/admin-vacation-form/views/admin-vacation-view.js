@@ -32,13 +32,9 @@ class AdminVacationView extends LitElement {
 
   async updateItem(e) {
     const request = await updateItem(e.detail.body);
-
+    debugger;
     if (!request.error) {
       await this.getList();
-      this.shadowRoot
-        .querySelector('item-list')
-        .shadowRoot.querySelector(`#_${e.detail.index}`)
-        .classList.remove('edit');
     }
   }
 
@@ -47,7 +43,7 @@ class AdminVacationView extends LitElement {
       <admin-vacation-form
         .list="${this.list}"
         .nElements="${10}"
-        @update-array="${this.updateArray}"
+        @update-item="${this.updateItem}"
       ></admin-vacation-form>
     `;
   }

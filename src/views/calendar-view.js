@@ -46,7 +46,6 @@ class CalendarView extends LitElement {
 
   async updateItem(e) {
     const request = await updateItem(e.detail.body);
-
     if (!request.error) {
       await this.getList();
       this.shadowRoot

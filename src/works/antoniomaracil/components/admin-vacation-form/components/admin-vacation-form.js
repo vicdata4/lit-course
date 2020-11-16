@@ -88,6 +88,55 @@ export class AdminVacationForm extends LitElement {
     this.showPage(0);
   }
 
+  getEdition(index, _id) {
+    const original = this.list.find((x) => x.id === _id);
+    const row = this.shadowRoot.getElementById('row_' + _id);
+    const name = original.name;
+    const applicationDate = original.applicationDate;
+    const startDate = original.startDate;
+    const endDate = original.endDate;
+    const newStatus = parseInt(row.querySelector('select').value);
+    const statusDate = original.statusDate;
+
+    const isEditedStatus = newStatus !== original.status;
+
+    return {
+      name,
+      applicationDate,
+      startDate,
+      endDate,
+      newStatus,
+      statusDate,
+      isEditedStatus,
+    };
+  }
+
+  saveEdition(index, id) {
+    const { name, applicationDate, startDate, endDate, newStatus, statusDate, isEditedStatus } = this.getEdition(
+      index,
+      id,
+    );
+
+    if (isEditedStatus) {
+      const event = new CustomEvent('update-item', {
+        detail: {
+          body: {
+            id,
+            name: name,
+            startDate: startDate,
+            applicationDate: applicationDate,
+            endDate: endDate,
+            status: newStatus,
+            statusDate: statusDate,
+          },
+          index,
+        },
+      });
+
+      this.dispatchEvent(event);
+    }
+  }
+
   renderStepper() {
     return html`
       <div class="stepper">
@@ -150,8 +199,8 @@ export class AdminVacationForm extends LitElement {
               ${this.renderHeader()}
             </thead>
             ${this.list.slice(this.from, this.to).map(
-              (item) => html`
-                <tr>
+              (item, i) => html`
+                <tr id="row_${item.id}">
                   <td class="name" data-label="Nombre">${item.name.toUpperCase()}</td>
                   <td class="grey-date" data-label="Fecha de solicitud">
                     ${dateFormatter(item.applicationDate).default}
@@ -159,7 +208,12 @@ export class AdminVacationForm extends LitElement {
                   <td class="black-date" data-label="Fecha de inicio">${dateFormatter(item.startDate).default}</td>
                   <td class="black-date" data-label="Fecha de fin">${dateFormatter(item.endDate).default}</td>
                   <td>
-                    <select id="sel-${item.id}" class="selectOptions">
+                    <select
+                      value="${item.status}"
+                      id="sel-${item.id}"
+                      class="selectOptions"
+                      @change="${() => this.saveEdition(i, item.id)}"
+                    >
                       <option value="0">Pendiente de aprobación</option>
                       <option value="1">Aprobado</option>
                       <option value="2">No aprobado</option>
