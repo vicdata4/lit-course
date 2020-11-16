@@ -59,3 +59,9 @@ export const svgCircleYellow = svg`
     <circle cx="9" cy="9" r="8" stroke="black" stroke-width="1" fill="yellow"/>
   </svg>
 `;
+
+export const svgCircleHidden = svg`
+  <svg width="18px" visibility="hidden" height="18px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="9" cy="9" r="8" stroke="black" stroke-width="1" fill="white"/>
+  </svg>
+`;

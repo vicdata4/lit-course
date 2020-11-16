@@ -1,8 +1,15 @@
 import { LitElement, html } from 'lit-element';
 import { informeCipaStyles } from '../../archivos_comunes/ac_informe-cipa/styles';
-import { svgUpArrow, svgOrderCircleRed, svgCircleYellow } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
+import {
+  svgUpArrow,
+  svgOrderCircleRed,
+  svgCircleYellow,
+  svgCircleHidden,
+  svgOrderString,
+  svgOrderOther,
+  svgOrderInt,
+} from '../../archivos_comunes/ac_informe-cipa/svc_icons';
 import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-cipa/mocks';
-import { nothing } from 'lit-html';
 
 export class BeniListaCipa extends LitElement {
   constructor() {
@@ -25,139 +32,194 @@ export class BeniListaCipa extends LitElement {
     return html`
       <div id="id_body_cipa" class="div_body_cipa">
         <div class="div_main_cipa">
+          <div class="div_body_order_responsive">
+            <div class="header_order_text">
+              <span>Campos de ordenación</span>
+            </div>
+            <div class="div_flex_100">
+              <button @click="${() => this.orderList('nombre')}" class="col_order_responsive col_nombre">
+                <div class="div_flex_order">
+                  <div>
+                    <span>Nombre</span>
+                  </div>
+                  <div class="col_svg">${svgOrderString}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+              <button @click="${() => this.orderList('email')}" class="col_order_responsive col_email">
+                <div class="div_flex_order">
+                  <div>
+                    <span>Correo electrónico</span>
+                  </div>
+                  <div class="col_svg">${svgOrderString}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+              <button @click="${() => this.orderList('perfil')}" class="col_order_responsive col_perfil">
+                <div class="div_flex_order">
+                  <div>
+                    <span>Perfil</span>
+                  </div>
+                  <div class="col_svg">${svgOrderString}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+              <button @click="${() => this.orderList('en_plantilla')}" class="col_order_responsive col_en_plantilla">
+                <div class="div_flex_order">
+                  <div>
+                    <span>En plantilla</span>
+                  </div>
+                  <div class="col_svg">${svgOrderOther}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+              <button
+                @click="${() => this.orderList('fecha_ultima_actualizacion')}"
+                class="col_order_responsive col_fecha_ultima_actualizacion"
+              >
+                <div class="div_flex_order">
+                  <div>
+                    <span>Fecha última actualización datos</span>
+                  </div>
+                  <div class="col_svg">${svgOrderInt}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+              <button
+                @click="${() => this.orderList('fechaVencimiento')}"
+                class="col_order_responsive col_fechaVencimiento"
+              >
+                <div class="div_flex_order">
+                  <div>
+                    <span>Fecha vencimiento</span>
+                  </div>
+                  <div class="col_svg">${svgOrderInt}</div>
+                  <div class="col_show_order">${svgUpArrow}</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
           <table class="tabla_cipa">
             <!--  HEADER TABLA -->
-            <tr>
-              <th @click="${() => this.orderList('nombre')}" class="col nombre">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Nombre</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_name" class="texto_campo_ordenar"></label>
+            <thead>
+              <tr>
+                <th @click="${() => this.orderList('nombre')}" class="col nombre">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Nombre</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('email')}" class="col email">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Correo electronico</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_email" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('email')}" class="col email">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Correo electrónico</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th>
-                <label>Telefono</label>
-              </th>
-              <th @click="${() => this.orderList('perfil')}" class="col perfil">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Perfil</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_perfil" class="texto_campo_ordenar"></label>
+                </th>
+                <th>
+                  <label>Teléfono</label>
+                </th>
+                <th @click="${() => this.orderList('perfil')}" class="col perfil">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Perfil</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('en_plantilla')}" class="col en_plantilla">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>En plantilla</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_plantilla" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('en_plantilla')}" class="col en_plantilla">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>En plantilla</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('fecha_ultima_actualizacion')}" class="col fecha_ultima_actualizacion">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Fecha de ultima actualizacion de datos</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_fua" class="texto_campo_ordenar"></label>
+                </th>
+                <th
+                  @click="${() => this.orderList('fecha_ultima_actualizacion')}"
+                  class="col fecha_ultima_actualizacion"
+                >
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Fecha ultima actualizacion datos</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th @click="${() => this.orderList('fechaVencimiento')}" class="col fechaVencimiento">
-                <div class="div_flex_th_cipa">
-                  <div>
-                    <label>Fecha de vencimiento</label>
-                  </div>
-                  <div class="campo_ordenar">
-                    ${svgUpArrow}
-                    <div class="div_texto_campo_ordenar">
-                      <label id="id_label_order_fv" class="texto_campo_ordenar"></label>
+                </th>
+                <th @click="${() => this.orderList('fechaVencimiento')}" class="col fechaVencimiento">
+                  <div class="div_flex_th_cipa">
+                    <div>
+                      <label>Fecha de vencimiento</label>
                     </div>
+                    <div class="campo_ordenar">${svgUpArrow}</div>
                   </div>
-                </div>
-              </th>
-              <th>
-                <label>Semaforo</label>
-              </th>
-            </tr>
+                </th>
+                <th>
+                  <label>Semáforo</label>
+                </th>
+              </tr>
+            </thead>
 
             <!--  MAIN TABLA -->
             ${this.datosCipa.map(
               (item) => html`
                 <tr>
-                  <td>
-                    <label
-                      class="label_nombre_candidato_cipa"
-                      @click=${() => this.dirigirUrlEditarCandidato(item.nombre)}
-                    >
-                      ${this.cambiarFormatoNombre(item.nombre)}
-                    </label>
+                  <td data-label="Nombre">
+                    <strong>
+                      <label
+                        class="label_nombre_candidato_cipa"
+                        @click=${() => this.dirigirUrlEditarCandidato(item.nombre)}
+                      >
+                        ${this.cambiarFormatoNombre(item.nombre)}
+                      </label>
+                    </strong>
                   </td>
-                  <td>
+                  <td data-label="Correo electrónico">
                     <label> ${this.cambiarFormatoCorreo(item.email)} </label>
                   </td>
-                  <td>
+                  <td data-label="Teléfono">
                     <label> ${item.telefono} </label>
                   </td>
-                  <td>
+                  <td data-label="Perfil">
                     <label> ${this.cambiarFormatoPerfil(item.perfil)} </label>
                   </td>
-                  <td>
+                  <td data-label="En plantilla">
                     <div class="checkbox">
                       ${item.en_plantilla
-                        ? html`<input checked disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                            <label for="checkbox1_${item}"></label>`
-                        : html`<input disabled id="checkbox1_${item}" type="checkbox" value="1" />
-                            <label for="checkbox1_${item}"></label> `}
+                        ? html`
+                            <ul>
+                              <li>
+                                <input type="checkbox" checked disabled />
+                              </li>
+                            </ul>
+                          `
+                        : html`
+                            <ul>
+                              <li>
+                                <input type="checkbox" disabled />
+                              </li>
+                            </ul>
+                          `}
                     </div>
                   </td>
-                  <td>
+                  <td data-label="Fecha última actualización datos">
                     <label> ${this.formatRequiredDate(item.fecha_ultima_actualizacion)} </label>
                   </td>
-                  <td>
+                  <td data-label="Fecha vencimiento">
                     <label> ${this.formatRequiredDate(item.fechaVencimiento)} </label>
                   </td>
-                  <td>
+                  <td data-label="Semáforo">
                     <div class="div_semaforo">
                       ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'rojo'
                         ? html`${svgOrderCircleRed}`
                         : html`
                             ${this.calcularDiferenciaFechaSemaforo(item.fechaVencimiento) === 'amarillo'
                               ? html`${svgCircleYellow}`
-                              : nothing}
+                              : html`${svgCircleHidden}`}
                           `}
                     </div>
                   </td>
@@ -187,6 +249,12 @@ export class BeniListaCipa extends LitElement {
       col.classList.remove('selected');
       col.classList.remove('orderDown');
     });
+    this.shadowRoot.querySelectorAll('.col_order_responsive').forEach((col) => {
+      col.classList.remove('selected');
+      col.classList.remove('orderDown');
+    });
+
+    this.shadowRoot.querySelector(`.col_${column}`).classList.add('selected');
     this.shadowRoot.querySelector(`.${column}`).classList.add('selected');
   }
 
@@ -223,6 +291,7 @@ export class BeniListaCipa extends LitElement {
     if (JSON.stringify(this.datosCipa) === JSON.stringify(orderedList)) {
       orderedList.reverse();
       this.shadowRoot.querySelector(`.${column}`).classList.add('orderDown');
+      this.shadowRoot.querySelector(`.col_${column}`).classList.add('orderDown');
     }
 
     this.datosCipa = [...orderedList];
