@@ -20,17 +20,19 @@ export const holidaysStyle = css`
     font-weight: 500;
     font-size: 13px;
     text-size-adjust: 100%;
-    line-height: 19.5px;
+    line-height: 54px;
     color: rgb(85, 85, 85);
+    padding-left: 10px;
   }
   .tableHeader {
     font-family: Roboto, 'Open Sans';
     font-size: 14px;
     color: rgb(10, 2, 2);
     font-weight: 400px;
-    line-height: 35px;
+    line-height: 36px;
     text-size-adjust: 100%;
     text-align: left;
+    padding-left: 8px;
   }
   .order {
     height: 100%;
