@@ -4,6 +4,7 @@ import '../../components/common-header';
 import '../../components/work-header';
 import './resumen-etapas/item-011.js';
 import './permissions-report/permissions-report-detailed.js';
+import './permissions-report/header-permissions.js';
 
 const components = {
   summaryStagesComponent: () => html`<item-011></item-011>`,
