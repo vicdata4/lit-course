@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import { dataRequest } from './utils/constants';
+import { dataRequest } from '../utils/constants';
 import '../components/vacation-approval/vacation-approval';
 
 describe('vacation approval function validation', () => {
