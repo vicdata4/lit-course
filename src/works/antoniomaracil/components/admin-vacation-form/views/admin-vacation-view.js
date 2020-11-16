@@ -32,7 +32,6 @@ class AdminVacationView extends LitElement {
 
   async updateItem(e) {
     const request = await updateItem(e.detail.body);
-    debugger;
     if (!request.error) {
       await this.getList();
     }
