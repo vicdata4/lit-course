@@ -110,6 +110,7 @@ export const adminStyle = css`
   }
   .tdHeader {
     font-family: Roboto, 'Open Sans';
+    font-size: 14px;
     color: rgb(10, 2, 2);
     font-weight: 400px;
     line-height: 36px;
