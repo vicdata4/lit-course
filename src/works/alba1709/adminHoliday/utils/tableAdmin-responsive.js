@@ -11,14 +11,6 @@ export const responsiveTable = css`
       font-size: 0.8em;
     }
 
-    th {
-      background-color: #cccccc;
-    }
-
-    select {
-      width: 90%;
-    }
-
     table td[data-title]::before {
       content: attr(none);
       width: 0px;
