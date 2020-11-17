@@ -1,15 +1,14 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
-import { empDocument } from './utils/constants';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/admin-vacation-form/views/admin-vacation-view';
-import './components/document-list/components/document-list';
+import './components/document-list/views/document-list-view';
 
 const components = {
   adminVacationForm: () => html` <admin-vacation-view> </admin-vacation-view>`,
-  documentList: () => html`<document-list .list="${empDocument}"></document-list>`,
+  documentList: () => html`<document-list-view></document-list-view>`,
 };
 
 class AntoniomaracilPage extends LitElement {

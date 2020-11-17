@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { getInfo, updateItem } from '../../../utils/api/api-request';
+import { getVacations, updateVacation } from '../../../utils/api/api-request';
 import '../components/admin-vacation-form';
 
 class AdminVacationView extends LitElement {
@@ -21,7 +21,7 @@ class AdminVacationView extends LitElement {
   }
 
   async getList() {
-    const request = await getInfo();
+    const request = await getVacations();
     if (!request.error) {
       this.list = [...request.data];
     } else if (request.errorCode === 500) {
@@ -31,7 +31,7 @@ class AdminVacationView extends LitElement {
   }
 
   async updateItem(e) {
-    const request = await updateItem(e.detail.body);
+    const request = await updateVacation(e.detail.body);
     if (!request.error) {
       await this.getList();
     }
