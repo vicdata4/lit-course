@@ -26,13 +26,17 @@ class FormPetition extends LitElement {
     const inputTitulo = this.shadowRoot.querySelector('#peticionTitulo');
     const inputDescripcion = this.shadowRoot.querySelector('#peticionDescripcion');
     const inputPublicar = this.shadowRoot.querySelector('#peticionPublicar');
+    const inputCliente = this.shadowRoot.querySelector('#cliPet');
+    const inputCandidato = this.shadowRoot.querySelector('#candiPet');
 
     if (inputTitulo.value.length > 0 && inputDescripcion.value.length > 0) {
       storedPeticion.push({
         id: new Date().valueOf(),
-        titulo: inputTitulo.value.toUpperCase(),
+        titulo: inputTitulo.value,
         descripcion: inputDescripcion.value,
         fecha: new Date(),
+        cliente: inputCliente.value,
+        candidato: inputCandidato.value,
         publicar: inputPublicar.checked,
       });
 
@@ -42,6 +46,8 @@ class FormPetition extends LitElement {
       inputTitulo.value = '';
       inputDescripcion.value = '';
       inputPublicar.checked = false;
+      inputCliente.value = '';
+      inputCandidato.value = '';
       this.message = '';
     } else {
       this.message = 'TITULO y DESCRIPCIÓN no debe estar vacío!';

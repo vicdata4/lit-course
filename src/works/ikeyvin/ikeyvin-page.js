@@ -4,11 +4,13 @@ import '../../components/common-header';
 import '../../components/work-header';
 import './components/form-petition.js';
 import './components/list-petition.js';
+import { dataTest } from './utils/constants.js';
 
 const components = {
   formPetition: () => html`<form-petition></form-petition>`,
   listPetition: () =>
     html`<h1>Lista de peticiones</h1>
+      <list-petition .listaPeticiones="${dataTest}"></list-petition></br>
       <list-petition></list-petition>`,
 };
 

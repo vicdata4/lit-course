@@ -58,7 +58,7 @@ class ListPetition extends LitElement {
                     ? html`
                         <tr>
                           <td>
-                            <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo}</a>
+                            <a @click="${() => this.showPetition(peticion.id)}">${peticion.titulo.toUpperCase()}</a>
                           </td>
                           <td class="date">${dateFormatter(peticion.fecha).default}</td>
                         </tr>
