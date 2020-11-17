@@ -25,7 +25,6 @@ class Andresclase1234Page extends LitElement {
   constructor() {
     super();
     this.current = 'infoVacaciones';
-    this.current = 'adminDocs';
   }
 
   setComponent(component) {

@@ -36,7 +36,17 @@ class CalendarView extends LitElement {
 
   async addItem(e) {
     const request = await addItem(e.detail);
-    if (!request.error) await this.getList();
+    if (!request.error) {
+      if (!request.exist) {
+        await this.getList();
+      } else {
+        // eslint-disable-next-line no-alert
+        alert('La fecha introducida ya existe');
+      }
+    } else {
+      // eslint-disable-next-line no-alert
+      alert('Ha ocurrido un error');
+    }
   }
 
   async deleteItem(e) {
