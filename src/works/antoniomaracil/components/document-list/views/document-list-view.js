@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element';
-import { getFiles } from '../../../utils/api/api-request';
+import { deleteFile, getFiles } from '../../../utils/api/api-request';
 import '../components/document-list';
 
 class DocumentListView extends LitElement {
@@ -30,8 +30,13 @@ class DocumentListView extends LitElement {
     }
   }
 
+  async deleteItem(e) {
+    const request = await deleteFile(e.detail);
+    if (!request.error) await this.getList();
+  }
+
   render() {
-    return html` <document-list .list="${this.list}" .nElements="${10}"></document-list> `;
+    return html` <document-list .list="${this.list}" @delete-item="${this.deleteItem}"></document-list> `;
   }
 }
 
