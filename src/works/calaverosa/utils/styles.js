@@ -1,29 +1,42 @@
 import { css } from 'lit-element';
 
-export const mediaQueriesStyles = css`
-  /* Smartphones (portrait & landscape) */
-  @media only screen and (min-device-width: 280px) and (max-device-width: 760px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
-    }
-    input {
-      width: 50%;
-    }
+export const sumStagesStyles = css`
+  * {
+    font-family: Roboto, 'Open Sans';
   }
-
-  /* iPads */
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    table {
-      width: 100%;
-    }
-    div {
-      text-align: center;
-      margin: 5%;
-    }
+  table {
+    border: 1px solid #ccd0d4;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    line-height: 3em;
+    width: 100%;
+    font-size: 14px;
+  }
+  table tbody tr:nth-child(odd) {
+    background: #f6f6f6;
+  }
+  caption {
+    border: 1px solid #ccd0d4;
+    border-bottom: none;
+    font-size: 14px;
+  }
+  td {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    text-align: left;
+  }
+  tr:first-child {
+    line-height: 40px;
+  }
+  input {
+    width: 175px;
+  }
+  div {
+    text-align: center;
+  }
+  .add-fn input {
+    margin: 20px 10px;
   }
 `;
 
