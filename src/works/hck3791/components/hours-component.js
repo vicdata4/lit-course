@@ -8,6 +8,7 @@ class HoursComponent extends LitElement {
 
   static get properties() {
     return {
+      data: { type: Array },
       names: { type: Array },
       projectMonths: { type: Array },
       months: { type: Array },
@@ -23,10 +24,10 @@ class HoursComponent extends LitElement {
   }
 
   firstUpdated() {
-    this.data.forEach((employee) => {
-      this.names.push(employee.name);
-    });
-    this.requestUpdate();
+    // this.data.forEach((employee) => {
+    //     this.names.push(employee.name);
+    // });
+    // this.requestUpdate();
   }
 
   generateReport() {
@@ -73,8 +74,8 @@ class HoursComponent extends LitElement {
             <label>Empleado</label>
             <select name="employees" id="employees">
               <option value="default"></option>
-              ${this.names.map((obj) => {
-                return html`<option value="${obj}">${obj}</option>`;
+              ${this.data.map((obj) => {
+                return html`<option value="${obj.name}">${obj.name}</option>`;
               })}
             </select>
           </div>

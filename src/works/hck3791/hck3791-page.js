@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import { buttons } from './styles/buttons-styles';
-import { hours, months, projects, years } from './data/hours-data';
+import { getInfo } from '../../utils/api/api-request';
+import { months, projects, years } from './data/hours-data';
 import { requests } from './data/request-employee-data';
 import '../../components/common-header';
 import '../../components/work-header';
@@ -9,8 +10,8 @@ import './components/hours-component';
 import './components/requests-component';
 
 const components = {
-  hours: () =>
-    html`<hours-component .data=${hours} .months=${months} .projects=${projects} .years=${years}></hours-component>`,
+  hours: (data) =>
+    html` <hours-component .data=${data} .months=${months} .projects=${projects} .years=${years}></hours-component>`,
   request: () => html`<requests-component .data=${requests}></requests-component>`,
 };
 
@@ -22,6 +23,7 @@ class Hck3791Page extends LitElement {
   static get properties() {
     return {
       current: { type: String, attribute: false },
+      hours: { type: Array },
     };
   }
 
@@ -32,6 +34,16 @@ class Hck3791Page extends LitElement {
 
   setComponent(component) {
     this.current = component;
+  }
+
+  async firstUpdated() {
+    const request = await getInfo();
+    if (!request.error) {
+      this.hours = [...request.data];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
   }
 
   render() {
@@ -49,7 +61,7 @@ class Hck3791Page extends LitElement {
               `,
           )}
         </div>
-        ${components[this.current]()}
+        ${components[this.current](this.hours)}
       </section>
     `;
   }
