@@ -1,56 +1,116 @@
 import { css } from 'lit-element';
 
 export const formPeticion = css`
-  .form {
-    width: 340px;
-    height: 400px;
-    background: #e6e6e6;
-    border-radius: 8px;
-    padding: 20px 30px;
-    max-width: calc(100vw - 40px);
+  * {
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    position: relative;
-    margin-bottom: 30px;
   }
 
-  h2 {
-    margin: 10px 0;
-    padding-bottom: 10px;
+  .form {
     width: 100%;
-    color: #78788c;
-    border-bottom: 3px solid #78788c;
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
+    letter-spacing: 0.5px;
+    position: relative;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .petitionForm {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .column-a1 {
+    flex: 1;
+    margin: 3px;
+  }
+
+  .column-a2 {
+    max-width: 300px;
+    flex: 1;
+    margin: 3px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .content {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .heading {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 24px;
+    background-color: #f6f6f6;
+    border-bottom-color: rgb(204, 208, 212);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    position: relative;
+  }
+
+  .heading h1 {
+    color: #23282d;
+    font-size: 23px;
+    padding: 24px;
+    font-weight: 400;
+    display: inline-block;
+  }
+
+  .heading button {
+    font-family: Roboto, 'Open Sans';
+    color: #ffffff;
+    background-color: #0a0202;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0px 28px;
+    height: 36px;
+    outline-width: 0px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    outline-style: none;
+    border: none;
+    float: right;
+    margin-top: 33px;
+    margin-right: 28px;
   }
 
   input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    background: none;
-    outline: none;
-    resize: none;
-    border: 0;
-    font-family: 'Montserrat', sans-serif;
-    transition: all 0.3s;
-    border-bottom: 2px solid #bebed2;
+    border-color: #7e8993;
+    border-width: 1px;
+    border-radius: 3px;
   }
 
   textarea {
     width: 100%;
-    height: 100px;
+    height: 300px;
     padding: 10px;
     box-sizing: border-box;
-    background: none;
-    outline: none;
-    border: 0;
-    font-family: 'Montserrat', sans-serif;
-    transition: all 0.3s;
-    border-bottom: 2px solid #bebed2;
+    resize: vertical;
+    border-color: #7e8993;
   }
 
   input[type='checkbox'] {
     color: #5a5a5a;
-    width: 5%;
+    width: auto;
+    transform: scale(2, 2);
+    margin: 10px;
+    border-color: rgb(204, 208, 212);
+    cursor: pointer;
   }
 
   input[type='checkbox'] + label {
@@ -59,22 +119,118 @@ export const formPeticion = css`
     font-size: 14px;
   }
 
+  .postPet {
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+
+  #cliPet:focus,
+  #candiPet:focus {
+    outline-color: #007cba;
+    color: #016087;
+  }
+
+  option {
+    color: #016087;
+  }
+
   input:focus {
-    border-bottom: 2px solid #78788c;
+    outline-color: #007cba;
+    color: #016087;
   }
 
   textarea:focus {
-    border: 2px solid #78788c;
+    outline-color: #007cba;
+    color: #016087;
   }
 
   p:before {
     content: attr(type);
     display: block;
-    margin: 28px 0 0;
     font-size: 14px;
     color: #5a5a5a;
   }
-  button {
+
+  .descrip {
+    width: auto;
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-width: 0;
+    margin-bottom: 0;
+    background-color: rgb(246, 246, 246);
+    padding: 10px;
+    font-weight: bold;
+  }
+
+  .postHead {
+    width: auto;
+    background-color: rgb(246, 246, 246);
+    padding: 10px;
+    margin: 0px;
+    font-weight: bold;
+    border-bottom-color: rgb(204, 208, 212);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+  }
+
+  .postFoot {
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    padding: 10px;
+    margin: 0px;
+    font-size: 13px;
+    border-top-color: rgb(204, 208, 212);
+    border-top-style: solid;
+    border-top-width: 1px;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .foot-right {
+    flex: 1;
+    padding-left: 30px;
+  }
+
+  .foot-left {
+    flex: 1;
+    padding-top: 5px;
+  }
+
+  select {
+    width: 100%;
+    padding: 5px;
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #7e8993;
+  }
+
+  .contentArea {
+    padding: 15px;
+    color: #23282d;
+  }
+
+  .updateBtn {
+    font-family: Roboto, 'Open Sans';
+    color: #ffffff;
+    background-color: #0a0202;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 13px;
+    outline-style: none;
+    border: none;
+    height: 25px;
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .subBtn {
     float: right;
     padding: 8px 12px;
     margin: 8px 0 0;
@@ -87,67 +243,106 @@ export const formPeticion = css`
   }
 
   button:hover {
-    background: #78788c;
-    color: #fff;
-  }
-
-  span {
-    margin: 0 5px 0 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   .alertMessage {
     color: red;
     font-size: 12px;
   }
+
+  @media only screen and (max-width: 600px) {
+    .heading button {
+      font-size: 10px;
+      padding: 0px 15px;
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+
+    .heading h1 {
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    .petitionForm {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 55vh 60vh;
+    }
+
+    .column-a2 {
+      max-width: 600px;
+    }
+  }
+
+  @media only screen and (max-width: 340px) {
+    .heading button {
+      font-size: 10px;
+      padding: 0px 15px;
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+
+    .heading h1 {
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    .petitionForm {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 72vh 80vh;
+    }
+
+    .column-a2 {
+      max-width: 600px;
+    }
+  }
 `;
 
 export const tablePeticion = css`
-  .table-container th h1 {
-    font-family: 'Raleway';
-    font-variant: petite-caps;
-    font-weight: bold;
-    font-size: 1.1em;
-    text-align: left;
-    color: grey;
-  }
-
-  .table-container td {
-    font-family: 'Raleway';
-    font-weight: normal;
-    font-size: 1em;
-  }
-
   .table-container {
     text-align: left;
     overflow: hidden;
-    width: 40%;
-    margin: 0 auto;
+    width: 100%;
     display: table;
-    padding: 0 0 8em 0;
+    border-color: rgb(204, 208, 212);
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
+    border-collapse: collapse;
+    letter-spacing: 0.5px;
   }
 
   .table-container td,
   .table-container th {
-    padding-bottom: 2%;
-    padding-top: 2%;
-    padding-left: 2%;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .table-container th {
+    border-bottom-color: rgb(204, 208, 212);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    background: #fff;
+    font-weight: 400;
+    color: rgb(10, 2, 2);
+  }
+  .table-container td {
+    font-weight: 600;
+    font-size: 13px;
+    color: rgb(10, 2, 2);
+  }
+
+  .table-container .date {
+    font-weight: 400;
+    color: rgb(10, 2, 2);
   }
 
   .table-container tr:nth-of-type(odd) {
     background: #eee;
-  }
-
-  .table-container th {
-    background-color: #1c2b2d;
-  }
-
-  .table-container td:first-child {
-    color: #403e10;
-  }
-
-  .table-container a:hover {
-    color: #51adcf;
-    font-weight: bold;
   }
 
   @media (max-width: 300px) {
@@ -163,7 +358,8 @@ export const modalPopup = css`
     box-sizing: border-box;
   }
   .modal {
-    font-family: 'Raleway';
+    font-family: Roboto, 'Open Sans';
+    letter-spacing: 0.5px;
     display: none;
     position: fixed;
     z-index: 1;
@@ -175,6 +371,23 @@ export const modalPopup = css`
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 10px 10px;
+  }
+
+  .modal input {
+    font-size: 13px;
+  }
+
+  input:focus {
+    outline-color: #007cba;
+    color: #016087;
+  }
+
+  textarea:focus {
+    outline-color: #007cba;
+    color: #016087;
   }
 
   .modal.active {
@@ -205,22 +418,20 @@ export const modalPopup = css`
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
     resize: vertical;
-    font-family: 'Raleway';
+    font-family: Roboto, 'Open Sans';
   }
 
   label {
-    padding: 12px 12px 12px 0;
+    padding: 20px 10px 20px 0;
     display: inline-block;
   }
 
   .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     padding: 20px;
-    margin-right: 20%;
-    margin-left: 20%;
+    margin-right: 2%;
+    margin-left: 2%;
   }
 
   .col-25 {
