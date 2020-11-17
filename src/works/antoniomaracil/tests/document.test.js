@@ -38,7 +38,7 @@ describe('Document list tests:', () => {
       expect(rows.length).equal(el.list.length);
     });
     it('Remove file event click working', async () => {
-      const eventSpy = sinon.spy(el, 'removeDocument');
+      const eventSpy = sinon.spy(el, 'deleteItem');
       const deleteButtton = el.shadowRoot.querySelectorAll('button')[0];
       deleteButtton.click();
       expect(eventSpy).calledOnce;
