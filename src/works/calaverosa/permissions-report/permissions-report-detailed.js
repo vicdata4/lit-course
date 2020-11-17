@@ -1,10 +1,20 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, css } from 'lit-element';
 import { tableFormat, mediaQueriesPerReport } from '../utils/styles.js';
 import { permissions } from '../utils/employees.js';
+import './header-permissions.js';
 
 class PermissionsReportDetailed extends LitElement {
   static get styles() {
-    return [tableFormat, mediaQueriesPerReport];
+    return [
+      tableFormat,
+      mediaQueriesPerReport,
+      css`
+        header-permissions {
+          display: block;
+          margin-bottom: 40px;
+        }
+      `,
+    ];
   }
 
   static get properties() {
@@ -41,26 +51,18 @@ class PermissionsReportDetailed extends LitElement {
     this.showTable(0);
   }
 
-  navigation(e) {
-    const step = e.target.id;
-    switch (step) {
-      case 'next-btn':
-        if (this.currentPage === this.numberOfPages - 1) {
-          this.currentPage = this.numberOfPages - 1;
-        } else {
-          this.currentPage++;
-        }
-        this.showTable(this.currentPage * 10);
-        break;
-      case 'previous-btn':
-        if (this.currentPage > 0) {
-          this.currentPage--;
-        } else {
-          this.currentPage = 0;
-        }
-        this.showTable(this.currentPage * 10);
-        break;
+  next() {
+    if (this.currentPage !== this.numberOfPages - 1) {
+      this.currentPage++;
     }
+    this.showTable(this.currentPage * 10);
+  }
+
+  prev() {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+    }
+    this.showTable(this.currentPage * 10);
   }
 
   formatDate(date) {
@@ -72,14 +74,6 @@ class PermissionsReportDetailed extends LitElement {
       date.getFullYear();
 
     return formattedDate;
-  }
-
-  showCalendarStart() {
-    this.shadowRoot.getElementById('inputStartDate').focus();
-  }
-
-  showCalendarEnd() {
-    this.shadowRoot.getElementById('inputEndDate').focus();
   }
 
   showTable(position) {
@@ -145,9 +139,8 @@ class PermissionsReportDetailed extends LitElement {
 
   render() {
     return html`
+      <header-permissions></header-permissions>
       <div class="permissions-report-ctr">
-        <h3>Reporte de Permisos Detallado</h3>
-
         <div>
           <label>Empleado:</label>
           <select name="employees" id="employees" @change="${this.selected}">
@@ -162,12 +155,7 @@ class PermissionsReportDetailed extends LitElement {
           <label>Fecha de inicio:</label>
           <div class="date">
             <input id="inputStartDate" type="date" />
-            <img
-              src="/assets/calaverosa/icons/calendar.png"
-              class="calendar"
-              alt="imagen calendario"
-              @click="${this.showCalendarStart}"
-            />
+            <img src="/assets/calaverosa/icons/calendar.png" class="calendar" alt="imagen calendario" />
           </div>
         </div>
 
@@ -175,29 +163,24 @@ class PermissionsReportDetailed extends LitElement {
           <label>Fecha de fin:</label>
           <div class="date">
             <input id="inputEndDate" type="date" />
-            <img
-              src="/assets/calaverosa/icons/calendar.png"
-              class="calendar"
-              alt="imagen calendario"
-              @click="${this.showCalendarEnd}"
-            />
+            <img src="/assets/calaverosa/icons/calendar.png" class="calendar" alt="imagen calendario" />
           </div>
         </div>
 
         <div>
-          <button @click="${this.generateReport}" id="generateReport">Generar reporte</button>
+          <button @click="${this.generateReport}" id="generateReport">GENERAR REPORTE</button>
         </div>
 
         <table>
           <thead>
             <tr>
-              <th>
+              <th id="startDate" @click="${this.sort}">
                 Día
-                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" id="startDate" @click="${this.sort}" />
+                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" />
               </th>
-              <th>
+              <th id="type" @click="${this.sort}">
                 Tipo de permiso
-                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" id="type" @click="${this.sort}" />
+                <img src="/assets/calaverosa/icons/arrow.png" class="arrow-str" />
               </th>
               <th>Horas</th>
             </tr>
@@ -216,8 +199,8 @@ class PermissionsReportDetailed extends LitElement {
         </table>
 
         <div id="navigation" class="no-visible">
-          <input type="button" id="previous-btn" value="«" @click="${this.navigation}" />
-          <input type="button" id="next-btn" value="»" @click="${this.navigation}" />
+          <input type="button" id="previous-btn" value=" «" @click="${this.prev}" />
+          <input type="button" id="next-btn" value=" »" @click="${this.next}" />
           <div id="nPages">${this.currentPage + 1}/${this.numberOfPages}</div>
         </div>
       </div>
