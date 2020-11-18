@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { LitElement, html } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { adminVacationStyles } from '../../../utils/custom-styles';
 import { dateFormatter, orderedList } from '../../../utils/functions';
 
@@ -14,7 +15,7 @@ export class AdminVacationForm extends LitElement {
       nElements: { type: Number },
       list: { type: Array },
       stepper: { type: Array },
-      arrOptions: { type: Array },
+      options: { type: Array },
       index: { type: Number, attribute: false },
       from: { type: Number, attribute: false },
       to: { type: Number, attribute: false },
@@ -29,7 +30,11 @@ export class AdminVacationForm extends LitElement {
     this.to = this.nElements;
     this.index = 0;
     this.stepper = [];
-    this.arrOptions = ['Pendiente de aprobación', 'Aprobado', 'No aprobado'];
+    this.options = [
+      { value: 0, text: 'Pendiente de Aprobación' },
+      { value: 1, text: 'Aprobado' },
+      { value: 2, text: 'No Aprobado' },
+    ];
   }
 
   async firstUpdated() {
@@ -86,6 +91,47 @@ export class AdminVacationForm extends LitElement {
     }
     this.list = [...newList];
     this.showPage(0);
+  }
+
+  getEdition(index, id) {
+    const original = this.list.find((x) => x._id === id);
+    const row = this.shadowRoot.getElementById('row_' + index);
+    const name = original.name;
+    const applicationDate = original.applicationDate;
+    const startDate = original.startDate;
+    const endDate = original.endDate;
+    const newStatus = parseInt(row.querySelector('select').value);
+    const statusDate = original.statusDate;
+
+    return {
+      name,
+      applicationDate,
+      startDate,
+      endDate,
+      newStatus,
+      statusDate,
+    };
+  }
+
+  saveEdition(index, id) {
+    const { name, applicationDate, startDate, endDate, newStatus, statusDate } = this.getEdition(index, id);
+
+    const event = new CustomEvent('update-item', {
+      detail: {
+        body: {
+          id,
+          name: name,
+          startDate: startDate,
+          applicationDate: applicationDate,
+          endDate: endDate,
+          status: newStatus,
+          statusDate: statusDate,
+        },
+        index,
+      },
+    });
+
+    this.dispatchEvent(event);
   }
 
   renderStepper() {
@@ -150,8 +196,8 @@ export class AdminVacationForm extends LitElement {
               ${this.renderHeader()}
             </thead>
             ${this.list.slice(this.from, this.to).map(
-              (item) => html`
-                <tr>
+              (item, i) => html`
+                <tr id="row_${i}">
                   <td class="name" data-label="Nombre">${item.name.toUpperCase()}</td>
                   <td class="grey-date" data-label="Fecha de solicitud">
                     ${dateFormatter(item.applicationDate).default}
@@ -159,10 +205,23 @@ export class AdminVacationForm extends LitElement {
                   <td class="black-date" data-label="Fecha de inicio">${dateFormatter(item.startDate).default}</td>
                   <td class="black-date" data-label="Fecha de fin">${dateFormatter(item.endDate).default}</td>
                   <td>
-                    <select id="sel-${item.id}" class="selectOptions">
-                      <option value="0">Pendiente de aprobación</option>
-                      <option value="1">Aprobado</option>
-                      <option value="2">No aprobado</option>
+                    <select
+                      someattr="${item.status}"
+                      value="${item.status}"
+                      id="sel-${item.id}"
+                      class="selectOptions"
+                      @change="${() => this.saveEdition(i, item._id)}"
+                    >
+                      ${this.options.map(
+                        (option) => html`
+                          <option
+                            selected="${ifDefined(option.value === item.status ? 'true' : undefined)}"
+                            value="${option.value}"
+                          >
+                            ${option.text}
+                          </option>
+                        `,
+                      )}
                     </select>
                   </td>
                   <td class="grey-date" data-label="Fecha de estado">

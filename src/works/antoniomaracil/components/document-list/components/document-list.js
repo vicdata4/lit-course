@@ -27,6 +27,11 @@ export class DocumentList extends LitElement {
     this.list = [...newList];
   }
 
+  deleteItem(id) {
+    const event = new CustomEvent('delete-item', { detail: { id } });
+    this.dispatchEvent(event);
+  }
+
   render() {
     return html`
       <div class="container">
@@ -46,7 +51,7 @@ export class DocumentList extends LitElement {
                   <div class="title"><a href="${item.path}" download>${item.name}</a></div>
                   <div class="date light-grey">${dateFormatter(item.uploadDate).default}</div>
                   <div class="info">
-                    <button @click="${() => this.removeDocument(i)}">
+                    <button @click="${() => this.deleteItem(item._id)}">
                       <img src="assets/antoniomaracil/remove.png" alt="remove" />
                     </button>
                   </div>
