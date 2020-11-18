@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import { buttons } from './styles/buttons-styles';
-import { getInfo } from '../../utils/api/api-request';
+import { getHours, getRequests } from '../../utils/api/hck3791/api-request';
 import { months, projects, years } from './data/hours-data';
-import { requests } from './data/request-employee-data';
+// import { requests } from './data/request-employee-data';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/hours-component';
@@ -12,7 +12,7 @@ import './components/requests-component';
 const components = {
   hours: (data) =>
     html` <hours-component .data=${data} .months=${months} .projects=${projects} .years=${years}></hours-component>`,
-  request: () => html`<requests-component .data=${requests}></requests-component>`,
+  request: (data) => html`<requests-component .data=${data}></requests-component>`,
 };
 
 class Hck3791Page extends LitElement {
@@ -24,6 +24,7 @@ class Hck3791Page extends LitElement {
     return {
       current: { type: String, attribute: false },
       hours: { type: Array },
+      requests: { type: Array },
     };
   }
 
@@ -37,9 +38,24 @@ class Hck3791Page extends LitElement {
   }
 
   async firstUpdated() {
-    const request = await getInfo();
+    await this.getHoursData();
+    await this.getRequestsData();
+  }
+
+  async getHoursData() {
+    const request = await getHours();
     if (!request.error) {
       this.hours = [...request.data];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
+  }
+
+  async getRequestsData() {
+    const request = await getRequests();
+    if (!request.error) {
+      this.requests = [...request.data];
     } else if (request.errorCode === 500) {
       // eslint-disable-next-line no-alert
       alert(request.error);
@@ -61,7 +77,7 @@ class Hck3791Page extends LitElement {
               `,
           )}
         </div>
-        ${components[this.current](this.hours)}
+        ${this.current === 'hours' ? components[this.current](this.hours) : components[this.current](this.requests)}
       </section>
     `;
   }

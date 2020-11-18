@@ -53,7 +53,7 @@ class RequestComponent extends LitElement {
               return html`
                 <tr>
                   <td data-label="Título"><a href="#">${obj.title}</a></td>
-                  <td data-label="Publicación">${this.formatDate(obj.publicationDate)}</td>
+                  <td data-label="Publicación">${this.formatDate(new Date(obj.publicationDate))}</td>
                 </tr>
               `;
             })}
