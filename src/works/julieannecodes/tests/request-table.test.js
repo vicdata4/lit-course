@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon/pkg/sinon-esm.js';
-import '../VacationRequests/requests-table.js';
+import '../components/VacationRequests/requests-table.js';
 
 const tableTitles = [
   'Fecha de solicitud',
@@ -10,7 +10,7 @@ const tableTitles = [
   'Fecha de Estado',
   'Eliminar',
 ];
-const orderType = ['currentDate', 'startDate', 'endDate'];
+const orderType = ['applicationD', 'startDate', 'endDate'];
 
 const data = [
   {
@@ -39,34 +39,7 @@ const data = [
   },
 ];
 
-const sortedData = [
-  {
-    id: 0,
-    currentDate: new Date('2020/09/16'),
-    startDate: new Date('2020/01/12'),
-    endDate: new Date('2020/01/20'),
-    status: 'No Aprobado',
-    statusDate: new Date('2020/09/16'),
-  },
-  {
-    id: 2,
-    currentDate: new Date('2020/08/15'),
-    startDate: new Date('2020/09/11'),
-    endDate: new Date('2020/09/27'),
-    status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/17'),
-  },
-  {
-    id: 1,
-    currentDate: new Date('2020/08/15'),
-    startDate: new Date('2020/09/13'),
-    endDate: new Date('2020/09/28'),
-    status: 'Pendiente de aprobación',
-    statusDate: new Date('2020/08/17'),
-  },
-];
-
-const component = html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}" .fromT="${0}" .toT="${2}">
+const component = html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}" .fromT="${0}" .toT="${4}">
 </requests-table>`;
 describe('Default properties and empty table', () => {
   let element;
@@ -78,7 +51,6 @@ describe('Default properties and empty table', () => {
   });
 
   it('Default properties', async () => {
-    expect(element.sortedArray.length).equal(0);
     expect(element.tableTitles).to.eql(tableTitles);
     expect(element.orderType).to.eql(orderType);
     expect(element.toT).equal(0);
@@ -105,31 +77,32 @@ describe('Table with data', async () => {
   });
 });
 
-describe('Order func', () => {
+describe('Dispatch order func', () => {
   let element, orderButton;
   before(async () => {
-    element = await fixture(
-      html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}"></requests-table>`,
-    );
+    element = await fixture(component);
     await element.updateComplete;
 
     orderButton = element.shadowRoot.querySelectorAll('.icon');
   });
 
   it('Ascending order by endDate', async () => {
+    const eventSpy = sinon.spy(element, 'dispatchEvent');
     orderButton[2].click();
+
+    expect(eventSpy).calledOnce;
+    expect(eventSpy.args[0][0].type).to.equal('order-dates');
     await element.updateComplete;
 
-    expect(element.requestsList).to.eql(sortedData);
     expect(orderButton[2].value).equal('desc');
+
+    await element.updateComplete;
   });
 
   it('Descending order by endDate', async () => {
-    const arrReversed = [...data.reverse()];
     orderButton[2].click();
     await element.updateComplete;
 
-    expect(element.requestsList).to.eql(arrReversed);
     expect(orderButton[2].value).equal('asc');
   });
 });

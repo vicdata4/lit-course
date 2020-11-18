@@ -3,10 +3,10 @@ import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
 import './vacationHistoryEmp/vacation-history';
-import './VacationRequests/vacation-table';
+import './views/request-view';
 
 const components = {
-  vacationTable: () => html`<vacation-table></vacation-table>`,
+  vacationRequest: () => html`<request-view></request-view>`,
   vacationHistory: () => html`<vacation-history></vacation-history>`,
 };
 class JulieannecodesPage extends LitElement {

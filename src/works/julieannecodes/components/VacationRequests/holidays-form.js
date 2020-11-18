@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { nothing } from 'lit-html';
-import { mediaQueries, formStyles } from '../utils/custom-styles';
-import { dateFormatter } from '../utils/functions';
+import { mediaQueries, formStyles } from '../../utils/custom-styles';
+import { dateFormatter } from '../../utils/functions';
 
 class HolidaysForm extends LitElement {
   static get styles() {
@@ -40,14 +40,12 @@ class HolidaysForm extends LitElement {
   sendData(startDate, endDate) {
     const currentDate = new Date();
     const obj = {
-      id: this.id,
       applicationD: currentDate,
       startDate: new Date(startDate.value),
       endDate: new Date(endDate.value),
       status: 'Pendiente de aprobación',
       statusDate: currentDate,
     };
-    this.id += 1;
     const event = new CustomEvent('send-dates', {
       detail: obj,
     });

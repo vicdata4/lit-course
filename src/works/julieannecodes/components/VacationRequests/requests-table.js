@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit-element';
-import { requestTableS, mediaQueries } from '../utils/custom-styles';
+import { requestTableS, mediaQueries } from '../../utils/custom-styles';
 import { nothing } from 'lit-html';
-import { material } from '../../../utils/fonts';
-import { dateFormatter, orderItems } from '../utils/functions';
+import { material } from '../../../../utils/fonts';
+import { dateFormatter } from '../../utils/functions';
 
 class RequestsTable extends LitElement {
   static get styles() {
@@ -13,7 +13,6 @@ class RequestsTable extends LitElement {
     return {
       requestsList: { type: Array },
       tableTitles: { type: Array, attribute: false },
-      sortedArray: { type: Array },
       orderType: { type: Array, attribute: false },
       fromT: { type: Number },
       toT: { type: Number },
@@ -23,7 +22,6 @@ class RequestsTable extends LitElement {
   constructor() {
     super();
     this.requestsList = [];
-    this.sortedArray = [];
     this.tableTitles = [
       'Fecha de solicitud',
       'Fecha Inicio',
@@ -32,28 +30,31 @@ class RequestsTable extends LitElement {
       'Fecha de Estado',
       'Eliminar',
     ];
-    this.orderType = ['currentDate', 'startDate', 'endDate'];
+    this.orderType = ['applicationD', 'startDate', 'endDate'];
     this.toT = 0;
     this.fromT = 0;
   }
 
   order(e) {
-    this.sortedArray = orderItems(this.requestsList, e.target.id);
-    this.requestsList = [...this.sortedArray];
+    var order = 1;
     if (e.target.value === 'asc') {
       e.target.value = 'desc';
       e.currentTarget.classList.add('rotated');
     } else {
-      this.requestsList = [...this.requestsList.reverse()];
+      order = -1;
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
-    return this.requestsList;
+    const orderType = e.target.id;
+    const event = new CustomEvent('order-dates', {
+      detail: { orderType, order },
+    });
+    this.dispatchEvent(event);
   }
 
   deleteDate(id) {
     const event = new CustomEvent('delete-date', {
-      detail: id,
+      detail: { id },
     });
     this.dispatchEvent(event);
   }
@@ -76,7 +77,7 @@ class RequestsTable extends LitElement {
         )}
         ${this.requestsList.slice(this.fromT, this.toT).map(
           (item) => html`
-            <div id="${item.id}" class="dataRows">
+            <div class="dataRows">
               <details class="detailsWrap">
                 <summary class="summaryWrap">
                   <span>Inicio: </span>
@@ -107,8 +108,8 @@ class RequestsTable extends LitElement {
                     <td>${dateFormatter(item.statusDate).tableDate}</td>
                   </tr>
                 </table>
-                <div class="buttonWrap">
-                  <button class="deleteB" @click="${() => this.deleteDate(item.id)}">
+                <div class="buttonWrap" id="${item._id}">
+                  <button class="deleteB" @click="${() => this.deleteDate(item._id)}">
                     <span class="material-icons">delete_outline</span>
                   </button>
                 </div>
@@ -143,7 +144,7 @@ class RequestsTable extends LitElement {
             <td>${item.status}</td>
             <td>${dateFormatter(item.statusDate).tableDate}</td>
             <td>
-              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item.id)}">
+              <button id="${i}" class="deleteB" @click="${() => this.deleteDate(item._id)}">
                 <span class="material-icons">delete_outline</span>
               </button>
             </td>

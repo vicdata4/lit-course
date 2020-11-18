@@ -1,6 +1,6 @@
 import { expect, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon/pkg/sinon-esm.js';
-import '../VacationRequests/holidays-form.js';
+import '../components/VacationRequests/holidays-form.js';
 
 describe('Form functions', () => {
   let element, startDate, endDate, submit;
