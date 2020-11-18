@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../holidays-info/holidays-info';
+import '../components/holidays-info/holidays-info';
 import { dates } from '../utils/data';
 import { orderedList } from '../utils/functions';
 

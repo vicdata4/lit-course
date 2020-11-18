@@ -3,77 +3,125 @@ import { css } from 'lit-element';
 export const RpeStyles = css`
   .divBodyControlRpe {
     width: max-content;
-    border-radius: 7px;
+    border-radius: 4px;
     padding: 7px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 10px;
     overflow: auto;
   }
 
+  .divBodyRpe {
+    box-sizing: border-box;
+  }
+
   .divHeaderControlRpe {
+    font-weight: 400;
+    color: #23282d;
+    font-size: 1.3em;
+    margin: 1em 0;
+    font-family: Roboto, 'Open Sans';
+    line-height: 1.4em;
     font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 15px;
   }
 
   .divFlexRpe {
     display: flex;
     width: 100%;
-    flex-flow: row wrap;
-    justify-content: flex-start;
+    /*flex-flow: row wrap;*/
+    /*justify-content: flex-start;*/
     margin-bottom: 10px;
   }
 
   .divCamposRpe {
-    width: 200px;
+    width: 300px;
     font-size: 20px;
+    color: #23282d;
+    font-weight: 500;
+    text-shadow: none;
+    font-family: Roboto, 'Open Sans';
   }
 
   .divCamposDatos {
-    width: max-content;
+    width: 100%;
   }
 
   .selectRpe {
-    width: max-content;
-    padding-right: 50px;
-    font-size: 100%;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    font-size: 14px;
+    line-height: 2;
+    color: #32373c;
+    border-color: #7e8993;
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0 24px 0 8px;
+    min-height: 30px;
+    max-width: 25rem;
+    -webkit-appearance: none;
+    background: #fff
+      url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E')
+      no-repeat right 5px top 55%;
+    background-size: auto;
+    background-size: 16px 16px;
+    cursor: pointer;
+    vertical-align: middle;
+    width: 100%;
+    border: 1px solid #7e8993;
   }
 
-  .selectRpe:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border: 1px solid orange;
+  .selectRpe:focus {
+    color: #007cba;
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+    outline: 2px solid transparent;
   }
 
   .inputFechasRpe {
-    font-size: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border: 1px solid black;
-    border-radius: 5px;
+    padding: 0 8px;
+    line-height: 2;
+    min-height: 30px;
+    box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+    background-color: #fff;
+    color: #32373c;
+    min-width: max-content;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 25rem;
   }
 
-  .inputFechasRpe:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border: 1px solid orange;
+  .inputFechasRpe:focus {
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+    outline: 2px solid transparent;
   }
 
   .buttonGenerarReporte {
-    width: 100%;
-    font-size: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #000442;
-    color: white;
+    font-family: Roboto, 'Open Sans';
+    vertical-align: baseline;
+    background-color: #0a0202 !important;
+    color: #fff;
+    text-shadow: 0 -1px 1px #000, 1px 0 1px #000, 0 1px 1px #000, -1px 0 1px #000 !important;
     cursor: pointer;
-  }
-
-  .buttonGenerarReporte:hover {
-    opacity: 0.8;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 12px !important;
+    font-size: 85% !important;
+    box-sizing: border-box !important;
+    outline: 0;
+    height: 36px;
+    transition: 0.2s ease-out;
+    text-align: center;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    line-height: 2.15384615;
+    min-height: 30px;
+    margin: 0;
+    display: inline-block;
+    text-decoration: none;
   }
 
   /* DIV ERRORES */
@@ -82,6 +130,8 @@ export const RpeStyles = css`
     background-color: #ff000050;
     padding: 3px;
     margin-bottom: 5px;
+    font-size: 13px;
+    font-style: italic;
   }
 
   .divExitoRpe {
@@ -90,6 +140,12 @@ export const RpeStyles = css`
     padding: 3px;
     margin-top: 5px;
     margin-bottom: 5px;
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .divErroresHeaderRpe {
+    font-weight: bold;
   }
 
   .divBodyReporteGeneradoRpe {
@@ -98,10 +154,18 @@ export const RpeStyles = css`
 
   /*ESTILOS TABLA HCEAP */
   .tableRpe {
+    border: 1px solid #d0d0d0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
     width: 100%;
-    border: 2px solid #20208869;
     border-collapse: collapse;
-    overflow: auto;
+    word-wrap: break-word;
+    font-weight: 400;
+  }
+
+  thead {
+    border-bottom: 1px solid #d0d0d0;
   }
 
   .col label {
@@ -109,20 +173,20 @@ export const RpeStyles = css`
   }
 
   .svg_order_up {
-    display: none;
+    visibility: hidden;
   }
 
   .col:hover .svg_order_up {
-    display: block;
+    visibility: visible;
   }
 
   .col.selected:hover .svg_order_up {
-    display: block;
+    visibility: visible;
     transform: rotate(180deg);
   }
 
   .col.selected.orderDown:hover .svg_order_up {
-    display: block;
+    visibility: visible;
     transform: rotate(360deg);
   }
 
@@ -131,7 +195,7 @@ export const RpeStyles = css`
   }
 
   .col.selected .svg_order_up {
-    display: block;
+    visibility: visible;
   }
 
   .tableRpe .col {
@@ -139,23 +203,119 @@ export const RpeStyles = css`
   }
 
   .tableRpe tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f6f6f6;
   }
 
   .tableRpe tr:hover {
     background-color: #ff000027;
   }
 
-  .tableRpe td,
-  .tableRpe th {
-    border: 1px solid #00000039;
-    padding: 5px;
+  .tableRpe td {
+    font-size: 13px;
+    padding: 11px 12px;
   }
 
   .tableRpe th {
-    background-color: #68686a69;
+    font-size: 14px;
+    background-color: transparent;
     text-align: left;
+    padding: 10px 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 400;
   }
+
+  /* ORDER RESPONSIVE TABLE */
+  .div_flex_100 {
+    font-family: Roboto, 'Open Sans';
+    color: #0a0202;
+    border-collapse: collapse;
+    word-wrap: break-word;
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    font-size: 14px;
+  }
+
+  .header_order_text {
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  .col_show_order {
+    margin-left: 3px;
+    /*margin-left: auto;*/
+    cursor: pointer;
+    text-align: start;
+    margin-top: -5px;
+  }
+
+  .col_order_responsive {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    padding-right: 4px;
+    background: transparent;
+  }
+
+  .col_dia {
+    min-width: max-content;
+  }
+
+  .col_email {
+    min-width: max-content;
+  }
+
+  .div_body_order_responsive {
+    display: none;
+  }
+
+  .col_svg {
+    margin-left: 7px;
+    /*margin-left: auto;*/
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .div_flex_order {
+    display: flex;
+  }
+
+  .col_order_responsive span {
+    cursor: pointer;
+  }
+
+  .col_order_responsive:hover .svg_order_up {
+    visibility: visible;
+  }
+
+  .col_order_responsive.selected:hover .svg_order_up {
+    visibility: visible;
+    transform: rotate(180deg);
+  }
+
+  .col_order_responsive.selected.orderDown:hover .svg_order_up {
+    visibility: visible;
+    transform: rotate(360deg);
+  }
+
+  .orderDown .svg_order_up {
+    transform: rotate(180deg);
+  }
+
+  .col_order_responsive.selected .svg_order_up {
+    visibility: visible;
+  }
+
   /* FIN ESTILOS TABLA PE */
 
   .divBodyStepper {
@@ -229,6 +389,10 @@ export const RpeStyles = css`
   }
 
   @media only screen and (max-width: 540px) {
+    .divFlexRpe {
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
     .divCamposRpe {
       width: 100%;
       font-size: 13px;
@@ -246,17 +410,60 @@ export const RpeStyles = css`
     .selectRpe {
       font-size: 12px;
     }
-    .buttonGenerarReporte {
-      width: 100%;
-      padding-right: 10%;
-      padding-left: 10%;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      font-size: 11px;
-      font-weight: bold;
-    }
     .inputFech {
       font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .div_body_order_responsive {
+      display: block;
+    }
+
+    table {
+      border: 0;
+    }
+
+    table caption {
+      font-size: 1.3em;
+    }
+
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+    }
+
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+
+    .div_semaforo {
+      text-align: right;
+    }
+
+    table td:last-child {
+      border-bottom: 0;
     }
   }
 `;

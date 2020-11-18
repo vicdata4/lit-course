@@ -1,64 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
+import { holidaysStyle } from '../../utils/new-styles';
 
 class HolidaysInfo extends LitElement {
   static get styles() {
-    return css`
-      table {
-        border: 1px solid #e4e4e4;
-        padding: 10px;
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 90%;
-      }
-
-      th {
-        text-align: left;
-      }
-
-      .order {
-        padding: 0;
-        background-color: transparent;
-        border: none;
-        margin-bottom: 10px;
-        cursor: pointer;
-        text-align: left;
-      }
-
-      .stepper {
-        margin: 10px 0;
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-      }
-
-      .stepper .step:hover {
-        background-color: #f1f1f1;
-      }
-
-      .step {
-        display: inline-block;
-        padding: 5px;
-        border: 1px solid #d8d7d7;
-        width: 20px;
-        height: auto;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      .step.active {
-        background-color: #535353 !important;
-        color: white;
-      }
-
-      .step.left {
-        transform: rotate(180deg);
-      }
-
-      .stepper,
-      .step {
-        user-select: none;
-      }
-    `;
+    return [holidaysStyle];
   }
 
   static get properties() {
@@ -159,17 +104,17 @@ class HolidaysInfo extends LitElement {
         ${this.renderStepper()}
         <table>
           <tr>
-            <th>
+            <th class="tableHeader">
               <button class="order" @click="${() => this.orderList('holidayFrom')}">
                 Dia de inicio de vacaciones <span>&#9662;</span>
               </button>
             </th>
-            <th>
+            <th class="tableHeader">
               <button class="order" @click="${() => this.orderList('holidayTo')}">
                 Dia de fin de vacaciones <span>&#9662;</span>
               </button>
             </th>
-            <td>Dias tomados</td>
+            <td class="tableHeader">Dias tomados</td>
           </tr>
           ${this.list.slice(this.from, this.to).map(
             (item) => html`
