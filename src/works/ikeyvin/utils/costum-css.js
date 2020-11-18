@@ -267,7 +267,7 @@ export const formPeticion = css`
     .petitionForm {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 55vh 60vh;
+      grid-template-rows: 55vh 70vh;
     }
 
     .column-a2 {
@@ -291,7 +291,7 @@ export const formPeticion = css`
     .petitionForm {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 72vh 80vh;
+      grid-template-rows: 72vh 85vh;
     }
 
     .column-a2 {
@@ -343,6 +343,17 @@ export const tablePeticion = css`
 
   .table-container tr:nth-of-type(odd) {
     background: #eee;
+  }
+
+  @media (max-width: 600px) {
+    .table-container td:nth-child(4),
+    .table-container th:nth-child(4),
+    .table-container td:nth-child(3),
+    .table-container th:nth-child(3),
+    .table-container td:nth-child(5),
+    .table-container th:nth-child(5) {
+      display: none;
+    }
   }
 
   @media (max-width: 300px) {

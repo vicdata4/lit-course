@@ -4,10 +4,11 @@ import '../../components/common-header';
 import '../../components/work-header';
 import './components/form-petition.js';
 import './components/list-petition.js';
+import './components/test-list-form-petition.js';
 import { dataTest } from './utils/constants.js';
 
 const components = {
-  formPetition: () => html`<form-petition></form-petition>`,
+  formPetition: () => html`<test-list-petition></test-list-petition></br><form-petition></form-petition>`,
   listPetition: () =>
     html`<h1>Lista de peticiones</h1>
       <list-petition .listaPeticiones="${dataTest}"></list-petition></br>
@@ -22,6 +23,7 @@ class IkeyvinPage extends LitElement {
   static get properties() {
     return {
       current: { type: String, attribute: false },
+      listaPeticiones: { type: Array },
     };
   }
 

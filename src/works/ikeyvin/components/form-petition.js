@@ -1,5 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { formPeticion } from '../utils/costum-css.js';
+import { dateFormatter } from '../utils/functions';
+import { dataCandidato, dataCliente } from '../utils/constants.js';
 
 class FormPetition extends LitElement {
   static get styles() {
@@ -54,6 +56,15 @@ class FormPetition extends LitElement {
     }
   }
 
+  deletePetition(i) {
+    const event = new CustomEvent('delete-event', {
+      detail: {
+        index: i,
+      },
+    });
+    this.dispatchEvent(event);
+  }
+
   render() {
     return html`
       <div class="form">
@@ -73,7 +84,7 @@ class FormPetition extends LitElement {
           <div class="column-a2">
             <div class="postPet">
               <p type="Publicar" class="postHead"></p>
-              <p class="contentArea">Fecha de publicación:</p>
+              <p class="contentArea">Fecha de publicación: ${dateFormatter(new Date()).default}</p>
               <div class="postFoot">
                 <div class="foot-left">
                   <a style="color: red">Mover a la papelera</a>
@@ -86,7 +97,7 @@ class FormPetition extends LitElement {
               <div class="contentArea">
                 <select name="cliente" id="cliPet">
                   <option value=""></option>
-                  <option value="Test 1">Test 1</option>
+                  ${dataCliente.map((data) => html`<option value="${data.nombre}">${data.nombre}</option> `)}
                 </select>
               </div>
             </div>
@@ -95,7 +106,7 @@ class FormPetition extends LitElement {
               <div class="contentArea">
                 <select name="candidato" id="candiPet">
                   <option value=""></option>
-                  <option value="Test 2">Test 2</option>
+                  ${dataCandidato.map((data) => html`<option value="${data.nombre}">${data.nombre}</option> `)}
                 </select>
               </div>
             </div>
