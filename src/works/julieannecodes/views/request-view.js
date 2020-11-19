@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
-import { addRequest, deleteRequest, getRequests, orderBy } from '../utils/api/api-request';
+import { addRequest, deleteRequest, getRequests } from '../utils/api/api-request';
 import { mediaQueries } from '../utils/custom-styles';
 import '../components/VacationRequests/holidays-form';
 import '../components/VacationRequests/requests-table';
@@ -70,11 +70,6 @@ class RequestView extends LitElement {
     }
   }
 
-  async order(e) {
-    const request = await orderBy(e.detail);
-    if (!request.error) this.vacationData = [...request.items];
-  }
-
   getValues(e) {
     this.from = e.detail[0];
     this.to = e.detail[1];
@@ -95,7 +90,6 @@ class RequestView extends LitElement {
         .fromT="${this.from}"
         .toT="${this.to}"
         @delete-date="${this.deleteDate}"
-        @order-dates="${this.order}"
       ></requests-table>`;
   }
 }

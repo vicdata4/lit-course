@@ -37,9 +37,58 @@ const data = [
     status: 'Pendiente de aprobación',
     statusDate: new Date('2020/08/17'),
   },
+  {
+    id: 3,
+    currentDate: new Date('2020/08/15'),
+    startDate: new Date('2020/09/11'),
+    endDate: new Date('2020/09/27'),
+    status: 'Pendiente de aprobación',
+    statusDate: new Date('2020/08/17'),
+  },
 ];
 
-const component = html`<requests-table .tableTitles="${tableTitles}" .requestsList="${data}" .fromT="${0}" .toT="${4}">
+const sortedData = [
+  {
+    id: 0,
+    currentDate: new Date('2020/09/16'),
+    startDate: new Date('2020/01/12'),
+    endDate: new Date('2020/01/20'),
+    status: 'No Aprobado',
+    statusDate: new Date('2020/09/16'),
+  },
+  {
+    id: 2,
+    currentDate: new Date('2020/08/15'),
+    startDate: new Date('2020/09/11'),
+    endDate: new Date('2020/09/27'),
+    status: 'Pendiente de aprobación',
+    statusDate: new Date('2020/08/17'),
+  },
+  {
+    id: 3,
+    currentDate: new Date('2020/08/15'),
+    startDate: new Date('2020/09/11'),
+    endDate: new Date('2020/09/27'),
+    status: 'Pendiente de aprobación',
+    statusDate: new Date('2020/08/17'),
+  },
+  {
+    id: 1,
+    currentDate: new Date('2020/08/15'),
+    startDate: new Date('2020/09/13'),
+    endDate: new Date('2020/09/28'),
+    status: 'Pendiente de aprobación',
+    statusDate: new Date('2020/08/17'),
+  },
+];
+
+const component = html`<requests-table
+  .tableTitles="${tableTitles}"
+  .requestsList="${data}"
+  .sortedArray="${[]}"
+  .fromT="${0}"
+  .toT="${4}"
+>
 </requests-table>`;
 describe('Default properties and empty table', () => {
   let element;
@@ -52,6 +101,8 @@ describe('Default properties and empty table', () => {
 
   it('Default properties', async () => {
     expect(element.tableTitles).to.eql(tableTitles);
+    expect(element.sortedArray.length).equal(0);
+    expect(element.requestsList.length).equal(0);
     expect(element.orderType).to.eql(orderType);
     expect(element.toT).equal(0);
     expect(element.fromT).equal(0);
@@ -73,11 +124,11 @@ describe('Table with data', async () => {
 
   it('Table is rendered correctly', async () => {
     expect(el.shadowRoot).not.to.be.null;
-    expect(el.requestsList.length).equal(3);
+    expect(el.requestsList.length).equal(4);
   });
 });
 
-describe('Dispatch order func', () => {
+describe('Order func', () => {
   let element, orderButton;
   before(async () => {
     element = await fixture(component);
@@ -87,21 +138,28 @@ describe('Dispatch order func', () => {
   });
 
   it('Ascending order by endDate', async () => {
-    const eventSpy = sinon.spy(element, 'dispatchEvent');
     orderButton[2].click();
-
-    expect(eventSpy).calledOnce;
-    expect(eventSpy.args[0][0].type).to.equal('order-dates');
     await element.updateComplete;
 
     expect(orderButton[2].value).equal('desc');
-
+    expect(element.sortedArray).to.eql(sortedData);
+    expect(element.requestsList).to.eql(sortedData);
     await element.updateComplete;
   });
 
   it('Descending order by endDate', async () => {
+    const arrReversed = element.sortedArray.reverse();
+    element.requestsList = element.sortedArray;
     orderButton[2].click();
     await element.updateComplete;
+    expect(orderButton[2].value).equal('asc');
+    expect(element.requestsList).to.eql(arrReversed);
+
+    await element.updateComplete;
+    orderButton[2].click();
+    element.requestsList = [];
+    await element.updateComplete;
+    orderButton[2].click();
 
     expect(orderButton[2].value).equal('asc');
   });

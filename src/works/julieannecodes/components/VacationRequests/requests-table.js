@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit-element';
 import { requestTableS, mediaQueries } from '../../utils/custom-styles';
 import { nothing } from 'lit-html';
 import { material } from '../../../../utils/fonts';
-import { dateFormatter } from '../../utils/functions';
+import { dateFormatter, orderItems } from '../../utils/functions';
 
 class RequestsTable extends LitElement {
   static get styles() {
@@ -12,6 +12,7 @@ class RequestsTable extends LitElement {
   static get properties() {
     return {
       requestsList: { type: Array },
+      sortedArray: { type: Array },
       tableTitles: { type: Array, attribute: false },
       orderType: { type: Array, attribute: false },
       fromT: { type: Number },
@@ -22,6 +23,7 @@ class RequestsTable extends LitElement {
   constructor() {
     super();
     this.requestsList = [];
+    this.sortedArray = [];
     this.tableTitles = [
       'Fecha de solicitud',
       'Fecha Inicio',
@@ -36,20 +38,18 @@ class RequestsTable extends LitElement {
   }
 
   order(e) {
-    var order = 1;
     if (e.target.value === 'asc') {
+      this.sortedArray = orderItems(this.requestsList, e.target.id);
       e.target.value = 'desc';
       e.currentTarget.classList.add('rotated');
     } else {
-      order = -1;
+      if (JSON.stringify(this.requestsList) === JSON.stringify(this.sortedArray)) {
+        this.sortedArray.reverse();
+      }
       e.target.value = 'asc';
       e.currentTarget.classList.remove('rotated');
     }
-    const orderType = e.target.id;
-    const event = new CustomEvent('order-dates', {
-      detail: { orderType, order },
-    });
-    this.dispatchEvent(event);
+    this.requestsList = [...this.sortedArray];
   }
 
   deleteDate(id) {

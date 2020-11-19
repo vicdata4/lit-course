@@ -17,6 +17,15 @@ export const dateFormatter = (date_) => {
   };
 };
 
+export const orderItems = (arr, order) => {
+  arr.sort(function (a, b) {
+    if (a[order] > b[order]) return 1;
+    if (a[order] < b[order]) return -1;
+    return 0;
+  });
+  return arr;
+};
+
 export const vacationDays = (interval) => {
   const nDays = (interval.endDate - interval.startDate) / (3600 * 24 * 1000);
   const isWeekend = (date) => date.getDay() === 6 || date.getDay() === 0;
