@@ -388,7 +388,135 @@ export const RpeStyles = css`
     font-size: 9px;
   }
 
-  @media only screen and (max-width: 540px) {
+  /* DIV ERRORS FORM */
+  .div_errores_campos {
+    display: none;
+    background-color: #ff000018;
+    width: max-content;
+    border: 1px solid #c40000;
+    border-radius: 4px;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .section_body_errors {
+    font-family: 'Amazon Ember', Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    background-color: #fff;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .section_left_errores {
+    height: auto;
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .title_errors {
+    color: #c40000;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.255;
+    text-rendering: optimizeLegibility;
+    padding-bottom: 4px;
+  }
+
+  .svg_danger {
+    fill: red;
+  }
+
+  .div_svg_danger {
+    width: 18px;
+    margin-top: 4px;
+  }
+
+  .divErroresContenidoRpe {
+    font-size: 13px;
+  }
+
+  /* DIV SUCCES FORM */
+  .div_succes_campos {
+    display: none;
+    background-color: #02ff0f50;
+    width: max-content;
+    border: 1px solid green;
+    border-radius: 4px;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .section_body_succes {
+    font-family: 'Amazon Ember', Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    background-color: #fff;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+  .section_left_succes {
+    height: auto;
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .title_succes {
+    color: green;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.255;
+    text-rendering: optimizeLegibility;
+    padding-bottom: 4px;
+  }
+
+  .divSuccesContenidoRpe {
+    font-size: 13px;
+  }
+
+  .section_data_succes {
+    padding-left: 7px;
+  }
+
+  @media only screen and (max-width: 280px) {
+    .div_succes_campos {
+      width: 95%;
+    }
+
+    .section_body_succes {
+      width: auto;
+    }
+  }
+
+  @media only screen and (max-width: 620px) {
+    .div_errores_campos {
+      width: 95%;
+    }
+
+    .section_body_errors {
+      width: auto;
+    }
+
+    .div_svg_danger {
+      width: 15px;
+    }
+
+    .divErroresContenidoRpe {
+      font-size: 12px;
+      padding-top: 5px;
+    }
+
+    .divHeaderControlRpe {
+      font-size: 15px;
+    }
+
     .divFlexRpe {
       flex-flow: row wrap;
       justify-content: flex-start;

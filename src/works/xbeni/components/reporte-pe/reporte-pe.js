@@ -1,20 +1,60 @@
 import { LitElement, html } from 'lit-element';
 import { RpeStyles } from '../../archivos_comunes/ac_reportePe/styles';
-import { loadEmpleadosRpe, getDatosReporteRpe } from '../../archivos_comunes/ac_reportePe/mocks';
 import {
   svgUpArrow,
   svgRpeIconRight,
   svgRpeIconLeft,
   svgRpeOrdenarInt,
   svgXRpeOrderString,
+  svgDanger,
 } from '../../archivos_comunes/ac_reportePe/svg_icons';
 import { nothing } from 'lit-html';
+import { getEmployesPe, getRegistersPe } from '../../archivos_comunes/ac_reportePe/api/api-request';
 
 class BeniReportePermisosEmpleado extends LitElement {
+  async firstUpdated() {
+    await this.getEmployes();
+  }
+
+  async getEmployes() {
+    const request = await getEmployesPe();
+    if (!request.error) {
+      this.empleadosRpe = [...request.data];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
+  }
+
+  async getRegisters(empleadoSeleccionadoId, fechaInicio, fechaFin) {
+    const request = await getRegistersPe();
+    if (!request.error) {
+      this.datosReporteRpe = [...request.data];
+      this.loadCorrectFormatDate();
+      const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
+      this.stepper = new Array(nPages).fill({});
+      this.to = this.nElements;
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
+  }
+
+  loadCorrectFormatDate() {
+    for (let i = 0; i < this.datosReporteRpe.length; i++) {
+      this.datosReporteRpe[i].dia = this.generateDate(this.datosReporteRpe[i].dia);
+    }
+  }
+
+  generateDate(dateX) {
+    const date = new Date(dateX);
+    return date;
+  }
+
   constructor() {
     super();
     this.tituloReporte = 'Reporte de permisos detallado';
-    this.empleadosRpe = loadEmpleadosRpe();
+    this.empleadosRpe = [];
     this.datosReporteRpe = [];
     this.index = 0;
     this.from = 0;
@@ -25,7 +65,7 @@ class BeniReportePermisosEmpleado extends LitElement {
   static get properties() {
     return {
       tituloReporte: { type: String },
-      empleadosRpe: { type: Object },
+      empleadosRpe: { type: Array },
       datosReporteRpe: { type: Array },
       controlGenerarReporte: { type: Boolean, Attribute: false },
       index: { type: Number, attribute: false },
@@ -56,12 +96,8 @@ class BeniReportePermisosEmpleado extends LitElement {
                 <div class="divCamposDatos">
                   <select name="empleadosRpe" id='id_select_empleados_rpe' class="selectRpe">
                     <option value="-1">Selecciona un empleado</option>
-                      ${Object.keys(this.empleadosRpe).map(
-                        (item) => html`
-                          <option value="${this.empleadosRpe[item].id_empleado}">
-                            ${this.empleadosRpe[item].nombre}
-                          </option>
-                        `,
+                      ${this.empleadosRpe.map(
+                        (item) => html` <option value="${item.id_empleado}">${item.nombre}</option> `,
                       )}
                   </select>
                 </div>
@@ -86,19 +122,47 @@ class BeniReportePermisosEmpleado extends LitElement {
               </div>
     
               <div>
+
+              <div class='div_errores_campos' id='id_fater_final_errors_rpe'>
+                <div class="section_body_errors">
+                  <div class="section_left_errores">
+                    <div class="div_svg_danger">
+                      ${svgDanger}
+                    </div>
+                  </div>
+                  <div>
+                    <label class="title_errors">Para poder generar un reporte tienes que corregir los siguientes errores</label>
+                    <div class="divErroresContenidoRpe" id='id_final_errors_rpe'></div>
+                  </div>
+                </div>
+              </div>
+
+              <!--
                 <div class="divErroresRpe" id='id_fater_final_errors_rpe'>
                   <div class="divErroresHeaderRpe">
                     <label>Para poder generar un reporte debes corregir los siguientes errores:</label>
                   </div>
                   <div class="divErroresContenidoRpe" id='id_final_errors_rpe'></div>
                 </div>
+                -->
 
                 <div>
                   <button @click="${() =>
                     this.controlErroresRpe()}" id="button_subit_pe" class="buttonGenerarReporte">Generar reporte</button>
                 </div>
 
+                <div class='div_succes_campos' id='id_body_succes_rpe'>
+                  <div class="section_body_succes">
+                    <div class="section_data_succes">
+                      <label class="title_succes">Reporte generado</label>
+                      <div class="divSuccesContenidoRpe" id='id_succes_rpe'></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--
                 <div class="divExitoRpe" id='id_succes_rpe'></div>
+                -->
               </div>
             </div>
           </div>
@@ -106,7 +170,7 @@ class BeniReportePermisosEmpleado extends LitElement {
       </div>
 
       <div class="divBodyReporteGeneradoRpe">
-${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
+        ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       </div>
     </div>
     `;
@@ -338,7 +402,6 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
 
     const errorContainer = this.shadowRoot.getElementById('id_fater_final_errors_rpe');
     const errorContainerContent = this.shadowRoot.getElementById('id_final_errors_rpe');
-    const succesContainer = this.shadowRoot.getElementById('id_succes_rpe');
 
     if (erroresDatosReporte !== '') {
       errorContainer.style.display = 'block';
@@ -348,14 +411,12 @@ ${this.datosReporteRpe.length === 0 ? nothing : this.generarReporteRpe()}
       errorContainerContent.innerHTML = '';
 
       // SHOW INFO REPORTE TO GENERATE
-      const informeDatosExitoGenerarRpe = `<b>Reporte generado:</b><br>Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
-      succesContainer.innerHTML = informeDatosExitoGenerarRpe;
-      succesContainer.style.display = 'block';
+      const informeDatosExitoGenerarRpe = `Empleado: ${empleadoSeleccionadoNombre}<br>Fecha de inicio: ${fechaInicio}<br>Fecha de fin: ${fechaFin}`;
+      this.shadowRoot.getElementById('id_succes_rpe').innerHTML = informeDatosExitoGenerarRpe;
+      this.shadowRoot.getElementById('id_body_succes_rpe').style.display = 'block';
       // AJAX REQUEST FOR DATES TO GENERATE
-      this.datosReporteRpe = getDatosReporteRpe(empleadoSeleccionadoId, fechaInicio, fechaFin);
-      const nPages = Math.ceil(this.datosReporteRpe.length / this.nElements);
-      this.stepper = new Array(nPages).fill({});
-      this.to = this.nElements;
+      // this.datosReporteRpe = getDatosReporteRpe(empleadoSeleccionadoId, fechaInicio, fechaFin);
+      this.getRegisters(empleadoSeleccionadoId, fechaInicio, fechaFin);
     }
   }
 }
