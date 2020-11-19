@@ -1,12 +1,11 @@
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
-import '../../../components/common-header';
+import { addRequest, deleteRequest, getRequests } from '../utils/api/api-request';
 import { mediaQueries } from '../utils/custom-styles';
-import './holidays-form';
-import './requests-table';
+import '../components/VacationRequests/holidays-form';
+import '../components/VacationRequests/requests-table';
 import '../components/stepper';
-
-class VacationTable extends LitElement {
+class RequestView extends LitElement {
   static get styles() {
     return [
       mediaQueries,
@@ -36,23 +35,32 @@ class VacationTable extends LitElement {
     this.to = this.nEmployees;
   }
 
-  addVacation(e) {
-    const recived = e.detail.startDate;
-    const dateExist = this.vacationData.find((x) => x.startDate.getTime() === recived.getTime());
-    if (!dateExist) {
-      this.vacationData = [e.detail, ...this.vacationData];
-      this.errorMessage = '';
+  async firstUpdated() {
+    await this.getData();
+  }
+
+  async getData() {
+    const request = await getRequests();
+    if (!request.error) {
+      this.vacationData = [...request.requests];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
+  }
+
+  async addRequest(e) {
+    const request = await addRequest(e.detail);
+    if (!request.error && !request.exist) {
+      await this.getData();
     } else {
       this.errorMessage = 'Date already exists';
     }
   }
 
-  deleteDate(e) {
-    const arr = this.vacationData;
-    const toRemove = this.vacationData.find((item) => item.id === e.detail);
-    const index = this.vacationData.indexOf(toRemove);
-    this.vacationData.splice(index, 1);
-    this.vacationData = [...arr];
+  async deleteDate(e) {
+    const request = await deleteRequest(e.detail);
+    if (!request.error) await this.getData();
 
     if (this.from > 0 && this.vacationData.length === this.from) {
       this.from = this.from - this.nEmployees;
@@ -68,9 +76,8 @@ class VacationTable extends LitElement {
   }
 
   render() {
-    return html`
-      <h1>Solicitud de vacaciones</h1>
-      <holidays-form @send-dates="${this.addVacation}"></holidays-form>
+    return html`<h1>Solictud de vacaciones</h1>
+      <holidays-form @send-dates="${this.addRequest}"></holidays-form>
       ${this.errorMessage !== '' ? html`<div class="alert-msg">${this.errorMessage}</div>` : nothing}
       ${this.vacationData.length >= this.nEmployees
         ? html`<stepper-component
@@ -83,9 +90,8 @@ class VacationTable extends LitElement {
         .fromT="${this.from}"
         .toT="${this.to}"
         @delete-date="${this.deleteDate}"
-      ></requests-table>
-    `;
+      ></requests-table>`;
   }
 }
 
-window.customElements.define('vacation-table', VacationTable);
+window.customElements.define('request-view', RequestView);

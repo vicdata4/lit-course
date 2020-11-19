@@ -18,7 +18,11 @@ export const dateFormatter = (date_) => {
 };
 
 export const orderItems = (arr, order) => {
-  arr.sort((a, b) => a[order] - b[order]);
+  arr.sort(function (a, b) {
+    if (a[order] > b[order]) return 1;
+    if (a[order] < b[order]) return -1;
+    return 0;
+  });
   return arr;
 };
 
