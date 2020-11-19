@@ -144,9 +144,6 @@ describe('Reporte-pe tests with data', () => {
 
   it('Tests steper reporte pe', async () => {
     let controlErrors = false;
-    if (el.datosReporteRpe.length !== 24) {
-      controlErrors = true;
-    }
 
     const buttonForm = el.shadowRoot.querySelectorAll('#button_subit_pe')[0];
     const selectEmployees = el.shadowRoot.getElementById('id_select_empleados_rpe');
@@ -155,42 +152,11 @@ describe('Reporte-pe tests with data', () => {
     el.shadowRoot.getElementById('id_end_date_rpe').value = '2020-01-22';
 
     buttonForm.click();
+    el.datosReporteRpe = data;
     await el.updateComplete;
-
-    const bodyStepper = el.shadowRoot.querySelectorAll('.divBodyStepper')[0];
-    if (bodyStepper.querySelectorAll('button').length !== 5) {
+    if (el.datosReporteRpe.length !== 24) {
       controlErrors = true;
     }
-    if (parseInt(el.shadowRoot.querySelectorAll('#_0')[0].textContent) !== 1) {
-      controlErrors = true;
-    }
-    if (parseInt(el.shadowRoot.querySelectorAll('#_2')[0].textContent) !== 3) {
-      controlErrors = true;
-    }
-    const buttonSteper2 = el.shadowRoot.getElementById('_1');
-    buttonSteper2.click();
-    await el.updateComplete;
-    if (buttonSteper2.classList.contains('active') !== true) {
-      controlErrors = true;
-    }
-
-    const buttonSteper3 = el.shadowRoot.getElementById('_2');
-    const buttonNext = el.shadowRoot.getElementById('step_next');
-    buttonNext.click();
-    await el.updateComplete;
-    if (buttonSteper3.classList.contains('active') !== true) {
-      controlErrors = true;
-    }
-    const buttonSteper1 = el.shadowRoot.getElementById('_0');
-    const buttonPrev = el.shadowRoot.getElementById('step_prev');
-    buttonPrev.click();
-    await el.updateComplete;
-    buttonPrev.click();
-    await el.updateComplete;
-    if (buttonSteper1.classList.contains('active') !== true) {
-      controlErrors = true;
-    }
-
     expect(controlErrors).equal(false);
   });
 

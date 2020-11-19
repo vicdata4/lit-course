@@ -9,13 +9,27 @@ import {
   svgOrderOther,
   svgOrderInt,
 } from '../../archivos_comunes/ac_informe-cipa/svc_icons';
-import { cargarInformacionCandidatosCipa } from '../../archivos_comunes/ac_informe-cipa/mocks';
+import { getInfoCipa } from '../../archivos_comunes/ac_informe-cipa/api/api-request';
 
 export class BeniListaCipa extends LitElement {
+  async firstUpdated() {
+    await this.getList();
+  }
+
+  async getList() {
+    const request = await getInfoCipa();
+    if (!request.error) {
+      this.datosCipa = [...request.data];
+      this.cargarFechaVencimiento();
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
+  }
+
   constructor() {
     super();
-    this.datosCipa = cargarInformacionCandidatosCipa;
-    this.cargarFechaVencimiento();
+    this.datosCipa = [];
   }
 
   static get properties() {
@@ -241,6 +255,9 @@ export class BeniListaCipa extends LitElement {
       this.datosCipa[i].fechaVencimiento = this.generateDateEndToAddComponent(
         this.datosCipa[i].fecha_ultima_actualizacion,
       );
+      this.datosCipa[i].fecha_ultima_actualizacion = this.generateComonFormatDate(
+        this.datosCipa[i].fecha_ultima_actualizacion,
+      );
     }
   }
 
@@ -363,6 +380,11 @@ export class BeniListaCipa extends LitElement {
     const month = parseInt(date1.getMonth()) + 1;
     const year = date1.getFullYear();
     return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
+  }
+
+  generateComonFormatDate(dateX) {
+    const date = new Date(dateX);
+    return date;
   }
 
   generateDateEndToAddComponent(fechaUltimaActualizacion) {
