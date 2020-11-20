@@ -16,6 +16,16 @@ export const dateFormatter = (date_) => {
 
   return {
     default: day + '/' + month + '/' + year,
+    dateHour:
+      day +
+      '/' +
+      month +
+      '/' +
+      year +
+      ' ' +
+      (hour < 10 ? '0' + hour : hour) +
+      ':' +
+      (minute < 10 ? '0' + minute : minute),
     short: monthName + ' ' + day,
     day: weekDayName,
     hour: (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute),
