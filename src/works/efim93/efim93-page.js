@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
-import { getInfo, getInfoDetail, updateItem } from './api/api-request';
+import { getInfo, getInfoDetail, updateReg } from './api/api-request';
 import '../../components/common-header';
 import '../../components/work-header';
 import './components/vacation-approval/vacation-approval';
@@ -29,7 +29,7 @@ class Efim93Page extends LitElement {
       vacationApproval: () =>
         html`<vacation-approval
           .listaDatos="${this.listaDatos}"
-          @update-item="${(e) => this.updateItem(e)}"
+          @update-reg="${(e) => this.updateRegItem(e)}"
         ></vacation-approval>`,
       vacationDetail: () => html`<vacation-detail-admin .listaDatos="${this.listaDatosD}"></vacation-detail-admin>`,
     };
@@ -67,14 +67,10 @@ class Efim93Page extends LitElement {
     }
   }
 
-  async updateItem(e) {
-    const request = await updateItem(e.detail.body);
+  async updateRegItem(e) {
+    const request = await updateReg(e.detail);
     if (!request.error) {
       await this.getList();
-      this.shadowRoot
-        .querySelector('item-list')
-        .shadowRoot.querySelector(`#_${e.detail.index}`)
-        .classList.remove('edit');
     }
   }
 

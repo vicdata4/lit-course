@@ -37,17 +37,16 @@ class VacationApproval extends LitElement {
     this.index = 0;
   }
 
-  onSelectChange(event, item, i) {
-    if (item.estado !== parseInt(event.target.value)) {
-      this.listaDatos[i] = {
-        nombre_apellido: this.listaDatos[i].nombre_apellido,
-        fecha_solicitud: this.listaDatos[i].fecha_solicitud,
-        fecha_inicio: this.listaDatos[i].fecha_inicio,
-        fecha_fin: this.listaDatos[i].fecha_fin,
-        estado: parseInt(event.target.value),
-        fecha_estado: new Date(),
-      };
-      this.listaDatos = [...this.listaDatos];
+  onSelectChange(e, item, i, id) {
+    if (item.estado !== parseInt(e.target.value)) {
+      const event = new CustomEvent('update-reg', {
+        detail: {
+          id,
+          estado: parseInt(e.target.value),
+          fecha_estado: new Date(),
+        },
+      });
+      this.dispatchEvent(event);
     }
   }
 
@@ -166,7 +165,7 @@ class VacationApproval extends LitElement {
                     name="selectEstado"
                     class="select"
                     title="selectestado"
-                    @change="${(e) => this.onSelectChange(e, item, i)}"
+                    @change="${(e) => this.onSelectChange(e, item, i, item._id)}"
                   >
                     ${this.options.map(
                       (option) => html`
