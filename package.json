@@ -11,7 +11,7 @@
     "test:google": "mocha --recursive --timeout 10000 ./e2e/tests/google-example/*.js",
     "dev:background": "nohup npm run dev &",
     "dev:kill": "kill -9 $(lsof -t -i:2900 -sTCP:LISTEN)",
-    "test:e2e-ci": "headless=true npm run dev:background && chmod +x ./scripts/utils/wait-launch.sh && ./scripts/utils/wait-launch.sh && npm run test:e2e && npm run dev:kill",
+    "test:e2e-ci": "headless=true npm run dev:background && ./scripts/utils/wait-launch.sh && npm run test:e2e && npm run dev:kill",
     "dev": "node ./scripts/dev.js",
     "build": "node ./scripts/build.js",
     "lint": "eslint ./src/**",
