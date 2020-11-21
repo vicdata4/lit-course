@@ -13,7 +13,7 @@ exports.browserConfig = async (config = false) => {
     builder = builder.setChromeOptions(new chrome.Options().windowSize(config.windowSize));
   }
 
-  if (!config || config.headless) {
+  if (!config || config.headless !== false || process.env.headless) {
     builder = builder.setChromeOptions(new chrome.Options().headless().windowSize({ width: 900, height: 480 }));
   }
 
