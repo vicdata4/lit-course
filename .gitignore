@@ -2,6 +2,7 @@
 
 /node_modules
 /build
+/storybook-build
 /coverage
 debug.log
 nohup.out

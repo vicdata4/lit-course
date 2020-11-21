@@ -60,7 +60,7 @@ addParameters({
         /**
          * theme storybook, see link below
          */
-        // theme: themes.dark,
+        theme: themes.dark,
     },
 });
 

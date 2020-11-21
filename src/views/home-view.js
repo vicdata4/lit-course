@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { material } from '../utils/fonts';
 import { styles } from '../utils/home-styles.js';
-import { html5Svg, css3Svg, jsSvg, githubSvg } from '../utils/svg-icons';
+import { html5Svg, css3Svg, jsSvg, githubSvg, storybook } from '../utils/svg-icons';
 import '../components/navigation/navigation-wc';
 
 class HomeView extends LitElement {
@@ -85,6 +85,16 @@ class HomeView extends LitElement {
           </p>
           <hr class="separator centered" />
           <a href="https://github.com/vicdata4/lit-course" class="github_link" target="_blank">${githubSvg}</a>
+        </div>
+      </section>
+    `;
+  }
+
+  renderStorybook() {
+    return html`
+      <section aria-label="Storybook" tabindex="0">
+        <div class="information">
+          <a href="/storybook" class="github_link">${storybook}</a>
         </div>
       </section>
     `;
@@ -176,7 +186,7 @@ class HomeView extends LitElement {
       </header>
       <navigation-wc></navigation-wc>
       <main>
-        ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()}
+        ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()} ${this.renderStorybook()}
         ${this.renderFooter()}
       </main>
     `;

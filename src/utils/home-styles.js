@@ -39,7 +39,7 @@ const areaSectionStyles = css`
   @media (min-width: 768px) {
     .areas {
       padding: 0px 65px;
-      margin: 0 0 80px 0;
+      margin: 0;
     }
   }
 
