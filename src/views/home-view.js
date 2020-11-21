@@ -186,8 +186,8 @@ class HomeView extends LitElement {
       </header>
       <navigation-wc></navigation-wc>
       <main>
-        ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()} ${this.renderStorybook()}
-        ${this.renderFooter()}
+        ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()}
+        ${this.renderStorybook()} ${this.renderFooter()}
       </main>
     `;
   }
