@@ -37,7 +37,7 @@ describe('Form-example error', async () => {
   it('Fill email and password fields', async () => formExample.enterFormFields('test@email', 'vic12345'));
   it('Click on submit button', async () => formExample.formSubmit());
   it('Error message is visible', async () => formExample.isAlertVisible('.alert-msg'));
-  it('Error text is correct', async () => formExample.checkErrorMessage('Enter a valid emai'));
+  it('Error text is correct', async () => formExample.checkErrorMessage('Enter a valid email'));
 
   after(() => driver && driver.quit());
 });
