@@ -27,7 +27,6 @@ const areaSectionStyles = css`
     letter-spacing: 4px;
     font-weight: 600;
     font-family: 'Raleway';
-    font-variant: petite-caps;
   }
 
   @media (min-width: 540px) {
@@ -324,19 +323,13 @@ const mainStyles = css`
 
   @media (min-width: 1240px) {
     .separator-main {
-      margin: 30px 15px;
-    }
-
-    .main-title {
-      font-size: 60px;
+      margin: 30px 0;
     }
 
     .main-container {
       width: 100%;
       max-width: 600px;
       margin: 0 20%;
-      border-left: 1px solid white;
-      border-right: 1px solid white;
       padding: 0 120px;
     }
 

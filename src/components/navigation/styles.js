@@ -5,7 +5,6 @@ export const transition = 1000;
 
 export const navigationStyles = css`
   nav {
-    font-family: 'Sen', sans-serif;
     background-color: var(--nav-background);
     letter-spacing: 1.6px;
     font-size: 16px;
