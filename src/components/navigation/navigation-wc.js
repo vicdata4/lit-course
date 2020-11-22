@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { navList } from '../../utils/constants';
 import { scrollMode } from '../../utils/functions';
-import { navigationStyles, mediaQuery, transition } from './styles';
+import { navigationStyles, transition } from './styles';
 import { material } from '../../utils/fonts';
 
 class NavigationWc extends LitElement {
@@ -78,12 +78,9 @@ class NavigationWc extends LitElement {
     }, transition);
   }
 
-  goTo(url) {
-    const clientWidth = document.querySelector('body').clientWidth;
-
+  resetScroll() {
     scrollMode('unset', '0px');
-    if (clientWidth < mediaQuery) window.scrollTo(0, this.scroll);
-    location.href = url;
+    window.scrollTo(0, 0);
   }
 
   scrollToTop() {
@@ -99,7 +96,11 @@ class NavigationWc extends LitElement {
         <ul class="nav-list">
           ${navList.map(
             (info) =>
-              html`<li><a @click="${() => this.goTo(info.path)}" class="nav-link" tabindex="0">${info.name}</a></li>`,
+              html`<li>
+                <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0"
+                  >${info.name}</a
+                >
+              </li>`,
           )}
         </ul>
         <div class="scroll-menu">
@@ -108,7 +109,13 @@ class NavigationWc extends LitElement {
             ${navList.map(
               (info) =>
                 html`<li>
-                  <a @click="${() => this.goTo(info.path)}" class="nav-link fixed" tabindex="-1">${info.name}</a>
+                  <a
+                    href="${info.path}"
+                    @click="${() => this.resetScroll(info.path)}"
+                    class="nav-link fixed"
+                    tabindex="-1"
+                    >${info.name}</a
+                  >
                 </li>`,
             )}
           </ul>

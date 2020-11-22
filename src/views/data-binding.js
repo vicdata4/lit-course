@@ -1,9 +1,12 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
+import { store } from '../store/store';
+import { connect } from 'pwa-helpers';
+import { addNote, deleteNote } from '../store/actions/notes.actions.js';
 import '../components/input-component';
 import '../components/list-component';
 
-class DataBinding extends LitElement {
+class DataBinding extends connect(store)(LitElement) {
   static get styles() {
     return [commonStyles];
   }
@@ -14,19 +17,16 @@ class DataBinding extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-    this.messageList = [];
-  }
-
   addMessage(e) {
-    this.messageList = [...[e.detail.message], ...this.messageList];
+    store.dispatch(addNote(e.detail.message));
   }
 
   deleteMessage(e) {
-    const array = this.messageList;
-    array.splice(e.detail.index, 1);
-    this.messageList = [...array];
+    store.dispatch(deleteNote(e.detail.index));
+  }
+
+  stateChanged(state) {
+    this.messageList = state.notes.list;
   }
 
   render() {
