@@ -18,19 +18,11 @@ storiesOf('Components', module)
         margin-bottom: 20px;
       }
     </style>
-
-    <div class="brown-box">
-      <form-example></form-example>
-    </div>
-    <div class="light-box">
-      <form-example></form-example>
-    </div>
+   
+    <form-example></form-example>
+    <form-example .validated="${true}"></form-example>
 
     <div class="light-box">
-      <form-example message="Test message"></form-example>
-    </div>
-
-    <div class="light-box">
-      <form-example .validated="${true}"></form-example>
+      <form-example .message="${'Test message'}"></form-example>
     </div>
   `);

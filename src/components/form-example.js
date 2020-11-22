@@ -10,11 +10,8 @@ class FormExample extends LitElement {
     return [
       seedStyle,
       css`
-        form {
-          display: flex;
-          flex-flow: column;
-          justify-content: center;
-          align-items: center;
+        :host {
+          width: fit-content;
         }
 
         .form-field {
@@ -34,7 +31,6 @@ class FormExample extends LitElement {
 
         .alert-msg {
           color: black;
-          text-align: center;
           padding: 10px;
         }
 
