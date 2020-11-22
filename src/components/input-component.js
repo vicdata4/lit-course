@@ -32,6 +32,7 @@ class InputComponent extends LitElement {
       const event = new CustomEvent('my-event', {
         detail: {
           message: inputValue.value,
+          date: new Date(),
         },
       });
       this.dispatchEvent(event);

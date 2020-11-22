@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element';
+import { dateFormatter } from '../utils/functions';
 
 class ListComponent extends LitElement {
   static get properties() {
@@ -25,7 +26,13 @@ class ListComponent extends LitElement {
     return html`
       <ul>
         ${this.list.map(
-          (item, i) => html` <li>${item} <button @click="${() => this.deleteItem(i)}">&times;</button></li> `,
+          (item, i) =>
+            html`
+              <li>
+                ${dateFormatter(item.date).hour} ${item.message}
+                <button @click="${() => this.deleteItem(i)}">&times;</button>
+              </li>
+            `,
         )}
       </ul>
     `;

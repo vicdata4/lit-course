@@ -3,12 +3,12 @@ import sinon from 'sinon/pkg/sinon-esm.js';
 import '../src/components/list-component.js';
 
 const data = [
-  { message: 'Mensaje 1' },
-  { message: 'Mensaje 2' },
-  { message: 'Mensaje 3' },
-  { message: 'Mensaje 4' },
-  { message: 'Mensaje 5' },
-  { message: 'Mensaje 6' }
+  { message: 'message 1', date: new Date() },
+  { message: 'message 2', date: new Date() },
+  { message: 'message 3', date: new Date() },
+  { message: 'message 4', date: new Date() },
+  { message: 'message 5', date: new Date() },
+  { message: 'message 6', date: new Date() }
 ];
 
 describe('Empty list', () => {

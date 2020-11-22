@@ -18,7 +18,7 @@ class DataBinding extends connect(store)(LitElement) {
   }
 
   addMessage(e) {
-    store.dispatch(addNote(e.detail.message));
+    store.dispatch(addNote(e.detail));
   }
 
   deleteMessage(e) {
