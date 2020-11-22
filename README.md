@@ -9,6 +9,7 @@
 - [Chai](https://www.chaijs.com/) Assertion library
 - [Selenium](https://www.selenium.dev/documentation/en/) E2E testing
 - [Vaadin](https://www.npmjs.com/package/@vaadin/router) Routing
+- [Redux](https://redux.js.org/) State Container
 - [ESLint](https://eslint.org) Linter tool
 - [Prettier](https://prettier.io/) Code formatter
 - [Husky](https://www.npmjs.com/package/husky) Pre commit/push Hooks
