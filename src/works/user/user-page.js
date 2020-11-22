@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
@@ -6,8 +7,13 @@ import '../../components/input-component';
 import '../../components/list-component';
 
 const components = {
-  inputComponent: () => html`<input-component>Submit</input-component>`,
-  paginationComponent: () => html`<list-component .list="${[{}, {}]}"></list-component>`,
+  inputComponent: () =>
+    html`<input-component
+      @my-event="${(e) =>
+        alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}"
+      >Submit</input-component
+    >`,
+  listComponent: () => html`<list-component .list="${['Message 1', 'Message 2']}"></list-component>`,
 };
 
 class UserPage extends LitElement {

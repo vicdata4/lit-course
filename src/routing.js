@@ -16,7 +16,7 @@ export const routing = (outlet) => {
 
   var routes = [
     { path: '/', component: 'home-view' },
-    { path: '/form-example-view', component: 'form-example-view' },
+    { path: '/form-validation', component: 'form-example-view' },
     { path: '/data-binding', component: 'data-binding' },
     { path: '/list-example', component: 'list-example-view' },
     { path: '/works', component: 'works-view' },

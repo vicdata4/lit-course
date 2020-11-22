@@ -25,7 +25,7 @@ export const navList = [
   },
   {
     name: 'Catalog',
-    path: '/',
+    path: 'http://seed-catalog.com/',
   },
   {
     name: 'Searcher',
@@ -33,7 +33,7 @@ export const navList = [
   },
   {
     name: 'Form',
-    path: '/form-example-view',
+    path: '/form-validation',
   },
   {
     name: 'Data Binding',

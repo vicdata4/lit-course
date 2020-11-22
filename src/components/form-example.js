@@ -2,11 +2,13 @@
 import { LitElement, html, css } from 'lit-element';
 import { nothing } from 'lit-html';
 import { emailValidator } from '../utils/functions';
+import { seedStyle } from '@seed-catalog/styles';
 import '../components/common-header';
 
 class FormExample extends LitElement {
   static get styles() {
     return [
+      seedStyle,
       css`
         form {
           display: flex;
@@ -20,19 +22,6 @@ class FormExample extends LitElement {
           border-radius: 0;
           border: 1px solid grey;
           margin: 3px;
-        }
-
-        .form-submit {
-          background-color: #10acda;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          padding: 10px;
-          cursor: pointer;
-        }
-
-        .form-submit:hover {
-          background-color: #108db3;
         }
 
         .alert-succesfull {
@@ -99,7 +88,7 @@ class FormExample extends LitElement {
       <form onsubmit="return false">
         <input id="email" type="text" class="form-field" placeholder="email" />
         <input id="password" type="password" class="form-field" placeholder="password" />
-        <input type="submit" @click="${this.onSubmit}" class="form-submit" value="Acceder" />
+        <input type="submit" @click="${this.onSubmit}" class="sd-btn black" value="Check" />
         ${this.validated && this.message === '' ? html`<div class="alert-succesfull">&#128077;</div>` : nothing}
       </form>
       ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
