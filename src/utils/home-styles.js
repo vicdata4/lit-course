@@ -284,16 +284,15 @@ const mainStyles = css`
   .hall {
     display: flex;
     justify-content: center;
-    background-color: rgba(104, 132, 128, 0.97);
     height: var(--main-height);
   }
 
   .main-title {
-    color: white;
+    color: #595859;
     font-size: 40px;
     font-weight: 700;
     font-family: 'Raleway', sans-serif;
-    margin-top: 130px;
+    margin-top: 60px;
     margin-bottom: 0;
   }
 
@@ -315,8 +314,15 @@ const mainStyles = css`
     height: 100%;
   }
 
+  .main-container {
+    width: 100%;
+    padding: 0 30px;
+    max-width: 600px;
+  }
+
   @media (min-width: 900px) {
     .main-title {
+      margin-top: 130px;
       font-size: 50px;
     }
   }
@@ -328,7 +334,6 @@ const mainStyles = css`
 
     .main-container {
       width: 100%;
-      max-width: 600px;
       margin: 0 20%;
       padding: 0 120px;
     }
@@ -368,6 +373,10 @@ export const styles = css`
     line-height: 35px;
   }
 
+  .btn-container {
+    margin-bottom: 40px;
+  }
+
   .section-title.centered {
     text-align: center;
     margin: 70px 0;
@@ -390,20 +399,20 @@ export const styles = css`
     border-top-right-radius: 100%;
   }
 
-  .separator.sm {
+  .separator.c-sm {
     width: 80px;
     border-bottom-width: 1.4px;
   }
 
-  .separator.red {
+  .separator.c-red {
     border-bottom-color: #dc6260;
   }
 
-  .separator.blue {
+  .separator.c-blue {
     border-bottom-color: #60c8dc;
   }
 
-  .separator.green {
+  .separator.c-green {
     border-bottom-color: #c0dc60;
   }
 

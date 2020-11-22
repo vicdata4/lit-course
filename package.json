@@ -66,6 +66,7 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@seed-catalog/styles": "^1.0.0",
     "@vaadin/router": "^1.2.0",
     "ip": "^1.1.5",
     "lit-element": "^2.0.1",

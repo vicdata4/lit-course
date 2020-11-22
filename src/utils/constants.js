@@ -20,16 +20,16 @@ export const navList = [
     path: '/works',
   },
   {
-    name: 'Calendar',
-    path: '/calendar',
+    name: 'Testing',
+    path: '/',
+  },
+  {
+    name: 'Catalog',
+    path: '/',
   },
   {
     name: 'Searcher',
     path: '/searcher',
-  },
-  {
-    name: 'Pagination',
-    path: '/pagination',
   },
   {
     name: 'Form',

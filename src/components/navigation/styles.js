@@ -62,7 +62,7 @@ export const navigationStyles = css`
     margin: 0;
     padding: 0;
 
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.98);
     overflow: hidden;
     list-style: none;
     z-index: 1;
@@ -93,7 +93,7 @@ export const navigationStyles = css`
 
   .nav-link {
     text-decoration: none;
-    color: #fff;
+    color: black;
     cursor: pointer;
   }
 

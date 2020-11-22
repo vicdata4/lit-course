@@ -2,11 +2,12 @@ import { LitElement, html } from 'lit-element';
 import { material } from '../utils/fonts';
 import { styles } from '../utils/home-styles.js';
 import { html5Svg, css3Svg, jsSvg, githubSvg, storybook } from '../utils/svg-icons';
+import { seedStyle } from '@seed-catalog/styles';
 import '../components/navigation/navigation-wc';
 
 class HomeView extends LitElement {
   static get styles() {
-    return [material, styles];
+    return [material, styles, seedStyle];
   }
 
   renderMainSection() {
@@ -14,12 +15,22 @@ class HomeView extends LitElement {
       <section aria-label="Web design best practices" tabindex="0">
         <div class="hall">
           <div class="main-container">
-            <h1 class="main-title">WEB DESIGN<br />BEST PRACTICES</h1>
+            <h1 class="main-title">Frontend <br />Architecture</h1>
             <hr class="separator separator-main" />
-            <div class="main-icons-container">
-              <span class="material-icons main-icon">touch_app</span>
-              <span class="material-icons main-icon">star_border</span>
+            <div class="btn-container">
+              <button class="sd-btn-mix black"><i class="material-icons">check</i> Testing</button>
+              <button class="sd-btn-mix blue-mate"><i class="material-icons">view_quilt</i> WC</button>
+              <button class="sd-btn-mix green-mate"><i class="material-icons">style</i> Catalog</button>
+              <button class="sd-btn-mix"><i class="material-icons">check</i> Design</button>
             </div>
+            <p>
+              Learn about Web Components, testing, routing, formatting standards, coding conventions and best tools
+              about frontend development.
+            </p>
+            <p>
+              Clone the project from
+              <a href="https://github.com/vicdata4/lit-course" class="github_link" target="_blank">Github</a>
+            </p>
           </div>
         </div>
       </section>
@@ -37,7 +48,7 @@ class HomeView extends LitElement {
               HTML5 is a software solution stack that defines the properties and behaviors of
               <b class="card-decorator">web page content</b> by implementing a markup-based pattern to it
             </p>
-            <hr class="separator sm red" />
+            <hr class="separator c-sm c-red" />
           </div>
           <div class="tech-card" aria-label="CSS3" tabindex="0">
             ${css3Svg}
@@ -46,7 +57,7 @@ class HomeView extends LitElement {
               <b class="card-decorator">presentation</b>
               of a document written in a markup language like HTML
             </p>
-            <hr class="separator sm blue" />
+            <hr class="separator c-sm c-blue" />
           </div>
           <div class="tech-card" aria-label="Javascript" tabindex="0">
             ${jsSvg}
@@ -55,7 +66,7 @@ class HomeView extends LitElement {
               <b class="card-decorator">ECMAScript specification</b>. JavaScript is high-level, often just-in-time
               compiled, and multi-paradigm
             </p>
-            <hr class="separator sm green" />
+            <hr class="separator c-sm c-green" />
           </div>
         </div>
       </section>
@@ -73,7 +84,7 @@ class HomeView extends LitElement {
               <button type="button"><i class="material-icons share-purple">share</i></button>
             </div>
           </div>
-          <hr class="separator sm green" />
+          <hr class="separator c-sm green" />
           <p class="info-text" tabindex="0">
             This project includes a <b>responsive web layout</b> following best practices about presentation, layout and
             accessibility using HTML5 and CSS3. <br /><br />
