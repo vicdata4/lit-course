@@ -25,13 +25,11 @@ class FormPetition extends LitElement {
     this.cliente = '';
     this.candidato = '';
     this.publicado = false;
-    this.index = null;
   }
 
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('set-petition', async (e) => {
-      this.index = e.detail.index;
       this.id = e.detail.id;
       this.titulo = e.detail.titulo;
       this.descripcion = e.detail.descripcion;
@@ -43,7 +41,7 @@ class FormPetition extends LitElement {
     });
   }
 
-  sendPeticion() {
+  addPetition() {
     const inputTitulo = this.shadowRoot.querySelector('#peticionTitulo');
     const inputDescripcion = this.shadowRoot.querySelector('#peticionDescripcion');
     const inputPublicar = this.shadowRoot.querySelector('#peticionPublicar');
@@ -52,7 +50,7 @@ class FormPetition extends LitElement {
     const inputId = this.shadowRoot.querySelector('#petId');
 
     if (inputTitulo.value.length > 0 && inputDescripcion.value.length > 0) {
-      const event = new CustomEvent('send-petition', {
+      const event = new CustomEvent('add-petition', {
         detail: {
           id: new Date().valueOf(),
           titulo: inputTitulo.value,
@@ -67,6 +65,7 @@ class FormPetition extends LitElement {
       });
 
       this.dispatchEvent(event);
+
       inputTitulo.value = '';
       inputDescripcion.value = '';
       inputPublicar.checked = false;
@@ -80,14 +79,14 @@ class FormPetition extends LitElement {
     }
   }
 
-  deletePetition(i) {
-    if (i === null) {
+  deletePetition(id) {
+    if (id === '') {
       this.alertMessage = true;
       this.message = '¡Seleciona una petición!';
     } else {
       const event = new CustomEvent('delete-petition', {
         detail: {
-          index: i,
+          id: id,
         },
         bubbles: true,
         composed: true,
@@ -107,12 +106,12 @@ class FormPetition extends LitElement {
       inputCliente.value = '';
       inputCandidato.value = '';
       inputId.value = '';
-      this.index = null;
+      this.id = '';
     }
   }
 
-  updatePetition(i) {
-    if (i === null) {
+  updatePetition(id) {
+    if (id === '') {
       this.alertMessage = true;
       this.message = '¡Seleciona una petición!';
     } else {
@@ -125,7 +124,7 @@ class FormPetition extends LitElement {
 
       const event = new CustomEvent('update-petition', {
         detail: {
-          index: i,
+          id: id,
           titulo: inputTitulo.value,
           descripcion: inputDescripcion.value,
           fecha: new Date(),
@@ -144,7 +143,7 @@ class FormPetition extends LitElement {
       inputCliente.value = '';
       inputCandidato.value = '';
       inputId.value = '';
-      this.index = null;
+      this.id = '';
     }
   }
 
@@ -157,7 +156,7 @@ class FormPetition extends LitElement {
       <div class="form">
         <div class="heading">
           <h1>Editar la entrada</h1>
-          <button id="addBtn" class="addBtn" @click="${() => this.sendPeticion()}">AÑADIR NUEVO</button>
+          <button id="addBtn" class="addBtn" @click="${() => this.addPetition()}">AÑADIR NUEVO</button>
         </div>
         <div class="petitionForm">
           <input type="hidden" id="petId" name="petId" value="${this.id}" />
@@ -185,16 +184,12 @@ class FormPetition extends LitElement {
               <p class="contentArea">Fecha de publicación: <b>${dateFormatter(this.fecha).dateHour}</b></p>
               <div class="postFoot">
                 <div class="foot-left">
-                  <a
-                    id="deleteBtn"
-                    class="deleteBtn"
-                    style="color: red"
-                    @click="${() => this.deletePetition(this.index)}"
+                  <a id="deleteBtn" class="deleteBtn" style="color: red" @click="${() => this.deletePetition(this.id)}"
                     >Mover a la papelera</a
                   >
                 </div>
                 <div class="foot-right">
-                  <button id="updateBtn" class="updateBtn" @click="${() => this.updatePetition(this.index)}">
+                  <button id="updateBtn" class="updateBtn" @click="${() => this.updatePetition(this.id)}">
                     ACTUALIZAR
                   </button>
                 </div>

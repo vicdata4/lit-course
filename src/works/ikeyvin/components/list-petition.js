@@ -3,6 +3,7 @@ import { nothing } from 'lit-html';
 import { dateFormatter } from '../utils/functions';
 import './form-petition';
 import { tablePeticion, modalPopup } from '../utils/costum-css';
+import { getInfoPetitions } from '../utils/api/api-request.js';
 
 class ListPetition extends LitElement {
   static get styles() {
@@ -18,11 +19,25 @@ class ListPetition extends LitElement {
 
   constructor() {
     super();
-    this.listaPeticiones = JSON.parse(window.localStorage.getItem('list-peticion'));
+    this.listaPeticiones = [];
     this.popupOpen = false;
     this.popupPetTitulo = '';
     this.popupPetDescripcion = '';
     this.popupPetFecha = '';
+  }
+
+  async firstUpdated() {
+    await this.getList();
+  }
+
+  async getList() {
+    const request = await getInfoPetitions();
+    if (!request.error) {
+      this.listaPeticiones = [...request.data];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
   }
 
   showPetition(id) {

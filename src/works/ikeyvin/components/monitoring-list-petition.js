@@ -1,11 +1,12 @@
 import { LitElement, html } from 'lit-element';
 import { dateFormatter } from '../utils/functions';
 import './form-petition';
-import { tablePeticion, modalPopup } from '../utils/costum-css';
+import { tablePeticion } from '../utils/costum-css';
+import { getInfoPetitions, addPetition, deletePetition, updatePetition } from '../utils/api/api-request.js';
 
 class TestListPetition extends LitElement {
   static get styles() {
-    return [tablePeticion, modalPopup];
+    return [tablePeticion];
   }
 
   static get properties() {
@@ -16,51 +17,47 @@ class TestListPetition extends LitElement {
 
   constructor() {
     super();
-    this.listaPeticiones =
-      this.listaPeticiones === null ? [] : JSON.parse(window.localStorage.getItem('list-peticion'));
+    this.listaPeticiones = [];
+  }
+
+  async firstUpdated() {
+    await this.getList();
+  }
+
+  async getList() {
+    const request = await getInfoPetitions();
+    if (!request.error) {
+      this.listaPeticiones = [...request.data];
+    } else if (request.errorCode === 500) {
+      // eslint-disable-next-line no-alert
+      alert(request.error);
+    }
   }
 
   connectedCallback() {
     super.connectedCallback();
-    let storedPeticion = JSON.parse(window.localStorage.getItem('list-peticion'));
-    storedPeticion = storedPeticion === null ? [] : storedPeticion;
 
-    window.addEventListener('send-petition', async (e) => {
-      storedPeticion.push(e.detail);
-
-      localStorage.setItem('list-peticion', JSON.stringify(storedPeticion));
-      this.listaPeticiones = JSON.parse(window.localStorage.getItem('list-peticion'));
-      await this.requestUpdate();
+    window.addEventListener('add-petition', async (e) => {
+      const request = await addPetition(e.detail);
+      if (!request.error) await this.getList();
     });
 
     window.addEventListener('delete-petition', async (e) => {
-      const array = storedPeticion;
-      array.splice(e.detail.index, 1);
-      localStorage.setItem('list-peticion', JSON.stringify(storedPeticion));
-      this.listaPeticiones = [...array];
-      await this.requestUpdate();
+      const request = await deletePetition(e.detail);
+      if (!request.error) await this.getList();
     });
 
     window.addEventListener('update-petition', async (e) => {
-      const array = storedPeticion;
-      array[e.detail.index].titulo = e.detail.titulo;
-      array[e.detail.index].descripcion = e.detail.descripcion;
-      array[e.detail.index].fecha = e.detail.fecha;
-      array[e.detail.index].candidato = e.detail.candidato;
-      array[e.detail.index].cliente = e.detail.cliente;
-      array[e.detail.index].publicar = e.detail.publicar;
-      localStorage.setItem('list-peticion', JSON.stringify(storedPeticion));
-      this.listaPeticiones = [...array];
-      await this.requestUpdate();
+      const request = await updatePetition(e.detail);
+      if (!request.error) await this.getList();
     });
   }
 
   setPetition(id) {
-    this.listaPeticiones.map((peticion, i) => {
+    this.listaPeticiones.map((peticion) => {
       if (peticion.id === id) {
         const event = new CustomEvent('set-petition', {
           detail: {
-            index: i,
             id: peticion.id,
             titulo: peticion.titulo,
             descripcion: peticion.descripcion,

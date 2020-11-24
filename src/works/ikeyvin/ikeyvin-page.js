@@ -9,7 +9,7 @@ import './components/monitoring-list-petition.js';
 const components = {
   formPetition: () => html`<test-list-petition></test-list-petition></br><form-petition></form-petition>`,
   listPetition: () =>
-    html`<h1>Lista de peticiones</h1>
+    html`<h1>Lista de peticiones publicados</h1>
       <list-petition></list-petition>`,
 };
 
