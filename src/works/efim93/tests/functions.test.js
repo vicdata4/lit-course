@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 import { formatDate } from '../utils/functions';
 describe('Date functions', () => {
   const date = new Date();
-  date.setFullYear(2020, 11, 11);
+  date.setFullYear(2020, 10, 11);
   date.setHours(22);
   date.setMinutes(0);
 

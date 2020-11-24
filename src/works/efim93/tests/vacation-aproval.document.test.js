@@ -52,16 +52,6 @@ describe('Show part of array fnc & click on index buttons', async () => {
     expect(el.from).equal(10);
     expect(el.to).equal(20);
   });
-  it('Dispatch "change" event after change option', async () => {
-    const original = [...el.listaDatos];
-    const select = el.shadowRoot.querySelectorAll('select')[0];
-    select.value = 2;
-    const e = new Event('change');
-    select.dispatchEvent(e);
-    const newarray = el.listaDatos;
-    expect(newarray[0].estado).to.equal(2);
-    expect(original[0].fecha_estado).to.not.equal(newarray[0].fecha_estado);
-  });
 });
 
 describe('On clck on the buttons show part of array', async () => {
