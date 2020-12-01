@@ -53,7 +53,7 @@ class TestListPetition extends LitElement {
     });
   }
 
-  setPetition(id) {
+  async setPetition(id) {
     this.listaPeticiones.map((peticion) => {
       if (peticion.id === id) {
         const event = new CustomEvent('set-petition', {
@@ -72,6 +72,7 @@ class TestListPetition extends LitElement {
         this.dispatchEvent(event);
       }
     });
+    await this.updateComplete;
   }
 
   render() {

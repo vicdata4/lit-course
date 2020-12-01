@@ -79,7 +79,7 @@ class FormPetition extends LitElement {
     }
   }
 
-  deletePetition(id) {
+  async deletePetition(id) {
     if (id === '') {
       this.alertMessage = true;
       this.message = '¡Seleciona una petición!';
@@ -100,6 +100,7 @@ class FormPetition extends LitElement {
       const inputCandidato = this.shadowRoot.querySelector('#candiPet');
       const inputId = this.shadowRoot.querySelector('#petId');
 
+      await this.updateComplete;
       inputTitulo.value = '';
       inputDescripcion.value = '';
       inputPublicar.checked = false;
@@ -110,7 +111,7 @@ class FormPetition extends LitElement {
     }
   }
 
-  updatePetition(id) {
+  async updatePetition(id) {
     if (id === '') {
       this.alertMessage = true;
       this.message = '¡Seleciona una petición!';
@@ -137,6 +138,7 @@ class FormPetition extends LitElement {
       });
       this.dispatchEvent(event);
 
+      await this.updateComplete;
       inputTitulo.value = '';
       inputDescripcion.value = '';
       inputPublicar.checked = false;
