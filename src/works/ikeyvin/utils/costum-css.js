@@ -210,9 +210,14 @@ export const formPeticion = css`
     border-color: #7e8993;
   }
 
+  a {
+    cursor: pointer;
+  }
+
   .contentArea {
     padding: 15px;
     color: #23282d;
+    font-size: 13px;
   }
 
   .updateBtn {
@@ -228,6 +233,7 @@ export const formPeticion = css`
     width: 100%;
     margin: 0;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
   }
 
   .subBtn {
@@ -247,8 +253,46 @@ export const formPeticion = css`
   }
 
   .alertMessage {
-    color: red;
-    font-size: 12px;
+    font-family: Roboto, 'Open Sans';
+    letter-spacing: 0.5px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 200px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 10px 10px;
+  }
+  .closebtn {
+    margin-left: 15px;
+    color: black;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .closebtn:hover {
+    color: gray;
+  }
+  .message {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
+  }
+
+  .alertMessage.active {
+    display: block;
   }
 
   @media only screen and (max-width: 600px) {
@@ -267,7 +311,7 @@ export const formPeticion = css`
     .petitionForm {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 55vh 60vh;
+      grid-template-rows: 55vh 70vh;
     }
 
     .column-a2 {
@@ -291,7 +335,7 @@ export const formPeticion = css`
     .petitionForm {
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 72vh 80vh;
+      grid-template-rows: 72vh 85vh;
     }
 
     .column-a2 {
@@ -343,6 +387,21 @@ export const tablePeticion = css`
 
   .table-container tr:nth-of-type(odd) {
     background: #eee;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .table-container td:nth-child(4),
+    .table-container th:nth-child(4),
+    .table-container td:nth-child(3),
+    .table-container th:nth-child(3),
+    .table-container td:nth-child(5),
+    .table-container th:nth-child(5) {
+      display: none;
+    }
   }
 
   @media (max-width: 300px) {
