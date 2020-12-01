@@ -6,7 +6,7 @@
   "scripts": {
     "test-watch": "karma start --browsers=Chrome --single-run=false --auto-watch",
     "test": "karma start --coverage",
-    "test:e2e": "mocha --recursive --timeout 10000 ./e2e/tests/*.js",
+    "test:e2e": "mocha --recursive --timeout 10000 ./e2e/tests/efim93/*.js",
     "test:google": "mocha --recursive --timeout 10000 ./e2e/tests/google-example/*.js",
     "dev": "node ./scripts/dev.js",
     "build": "node ./scripts/build.js",
