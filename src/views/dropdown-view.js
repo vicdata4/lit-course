@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import '../components/common-header';
-import '../components/dropdown-component'
+import '../components/dropdown-component';
 class DropdownView extends LitElement {
   static get styles() {
     return [commonStyles];
@@ -12,9 +12,7 @@ class DropdownView extends LitElement {
       <common-header></common-header>
       <section class="container">
         <dropdown-component></dropdown-component>
-
       </section>
-      
     `;
   }
 }
