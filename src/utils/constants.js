@@ -39,6 +39,10 @@ export const navList = [
     name: 'Data Binding',
     path: '/data-binding',
   },
+  {
+    name: 'Dropdown',
+    path: '/dropdown-component',
+  },
   /* {
     name: 'List Example',
     path: '/list-example',
