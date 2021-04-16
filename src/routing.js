@@ -9,12 +9,14 @@ import './views/works-view';
 import './views/searcher-view';
 import './views/storybook-view';
 import './works';
+import './views/dropdown-view';
 
 export const routing = (outlet) => {
   const router = new Router(outlet);
 
   var routes = [
     { path: '/', component: 'home-view' },
+    { path: '/dropdown-component', component: 'dropdown-view' },
     { path: '/form-validation', component: 'form-example-view' },
     { path: '/data-binding', component: 'data-binding' },
     { path: '/works', component: 'works-view' },
