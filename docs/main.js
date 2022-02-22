@@ -8737,13 +8737,18 @@ const routing = (outlet) => {
   const router = new Router(outlet);
 
   var routes = [
-    { path: '/', component: 'home-view' },
-    { path: '/form-validation', component: 'form-example-view' },
-    { path: '/data-binding', component: 'data-binding' },
-    { path: '/works', component: 'works-view' },
-    { path: '/searcher', component: 'searcher-view' },
-    { path: '/storybook', component: 'storybook-view' },
-    { path: '(.*)', component: 'not-found-view' },
+    {
+      path: '/lit-course/',
+      children: [
+        { path: '', component: 'home-view' },
+        { path: '/form-validation', component: 'form-example-view' },
+        { path: '/data-binding', component: 'data-binding' },
+        { path: '/works', component: 'works-view' },
+        { path: '/searcher', component: 'searcher-view' },
+        { path: '/storybook', component: 'storybook-view' },
+        { path: '(.*)', component: 'not-found-view' },
+      ],
+    },
   ];
 
   list.forEach((user) => {
