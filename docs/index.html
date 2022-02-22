@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="LitCourse">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="assets/material/material-icons.css">-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <title>LitCourse</title>
+    <link rel="icon" href="/assets/favicon.png">
+    <style type="text/css">
+        @font-face {
+            font-family: 'Raleway';
+            src: url('assets/fonts/Raleway-Bold.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+        }  
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Muli', sans-serif;
+        }
+    </style>
+    <script>
+        window.process = {
+            env: {
+                NODE_ENV: 'production'
+            }
+        };
+    </script>
+</head>
+<body>
+    <app-shell></app-shell>
+    <script src="./main.js"></script>
+</body>
+</html>
