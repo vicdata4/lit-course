@@ -1,4 +1,4 @@
-![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo-readme.png?v=4&s=100)
+![](https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo-md.png?v=4&s=100)
 
 ## Dependencies
 - [Rollup.js](https://rollupjs.org) Module bundler
