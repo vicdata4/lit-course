@@ -16,6 +16,10 @@ export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sa
 
 export const navList = [
   {
+    name: 'Home',
+    path: '/',
+  },
+  {
     name: 'Works',
     path: '/works',
   },
@@ -34,9 +38,5 @@ export const navList = [
   {
     name: 'Catalog',
     path: 'https://vicdata4.github.io/seed-catalog/',
-  },
-  {
-    name: 'Testing',
-    path: '/',
   },
 ];
