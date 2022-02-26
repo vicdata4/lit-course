@@ -1,6 +1,6 @@
 <img src="https://cdn.jsdelivr.net/gh/vicdata4/lit-course/assets/images/logo-md.png" width="100"/>
 
-## Create a new user
+## Create a new profile
 
 Add a profile name in the profiles.json array
 
