@@ -2,7 +2,7 @@
 
 ## Create a new user
 
-Add a user name in the users.json array
+Add a user name in the profiles.json array
 
 ```json
 {

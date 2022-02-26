@@ -5,7 +5,7 @@ const json = require('@rollup/plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
 const progress = require('rollup-plugin-progress');
 const del = require('rollup-plugin-delete');
-const users = require('../../src/profiles/users.json');
+const users = require('../../src/profiles/profiles.json');
 
 const userAssetsList = () => {
   const obj = {};

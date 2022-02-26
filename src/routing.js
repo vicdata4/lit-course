@@ -1,5 +1,5 @@
 import { Router } from '@vaadin/router';
-import * as users from './profiles/users';
+import * as users from './profiles/profiles.json';
 
 import './views/home-view';
 import './views/form-validation-view';

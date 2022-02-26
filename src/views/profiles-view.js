@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { navigatorStyles } from '../utils/custom-styles';
 import { styles } from '../utils/home-styles';
-import * as users from '../profiles/users.json';
+import * as users from '../profiles/profiles.json';
 import '../components/common-header';
 import '../components/navigation/navigation-wc.js';
 

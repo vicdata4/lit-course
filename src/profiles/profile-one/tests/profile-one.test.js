@@ -5,7 +5,7 @@ describe('User page', () => {
   let el;
 
   before(async () => {
-    const component = html`<my-user-page></my-user-page>`;
+    const component = html`<profile-one-page></profile-one-page>`;
 
     el = await fixture(component);
     await el.updateComplete;
