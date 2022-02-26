@@ -1,6 +1,6 @@
 import { storiesOf } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
-import '../src/components/form-example';
+import '../src/components/form-validation';
 
 storiesOf('Components', module)
   .add('Form example', () => html`
@@ -13,16 +13,16 @@ storiesOf('Components', module)
         background-color: #bb8b62;
       }
 
-      form-example {
+      form-validation {
         display: block;
         margin-bottom: 20px;
       }
     </style>
    
-    <form-example></form-example>
-    <form-example .validated="${true}"></form-example>
+    <form-validation></form-validation>
+    <form-validation .validated="${true}"></form-validation>
 
     <div class="light-box">
-      <form-example .message="${'Test message'}"></form-example>
+      <form-validation .message="${'Test message'}"></form-validation>
     </div>
   `);

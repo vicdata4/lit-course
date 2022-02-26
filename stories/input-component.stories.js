@@ -1,6 +1,6 @@
 import { storiesOf } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
-import '../src/components/input-component';
+import '../src/components/input-form';
 
 const data = [
     { message: 'message 1', date: new Date() },
@@ -13,5 +13,5 @@ const data = [
 
 storiesOf('Components', module)
   .add('Input component', () => html`
-    <input-component>Submit</input-component>
+    <input-form>Submit</input-form>
   `);
