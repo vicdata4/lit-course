@@ -74,3 +74,10 @@ Storybook
 ```bash
 npm run storybook
 ```
+
+
+Also profiles can be added via configuration.
+
+Profiles is focused on students and provides you an easy way to create new content improving the organization of code via `profiles`.
+
+Learn how to create a new profiles [here](https://github.com/vicdata4/lit-course/tree/master/src/profiles)
