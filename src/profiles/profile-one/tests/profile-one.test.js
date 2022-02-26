@@ -1,5 +1,5 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../my-user-page.js';
+import '../profile-one-page.js';
 
 describe('User page', () => {
   let el;

@@ -1,11 +1,11 @@
 import { LitElement, html, css } from 'lit-element';
 import { navigatorStyles } from '../utils/custom-styles';
 import { styles } from '../utils/home-styles';
-import * as users from '../works/users.json';
+import * as users from '../profiles/users.json';
 import '../components/common-header';
 import '../components/navigation/navigation-wc.js';
 
-class WorksView extends LitElement {
+class ProfilesView extends LitElement {
   static get styles() {
     return [
       styles,
@@ -36,7 +36,7 @@ class WorksView extends LitElement {
       <nav>
         <ul class="menu-list">
           ${users.list.map(
-            (user) => html` <li><a href="/user/${user.toLowerCase()}" class="user-link">${user}</a></li> `,
+            (user) => html` <li><a href="/profiles/${user.toLowerCase()}" class="user-link">${user}</a></li> `,
           )}
         </ul>
       </nav>
@@ -44,4 +44,4 @@ class WorksView extends LitElement {
   }
 }
 
-window.customElements.define('works-view', WorksView);
+window.customElements.define('profiles-view', ProfilesView);

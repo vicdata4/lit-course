@@ -24,7 +24,7 @@ const components = {
     ></list-component>`,
 };
 
-class UserPage extends LitElement {
+class ProfileOnePage extends LitElement {
   static get styles() {
     return [commonStyles];
   }
@@ -48,7 +48,7 @@ class UserPage extends LitElement {
     return html`
       <common-header></common-header>
       <section class="container">
-        <work-header>Test user <img src="assets/user/test_img.png" /></work-header>
+        <work-header>profile-one page <img src="assets/user/test_img.png" /></work-header>
         <div class="common-list">
           ${Object.keys(components).map(
             (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
@@ -60,4 +60,4 @@ class UserPage extends LitElement {
   }
 }
 
-window.customElements.define('my-user-page', UserPage);
+window.customElements.define('profile-one-page', ProfileOnePage);
