@@ -35,7 +35,9 @@ class WorksView extends LitElement {
       <navigation-wc></navigation-wc>
       <nav>
         <ul class="menu-list">
-          ${users.list.map((user) => html` <li><a href="/${user.toLowerCase()}" class="user-link">${user}</a></li> `)}
+          ${users.list.map(
+            (user) => html` <li><a href="/user/${user.toLowerCase()}" class="user-link">${user}</a></li> `,
+          )}
         </ul>
       </nav>
     `;

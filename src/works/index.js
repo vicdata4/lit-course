@@ -1,1 +1,1 @@
-import './user/user-page';
+import './my-user/my-user-page.js';

@@ -27,16 +27,18 @@ class InputFrom extends LitElement {
   }
 
   sendData(e) {
-    const inputValue = this.shadowRoot.querySelector('#message');
-    if (inputValue.value) {
+    const input = this.shadowRoot.querySelector('#message');
+
+    if (input.value) {
       const event = new CustomEvent('my-event', {
         detail: {
-          message: inputValue.value,
+          message: input.value,
           date: new Date(),
         },
       });
+
       this.dispatchEvent(event);
-      inputValue.value = '';
+      input.value = '';
     } else {
       alert('Empty field');
     }

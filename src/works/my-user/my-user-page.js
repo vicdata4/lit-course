@@ -60,4 +60,4 @@ class UserPage extends LitElement {
   }
 }
 
-window.customElements.define('user-page', UserPage);
+window.customElements.define('my-user-page', UserPage);
