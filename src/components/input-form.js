@@ -48,7 +48,7 @@ class InputFrom extends LitElement {
     return html`
       <form @submit="${this.sendData}">
         <input id="message" type="text" class="input-text" placeholder="write here.." />
-        <button type="submit" class="btn-submit"><slot></slot></button>
+        <button type="submit" @click="${this.sendData}" class="btn-submit"><slot></slot></button>
       </form>
     `;
   }
