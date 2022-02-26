@@ -5,19 +5,20 @@ class CommonHeader extends LitElement {
     return css`
       :host {
         --dark-color: #3c3b3b;
+        --header-background: rgb(50, 50, 50);
+        --header-height: 120px;
       }
 
       header {
         display: flex;
-        justify-content: center;
         align-items: center;
-        padding: 20px 30px;
-        color: white;
-        background-color: var(--dark-color);
+        justify-content: center;
+        background-color: var(--header-background);
+        height: var(--header-height);
       }
 
       .logo {
-        width: 50px;
+        width: 155px;
       }
 
       .title {
@@ -30,7 +31,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <a href="/"><img class="logo" src="/assets/images/polymer.png" /></a>
+        <a href="/"><img class="logo" src="assets/images/logo.png" alt="logo" /></a>
       </header>
     `;
   }

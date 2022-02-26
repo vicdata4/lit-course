@@ -13,7 +13,15 @@ const components = {
         alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}"
       >Submit</input-component
     >`,
-  listComponent: () => html`<list-component .list="${['Message 1', 'Message 2']}"></list-component>`,
+  listComponent: () =>
+    html`<list-component
+      .list="${[
+        { message: 'Message 1', date: new Date() },
+        { message: 'Message 2', date: new Date() },
+      ]}"
+      @delete-event="${(e) =>
+        alert(`Dispatched custom event called "delete-event" with the following index: ${e.detail.index}`)}"
+    ></list-component>`,
 };
 
 class UserPage extends LitElement {

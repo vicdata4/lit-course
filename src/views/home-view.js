@@ -4,6 +4,7 @@ import { styles } from '../utils/home-styles.js';
 import { html5Svg, css3Svg, jsSvg, githubSvg, storybook } from '../utils/svg-icons';
 import { seedStyle } from '@seed-catalog/styles';
 import '../components/navigation/navigation-wc';
+import '../components/common-header.js';
 
 class HomeView extends LitElement {
   static get styles() {
@@ -15,7 +16,7 @@ class HomeView extends LitElement {
       <section aria-label="Web design best practices" tabindex="0">
         <div class="hall">
           <div class="main-container">
-            <h1 class="main-title">Frontend <br />Architecture</h1>
+            <h1 class="main-title">Frontend <br />Development</h1>
             <hr class="separator separator-main" />
             <div class="btn-container">
               <button class="sd-btn-mix black"><i class="material-icons">check</i> Testing</button>
@@ -105,7 +106,7 @@ class HomeView extends LitElement {
     return html`
       <section aria-label="Storybook" tabindex="0">
         <div class="information">
-          <a href="/storybook" class="github_link">${storybook}</a>
+          <a href="#" class="github_link">${storybook}</a>
         </div>
       </section>
     `;
@@ -192,9 +193,7 @@ class HomeView extends LitElement {
 
   render() {
     return html`
-      <header>
-        <img class="logo" src="assets/images/logo.png" alt="logo" />
-      </header>
+      <common-header></common-header>
       <navigation-wc></navigation-wc>
       <main>
         ${this.renderMainSection()} ${this.renderTechnologies()} ${this.renderDesign()} ${this.renderDisciplines()}

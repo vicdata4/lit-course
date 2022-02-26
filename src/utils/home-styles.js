@@ -266,20 +266,6 @@ const informationSectionStyles = css`
   }
 `;
 
-const headerStyles = css`
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--header-background);
-  }
-
-  .logo {
-    width: 155px;
-    height: auto;
-  }
-`;
-
 const mainStyles = css`
   .hall {
     display: flex;
@@ -428,11 +414,9 @@ export const styles = css`
       line-height: unset;
     }
   }
-
-  ${headerStyles}
   ${mainStyles}
-    ${technologiesSectionStyles}
-    ${informationSectionStyles}
-    ${areaSectionStyles}
-    ${footerStyles}
+  ${technologiesSectionStyles}
+  ${informationSectionStyles}
+  ${areaSectionStyles}
+  ${footerStyles}
 `;

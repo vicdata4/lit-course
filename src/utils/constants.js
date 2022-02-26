@@ -20,12 +20,8 @@ export const navList = [
     path: '/works',
   },
   {
-    name: 'Testing',
-    path: '/',
-  },
-  {
-    name: 'Catalog',
-    path: 'http://seed-catalog.com/',
+    name: 'Data Binding',
+    path: '/data-binding',
   },
   {
     name: 'Searcher',
@@ -36,11 +32,11 @@ export const navList = [
     path: '/form-validation',
   },
   {
-    name: 'Data Binding',
-    path: '/data-binding',
+    name: 'Catalog',
+    path: 'https://vicdata4.github.io/seed-catalog/',
   },
-  /* {
-    name: 'List Example',
-    path: '/list-example',
-  }, */
+  {
+    name: 'Testing',
+    path: '/',
+  },
 ];
