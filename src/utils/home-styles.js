@@ -174,6 +174,10 @@ const footerStyles = css`
     font-size: 15px;
   }
 
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+
   .footer-line {
     width: 100%;
     text-align: center;

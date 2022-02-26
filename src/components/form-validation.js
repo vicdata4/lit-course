@@ -5,7 +5,7 @@ import { emailValidator } from '../utils/functions';
 import { seedStyle } from '@seed-catalog/styles';
 import '../components/common-header';
 
-class FormExample extends LitElement {
+class FormValidation extends LitElement {
   static get styles() {
     return [
       seedStyle,
@@ -92,4 +92,4 @@ class FormExample extends LitElement {
   }
 }
 
-window.customElements.define('form-example', FormExample);
+window.customElements.define('form-validation', FormValidation);

@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 import { spinner } from '../../utils/svg-icons';
 import { nothing } from 'lit-html';
-import '../input-component';
+import '../input-form';
 import './searcher-list';
 
 const url = 'https://hn.algolia.com/api/v1/search?query=';
@@ -36,7 +36,7 @@ class NewsSearcher extends LitElement {
         color: #0489aa;
       }
 
-      input-component {
+      input-form {
         display: block;
         margin-bottom: 20px;
       }
@@ -110,7 +110,7 @@ class NewsSearcher extends LitElement {
   render() {
     return html`
       <div class="centered">
-        <input-component @my-event="${this.searchNews}">Search posts</input-component>
+        <input-form @my-event="${this.searchNews}">Search posts</input-form>
       </div>
       ${!this.showSpinner
         ? html` <div class="search-info">

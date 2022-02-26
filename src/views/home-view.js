@@ -185,7 +185,7 @@ class HomeView extends LitElement {
           <li><a href="#" class="footer-link">Npm</a></li>
         </ul>
         <div class="footer-line" aria-label="Website links" tabindex="0">
-          <a href="#" class="footer-link">lit-course.site</a>
+          <a href="#" class="footer-link">lit-course</a>
         </div>
       </footer>
     `;

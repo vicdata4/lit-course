@@ -2,10 +2,10 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../utils/custom-styles';
 import { styles } from '../utils/home-styles';
 import '../components/common-header';
-import '../components/form-example';
+import '../components/form-validation';
 import '../components/navigation/navigation-wc.js';
 
-class FormExampleView extends LitElement {
+class FormValidationView extends LitElement {
   static get styles() {
     return [styles, commonStyles];
   }
@@ -15,10 +15,10 @@ class FormExampleView extends LitElement {
       <common-header></common-header>
       <navigation-wc></navigation-wc>
       <section class="container">
-        <form-example></form-example>
+        <form-validation></form-validation>
       </section>
     `;
   }
 }
 
-window.customElements.define('form-example-view', FormExampleView);
+window.customElements.define('form-validation-view', FormValidationView);

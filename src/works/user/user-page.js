@@ -3,15 +3,15 @@ import { LitElement, html } from 'lit-element';
 import { commonStyles } from '../../utils/custom-styles';
 import '../../components/common-header';
 import '../../components/work-header';
-import '../../components/input-component';
+import '../../components/input-form';
 import '../../components/list-component';
 
 const components = {
   inputComponent: () =>
-    html`<input-component
+    html`<input-form
       @my-event="${(e) =>
         alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}"
-      >Submit</input-component
+      >Submit</input-form
     >`,
   listComponent: () =>
     html`<list-component

@@ -20,10 +20,6 @@ export const navList = [
     path: '/',
   },
   {
-    name: 'Works',
-    path: '/works',
-  },
-  {
     name: 'Data Binding',
     path: '/data-binding',
   },
@@ -32,8 +28,12 @@ export const navList = [
     path: '/searcher',
   },
   {
-    name: 'Form',
-    path: '/form-validation',
+    name: 'Validation',
+    path: '/validation',
+  },
+  {
+    name: 'Works',
+    path: '/works',
   },
   {
     name: 'Catalog',

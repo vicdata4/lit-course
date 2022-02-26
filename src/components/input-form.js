@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { LitElement, html, css } from 'lit-element';
 
-class InputComponent extends LitElement {
+class InputFrom extends LitElement {
   static get styles() {
     return [
       css`
@@ -26,7 +26,7 @@ class InputComponent extends LitElement {
     ];
   }
 
-  sendData() {
+  sendData(e) {
     const inputValue = this.shadowRoot.querySelector('#message');
     if (inputValue.value) {
       const event = new CustomEvent('my-event', {
@@ -40,14 +40,18 @@ class InputComponent extends LitElement {
     } else {
       alert('Empty field');
     }
+
+    e.preventDefault();
   }
 
   render() {
     return html`
-      <input id="message" type="text" class="input-text" placeholder="write here.." />
-      <button class="btn-submit" @click="${this.sendData}"><slot></slot></button>
+      <form @submit="${this.sendData}">
+        <input id="message" type="text" class="input-text" placeholder="write here.." />
+        <button type="submit" class="btn-submit"><slot></slot></button>
+      </form>
     `;
   }
 }
 
-window.customElements.define('input-component', InputComponent);
+window.customElements.define('input-form', InputFrom);
