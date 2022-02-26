@@ -7,7 +7,6 @@
 - [Karma](https://karma-runner.github.io/) Test runner
 - [Mocha](https://mochajs.org/) Test framework
 - [Chai](https://www.chaijs.com/) Assertion library
-- [Selenium](https://www.selenium.dev/documentation/en/) E2E testing
 - [Vaadin](https://www.npmjs.com/package/@vaadin/router) Routing
 - [Redux](https://redux.js.org/) State Container
 - [ESLint](https://eslint.org) Linter tool
@@ -54,12 +53,6 @@ fix(scope): some message
 
 ```bash
 npm run test
-```
-
-[E2E](https://github.com/vicdata4/lit-course/tree/master/e2e)
-
-```bash
-npm run test:e2e
 ```
 
 ESLint 
