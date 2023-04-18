@@ -174,6 +174,10 @@ const footerStyles = css`
     font-size: 15px;
   }
 
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+
   .footer-line {
     width: 100%;
     text-align: center;
@@ -263,20 +267,6 @@ const informationSectionStyles = css`
     .information {
       padding: 50px 20%;
     }
-  }
-`;
-
-const headerStyles = css`
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--header-background);
-  }
-
-  .logo {
-    width: 155px;
-    height: auto;
   }
 `;
 
@@ -428,11 +418,9 @@ export const styles = css`
       line-height: unset;
     }
   }
-
-  ${headerStyles}
   ${mainStyles}
-    ${technologiesSectionStyles}
-    ${informationSectionStyles}
-    ${areaSectionStyles}
-    ${footerStyles}
+  ${technologiesSectionStyles}
+  ${informationSectionStyles}
+  ${areaSectionStyles}
+  ${footerStyles}
 `;

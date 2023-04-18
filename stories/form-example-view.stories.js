@@ -1,6 +1,6 @@
 import { storiesOf } from '@open-wc/demoing-storybook';
 import { html } from 'lit-html';
-import '../src/views/form-example-view';
+import '../src/views/form-validation-view';
 
 storiesOf('Views', module)
   .add('Form example', () => html`
@@ -13,5 +13,5 @@ storiesOf('Views', module)
             font-family: 'Muli', sans-serif;
         }
     </style>
-    <form-example-view></form-example-view>
+    <form-validation-view></form-validation-view>
   `);

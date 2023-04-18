@@ -1,12 +1,12 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../src/components/form-example.js';
+import '../src/components/form-validation.js';
 
 describe('Form validation', () => {
   let el, email, password, submit;
 
   before(async() => {
     const component = html`
-      <form-example></form-example>
+      <form-validation></form-validation>
     `;
 
     el = await fixture(component);

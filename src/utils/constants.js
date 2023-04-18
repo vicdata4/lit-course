@@ -16,31 +16,27 @@ export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sa
 
 export const navList = [
   {
-    name: 'Works',
-    path: '/works',
-  },
-  {
-    name: 'Testing',
+    name: 'Home',
     path: '/',
   },
   {
-    name: 'Catalog',
-    path: 'http://seed-catalog.com/',
+    name: 'Profiles',
+    path: '/profiles',
+  },
+  {
+    name: 'Data Binding',
+    path: '/data-binding',
   },
   {
     name: 'Searcher',
     path: '/searcher',
   },
   {
-    name: 'Form',
-    path: '/form-validation',
+    name: 'Validation',
+    path: '/validation',
   },
   {
-    name: 'Data Binding',
-    path: '/data-binding',
+    name: 'Catalog',
+    path: 'https://vicdata4.github.io/seed-catalog/',
   },
-  /* {
-    name: 'List Example',
-    path: '/list-example',
-  }, */
 ];

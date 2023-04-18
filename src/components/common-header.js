@@ -1,23 +1,20 @@
 import { LitElement, html, css } from 'lit-element';
-
+import { logo } from '../utils/svg-icons.js';
 class CommonHeader extends LitElement {
   static get styles() {
     return css`
       :host {
         --dark-color: #3c3b3b;
+        --header-background: rgb(50, 50, 50);
+        --header-height: 120px;
       }
 
       header {
         display: flex;
-        justify-content: center;
         align-items: center;
-        padding: 20px 30px;
-        color: white;
-        background-color: var(--dark-color);
-      }
-
-      .logo {
-        width: 50px;
+        justify-content: center;
+        background-color: var(--header-background);
+        height: var(--header-height);
       }
 
       .title {
@@ -30,7 +27,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <a href="/"><img class="logo" src="/assets/images/polymer.png" /></a>
+        <a href="/">${logo}</a>
       </header>
     `;
   }

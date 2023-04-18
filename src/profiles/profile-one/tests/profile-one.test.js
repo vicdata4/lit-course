@@ -1,11 +1,11 @@
 import { expect, fixture, html } from '@open-wc/testing';
-import '../user-page.js';
+import '../profile-one-page.js';
 
 describe('User page', () => {
   let el;
 
   before(async () => {
-    const component = html`<user-page></user-page>`;
+    const component = html`<profile-one-page></profile-one-page>`;
 
     el = await fixture(component);
     await el.updateComplete;

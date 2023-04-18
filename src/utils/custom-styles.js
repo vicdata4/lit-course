@@ -77,4 +77,9 @@ export const commonStyles = css`
   .common-btn:hover {
     background-color: #f1f1f1;
   }
+
+  .common-btn:focus {
+    background-color: grey;
+    color: white;
+  }
 `;

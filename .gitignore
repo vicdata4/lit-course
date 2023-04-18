@@ -4,5 +4,6 @@
 /build
 /storybook-build
 /coverage
+/e2e
 debug.log
 nohup.out

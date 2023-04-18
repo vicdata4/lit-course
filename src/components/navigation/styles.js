@@ -97,6 +97,11 @@ export const navigationStyles = css`
     cursor: pointer;
   }
 
+  .logo {
+    height: 30px;
+    margin-left: 20px;
+  }
+
   .scroll-menu {
     position: fixed;
     top: -70px;

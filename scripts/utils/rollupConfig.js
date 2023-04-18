@@ -5,14 +5,14 @@ const json = require('@rollup/plugin-json');
 const resolve = require('rollup-plugin-node-resolve');
 const progress = require('rollup-plugin-progress');
 const del = require('rollup-plugin-delete');
-const users = require('../../src/works/users.json');
+const users = require('../../src/profiles/profiles.json');
 
 const userAssetsList = () => {
   const obj = {};
 
   users.list.forEach(user_ => {
     const user = user_.toLowerCase();
-    obj[`${folders.src}/works/${user}/assets`] = [`${folders.build_assets}/${user}`];
+    obj[`${folders.src}/profiles/${user}/assets`] = [`${folders.build_assets}/${user}`];
   });
 
   return obj;
