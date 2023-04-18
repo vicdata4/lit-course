@@ -3,10 +3,12 @@ import { commonStyles } from '../utils/custom-styles';
 import { store } from '../store/store';
 import { styles } from '../utils/home-styles';
 import { connect } from 'pwa-helpers';
-import { addNote, deleteNote } from '../store/actions/notes.actions.js';
 import '../components/input-form';
 import '../components/list-component';
 import '../components/navigation/navigation-wc.js';
+
+// eslint-disable-next-line no-unused-vars
+import { addNote, deleteNote } from '../store/actions/notes.actions.js';
 
 class DataBinding extends connect(store)(LitElement) {
   static get styles() {
@@ -20,11 +22,13 @@ class DataBinding extends connect(store)(LitElement) {
   }
 
   addMessage(e) {
-    store.dispatch(addNote(e.detail));
+    this.messageList = [...this.messageList, e.detail];
+    // store.dispatch(addNote(e.detail));
   }
 
   deleteMessage(e) {
-    store.dispatch(deleteNote(e.detail.index));
+    this.messageList = this.messageList.filter((x, i) => i !== e.detail.index);
+    // store.dispatch(deleteNote(e.detail.index));
   }
 
   stateChanged(state) {
