@@ -3,6 +3,7 @@ import { navList } from '../../utils/constants';
 import { scrollMode } from '../../utils/functions';
 import { navigationStyles, transition } from './styles';
 import { material } from '../../utils/fonts';
+import { logo } from '../../utils/svg-icons.js';
 
 class NavigationWc extends LitElement {
   static get styles() {
@@ -104,7 +105,7 @@ class NavigationWc extends LitElement {
           )}
         </ul>
         <div class="scroll-menu">
-          <img class="logo" src="assets/images/logo.png" alt="logo" />
+          ${logo}
           <ul class="nav-list">
             ${navList.map(
               (info) =>

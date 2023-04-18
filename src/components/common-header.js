@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-
+import { logo } from '../utils/svg-icons.js';
 class CommonHeader extends LitElement {
   static get styles() {
     return css`
@@ -17,10 +17,6 @@ class CommonHeader extends LitElement {
         height: var(--header-height);
       }
 
-      .logo {
-        width: 155px;
-      }
-
       .title {
         margin: 0;
         text-align: center;
@@ -31,7 +27,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <a href="/"><img class="logo" src="assets/images/logo.png" alt="logo" /></a>
+        <a href="/">${logo}</a>
       </header>
     `;
   }
