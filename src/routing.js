@@ -15,14 +15,15 @@ export const routing = (outlet) => {
 
   var routes = [
       { path: '/lit-course/',
-    children: [
-      { path: '/validation', component: 'form-validation-view' },
-      { path: '/data-binding', component: 'data-binding' },
-      { path: '/profiles', component: 'profiles-view' },
-      { path: '/searcher', component: 'searcher-view' },
-      { path: '/storybook', component: 'storybook-view' },
-      { path: '(.*)', component: 'not-found-view' },
-    ]
+        component: 'home-view',
+        children: [
+          { path: '/validation', component: 'form-validation-view' },
+          { path: '/data-binding', component: 'data-binding' },
+          { path: '/profiles', component: 'profiles-view' },
+          { path: '/searcher', component: 'searcher-view' },
+          { path: '/storybook', component: 'storybook-view' },
+          { path: '(.*)', component: 'not-found-view' },
+      ]
     },
   ];
 
