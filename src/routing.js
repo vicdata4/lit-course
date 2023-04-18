@@ -14,13 +14,16 @@ export const routing = (outlet) => {
   const router = new Router(outlet);
 
   var routes = [
-    { path: '/', component: 'home-view' },
-    { path: '/validation', component: 'form-validation-view' },
-    { path: '/data-binding', component: 'data-binding' },
-    { path: '/profiles', component: 'profiles-view' },
-    { path: '/searcher', component: 'searcher-view' },
-    { path: '/storybook', component: 'storybook-view' },
-    { path: '(.*)', component: 'not-found-view' },
+      { path: '/lit-course/',
+    children: [
+      { path: '/validation', component: 'form-validation-view' },
+      { path: '/data-binding', component: 'data-binding' },
+      { path: '/profiles', component: 'profiles-view' },
+      { path: '/searcher', component: 'searcher-view' },
+      { path: '/storybook', component: 'storybook-view' },
+      { path: '(.*)', component: 'not-found-view' },
+    ]
+    },
   ];
 
   users.list.forEach((user) => {

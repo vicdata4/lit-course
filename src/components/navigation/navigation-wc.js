@@ -99,7 +99,7 @@ class NavigationWc extends LitElement {
             (info) =>
               html`<li>
                 <a
-                  href="/lit-course${info.path}"
+                  href="${info.path}"
                   @click="${() => this.resetScroll(info.path)}"
                   class="nav-link"
                   tabindex="0"
