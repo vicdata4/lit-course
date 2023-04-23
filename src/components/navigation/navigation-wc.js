@@ -98,11 +98,7 @@ class NavigationWc extends LitElement {
           ${navList.map(
             (info) =>
               html`<li>
-                <a
-                  href="${info.path}"
-                  @click="${() => this.resetScroll(info.path)}"
-                  class="nav-link"
-                  tabindex="0"
+                <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0"
                   >${info.name}</a
                 >
               </li>`,

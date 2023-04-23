@@ -6840,11 +6840,7 @@ class NavigationWc extends LitElement {
           ${navList.map(
             (info) =>
               html`<li>
-                <a
-                  href="${info.path}"
-                  @click="${() => this.resetScroll(info.path)}"
-                  class="nav-link"
-                  tabindex="0"
+                <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0"
                   >${info.name}</a
                 >
               </li>`,
@@ -8743,13 +8739,18 @@ const routing = (outlet) => {
   const router = new Router(outlet);
 
   var routes = [
-    { path: '/', component: 'home-view' },
-    { path: '/validation', component: 'form-validation-view' },
-    { path: '/data-binding', component: 'data-binding' },
-    { path: '/profiles', component: 'profiles-view' },
-    { path: '/searcher', component: 'searcher-view' },
-    { path: '/storybook', component: 'storybook-view' },
-    { path: '(.*)', component: 'not-found-view' },
+    {
+      path: '/lit-course/',
+      children: [
+        { path: '/', component: 'home-view' },
+        { path: '/validation', component: 'form-validation-view' },
+        { path: '/data-binding', component: 'data-binding' },
+        { path: '/profiles', component: 'profiles-view' },
+        { path: '/searcher', component: 'searcher-view' },
+        { path: '/storybook', component: 'storybook-view' },
+        { path: '(.*)', component: 'not-found-view' },
+      ],
+    },
   ];
 
   list.forEach((user) => {
