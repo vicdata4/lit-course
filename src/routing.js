@@ -17,7 +17,7 @@ export const routing = (outlet) => {
     {
       path: '/lit-course/',
       children: [
-        { path: '/lit-course/', component: 'home-view' },
+        { path: '/', component: 'home-view' },
         { path: '/validation', component: 'form-validation-view' },
         { path: '/data-binding', component: 'data-binding' },
         { path: '/profiles', component: 'profiles-view' },
