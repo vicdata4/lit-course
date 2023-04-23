@@ -11,6 +11,23 @@ class HomeView extends LitElement {
     return [material, styles, seedStyle];
   }
 
+  constructor() {
+    super();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.get('v')) {
+      window.dispatchEvent(
+        new CustomEvent('vaadin-router-go', {
+          detail: {
+            pathname: '/lit-course/' + urlParams.get('v'),
+          },
+        }),
+      );
+    }
+  }
+
   renderMainSection() {
     return html`
       <section aria-label="Web design best practices" tabindex="0">
