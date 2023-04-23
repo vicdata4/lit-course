@@ -64,6 +64,7 @@ class FormValidation extends LitElement {
   onSubmit(e) {
     const email = this.shadowRoot.querySelector('#email');
     const password = this.shadowRoot.querySelector('#password');
+    e.preventDefault();
 
     if (!emailValidator(email.value)) {
       this.message = 'Enter a valid email';
@@ -81,7 +82,7 @@ class FormValidation extends LitElement {
 
   render() {
     return html`
-      <form onsubmit="return false">
+      <form onsubmit="${this.onSubmit}">
         <input id="email" type="text" class="form-field" placeholder="email" />
         <input id="password" type="password" class="form-field" placeholder="password" />
         <input type="submit" @click="${this.onSubmit}" class="sd-btn black" value="Check" />
