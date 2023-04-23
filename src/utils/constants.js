@@ -21,19 +21,19 @@ export const navList = [
   },
   {
     name: 'Profiles',
-    path: '/profiles',
+    path: '/lit-course/profiles',
   },
   {
     name: 'Data Binding',
-    path: '/data-binding',
+    path: '/lit-course/data-binding',
   },
   {
     name: 'Searcher',
-    path: '/searcher',
+    path: '/lit-course/searcher',
   },
   {
     name: 'Validation',
-    path: '/validation',
+    path: '/lit-course/validation',
   },
   {
     name: 'Catalog',
