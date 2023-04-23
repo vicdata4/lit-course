@@ -8757,6 +8757,19 @@ const routing = (outlet) => {
   });
 
   router.setRoutes(routes);
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  if (urlParams.get('v')) {
+    window.dispatchEvent(
+      new CustomEvent('vaadin-router-go', {
+        detail: {
+          pathname: '/lit-course/' + urlParams.get('v'),
+        },
+      }),
+    );
+  }
 };
 
 class AppShell extends LitElement {
