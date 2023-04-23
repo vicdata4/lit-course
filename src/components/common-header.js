@@ -27,7 +27,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <a href="/">${logo}</a>
+        <a href="/lit-course/">${logo}</a>
       </header>
     `;
   }

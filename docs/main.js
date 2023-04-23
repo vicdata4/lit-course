@@ -6904,7 +6904,7 @@ class CommonHeader extends LitElement {
   render() {
     return html`
       <header>
-        <a href="/">${logo}</a>
+        <a href="/lit-course/">${logo}</a>
       </header>
     `;
   }
@@ -8741,7 +8741,7 @@ const routing = (outlet) => {
     {
       path: '/lit-course/',
       children: [
-        { path: '/', component: 'home-view' },
+        { path: '/lit-course/', component: 'home-view' },
         { path: '/validation', component: 'form-validation-view' },
         { path: '/data-binding', component: 'data-binding' },
         { path: '/profiles', component: 'profiles-view' },
