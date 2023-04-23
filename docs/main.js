@@ -6499,7 +6499,7 @@ const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 const navList = [
   {
     name: 'Home',
-    path: '/',
+    path: '/lit-course/',
   },
   {
     name: 'Profiles',

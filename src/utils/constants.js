@@ -17,7 +17,7 @@ export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sa
 export const navList = [
   {
     name: 'Home',
-    path: '/',
+    path: '/lit-course/',
   },
   {
     name: 'Profiles',
