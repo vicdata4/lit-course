@@ -6502,20 +6502,20 @@ const navList = [
     path: '/lit-course/',
   },
   {
-    name: 'Profiles',
-    path: '/lit-course/profiles',
-  },
-  {
     name: 'Data Binding',
     path: '/lit-course/data-binding',
+  },
+  {
+    name: 'Validation',
+    path: '/lit-course/validation',
   },
   {
     name: 'Searcher',
     path: '/lit-course/searcher',
   },
   {
-    name: 'Validation',
-    path: '/lit-course/validation',
+    name: 'Profiles',
+    path: '/lit-course/profiles',
   },
   {
     name: 'Catalog',
