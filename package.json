@@ -15,9 +15,7 @@
     "dev": "node ./scripts/dev.js",
     "build": "node ./scripts/build.js",
     "lint": "eslint ./src/**",
-    "lint:fix": "eslint --fix ./src/**",
-    "storybook": "start-storybook -s ./build -p 9001",
-    "storybook:build": "build-storybook -o build -s storybook-static && mv ./build ./storybook-build"
+    "lint:fix": "eslint --fix ./src/**"
   },
   "husky": {
     "hooks": {
@@ -31,7 +29,6 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@open-wc/demoing-storybook": "^0.2.5",
     "@open-wc/testing": "^2.3.4",
     "@open-wc/testing-karma": "^3.1.33",
     "@rollup/plugin-json": "^4.1.0",

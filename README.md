@@ -13,7 +13,6 @@
 - [Prettier](https://prettier.io/) Code formatter
 - [Husky](https://www.npmjs.com/package/husky) Pre commit/push Hooks
 - [CommitLint](https://commitlint.js.org/) Commit convention
-- [Storybook](https://storybook.js.org/) UI components tool
 
 
 ## Quick start
@@ -64,13 +63,4 @@ npm run lint
 ```
 ```bash
 npm run lint:fix
-```
-
-Storybook
-
-- [Configuration](https://github.com/vicdata4/lit-course/tree/master/.storybook)
-- [Stories](https://github.com/vicdata4/lit-course/tree/master/stories)
-
-```bash
-npm run storybook
 ```

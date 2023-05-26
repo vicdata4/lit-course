@@ -21,10 +21,8 @@ const userAssetsList = () => {
 const folders = {
   build: resolvePath('.', 'build'),
   build_assets: resolvePath('.', 'build', 'assets'),
-  build_storybook: resolvePath('.', 'build', 'storybook-build'),
   src: resolvePath('.', 'src'),
-  src_assets: resolvePath('.', 'assets'),
-  src_storybook: resolvePath('.', 'storybook-build')
+  src_assets: resolvePath('.', 'assets')
 };
 
 const files = {
@@ -59,7 +57,6 @@ const rollupConfig = ({
     copy({
       targets: {
         [folders.src_assets]: [folders.build_assets],
-        [folders.src_storybook]: [folders.build_storybook],
         [files.src_index]: [files.build_index],
         [files.src_manifest]: [files.build_manifest],
         [files.src_sw]: [files.build_sw],

@@ -2,7 +2,6 @@
 
 /node_modules
 /build
-/storybook-build
 /coverage
 /e2e
 debug.log
