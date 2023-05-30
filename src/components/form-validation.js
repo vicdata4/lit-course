@@ -4,6 +4,9 @@ import { nothing } from 'lit-html';
 import { emailValidator } from '../utils/functions';
 import { seedStyle } from '@seed-catalog/styles';
 import '../components/common-header';
+import '../components/range-number';
+import '../components/radio-text';
+import '../components/check-boxes';
 
 class FormValidation extends LitElement {
   static get styles() {
@@ -30,8 +33,19 @@ class FormValidation extends LitElement {
         }
 
         .alert-msg {
-          color: black;
+          color: red;
           padding: 10px;
+        }
+
+        .borde-rojo{
+          border: 2px solid red;
+          box-shadow: 2px 2px 6px 6px rgba(255, 0, 0, 0.3);
+        }
+
+        .borde-verde{
+          border: 2px solid green;
+          box-shadow: 2px 2px 6px 6px rgba(0, 0, 255, 0.3);
+          color: green;
         }
 
         @media (min-width: 768px) {
@@ -82,13 +96,16 @@ class FormValidation extends LitElement {
 
   render() {
     return html`
-      <form onsubmit="${this.onSubmit}">
-        <input id="email" type="text" class="form-field" placeholder="email" />
-        <input id="password" type="password" class="form-field" placeholder="password" />
-        <input type="submit" @click="${this.onSubmit}" class="sd-btn black" value="Check" />
-        ${this.validated && this.message === '' ? html`<div class="alert-succesfull">&#128077;</div>` : nothing}
-      </form>
-      ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
+      <div>
+        <form onsubmit="${this.onSubmit}">
+          <input id="email" type="text" class="form-field ${this.message.charAt(0) == 'E' ? 'borde-rojo' : nothing}" placeholder="email" />
+          <input id="password" type="password" class="form-field ${this.message.charAt(0) == 'Y' ? 'borde-rojo' : nothing}" placeholder="password" />
+          <input type="submit" @click="${this.onSubmit}" class="sd-btn black" value="Check" />
+          ${this.validated && this.message === '' ? html`<div class="alert-succesfull">&#128077;</div>` : nothing}
+        </form>
+        ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
+      </div>
+
     `;
   }
 }

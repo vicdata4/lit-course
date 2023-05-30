@@ -25,15 +25,14 @@ class ListComponent extends LitElement {
   render() {
     return html`
       <ul>
-        ${this.list.map(
-          (item, i) =>
-            html`
-              <li>
-                ${dateFormatter(item.date).hour} ${item.message}
-                <button @click="${() => this.deleteItem(i)}">&times;</button>
-              </li>
-            `,
-        )}
+        ${this.list.map((item, i) => html`
+          <li>
+            <span>${dateFormatter(item.date).hour}</span>
+            <span style="color: ${item.color}">${item.message}</span>
+            <strong>${item.marca}</strong>
+            <button @click="${() => this.deleteItem(i)}">&times;</button>
+          </li>
+        `,)}
       </ul>
     `;
   }

@@ -58,10 +58,14 @@ describe('Form validation', () => {
 
     const thumbIcon = el.shadowRoot.querySelector('.alert-succesfull');
     const message = el.shadowRoot.querySelector('.alert-msg');
+    const errorClass = el.shadowRoot.querySelector(".borde-rojo");
+    const validClass = el.shadowRoot.querySelector(".borde-verde");
 
     expect(el.validated).equal(false);
     expect(message).not.to.be.null;
     expect(thumbIcon).to.be.null;
+    expect(errorClass).not.to.be.null;
+    expect(validClass).to.be.null;
   });
 
   it('Enter valid values', async() => {

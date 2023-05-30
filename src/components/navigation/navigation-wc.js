@@ -95,30 +95,20 @@ class NavigationWc extends LitElement {
     return html`
       <nav>
         <ul class="nav-list">
-          ${navList.map(
-            (info) =>
-              html`<li>
-                <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0"
-                  >${info.name}</a
-                >
-              </li>`,
-          )}
+          ${navList.map((info) => html`
+            <li>
+              <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0">${info.name}</a>
+            </li>
+          `)}
         </ul>
         <div class="scroll-menu">
           ${logo}
           <ul class="nav-list">
-            ${navList.map(
-              (info) =>
-                html`<li>
-                  <a
-                    href="${info.path}"
-                    @click="${() => this.resetScroll(info.path)}"
-                    class="nav-link fixed"
-                    tabindex="-1"
-                    >${info.name}</a
-                  >
-                </li>`,
-            )}
+            ${navList.map((info) => html`
+              <li>
+                <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link fixed" tabindex="-1">${info.name}</a>
+              </li>
+            `)}
           </ul>
           <button type="button" class="scroll-menu-btn" @click="${() => this.mobileMenuSwitch(true)}">
             <i class="material-icons scroll-menu-icon">expand_more</i>
