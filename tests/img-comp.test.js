@@ -4,6 +4,7 @@ import '../src/components/extras/img-comp';
 import '../src/components/extras/vistas-api/api-mtg';
 import '../src/components/extras/vistas-api/api-pok';
 import '../src/components/extras/vistas-api/api-omd';
+import '../src/components/modal-window';
 
 const dataMTG = {
     cards: [
@@ -48,7 +49,7 @@ const dataPok = [
 ];
 
 const dataMov = {
-    "Search": [
+    Search: [
         {
             "Title": "Threat Matrix",
             "Year": "2003-2004",
@@ -71,7 +72,7 @@ const dataMov = {
             "Poster": "https://m.media-amazon.com/images/M/MV5BOTRlNWQwM2ItNjkyZC00MGI3LThkYjktZmE5N2FlMzcyNTIyXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg"
         },
     ],
-    "Response" : "True"
+    Response : "True"
 }
 
 let el;
@@ -99,7 +100,7 @@ describe('Comp vacío', async() => {
 
 describe('Comp de mtg', async() => {
     before(async() => {
-        el = await fixture(html`<img-comp .resultados=${dataMTG.cards} category="mtg"></img-comp>`);
+        el = await fixture(html`<img-comp .resultados=${dataMTG} category="mtg"></img-comp>`);
         await el.updateComplete;
     });
     
@@ -136,7 +137,8 @@ describe('Comp de pokemon', async() => {
 
 describe('Comp de movies', async() => {
     before(async() => {
-        el = await fixture(html`<img-comp .resultados="${dataMov}" category="mov"></img-comp>`);
+        el = await fixture(html`<img-comp .resultados=${dataMov}></img-comp>`);
+        el.category = "mov";
         await el.updateComplete;
     });
     
@@ -147,6 +149,8 @@ describe('Comp de movies', async() => {
     it('Sin respuesta', async() => {
         el.resultados = { Response: "false" };
 
-        expect();
+        expect(el.shadowRoot.querySelector(".card-container-mov")).to.be.null;
     });
+
+
 });

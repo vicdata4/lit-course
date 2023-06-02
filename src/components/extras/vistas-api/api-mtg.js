@@ -77,7 +77,7 @@ class ApiMtg extends LitElement {
 
     render() {
         return html`
-            <div class="${this.cardStyle ? "card-container" : "table-container"}">
+            <div id="mainDiv" class="${this.cardStyle ? "card-container" : "table-container"}">
                 ${this.hits.cards.map((item) => html`
                     <div class="${this.cardStyle ? "card" : "table"}">
                         <div class="${this.cardStyle ? "card-header" : "table-header"}">

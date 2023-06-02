@@ -185,10 +185,7 @@ class ApiOmd extends LitElement {
 
     showHitData(hit){
         this.hitData = hit;
-        console.log("1", this.hitData);
-
         const modal = this.shadowRoot.querySelector("modal-window");
-        console.log("*** modal-window de showHitData ***", this.shadowRoot.querySelector("modal-window"));
         modal.openModal();
     }
 
@@ -233,7 +230,7 @@ class ApiOmd extends LitElement {
                                         <div class="noRes image-container">
                                             <img src="/assets/images/notfound.png">
                                             <p>Sin imagen</p>
-                                            <div class="overlay" @click="${()=>this.showHitData(item)}">
+                                            <div id="divOverlay" class="overlay" @click="${()=>this.showHitData(item)}">
                                                 <span class="overlay-text">Más información</span>
                                             </div>
                                         </div>
