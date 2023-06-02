@@ -37,12 +37,12 @@ class FormValidation extends LitElement {
           padding: 10px;
         }
 
-        .borde-rojo{
+        .borde-rojo {
           border: 2px solid red;
           box-shadow: 2px 2px 6px 6px rgba(255, 0, 0, 0.3);
         }
 
-        .borde-verde{
+        .borde-verde {
           border: 2px solid green;
           box-shadow: 2px 2px 6px 6px rgba(0, 0, 255, 0.3);
           color: green;
@@ -98,14 +98,23 @@ class FormValidation extends LitElement {
     return html`
       <div>
         <form onsubmit="${this.onSubmit}">
-          <input id="email" type="text" class="form-field ${this.message.charAt(0) == 'E' ? 'borde-rojo' : nothing}" placeholder="email" />
-          <input id="password" type="password" class="form-field ${this.message.charAt(0) == 'Y' ? 'borde-rojo' : nothing}" placeholder="password" />
+          <input
+            id="email"
+            type="text"
+            class="form-field ${this.message.charAt(0) === 'E' ? 'borde-rojo' : nothing}"
+            placeholder="email"
+          />
+          <input
+            id="password"
+            type="password"
+            class="form-field ${this.message.charAt(0) === 'Y' ? 'borde-rojo' : nothing}"
+            placeholder="password"
+          />
           <input type="submit" @click="${this.onSubmit}" class="sd-btn black" value="Check" />
           ${this.validated && this.message === '' ? html`<div class="alert-succesfull">&#128077;</div>` : nothing}
         </form>
         ${this.message !== '' ? html`<div class="alert-msg">${this.message}</div>` : nothing}
       </div>
-
     `;
   }
 }

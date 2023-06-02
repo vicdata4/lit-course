@@ -29,8 +29,8 @@ class InputFrom extends LitElement {
 
   static get properties() {
     return {
-      fullContent: { type: Boolean }
-    }
+      fullContent: { type: Boolean },
+    };
   }
 
   constructor() {
@@ -72,16 +72,18 @@ class InputFrom extends LitElement {
   render() {
     return html`
       <form @submit="${this.sendData}">
-        ${this.fullContent ? html`
-          <input type="color" id="color" @input="${this.cambiaColor}">
-          <select id="marca" @change="${this.cambiaMarca}">
-              <option value="">-- Selecciona una opción --</option>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-          </select>
-        ` : nothing}
+        ${this.fullContent
+          ? html`
+              <input type="color" id="color" @input="${this.cambiaColor}" />
+              <select id="marca" @change="${this.cambiaMarca}">
+                <option value="">-- Selecciona una opción --</option>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            `
+          : nothing}
         <input id="message" type="text" class="input-text" placeholder="write here.." />
         <button type="submit" id="btn-submit" @click="${this.sendData}" class="btn-submit"><slot></slot></button>
       </form>

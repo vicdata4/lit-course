@@ -8,19 +8,24 @@ import '../../components/list-component';
 
 const components = {
   inputComponent: () => html`
-    <input-form @my-event="${(e) => alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}">
+    <input-form
+      @my-event="${(e) =>
+        alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}"
+    >
       Submit
     </input-form>
   `,
   listComponent: () => html`
-    <list-component .list="${[
+    <list-component
+      .list="${[
         { message: 'Message 1', date: new Date() },
         { message: 'Message 2', date: new Date() },
       ]}"
       @delete-event="${(e) =>
-        alert(`Dispatched custom event called "delete-event" with the following index: ${e.detail.index}`)}">
+        alert(`Dispatched custom event called "delete-event" with the following index: ${e.detail.index}`)}"
+    >
     </list-component>
-  `
+  `,
 };
 
 class ProfileOnePage extends LitElement {
@@ -50,9 +55,9 @@ class ProfileOnePage extends LitElement {
       <section class="container">
         <work-header>profile-one page <img src="assets/user/test_img.png" /></work-header>
         <div class="common-list">
-          ${Object.keys(components).map((item) => html`
-            <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button>
-          `)}
+          ${Object.keys(components).map(
+            (item) => html` <button class="common-btn" @click="${() => this.setComponent(item)}">${item}</button> `,
+          )}
         </div>
         ${components[this.current]()}
       </section>

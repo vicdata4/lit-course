@@ -36,7 +36,6 @@ class DataBinding extends connect(store)(LitElement) {
   }
 
   render() {
-    console.log(this.messageList);
     return html`
       <common-header></common-header>
       <navigation-wc></navigation-wc>
