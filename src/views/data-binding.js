@@ -41,7 +41,7 @@ class DataBinding extends connect(store)(LitElement) {
       <navigation-wc></navigation-wc>
       <section class="container">
         <h1>Data binding</h1>
-        <input-form @my-event="${this.addMessage}">Guardar</input-form>
+        <input-form @my-event="${this.addMessage}" .fullContent=${true}>Guardar</input-form>
         <list-component .list="${this.messageList}" @delete-event="${this.deleteMessage}"></list-component>
       </section>
     `;

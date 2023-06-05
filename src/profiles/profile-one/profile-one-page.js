@@ -7,21 +7,25 @@ import '../../components/input-form';
 import '../../components/list-component';
 
 const components = {
-  inputComponent: () =>
-    html`<input-form
+  inputComponent: () => html`
+    <input-form
       @my-event="${(e) =>
         alert(`Dispatched custom event called "my-event" with the following message: ${e.detail.message}`)}"
-      >Submit</input-form
-    >`,
-  listComponent: () =>
-    html`<list-component
+    >
+      Submit
+    </input-form>
+  `,
+  listComponent: () => html`
+    <list-component
       .list="${[
         { message: 'Message 1', date: new Date() },
         { message: 'Message 2', date: new Date() },
       ]}"
       @delete-event="${(e) =>
         alert(`Dispatched custom event called "delete-event" with the following index: ${e.detail.index}`)}"
-    ></list-component>`,
+    >
+    </list-component>
+  `,
 };
 
 class ProfileOnePage extends LitElement {
@@ -41,6 +45,7 @@ class ProfileOnePage extends LitElement {
   }
 
   setComponent(component) {
+    // console.log(this.shadowRoot.querySelectorAll('*'));
     this.current = component;
   }
 

@@ -1,9 +1,17 @@
 import { LitElement, html, css } from 'lit-element';
 import { spinner } from '../../utils/svg-icons';
 import { nothing } from 'lit-html';
-import { getDataFromApi } from '../../api/searcher.js';
 import '../input-form';
 import './searcher-list';
+
+const url = 'https://hn.algolia.com/api/v1/search?query=';
+
+const errorHandler = (response) => {
+  if (!response.ok) {
+    return { error: response.statusText, errorCode: response.status };
+  }
+  return response.json();
+};
 
 class NewsSearcher extends LitElement {
   static get styles() {
@@ -60,6 +68,17 @@ class NewsSearcher extends LitElement {
     this.searchNews({ detail: { message: 'polymer' } });
   }
 
+  async getDataFromApi() {
+    return fetch(`${url}${this.search}&page=${this.page}&hitsPerPage=${this.hitsPerPage}`, { method: 'GET' })
+      .then(errorHandler)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return { error };
+      });
+  }
+
   async searchNews(e) {
     if (e.detail) {
       this.search = e.detail.message;
@@ -70,8 +89,7 @@ class NewsSearcher extends LitElement {
       this.setLoader(true);
     }
 
-    const query = `${this.search}&page=${this.page}&hitsPerPage=${this.hitsPerPage}`;
-    const data = await getDataFromApi(query);
+    const data = await this.getDataFromApi();
     this.nbHits = data.nbHits;
 
     if (!data.error) {

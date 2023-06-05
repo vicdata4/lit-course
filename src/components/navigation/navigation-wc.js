@@ -96,20 +96,21 @@ class NavigationWc extends LitElement {
       <nav>
         <ul class="nav-list">
           ${navList.map(
-            (info) =>
-              html`<li>
+            (info) => html`
+              <li>
                 <a href="${info.path}" @click="${() => this.resetScroll(info.path)}" class="nav-link" tabindex="0"
                   >${info.name}</a
                 >
-              </li>`,
+              </li>
+            `,
           )}
         </ul>
         <div class="scroll-menu">
           ${logo}
           <ul class="nav-list">
             ${navList.map(
-              (info) =>
-                html`<li>
+              (info) => html`
+                <li>
                   <a
                     href="${info.path}"
                     @click="${() => this.resetScroll(info.path)}"
@@ -117,7 +118,8 @@ class NavigationWc extends LitElement {
                     tabindex="-1"
                     >${info.name}</a
                   >
-                </li>`,
+                </li>
+              `,
             )}
           </ul>
           <button type="button" class="scroll-menu-btn" @click="${() => this.mobileMenuSwitch(true)}">
