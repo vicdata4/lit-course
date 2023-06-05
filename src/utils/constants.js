@@ -12,6 +12,7 @@ export const months = [
   'November',
   'December',
 ];
+
 export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 export const navList = [
@@ -38,5 +39,20 @@ export const navList = [
   {
     name: 'Catalog',
     path: 'https://vicdata4.github.io/seed-catalog/',
+  },
+  {
+    name: 'Extras',
+    path: '/extras',
+  },
+];
+
+export const subNavList = [
+  {
+    name: 'API search',
+    path: '/extras/api',
+  },
+  {
+    name: 'Series y películas',
+    path: '/extras/syp',
   },
 ];
