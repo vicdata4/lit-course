@@ -18,6 +18,7 @@ module.exports = (config) => {
       esm: {
         nodeResolve: true,
       },
+      hostname: '127.0.0.1',
       coverageIstanbulReporter: {
         thresholds: {
           global: {
