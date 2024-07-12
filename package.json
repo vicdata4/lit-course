@@ -46,6 +46,7 @@
     "mockserver": "^3.1.1",
     "prettier": "^2.1.2",
     "pwa-helpers": "^0.9.1",
+    "rollup": "^3.0.0",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-copy": "^2.0.1",
     "rollup-plugin-delete": "^1.0.0",
@@ -67,8 +68,5 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "rollup-plugin-babel": "^4.3.2"
-  },
-  "overrides": {
-    "rollup": "^3.0.0-8"
   }
 }
